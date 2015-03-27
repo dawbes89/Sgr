@@ -1,0 +1,13 @@
+syntax: glob
+*.war
+*.jar
+target/
+*/target/*
+.settings/*
+*.tmp
+.classpath
+.project
+*MANIFEST*
+
+syntax: regexp
+^\.metadata*
