@@ -4,4 +4,15 @@
    version="2.2"
 >
 
+   <application>
+      <locale-config>
+         <default-locale>pl</default-locale>
+      </locale-config>
+
+      <resource-bundle>
+         <base-name>sgr-translations</base-name>
+         <var>translation</var>
+      </resource-bundle>
+   </application>
+
 </faces-config>
