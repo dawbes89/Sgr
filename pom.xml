@@ -10,7 +10,30 @@
 
    <modules>
       <module>sgr-frontend</module>
+      <module>sgr-api</module>
+      <module>sgr-core</module>
    </modules>
+
+   <dependencyManagement>
+      <dependencies>
+         <!-- StudentGradeRecord -->
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-core</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-frontend</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
    <build>
       <plugins>
