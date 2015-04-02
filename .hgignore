@@ -8,6 +8,7 @@ target/
 .classpath
 .project
 *MANIFEST*
+.metadata/*
 
 syntax: regexp
 ^\.metadata*
