@@ -17,7 +17,7 @@ public class TeachingStuffServiceImpl implements TeachingStuffService
    private SessionFactory sessionFactory;
 
    @Override
-   public List<TeachingStuff> getTeachingStuffList()
+   public List<TeachingStuff> search()
    {
 
       Session currentSession = sessionFactory.getCurrentSession();
@@ -31,24 +31,9 @@ public class TeachingStuffServiceImpl implements TeachingStuffService
       this.sessionFactory = sessionFactory;
    }
 
-   @Override
-   public void addTeacher(TeachingStuff teachingStuff)
+   public TeachingStuff get(Long id)
    {
-      sessionFactory.getCurrentSession().save(teachingStuff);
-
-   }
-
-   @Override
-   public void deleteTeacher(TeachingStuff teachingStuff)
-   {
-      sessionFactory.getCurrentSession().delete(teachingStuff);
-
-   }
-
-   @Override
-   public void updateTeacher(TeachingStuff teachingStuff)
-   {
-      sessionFactory.getCurrentSession().update(teachingStuff);
+      return (TeachingStuff) sessionFactory.getCurrentSession().get(TeachingStuff.class, id);
    }
 
 }
