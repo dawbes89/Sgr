@@ -5,11 +5,8 @@ import java.util.List;
 public interface TeachingStuffService
 {
 
-   public List<TeachingStuff> getTeachingStuffList();
+   public List<TeachingStuff> search();
 
-   public void addTeacher(TeachingStuff teachingStuff);
+   public TeachingStuff get(Long id);
 
-   public void deleteTeacher(TeachingStuff teachingStuff);
-
-   public void updateTeacher(TeachingStuff teachingStuff);
 }

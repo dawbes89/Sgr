@@ -6,9 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
-import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -33,26 +31,7 @@ public class TeachingStuffPanel implements Serializable
    @PostConstruct
    public void init()
    {
-      teachingStuffs = teachingStuffService.getTeachingStuffList();
-   }
-
-   public void onEdit(RowEditEvent event)
-   {
-      //FacesMessage msg = new FacesMessage("Item Edited",((OrderBean) event.getObject()).getItem());  
-      FacesContext.getCurrentInstance().addMessage(null, null);
-   }
-
-   public void populateTeachingStuffs()
-   {
-      teachingStuffs = teachingStuffService.getTeachingStuffList();
-   }
-
-   public void addTeacher()
-   {
-      teachingStuffService.addTeacher(teachingStuff);
-      teachingStuffs = teachingStuffService.getTeachingStuffList();
-
-      teachingStuff = new TeachingStuff();
+      teachingStuffs = teachingStuffService.search();
    }
 
    public TeachingStuff getTeachingStuff()
@@ -93,21 +72,6 @@ public class TeachingStuffPanel implements Serializable
    public void setSelectedTeacher(TeachingStuff selectedTeacher)
    {
       this.selectedTeacher = selectedTeacher;
-   }
-
-   public void deleteTeacher(TeachingStuff teachingStuff)
-   {
-
-      teachingStuffService.deleteTeacher(teachingStuff);
-      teachingStuffs = teachingStuffService.getTeachingStuffList();
-   }
-
-   public void updateTeacher(TeachingStuff teachingStuff)
-   {
-      teachingStuffService.updateTeacher(teachingStuff);
-      teachingStuffs = teachingStuffService.getTeachingStuffList();
-      teachingStuff = new TeachingStuff();
-
    }
 
 }

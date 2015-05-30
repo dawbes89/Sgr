@@ -3,7 +3,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h:form id="form">
@@ -25,133 +25,25 @@
 
 					<p:column headerText="id" filterBy="#{teachingStuff.id}">#{teachingStuff.id}
                    </p:column>
-					<p:column headerText="firstName"
+					<p:column headerText="#{translation.teachingStuff_firstName}"
 						filterBy="#{teachingStuff.firstName}">#{teachingStuff.firstName}
              	   </p:column>
 
-					<p:column headerText="lastName"
+					<p:column headerText="#{translation.teachingStuff_lastName}"
 						filterBy="#{teachingStuff.lastName}">#{teachingStuff.lastName}
                    </p:column>
 
-					<p:column headerText="shoolSubject"
+					<p:column headerText="#{translation.teachingStuff_shoolSubject}"
 						filterBy="#{teachingStuff.schoolSubject}">#{teachingStuff.schoolSubject}
                    </p:column>
 
-					<p:column headerText="academicTitle"
+					<p:column headerText="#{translation.teachingStuff_academicTitle}"
 						filterBy="#{teachingStuff.academicTitle}">#{teachingStuff.academicTitle}
                    </p:column>
 
-					<p:column style="width:90px">
-						<p:commandButton id="deleteTeacher" value="delete"
-							actionListener="#{teachingStuffPanel.deleteTeacher(teachingStuff)}"
-							update=":form:teacher">
-							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.deleteTeacher}"
-								update=":form:teacher" />
-						</p:commandButton>
-					</p:column>
-
-					<p:column style="width:90px">
-
-						<p:commandButton id="updateButton" value="update"
-							update=":updateForm:updateTeach"
-							oncomplete="PF('updateTeacher').show()">
-
-							<f:setPropertyActionListener value="#{teachingStuff}"
-								target="#{teachingStuffPanel.teachingStuff}"></f:setPropertyActionListener>
-						</p:commandButton>
-					</p:column>
-
-
-					<p:ajax event="rowEdit" listener="#{teachingStuffPanel.onEdit}"
-						update=":form:teachingStuffTable" />
 				</p:dataTable>
 
-				<p:separator></p:separator>
-				<p:commandButton value="add" icon="ui-icon-check"
-					oncomplete="PF('addTeacher').show()"></p:commandButton>
 			</p:outputPanel>
-		</h:form>
-
-		<h:form id="addForm">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="addTeacher">
-				<p:outputPanel id="addTeach" style="text-align:center;"
-					layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-
-
-						<h:outputLabel value="firstName : *" for="firstName"></h:outputLabel>
-						<p:inputText id="firstName"
-							value="#{teachingStuffPanel.teachingStuff.firstName}"
-							required="true" />
-
-						<h:outputLabel value="lastName : *" for="lastName"></h:outputLabel>
-						<p:inputText id="lastName"
-							value="#{teachingStuffPanel.teachingStuff.lastName}"
-							required="true" />
-
-						<h:outputLabel value="shoolSubject : *" for="shoolSubject"></h:outputLabel>
-						<p:inputText id="shoolSubject"
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}"
-							required="true" />
-
-						<h:outputLabel value="academicTitle : *" for="academicTitle"></h:outputLabel>
-						<p:inputText id="academicTitle"
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
-							required="true" />
-
-						<p:commandButton id="btn_add" value="Add"
-							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher"
-							onclick="addForm.hide()">
-						</p:commandButton>
-
-
-
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-		</h:form>
-
-		<h:form id="updateForm">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="updateTeacher">
-				<p:outputPanel id="updateTeach" style="text-align:center;"
-					layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-
-
-						<h:outputLabel value="firstName : *" for="firstName"></h:outputLabel>
-						<p:inputText id="firstName"
-							value="#{teachingStuffPanel.teachingStuff.firstName}"
-							required="true" />
-
-						<h:outputLabel value="lastName : *" for="lastName"></h:outputLabel>
-						<p:inputText id="lastName"
-							value="#{teachingStuffPanel.teachingStuff.lastName}"
-							required="true" />
-
-						<h:outputLabel value="shoolSubject : *" for="shoolSubject"></h:outputLabel>
-						<p:inputText id="shoolSubject"
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}"
-							required="true" />
-
-						<h:outputLabel value="academicTitle : *" for="academicTitle"></h:outputLabel>
-						<p:inputText id="academicTitle"
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
-							required="true" />
-
-						<p:commandButton id="updateTeacher" value="update"
-							actionListener="#{teachingStuffPanel.updateTeacher(teachingStuffPanel.teachingStuff)}"
-							update=":form:teacher" onclick="addForm.hide()">
-							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.updateTeacher}"
-								update=":form:teacher" />
-						</p:commandButton>
-
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
 		</h:form>
 
 		<h:form id="teacherDetails">
@@ -159,31 +51,25 @@
 				widgetVar="teacherDetailss">
 				<p:outputPanel id="teacherDetaill" style="text-align:center;"
 					layout="block">
-					<p:panelGrid id="output" columns="3" columnClasses="label, value">
-						<f:facet name="header">
-							<p:graphicImage value="images/putin.jpg"  />
-						</f:facet>
+					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel value="id :" for="id"></h:outputLabel>
 						<h:outputText value="#{teachingStuffPanel.teachingStuff.id}" />
 
-						<h:outputLabel value="firstName :" for="firstName"></h:outputLabel>
+						<h:outputLabel value="#{translation.teachingStuff_firstName} :" for="#{translation.teachingStuff_firstName}"></h:outputLabel>
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.firstName}" />
 
-						<h:outputLabel value="lastName :" for="lastName"></h:outputLabel>
+						<h:outputLabel value="#{translation.teachingStuff_lastName} :" for="#{translation.teachingStuff_lastName}"></h:outputLabel>
 						<h:outputText value="#{teachingStuffPanel.teachingStuff.lastName}" />
 
-						<h:outputLabel value="shoolSubject :" for="shoolSubject"></h:outputLabel>
+						<h:outputLabel value="#{translation.teachingStuff_shoolSubject} :" for="#{translation.teachingStuff_shoolSubject}"></h:outputLabel>
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.schoolSubject}" />
 
-						<h:outputLabel value="academicTitle :" for="academicTitle"></h:outputLabel>
+						<h:outputLabel value="#{translation.teachingStuff_academicTitle} :" for="#{translation.teachingStuff_academicTitle}"></h:outputLabel>
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}" />
 
-							<f:facet name="footer">
-							<p:graphicImage value="images/putin.jpg"  width="400" height="400"/>
-						</f:facet>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
