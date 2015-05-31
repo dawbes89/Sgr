@@ -13,13 +13,19 @@
       <property name="username" value="sgr" />
       <property name="password" value="primefaces" />
    </bean>
+   
+   <bean id="announcementService" class="sgr.core.announcement.AnnouncementServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
 
    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
       <property name="dataSource" ref="dataSource" />
       <property name="annotatedClasses">
          <list>
-            <value></value>
+            <value>sgr.api.announcement.Announcement</value>
          </list>
+
+
       </property>
       <property name="hibernateProperties">
          <props>
