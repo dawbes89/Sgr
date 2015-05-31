@@ -31,10 +31,10 @@
             <artifactId>sgr-frontend</artifactId>
             <version>${project.version}</version>
          </dependency>
-         
 
 
-<!--          SPRING -->
+
+         <!-- SPRING -->
          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -65,7 +65,7 @@
             <version>1.0.2</version>
          </dependency>
 
-<!--          HIBERNATE -->
+         <!-- HIBERNATE -->
          <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -78,7 +78,7 @@
             <version>4.0.5.Final</version>
          </dependency>
 
-<!--          MYSQL -->
+         <!-- MYSQL -->
          <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
