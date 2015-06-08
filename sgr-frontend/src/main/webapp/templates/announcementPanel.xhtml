@@ -18,14 +18,13 @@
             <p:outputPanel>
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputText value="Date: " />
-                    <h:outputText value="#{announcement.date}" style="font-weight: bold"/>
+                    <h:outputText value="#{announcement.date}" style="color: blue"/>
  
                     <h:outputText value="Title: " />
-                    <h3>
                     <h:outputText value="#{announcement.title}" style="font-weight: bold"/>
-                    </h3>
+
                     <h:outputText value="Message: " />
-                    <h:outputText value="#{announcement.message}" style="font-weight: bold"/>
+                    <h:outputText value="#{announcement.message}" style="font-margin: 3px"/>
                 </h:panelGrid>
                 <p:separator></p:separator>
             </p:outputPanel>
