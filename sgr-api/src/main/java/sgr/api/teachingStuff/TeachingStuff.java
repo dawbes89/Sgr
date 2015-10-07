@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TeachingStuff")
+@Table(name = "teaching_stuff")
 public class TeachingStuff
 {
 
@@ -17,17 +17,41 @@ public class TeachingStuff
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
-   @Column(name = "firstName")
+   @Column(name = "first_name", length = 20)
    private String firstName;
 
-   @Column(name = "lastName")
+   @Column(name = "last_name", length = 30)
    private String lastName;
 
-   @Column(name = "schoolSubject")
+   @Column(name = "school_subject", length = 50)
    private String schoolSubject;
 
-   @Column(name = "academicTitle")
+   @Column(name = "academic_title", length = 25)
    private String academicTitle;
+
+   public TeachingStuff()
+   {}
+
+   public TeachingStuff(Long id, String firstName, String lastName, String schoolSubject,
+         String academicTitle)
+   {
+      super();
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.schoolSubject = schoolSubject;
+      this.academicTitle = academicTitle;
+   }
+
+   public Long getId()
+   {
+      return id;
+   }
+
+   public void setId(Long id)
+   {
+      this.id = id;
+   }
 
    public String getFirstName()
    {
@@ -48,29 +72,6 @@ public class TeachingStuff
    {
       this.lastName = lastName;
    }
-
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
-
-   public TeachingStuff(Long id, String firstName, String lastName, String schoolSubject, String academicTitle)
-   {
-      super();
-      this.id = id;
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.schoolSubject = schoolSubject;
-      this.academicTitle = academicTitle;
-   }
-
-   public TeachingStuff()
-   {}
 
    public String getSchoolSubject()
    {
