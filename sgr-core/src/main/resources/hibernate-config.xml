@@ -9,9 +9,9 @@
 
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="org.postgresql.Driver" />
-      <property name="url" value="jdbc:postgresql://localhost:5432/SgrTable" />
+      <property name="url" value="jdbc:postgresql://localhost:5432/sgr" />
       <property name="username" value="sgr" />
-      <property name="password" value="primefaces" />
+      <property name="password" value="admin" />
    </bean>
 
    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

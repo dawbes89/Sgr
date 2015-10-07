@@ -1,4 +1,4 @@
-package sgr.core.announcement;
+package sgr.frontend.announcement;
 
 import java.io.Serializable;
 import java.util.List;
