@@ -7,13 +7,6 @@
       <version>0.0.1-SNAPSHOT</version>
    </parent>
 
-   <artifactId>sgr-core</artifactId>
-   <name>sgr-core</name>
-
-   <dependencies>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-api</artifactId>
-      </dependency>
-   </dependencies>
+   <artifactId>sgr-admin-api</artifactId>
+   <name>sgr-admin-api</name>
 </project>

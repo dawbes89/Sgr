@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Announcement")
+@Table(name = "announcement")
 public class Announcement
 {
 
@@ -19,7 +19,7 @@ public class Announcement
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
-   @Column(name = "title")
+   @Column(name = "title", length = 100)
    private String title;
 
    @Column(name = "date")
@@ -37,6 +37,16 @@ public class Announcement
       this.title = title;
       this.date = date;
       this.message = message;
+   }
+
+   public Long getId()
+   {
+      return id;
+   }
+
+   public void setId(Long id)
+   {
+      this.id = id;
    }
 
    public String getTitle()
@@ -69,13 +79,4 @@ public class Announcement
       this.message = message;
    }
 
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
 }
