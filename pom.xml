@@ -12,6 +12,10 @@
       <module>sgr-frontend</module>
       <module>sgr-api</module>
       <module>sgr-core</module>
+      <module>sgr-admin-api</module>
+      <module>sgr-admin-core</module>
+      <module>sgr-admin-frotend</module>
+      <module>sgr-admin-frontend</module>
    </modules>
 
    <dependencyManagement>
@@ -30,6 +34,21 @@
          <dependency>
             <groupId>StudentGradeRecord</groupId>
             <artifactId>sgr-frontend</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-frontend</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-core</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-api</artifactId>
             <version>${project.version}</version>
          </dependency>
       </dependencies>
