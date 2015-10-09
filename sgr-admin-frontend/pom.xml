@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>StudentGradeRecord</groupId>
-		<artifactId>sgr-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>StudentGradeRecord</groupId>
+      <artifactId>sgr-parent</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+   </parent>
 
-	<artifactId>sgr-admin-frontend</artifactId>
-	<name>sgr-admin-frontend</name>
-
+   <artifactId>sgr-admin-frontend</artifactId>
+   <name>sgr-admin-frontend</name>
 
    <repositories>
       <repository>
@@ -23,22 +22,19 @@
       <!-- StudentGradeRecord -->
       <dependency>
          <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-api</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-core</artifactId>
-      </dependency>
-      
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-admin-api</artifactId>
       </dependency>
-
       <dependency>
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-admin-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>StudentGradeRecord</groupId>
+         <artifactId>sgr-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>StudentGradeRecord</groupId>
+         <artifactId>sgr-core</artifactId>
       </dependency>
 
       <!-- PrimeFaces -->
@@ -47,7 +43,6 @@
          <artifactId>primefaces</artifactId>
          <version>5.1</version>
       </dependency>
-
       <dependency>
          <groupId>org.primefaces.themes</groupId>
          <artifactId>all-themes</artifactId>
@@ -60,25 +55,21 @@
          <artifactId>jsf-api</artifactId>
          <version>2.2.10</version>
       </dependency>
-
       <dependency>
          <groupId>com.sun.faces</groupId>
          <artifactId>jsf-impl</artifactId>
          <version>2.2.10</version>
       </dependency>
-
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-web</artifactId>
          <version>4.1.5.RELEASE</version>
       </dependency>
-
       <dependency>
          <groupId>org.apache.tomcat</groupId>
          <artifactId>tomcat-el-api</artifactId>
          <version>8.0.27</version>
       </dependency>
-
    </dependencies>
 
    <build>
@@ -93,5 +84,5 @@
       </plugins>
    </build>
 
-	<packaging>war</packaging>
+   <packaging>war</packaging>
 </project>
