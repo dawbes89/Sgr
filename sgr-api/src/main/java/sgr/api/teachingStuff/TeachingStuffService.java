@@ -9,4 +9,10 @@ public interface TeachingStuffService
 
    public TeachingStuff get(Long id);
 
+   public void create(TeachingStuff teachingStuff);
+
+   public void remove(Long id);
+
+   public void update(TeachingStuff teachingStuff);
+
 }
