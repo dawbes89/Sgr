@@ -19,7 +19,6 @@ public class TeachingStuffServiceImpl implements TeachingStuffService
    @Override
    public List<TeachingStuff> search()
    {
-
       Session currentSession = sessionFactory.getCurrentSession();
       Criteria createCriteria = currentSession.createCriteria(TeachingStuff.class);
 
@@ -31,9 +30,30 @@ public class TeachingStuffServiceImpl implements TeachingStuffService
       this.sessionFactory = sessionFactory;
    }
 
+   @Override
    public TeachingStuff get(Long id)
    {
       return (TeachingStuff) sessionFactory.getCurrentSession().get(TeachingStuff.class, id);
+   }
+
+   @Override
+   public void create(TeachingStuff teachingStuff)
+   {
+      sessionFactory.getCurrentSession().saveOrUpdate(teachingStuff);
+   }
+
+   @Override
+   public void remove(Long id)
+   {
+      TeachingStuff teacher = get(id);
+      sessionFactory.getCurrentSession().delete(teacher);
+
+   }
+
+   @Override
+   public void update(TeachingStuff teachingStuff)
+   {
+      sessionFactory.getCurrentSession().saveOrUpdate(teachingStuff);
    }
 
 }
