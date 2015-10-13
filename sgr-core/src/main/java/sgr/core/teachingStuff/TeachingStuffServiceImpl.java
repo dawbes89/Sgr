@@ -39,7 +39,7 @@ public class TeachingStuffServiceImpl implements TeachingStuffService
    @Override
    public void create(TeachingStuff teachingStuff)
    {
-      sessionFactory.getCurrentSession().saveOrUpdate(teachingStuff);
+      sessionFactory.getCurrentSession().save(teachingStuff);
    }
 
    @Override
