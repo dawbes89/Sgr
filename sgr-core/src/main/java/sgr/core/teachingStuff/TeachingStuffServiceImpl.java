@@ -2,38 +2,27 @@ package sgr.core.teachingStuff;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.commons.DaoSupport;
 
-@Transactional
-public class TeachingStuffServiceImpl implements TeachingStuffService
+public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
-   private SessionFactory sessionFactory;
+   private static final long serialVersionUID = 893855768880646645L;
 
    @Override
    public List<TeachingStuff> search()
    {
-
-      Session currentSession = sessionFactory.getCurrentSession();
-      Criteria createCriteria = currentSession.createCriteria(TeachingStuff.class);
-
-      return createCriteria.list();
+      Criteria criteria = createCriteria(TeachingStuff.class);
+      return search(criteria);
    }
 
-   public void setSessionFactory(SessionFactory sessionFactory)
-   {
-      this.sessionFactory = sessionFactory;
-   }
-
+   @Override
    public TeachingStuff get(Long id)
    {
-      return (TeachingStuff) sessionFactory.getCurrentSession().get(TeachingStuff.class, id);
+      return getEntity(TeachingStuff.class, id);
    }
 
 }
