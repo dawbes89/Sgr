@@ -1,8 +1,9 @@
 package sgr.api.teachingStuff;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface TeachingStuffService
+public interface TeachingStuffService extends Serializable
 {
 
    public List<TeachingStuff> search();
