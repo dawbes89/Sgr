@@ -22,14 +22,14 @@
 						</h:panelGrid>
 					</p:column>
 					<p:column headerText="#{admin_translation.teachingStuff_firstName}"
-						filterBy="#{teachingStuff.firstName}">#{teachingStuff.firstName}
+						filterBy="#{teachingStuff.firstName}" filterMatchMode="contains">#{teachingStuff.firstName}
                    </p:column>
 					<p:column headerText="#{admin_translation.teachingStuff_lastName}"
-						filterBy="#{teachingStuff.lastName}">#{teachingStuff.lastName}
+						filterBy="#{teachingStuff.lastName}" filterMatchMode="contains" >#{teachingStuff.lastName}
                    </p:column>
 					<p:column
 						headerText="#{admin_translation.teachingStuff_schoolSubject}"
-						filterBy="#{teachingStuff.schoolSubject}">#{teachingStuff.schoolSubject}
+						filterBy="#{teachingStuff.schoolSubject}" filterMatchMode="contains" >#{teachingStuff.schoolSubject}
                    </p:column>
 					<p:column
 						headerText="#{admin_translation.teachingStuff_academicTitle}"
@@ -91,7 +91,7 @@
 							required="true" />
 						<p:commandButton id="btn_add" value="Add"
 							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher"
-							onclick="addForm.hide()">
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addTeacher').hide()">
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
@@ -130,7 +130,7 @@
 							required="true" />
 						<p:commandButton id="updateTeacher" value="update"
 							actionListener="#{teachingStuffPanel.updateTeacher(teachingStuffPanel.teachingStuff)}"
-							update=":form:teacher" onComplete="addForm.hide()">
+							update=":form:teacher" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateTeacher').hide()">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.updateTeacher}"
 								update=":form:teacher" />

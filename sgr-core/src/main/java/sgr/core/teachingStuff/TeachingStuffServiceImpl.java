@@ -14,6 +14,9 @@ import sgr.api.teachingStuff.TeachingStuffService;
 @Transactional
 public class TeachingStuffServiceImpl implements TeachingStuffService
 {
+
+   private static final long serialVersionUID = 3981430903530990661L;
+
    private SessionFactory sessionFactory;
 
    @Override
