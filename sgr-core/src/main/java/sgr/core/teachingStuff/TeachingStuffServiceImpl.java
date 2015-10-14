@@ -2,11 +2,7 @@ package sgr.core.teachingStuff;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
@@ -29,24 +25,23 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
       return getEntity(TeachingStuff.class, id);
    }
 
-@Override
+   @Override
    public void create(TeachingStuff teachingStuff)
    {
-      sessionFactory.getCurrentSession().save(teachingStuff);
+      createEntity(teachingStuff);
    }
 
    @Override
    public void remove(Long id)
    {
       TeachingStuff teacher = get(id);
-      sessionFactory.getCurrentSession().delete(teacher);
-
+      removeEntity(teacher);
    }
 
    @Override
    public void update(TeachingStuff teachingStuff)
    {
-      sessionFactory.getCurrentSession().saveOrUpdate(teachingStuff);
+      updateEntity(teachingStuff);
    }
 
 }
