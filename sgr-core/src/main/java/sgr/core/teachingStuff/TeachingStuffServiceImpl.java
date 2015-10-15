@@ -8,6 +8,9 @@ import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
 import sgr.commons.DaoSupport;
 
+/**
+ * @author dawbes
+ */
 public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
    private static final long serialVersionUID = 893855768880646645L;

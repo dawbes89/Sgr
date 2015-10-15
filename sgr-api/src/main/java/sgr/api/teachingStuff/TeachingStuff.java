@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author dawbes
+ */
 @Entity
 @Table(name = "teaching_stuff")
 public class TeachingStuff implements Serializable

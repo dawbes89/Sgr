@@ -8,6 +8,9 @@ import sgr.api.announcement.Announcement;
 import sgr.api.announcement.AnnouncementService;
 import sgr.commons.DaoSupport;
 
+/**
+ * @author dawbes
+ */
 public class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
 {
 

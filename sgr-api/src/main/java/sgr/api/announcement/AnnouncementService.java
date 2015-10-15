@@ -2,6 +2,9 @@ package sgr.api.announcement;
 
 import java.util.List;
 
+/**
+ * @author dawbes
+ */
 public interface AnnouncementService
 {
    public List<Announcement> search();
