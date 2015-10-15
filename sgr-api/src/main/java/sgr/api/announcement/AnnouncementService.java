@@ -6,10 +6,10 @@ public interface AnnouncementService
 {
    public List<Announcement> search();
 
-   public void add(Announcement announcement);
-
-   public void delete(Announcement announcement);
+   public void create(Announcement announcement);
 
    public void update(Announcement announcement);
+
+   public void delete(Announcement announcement);
 
 }

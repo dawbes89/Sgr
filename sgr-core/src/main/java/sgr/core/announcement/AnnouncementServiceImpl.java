@@ -2,61 +2,40 @@ package sgr.core.announcement;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Required;
 
 import sgr.api.announcement.Announcement;
 import sgr.api.announcement.AnnouncementService;
+import sgr.commons.DaoSupport;
 
-@Transactional
-public class AnnouncementServiceImpl implements AnnouncementService
+public class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
 {
 
-   private SessionFactory sessionFactory;
+   private static final long serialVersionUID = -6005137911616592291L;
 
    @Override
    public List<Announcement> search()
    {
-      Session currentSession = sessionFactory.getCurrentSession();
-      Criteria createCriteria = currentSession.createCriteria(Announcement.class);
-
-      return createCriteria.list();
+      Criteria crit = createCriteria(Announcement.class);
+      return search(crit);
    }
 
    @Override
-   public void add(Announcement announcement)
+   public void create(Announcement announcement)
    {
-      sessionFactory.getCurrentSession().save(announcement);
-
+      createEntity(announcement);
    }
 
    @Override
    public void delete(Announcement announcement)
    {
-      sessionFactory.getCurrentSession().delete(announcement);
-
+      removeEntity(announcement);
    }
 
    @Override
    public void update(Announcement announcement)
    {
-      sessionFactory.getCurrentSession().update(announcement);
-
-   }
-
-   @Required
-   public void setSessionFactory(SessionFactory sessionFactory)
-   {
-      this.sessionFactory = sessionFactory;
-   }
-
-   public SessionFactory getSessionFactory()
-   {
-      return sessionFactory;
+      updateEntity(announcement);
    }
 
 }

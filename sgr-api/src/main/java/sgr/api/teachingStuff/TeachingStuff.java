@@ -1,5 +1,7 @@
 package sgr.api.teachingStuff;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "teaching_stuff")
-public class TeachingStuff
+public class TeachingStuff implements Serializable
 {
+
+   private static final long serialVersionUID = 1452686849131351842L;
 
    @Id
    @Column(name = "id")
