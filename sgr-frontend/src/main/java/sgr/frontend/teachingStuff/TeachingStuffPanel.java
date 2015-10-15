@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
 
+/**
+ * @author dawbes
+ */
 @Controller
 @ManagedBean(name = "teachingStuffPanel")
 @ViewScoped

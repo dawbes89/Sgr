@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import sgr.api.announcement.Announcement;
 import sgr.api.announcement.AnnouncementService;
 
+/**
+ * @author dawbes
+ */
 @Controller
 @ManagedBean(name = "announcementPanel")
 @ViewScoped

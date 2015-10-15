@@ -1,9 +1,11 @@
 package sgr.api.teachingStuff;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface TeachingStuffService extends Serializable
+/**
+ * @author dawbes
+ */
+public interface TeachingStuffService
 {
 
    public List<TeachingStuff> search();
