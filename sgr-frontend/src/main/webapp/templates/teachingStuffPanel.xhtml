@@ -9,8 +9,7 @@
 		<h:form id="form">
 			<p:outputPanel id="teacher" style="text-align:center;" layout="block">
 				<p:dataTable value="#{teachingStuffPanel.teachingStuffs}"
-					var="teachingStuff" id="teachingStuffTable" editable="true">
-
+					var="teachingStuff" id="teachingStuffTable" editable="false">
 					<p:column style="width:60px">
 						<h:panelGrid columns="3" styleClass="actions" cellpanding="2">
 							<p:commandButton id="selectButton"
@@ -18,31 +17,23 @@
 								oncomplete="PF('teacherDetailss').show()" icon="ui-icon-search"
 								title="View">
 								<f:setPropertyActionListener value="#{teachingStuff}"
-									target="#{teachingStuffPanel.teachingStuff}"></f:setPropertyActionListener>
+									target="#{teachingStuffPanel.teachingStuff}" />
 							</p:commandButton>
 						</h:panelGrid>
 					</p:column>
-
-					<p:column headerText="id" filterBy="#{teachingStuff.id}">#{teachingStuff.id}
-                   </p:column>
 					<p:column headerText="#{translation.teachingStuff_firstName}"
 						filterBy="#{teachingStuff.firstName}">#{teachingStuff.firstName}
              	   </p:column>
-
 					<p:column headerText="#{translation.teachingStuff_lastName}"
 						filterBy="#{teachingStuff.lastName}">#{teachingStuff.lastName}
                    </p:column>
-
 					<p:column headerText="#{translation.teachingStuff_shoolSubject}"
 						filterBy="#{teachingStuff.schoolSubject}">#{teachingStuff.schoolSubject}
                    </p:column>
-
 					<p:column headerText="#{translation.teachingStuff_academicTitle}"
 						filterBy="#{teachingStuff.academicTitle}">#{teachingStuff.academicTitle}
                    </p:column>
-
 				</p:dataTable>
-
 			</p:outputPanel>
 		</h:form>
 
@@ -52,32 +43,26 @@
 				<p:outputPanel id="teacherDetaill" style="text-align:center;"
 					layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="id :" for="id"></h:outputLabel>
-						<h:outputText value="#{teachingStuffPanel.teachingStuff.id}" />
-
 						<h:outputLabel value="#{translation.teachingStuff_firstName} :"
-							for="#{translation.teachingStuff_firstName}"></h:outputLabel>
+							for="#{translation.teachingStuff_firstName}" />
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.firstName}" />
-
 						<h:outputLabel value="#{translation.teachingStuff_lastName} :"
-							for="#{translation.teachingStuff_lastName}"></h:outputLabel>
+							for="#{translation.teachingStuff_lastName}/" />
 						<h:outputText value="#{teachingStuffPanel.teachingStuff.lastName}" />
-
 						<h:outputLabel value="#{translation.teachingStuff_shoolSubject} :"
-							for="#{translation.teachingStuff_shoolSubject}"></h:outputLabel>
+							for="#{translation.teachingStuff_shoolSubject}" />
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.schoolSubject}" />
-
 						<h:outputLabel
 							value="#{translation.teachingStuff_academicTitle} :"
-							for="#{translation.teachingStuff_academicTitle}"></h:outputLabel>
+							for="#{translation.teachingStuff_academicTitle}" />
 						<h:outputText
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}" />
-
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
 	</ui:define>
+
 </ui:composition>
