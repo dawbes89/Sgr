@@ -7,25 +7,31 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><h:outputText value="#{admin_translation.application_title}" /></title>
+	<title><h:outputText value="#{translation.application_title}" /></title>
 </h:head>
 
 <h:body>
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north"
-			header="#{admin_translation.application_title}" size="120">
+			header="#{translation.application_title}"
+			footer="#{translation.application_invitation}" size="170">
 			<ui:include src="menu/horizontal.xhtml" />
 		</p:layoutUnit>
-
+		<p:layoutUnit position="west" minSize="260" maxSize="270"
+			collapsible="true" effect="drop" effectSpeed="slow"
+			header="#{translation.menu_vertical_name}">
+			<ui:insert name="verticalMenu">
+				<ui:include src="menu/vertical.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
 		<p:layoutUnit position="center">
 			<ui:insert name="content">
 			</ui:insert>
 		</p:layoutUnit>
-
 		<p:layoutUnit position="south" size="70">
 			<ui:include src="footer.xhtml" />
 		</p:layoutUnit>
 	</p:layout>
-
 </h:body>
+
 </html>
