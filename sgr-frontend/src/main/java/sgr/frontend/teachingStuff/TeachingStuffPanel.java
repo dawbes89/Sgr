@@ -1,80 +1,42 @@
 package sgr.frontend.teachingStuff;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.commons.AbstractPanel;
 
 /**
  * @author dawbes
  */
 @Controller
 @ManagedBean(name = "teachingStuffPanel")
-@ViewScoped
-public class TeachingStuffPanel implements Serializable
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 {
 
-   private static final long serialVersionUID = 4055047736483383800L;
-
-   private TeachingStuff teachingStuff = new TeachingStuff();
-   private List<TeachingStuff> teachingStuffs;
-   private TeachingStuff selectedTeacher;
+   private static final long serialVersionUID = 5475535216504328321L;
 
    @Autowired
    private TeachingStuffService teachingStuffService;
 
-   @PostConstruct
+   @Override
    public void init()
    {
-      teachingStuffs = teachingStuffService.search();
+      entity = new TeachingStuff();
    }
 
-   public TeachingStuff getTeachingStuff()
+   @Override
+   public void onLoad()
    {
-      return teachingStuff;
-   }
-
-   public void setTeachingStuff(TeachingStuff teachingStuff)
-   {
-      this.teachingStuff = teachingStuff;
-   }
-
-   public List<TeachingStuff> getTeachingStuffs()
-   {
-      return teachingStuffs;
-   }
-
-   public void setTeachingStuffs(List<TeachingStuff> teachingStuffs)
-   {
-      this.teachingStuffs = teachingStuffs;
-   }
-
-   public TeachingStuffService getTeachingStuffService()
-   {
-      return teachingStuffService;
+      entities = teachingStuffService.search();
    }
 
    public void setTeachingStuffService(TeachingStuffService teachingStuffService)
    {
       this.teachingStuffService = teachingStuffService;
-   }
-
-   public TeachingStuff getSelectedTeacher()
-   {
-      return selectedTeacher;
-   }
-
-   public void setSelectedTeacher(TeachingStuff selectedTeacher)
-   {
-      this.selectedTeacher = selectedTeacher;
    }
 
 }
