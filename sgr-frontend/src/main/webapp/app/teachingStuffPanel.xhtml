@@ -7,31 +7,35 @@
 
 	<ui:define name="content">
 		<h:form id="form">
+			<p:remoteCommand name="onload" action="#{teachingStuffPanel.onLoad}"
+				autoRun="true" update="teachingStuffTable" />
+
 			<p:outputPanel id="teacher" style="text-align:center;" layout="block">
-				<p:dataTable value="#{teachingStuffPanel.teachingStuffs}"
+				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="teachingStuffTable" editable="false">
 					<p:column style="width:60px">
-						<h:panelGrid columns="3" styleClass="actions" cellpanding="2">
-							<p:commandButton id="selectButton"
-								update=":teacherDetails:teacherDetaill"
-								oncomplete="PF('teacherDetailss').show()" icon="ui-icon-search"
-								title="View">
+						<h:panelGrid columns="1" styleClass="actions" cellpanding="1">
+							<p:commandButton update=":teacherDetails:teacherDetailsPanel"
+								oncomplete="PF('teacherDetailsWidgetVar').show()"
+								icon="ui-icon-search" title="View">
 								<f:setPropertyActionListener value="#{teachingStuff}"
-									target="#{teachingStuffPanel.teachingStuff}" />
+									target="#{teachingStuffPanel.entity}" />
 							</p:commandButton>
 						</h:panelGrid>
 					</p:column>
 					<p:column headerText="#{translation.teachingStuff_academicTitle}"
-						filterBy="#{teachingStuff.academicTitle}">#{teachingStuff.academicTitle}
+						filterBy="#{teachingStuff.academicTitle}"
+						filterMatchMode="contains">#{teachingStuff.academicTitle}
                    </p:column>
 					<p:column headerText="#{translation.teachingStuff_firstName}"
-						filterBy="#{teachingStuff.firstName}">#{teachingStuff.firstName}
+						filterBy="#{teachingStuff.firstName}" filterMatchMode="contains">#{teachingStuff.firstName}
              	   </p:column>
 					<p:column headerText="#{translation.teachingStuff_lastName}"
-						filterBy="#{teachingStuff.lastName}">#{teachingStuff.lastName}
+						filterBy="#{teachingStuff.lastName}" filterMatchMode="contains">#{teachingStuff.lastName}
                    </p:column>
 					<p:column headerText="#{translation.teachingStuff_shoolSubject}"
-						filterBy="#{teachingStuff.schoolSubject}">#{teachingStuff.schoolSubject}
+						filterBy="#{teachingStuff.schoolSubject}"
+						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
 				</p:dataTable>
 			</p:outputPanel>
@@ -39,26 +43,19 @@
 
 		<h:form id="teacherDetails">
 			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="teacherDetailss">
-				<p:outputPanel id="teacherDetaill" style="text-align:center;"
+				widgetVar="teacherDetailsWidgetVar">
+				<p:outputPanel id="teacherDetailsPanel" style="text-align:center;"
 					layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="#{translation.teachingStuff_firstName} :"
-							for="#{translation.teachingStuff_firstName}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.firstName}" />
-						<h:outputLabel value="#{translation.teachingStuff_lastName} :"
-							for="#{translation.teachingStuff_lastName}/" />
-						<h:outputText value="#{teachingStuffPanel.teachingStuff.lastName}" />
-						<h:outputLabel value="#{translation.teachingStuff_shoolSubject} :"
-							for="#{translation.teachingStuff_shoolSubject}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}" />
+					<p:panelGrid columns="2" columnClasses="label, value">
+						<h:outputLabel value="#{translation.teachingStuff_firstName} :" />
+						<h:outputText value="#{teachingStuffPanel.entity.firstName}" />
+						<h:outputLabel value="#{translation.teachingStuff_lastName} :" />
+						<h:outputText value="#{teachingStuffPanel.entity.lastName}" />
+						<h:outputLabel value="#{translation.teachingStuff_shoolSubject} :" />
+						<h:outputText value="#{teachingStuffPanel.entity.schoolSubject}" />
 						<h:outputLabel
-							value="#{translation.teachingStuff_academicTitle} :"
-							for="#{translation.teachingStuff_academicTitle}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}" />
+							value="#{translation.teachingStuff_academicTitle} :" />
+						<h:outputText value="#{teachingStuffPanel.entity.academicTitle}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
