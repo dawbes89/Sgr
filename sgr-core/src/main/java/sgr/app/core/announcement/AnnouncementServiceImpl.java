@@ -1,11 +1,11 @@
-package sgr.core.announcement;
+package sgr.app.core.announcement;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
 
-import sgr.api.announcement.Announcement;
-import sgr.api.announcement.AnnouncementService;
+import sgr.app.api.announcement.Announcement;
+import sgr.app.api.announcement.AnnouncementService;
 import sgr.commons.core.DaoSupport;
 
 /**

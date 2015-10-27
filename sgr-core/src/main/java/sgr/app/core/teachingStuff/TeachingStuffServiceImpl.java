@@ -1,11 +1,11 @@
-package sgr.core.teachingStuff;
+package sgr.app.core.teachingStuff;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
 
-import sgr.api.teachingStuff.TeachingStuff;
-import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.DaoSupport;
 
 /**

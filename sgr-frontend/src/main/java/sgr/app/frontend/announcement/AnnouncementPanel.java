@@ -1,4 +1,4 @@
-package sgr.frontend.announcement;
+package sgr.app.frontend.announcement;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.faces.bean.ViewScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import sgr.api.announcement.Announcement;
-import sgr.api.announcement.AnnouncementService;
+import sgr.app.api.announcement.Announcement;
+import sgr.app.api.announcement.AnnouncementService;
 
 /**
  * @author dawbes

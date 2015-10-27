@@ -1,4 +1,4 @@
-package sgr.admin.teachingStuff;
+package sgr.admin.frontend.teachingStuff;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import sgr.api.teachingStuff.TeachingStuff;
-import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStuffService;
 
 /**
  * @author dawbes
