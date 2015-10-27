@@ -1,4 +1,4 @@
-package sgr.api.teachingStuff;
+package sgr.app.api.teachingStuff;
 
 import java.io.Serializable;
 

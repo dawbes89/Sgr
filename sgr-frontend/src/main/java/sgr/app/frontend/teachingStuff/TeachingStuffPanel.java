@@ -1,12 +1,12 @@
-package sgr.frontend.teachingStuff;
+package sgr.app.frontend.teachingStuff;
 
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import sgr.api.teachingStuff.TeachingStuff;
-import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.frontend.AbstractPanel;
 
 /**

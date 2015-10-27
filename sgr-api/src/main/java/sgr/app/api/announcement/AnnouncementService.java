@@ -1,4 +1,4 @@
-package sgr.api.announcement;
+package sgr.app.api.announcement;
 
 import java.util.List;
 
