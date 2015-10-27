@@ -8,13 +8,12 @@
    <name>Studen Grade Record</name>
 
    <modules>
-      <module>sgr-frontend</module>
-      <module>sgr-api</module>
-      <module>sgr-core</module>
       <module>sgr-admin-api</module>
       <module>sgr-admin-core</module>
-      <module>sgr-admin-frotend</module>
       <module>sgr-admin-frontend</module>
+      <module>sgr-api</module>
+      <module>sgr-core</module>
+      <module>sgr-frontend</module>
       <module>sgr-commons</module>
    </modules>
 
