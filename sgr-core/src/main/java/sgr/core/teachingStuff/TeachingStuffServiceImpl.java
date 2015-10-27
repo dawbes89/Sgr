@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
-import sgr.commons.DaoSupport;
+import sgr.commons.core.DaoSupport;
 
 /**
  * @author dawbes

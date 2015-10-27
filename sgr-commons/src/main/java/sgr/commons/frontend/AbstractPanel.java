@@ -1,4 +1,4 @@
-package sgr.commons;
+package sgr.commons.frontend;
 
 import java.io.Serializable;
 import java.util.List;
