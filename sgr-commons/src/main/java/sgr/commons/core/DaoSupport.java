@@ -1,4 +1,4 @@
-package sgr.commons;
+package sgr.commons.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;

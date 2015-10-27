@@ -15,11 +15,27 @@
       <module>sgr-admin-core</module>
       <module>sgr-admin-frotend</module>
       <module>sgr-admin-frontend</module>
+      <module>sgr-commons</module>
    </modules>
 
    <dependencyManagement>
       <dependencies>
          <!-- StudentGradeRecord -->
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-core</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>StudentGradeRecord</groupId>
+            <artifactId>sgr-admin-frontend</artifactId>
+            <version>${project.version}</version>
+         </dependency>
          <dependency>
             <groupId>StudentGradeRecord</groupId>
             <artifactId>sgr-api</artifactId>
@@ -37,17 +53,7 @@
          </dependency>
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-frontend</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-         <dependency>
-            <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-core</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-         <dependency>
-            <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-api</artifactId>
+            <artifactId>sgr-commons</artifactId>
             <version>${project.version}</version>
          </dependency>
       </dependencies>
@@ -68,6 +74,11 @@
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-orm</artifactId>
+         <version>4.1.5.RELEASE</version>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-web</artifactId>
          <version>4.1.5.RELEASE</version>
       </dependency>
       <dependency>
@@ -103,6 +114,13 @@
          <groupId>postgresql</groupId>
          <artifactId>postgresql</artifactId>
          <version>9.1-901-1.jdbc4</version>
+      </dependency>
+
+      <!-- JSF -->
+      <dependency>
+         <groupId>com.sun.faces</groupId>
+         <artifactId>jsf-api</artifactId>
+         <version>2.2.10</version>
       </dependency>
    </dependencies>
 

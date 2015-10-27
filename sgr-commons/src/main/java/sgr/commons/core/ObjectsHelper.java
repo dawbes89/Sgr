@@ -1,4 +1,4 @@
-package sgr.commons;
+package sgr.commons.core;
 
 /**
  * @author leonzio
