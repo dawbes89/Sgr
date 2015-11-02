@@ -14,6 +14,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sgr.api.account.Account;
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
+import sgr.commons.RandomPasswordGenerator;
 
 /**
  * @author dawbes
@@ -65,6 +66,12 @@ public class TeachingStuffPanel implements Serializable
       teachingStuffService.update(teachingStuff);
       teachingStuffs = teachingStuffService.search();
       teachingStuff = new TeachingStuff();
+   }
+
+   public void generatePassword()
+   {
+      String password = RandomPasswordGenerator.generate();
+      account.setPassword(password);
    }
 
    public TeachingStuff getTeachingStuff()

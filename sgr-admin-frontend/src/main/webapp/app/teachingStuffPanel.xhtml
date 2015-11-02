@@ -5,6 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
+
+
 	<ui:define name="content">
 		<h:form id="form">
 			<p:outputPanel id="teacher" style="text-align:center;" layout="block">
@@ -36,10 +38,9 @@
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
-                   <p:column
-                        headerText="login"
-                        filterBy="#{teachingStuff.account.login}"
-                        filterMatchMode="contains">#{teachingStuff.account.login}
+					<p:column headerText="login"
+						filterBy="#{teachingStuff.account.login}"
+						filterMatchMode="contains">#{teachingStuff.account.login}
                    </p:column>
 					<p:column style="width:90px">
 						<p:commandButton id="deleteTeacher" value="delete"
@@ -98,10 +99,18 @@
 						<h:outputLabel value="login: *" for="login" />
 						<p:inputText id="login"
 							value="#{teachingStuffPanel.account.login}" required="true" />
+						<h:outputLabel value="login: *" for="login" />
+						<p:inputText id="password"
+							value="#{teachingStuffPanel.account.password}" />
 						<p:commandButton id="btn_add" value="Add"
-							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addTeacher').hide()">
+							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher" 
+							>
 						</p:commandButton>
+
+						<p:commandLink id="ajax" 
+							action="#{teachingStuffPanel.generatePassword}" immediate="false" update="password">
+							<h:outputText value="Ajax Submit" />
+						</p:commandLink>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
@@ -138,8 +147,9 @@
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
 							required="true" />
 						<h:outputLabel value="login: *" for="login" />
-                        <p:inputText id="login"
-                            value="#{teachingStuffPanel.teachingStuff.account.login}" required="true" />
+						<p:inputText id="login"
+							value="#{teachingStuffPanel.teachingStuff.account.login}"
+							required="true" />
 						<p:commandButton id="updateTeacher" value="update"
 							actionListener="#{teachingStuffPanel.updateTeacher(teachingStuffPanel.teachingStuff)}"
 							update=":form:teacher"
