@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
 import sgr.commons.DaoSupport;
+import sgr.commons.RandomPasswordGenerator;
 
 /**
  * @author dawbes
@@ -31,6 +32,8 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    @Override
    public void create(TeachingStuff teachingStuff)
    {
+      String password = RandomPasswordGenerator.generate();
+      teachingStuff.getAccount().setPassword(password);
       createEntity(teachingStuff);
    }
 

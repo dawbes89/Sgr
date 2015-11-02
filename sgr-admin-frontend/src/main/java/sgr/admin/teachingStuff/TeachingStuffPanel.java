@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import sgr.api.account.Account;
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
 
@@ -26,6 +27,8 @@ public class TeachingStuffPanel implements Serializable
    private static final long serialVersionUID = 2553933126154263063L;
 
    private TeachingStuff teachingStuff = new TeachingStuff();
+   private Account account = new Account();
+
    private List<TeachingStuff> teachingStuffs;
 
    @Autowired
@@ -44,9 +47,11 @@ public class TeachingStuffPanel implements Serializable
 
    public void addTeacher()
    {
+      teachingStuff.setAccount(account);
       teachingStuffService.create(teachingStuff);
       teachingStuffs = teachingStuffService.search();
       teachingStuff = new TeachingStuff();
+      account = new Account();
    }
 
    public void deleteTeacher(TeachingStuff teachingStuff)
@@ -80,6 +85,16 @@ public class TeachingStuffPanel implements Serializable
    public void setTeachingStuffs(List<TeachingStuff> teachingStuffs)
    {
       this.teachingStuffs = teachingStuffs;
+   }
+
+   public Account getAccount()
+   {
+      return account;
+   }
+
+   public void setAccount(Account account)
+   {
+      this.account = account;
    }
 
 }
