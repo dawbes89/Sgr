@@ -49,9 +49,9 @@ public class TeachingStuffPanel implements Serializable
       teachingStuff = new TeachingStuff();
    }
 
-   public void deleteTeacher(TeachingStuff teachingStuff)
+   public void deleteTeacher(Long id)
    {
-      teachingStuffService.remove(teachingStuff.getId());
+      teachingStuffService.remove(id);
       teachingStuffs = teachingStuffService.search();
    }
 

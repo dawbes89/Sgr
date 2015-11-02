@@ -12,6 +12,10 @@
          <base-name>sgr-admin-translations</base-name>
          <var>admin_translation</var>
       </resource-bundle>
+      <resource-bundle>
+         <base-name>sgr-common-translations</base-name>
+         <var>common</var>
+      </resource-bundle>
    </application>
 
 </faces-config>

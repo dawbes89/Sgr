@@ -17,7 +17,7 @@
 						<h:panelGrid columns="1" styleClass="actions" cellpanding="1">
 							<p:commandButton update=":teacherDetails:teacherDetailsPanel"
 								oncomplete="PF('teacherDetailsWidgetVar').show()"
-								icon="ui-icon-search" title="View">
+								icon="ui-icon-search" title="#{common.button_details}">
 								<f:setPropertyActionListener value="#{teachingStuff}"
 									target="#{teachingStuffPanel.entity}" />
 							</p:commandButton>
@@ -42,7 +42,7 @@
 		</h:form>
 
 		<h:form id="teacherDetails">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
+			<p:dialog header="#{common.window_caption_details}" resizable="false" showEffect="explode"
 				widgetVar="teacherDetailsWidgetVar">
 				<p:outputPanel id="teacherDetailsPanel" style="text-align:center;"
 					layout="block">

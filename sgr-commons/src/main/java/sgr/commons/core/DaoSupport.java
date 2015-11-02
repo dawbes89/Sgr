@@ -1,6 +1,5 @@
 package sgr.commons.core;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,9 +16,8 @@ import org.springframework.beans.factory.annotation.Required;
  * @author leonzio
  */
 @Transactional
-public abstract class DaoSupport implements Serializable
+public abstract class DaoSupport
 {
-   private static final long serialVersionUID = -1487204416017278935L;
 
    private SessionFactory sessionFactory;
 
