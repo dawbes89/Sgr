@@ -14,8 +14,6 @@ import sgr.commons.core.DaoSupport;
 public class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
 {
 
-   private static final long serialVersionUID = -6005137911616592291L;
-
    @Override
    public List<Announcement> search()
    {

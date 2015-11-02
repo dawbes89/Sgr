@@ -6,16 +6,15 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="form">
-			<p:outputPanel id="teacher" style="text-align:center;" layout="block">
+		<h:form id="root">
+			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable value="#{teachingStuffPanel.teachingStuffs}"
-					var="teachingStuff" id="teachingStuffTable" editable="true">
+					var="teachingStuff" id="table" editable="true">
 					<p:column style="width:60px">
 						<h:panelGrid columns="3" styleClass="actions" cellpanding="2">
-							<p:commandButton id="selectButton"
-								update=":teacherDetails:teacherDetailsPanel"
-								oncomplete="PF('teacherDetailsWidgetVar').show()"
-								icon="ui-icon-search" title="View">
+							<p:commandButton id="selectButton" update=":details:panel"
+								oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+								title="#{common.button_details}">
 								<f:setPropertyActionListener value="#{teachingStuff}"
 									target="#{teachingStuffPanel.teachingStuff}" />
 							</p:commandButton>
@@ -37,34 +36,33 @@
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
 					<p:column style="width:90px">
-						<p:commandButton id="deleteTeacher" value="delete"
-							actionListener="#{teachingStuffPanel.deleteTeacher(teachingStuff)}"
-							update=":form:teacher">
+						<p:commandButton id="deleteTeacher"
+							value="#{common.button_remove}"
+							actionListener="#{teachingStuffPanel.deleteTeacher(teachingStuff.id)}"
+							update=":root:panel">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.deleteTeacher}"
-								update=":form:teacher" />
+								update=":root:panel" />
 						</p:commandButton>
 					</p:column>
 					<p:column style="width:90px">
-						<p:commandButton id="updateButton" value="update"
-							update=":updateForm:updateTeach"
-							oncomplete="PF('updateTeacher').show()">
+						<p:commandButton id="updateButton" value="#{common.button_update}"
+							update=":update:panel" oncomplete="PF('updateDialog').show()">
 							<f:setPropertyActionListener value="#{teachingStuff}"
 								target="#{teachingStuffPanel.teachingStuff}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 				<p:separator />
-				<p:commandButton value="add" icon="ui-icon-check"
-					oncomplete="PF('addTeacher').show()" />
+				<p:commandButton value="#{common.button_add}" icon="ui-icon-check"
+					oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
-		<h:form id="addForm">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="addTeacher">
-				<p:outputPanel id="addTeach" style="text-align:center;"
-					layout="block">
+		<h:form id="add">
+			<p:dialog header="#{common.window_caption_add}" resizable="false"
+				showEffect="explode" widgetVar="addDialog">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_firstName} : *"
@@ -90,20 +88,20 @@
 						<p:inputText id="academicTitle"
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
 							required="true" />
-						<p:commandButton id="btn_add" value="Add"
-							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addTeacher').hide()">
+						<p:commandButton id="confirmAdd" value="#{common.button_add}"
+							action="#{teachingStuffPanel.addTeacher}"
+							update=":root:panel :add:panel"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
 
-		<h:form id="updateForm">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="updateTeacher">
-				<p:outputPanel id="updateTeach" style="text-align:center;"
-					layout="block">
+		<h:form id="update">
+			<p:dialog header="#{common.window_caption_update}" resizable="false"
+				showEffect="explode" widgetVar="updateDialog">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_firstName} : *"
@@ -129,24 +127,24 @@
 						<p:inputText id="academicTitle"
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
 							required="true" />
-						<p:commandButton id="updateTeacher" value="update"
+						<p:commandButton id="confirmUpdate"
+							value="#{common.button_update}"
 							actionListener="#{teachingStuffPanel.updateTeacher(teachingStuffPanel.teachingStuff)}"
-							update=":form:teacher"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateTeacher').hide()">
+							update=":root:panel :update:panel"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.updateTeacher}"
-								update=":form:teacher" />
+								update=":root:panel" />
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
 
-		<h:form id="teacherDetails">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="teacherDetailsWidgetVar">
-				<p:outputPanel id="teacherDetailsPanel" style="text-align:center;"
-					layout="block">
+		<h:form id="details">
+			<p:dialog header="#{common.window_caption_details}" resizable="false"
+				showEffect="explode" widgetVar="detailsDialog">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_firstName} :"

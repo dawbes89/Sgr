@@ -13,7 +13,6 @@ import sgr.commons.core.DaoSupport;
  */
 public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
-   private static final long serialVersionUID = 893855768880646645L;
 
    @Override
    public List<TeachingStuff> search()
