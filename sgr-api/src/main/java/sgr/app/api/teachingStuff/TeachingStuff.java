@@ -2,12 +2,17 @@ package sgr.app.api.teachingStuff;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import sgr.api.account.Account;
 
 /**
  * @author dawbes
@@ -35,6 +40,10 @@ public class TeachingStuff implements Serializable
 
    @Column(name = "academic_title", length = 25)
    private String academicTitle;
+
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "account_id")
+   private Account account;
 
    public TeachingStuff()
    {}
@@ -98,6 +107,16 @@ public class TeachingStuff implements Serializable
    public void setAcademicTitle(String academicTitle)
    {
       this.academicTitle = academicTitle;
+   }
+
+   public Account getAccount()
+   {
+      return account;
+   }
+
+   public void setAccount(Account account)
+   {
+      this.account = account;
    }
 
 }

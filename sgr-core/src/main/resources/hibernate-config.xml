@@ -18,6 +18,7 @@
       <property name="dataSource" ref="dataSource" />
       <property name="annotatedClasses">
          <list>
+<value>sgr.api.account.Account</value>
             <value>sgr.app.api.teachingStuff.TeachingStuff</value>
             <value>sgr.app.api.announcement.Announcement</value>
          </list>
