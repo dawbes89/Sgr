@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
@@ -32,11 +33,8 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    public void create(TeachingStuff teachingStuff)
    {
       String password = teachingStuff.getAccount().getPassword();
-      org.springframework.security.crypto.password.PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-      BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
-      bCrypt.encode(password);
+      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       teachingStuff.getAccount().setPassword((passwordEncoder.encode(password)));
-
       createEntity(teachingStuff);
    }
 
