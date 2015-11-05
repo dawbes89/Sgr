@@ -101,16 +101,16 @@
 							value="#{teachingStuffPanel.account.login}" required="true" />
 						<h:outputLabel value="login: *" for="login" />
 						<p:inputText id="password"
-							value="#{teachingStuffPanel.account.password}" />
+							value="#{teachingStuffPanel.account.password}" required="true" />
+
 						<p:commandButton id="btn_add" value="Add"
-							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher" 
-							>
+							action="#{teachingStuffPanel.addTeacher}" update=":form:teacher">
 						</p:commandButton>
 
-						<p:commandLink id="ajax" 
-							action="#{teachingStuffPanel.generatePassword}" immediate="false" update="password">
-							<h:outputText value="Ajax Submit" />
-						</p:commandLink>
+						<p:commandButton id="generatePasswordButton"
+							action="#{teachingStuffPanel.generatePassword}" immediate="true"
+							update="password">
+						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
