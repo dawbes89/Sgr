@@ -30,6 +30,7 @@ public class TeachingStuffPanel implements Serializable
    private static final long serialVersionUID = 2553933126154263063L;
 
    private TeachingStuff teachingStuff = new TeachingStuff();
+   // REVIEW a ten account jest potrzebny?
    private Account account = new Account();
 
    private List<TeachingStuff> teachingStuffs;

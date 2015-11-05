@@ -42,6 +42,7 @@ public class TeachingStuff implements Serializable
    private String academicTitle;
 
    @OneToOne(cascade = CascadeType.ALL)
+   // REVIEW zastanawiam się jeszcze nad dodaniem nullable-false, unique true
    @JoinColumn(name = "account_id")
    private Account account;
 
