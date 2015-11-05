@@ -3,11 +3,11 @@ package sgr.core.teachingStuff;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import sgr.api.teachingStuff.TeachingStuff;
 import sgr.api.teachingStuff.TeachingStuffService;
 import sgr.commons.DaoSupport;
-import sgr.commons.RandomPasswordGenerator;
 
 /**
  * @author dawbes
@@ -32,8 +32,12 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    @Override
    public void create(TeachingStuff teachingStuff)
    {
-      String password = RandomPasswordGenerator.generate();
-      teachingStuff.getAccount().setPassword(password);
+      String password = teachingStuff.getAccount().getPassword();
+      org.springframework.security.crypto.password.PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+      bCrypt.encode(password);
+      teachingStuff.getAccount().setPassword((passwordEncoder.encode(password)));
+
       createEntity(teachingStuff);
    }
 

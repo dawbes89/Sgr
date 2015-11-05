@@ -6,7 +6,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -70,8 +72,10 @@ public class TeachingStuffPanel implements Serializable
 
    public void generatePassword()
    {
+      InputText inputCriteriaStr = (InputText) FacesContext.getCurrentInstance().getViewRoot()
+            .findComponent("addForm:password");
       String password = RandomPasswordGenerator.generate();
-      account.setPassword(password);
+      inputCriteriaStr.setSubmittedValue(password);
    }
 
    public TeachingStuff getTeachingStuff()
