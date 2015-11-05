@@ -6,18 +6,18 @@
 	xmlns:p="http://primefaces.org/ui" template="/app/template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="form">
+		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{teachingStuffPanel.onLoad}"
-				autoRun="true" update="teachingStuffTable" />
+				autoRun="true" update=":root:table" />
 
-			<p:outputPanel id="teacher" style="text-align:center;" layout="block">
+			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable value="#{teachingStuffPanel.entities}"
-					var="teachingStuff" id="teachingStuffTable" editable="false">
+					var="teachingStuff" id="table" editable="false">
 					<p:column style="width:60px">
 						<h:panelGrid columns="1" styleClass="actions" cellpanding="1">
-							<p:commandButton update=":teacherDetails:teacherDetailsPanel"
-								oncomplete="PF('teacherDetailsWidgetVar').show()"
-								icon="ui-icon-search" title="View">
+							<p:commandButton update=":details:panel"
+								oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+								title="#{common.button_details}">
 								<f:setPropertyActionListener value="#{teachingStuff}"
 									target="#{teachingStuffPanel.entity}" />
 							</p:commandButton>
@@ -41,11 +41,10 @@
 			</p:outputPanel>
 		</h:form>
 
-		<h:form id="teacherDetails">
-			<p:dialog header="Values" resizable="false" showEffect="explode"
-				widgetVar="teacherDetailsWidgetVar">
-				<p:outputPanel id="teacherDetailsPanel" style="text-align:center;"
-					layout="block">
+		<h:form id="details">
+			<p:dialog header="#{common.window_caption_details}" resizable="false"
+				showEffect="explode" widgetVar="detailsDialog">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid columns="2" columnClasses="label, value">
 						<h:outputLabel value="#{translation.teachingStuff_firstName} :" />
 						<h:outputText value="#{teachingStuffPanel.entity.firstName}" />
