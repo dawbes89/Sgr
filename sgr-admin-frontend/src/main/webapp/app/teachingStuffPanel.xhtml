@@ -35,6 +35,10 @@
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
+					<p:column headerText="login"
+						filterBy="#{teachingStuff.account.login}"
+						filterMatchMode="contains">#{teachingStuff.account.login}
+                   </p:column>
 					<p:column style="width:90px">
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
@@ -88,6 +92,12 @@
 						<p:inputText id="academicTitle"
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
 							required="true" />
+						<h:outputLabel value="login: *" for="login" />
+						<p:inputText id="login"
+							value="#{teachingStuffPanel.account.login}" required="true" />
+						<h:outputLabel value="login: *" for="login" />
+						<p:inputText id="password"
+							value="#{teachingStuffPanel.account.password}" required="true" />
 						<p:commandButton id="confirmAdd" value="#{common.button_add}"
 							action="#{teachingStuffPanel.addTeacher}"
 							update=":root:panel :add:panel"
@@ -126,6 +136,10 @@
 							for="academicTitle" />
 						<p:inputText id="academicTitle"
 							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
+							required="true" />
+						<h:outputLabel value="login: *" for="login" />
+						<p:inputText id="login"
+							value="#{teachingStuffPanel.teachingStuff.account.login}"
 							required="true" />
 						<p:commandButton id="confirmUpdate"
 							value="#{common.button_update}"
