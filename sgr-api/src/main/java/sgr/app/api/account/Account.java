@@ -26,7 +26,7 @@ public class Account implements Serializable
    @Column(name = "login", length = 20)
    private String login;
 
-   @Column(name = "password", length = 200)
+   @Column(name = "password", length = 74)
    private String password;
 
    public Long getId()
