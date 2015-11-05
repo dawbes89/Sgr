@@ -95,13 +95,19 @@
 						<h:outputLabel value="login: *" for="login" />
 						<p:inputText id="login"
 							value="#{teachingStuffPanel.account.login}" required="true" />
-						<h:outputLabel value="login: *" for="login" />
+						<h:outputLabel value="#{admin_translation.teachingStuff_password} : *" for="login" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
 						<p:commandButton id="confirmAdd" value="#{common.button_add}"
 							action="#{teachingStuffPanel.addTeacher}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton id="generatePassword" 
+						    immediate="true"
+						    value="#{common.button_generatePassword}"
+						    action="#{teachingStuffPanel.generatePassword}"
+						    update="password">
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>

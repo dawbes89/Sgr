@@ -1,4 +1,4 @@
-package sgr.api.account;
+package sgr.app.api.account;
 
 import java.io.Serializable;
 

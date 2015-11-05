@@ -1,4 +1,4 @@
-package sgr.commons;
+package sgr.commons.core;
 
 import java.security.SecureRandom;
 import java.util.Random;

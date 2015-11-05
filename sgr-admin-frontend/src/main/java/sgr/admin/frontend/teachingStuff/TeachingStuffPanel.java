@@ -12,9 +12,11 @@ import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-import sgr.api.account.Account;
+
+import sgr.app.api.account.Account;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
+import sgr.commons.core.RandomPasswordGenerator;
 
 /**
  * @author dawbes
@@ -70,10 +72,10 @@ public class TeachingStuffPanel implements Serializable
 
    public void generatePassword()
    {
-      InputText inputCriteriaStr = (InputText) FacesContext.getCurrentInstance().getViewRoot()
-            .findComponent("addForm:password");
+      InputText passwordField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
+            .findComponent("add:password");
       String password = RandomPasswordGenerator.generate();
-      inputCriteriaStr.setSubmittedValue(password);
+      passwordField.setSubmittedValue(password);
    }
 
    public TeachingStuff getTeachingStuff()
