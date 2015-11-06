@@ -1,7 +1,5 @@
 package sgr.app.frontend.teachingStuff;
 
-import javax.faces.bean.ManagedBean;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -13,7 +11,6 @@ import sgr.commons.frontend.AbstractPanel;
  * @author dawbes
  */
 @Controller
-@ManagedBean(name = "teachingStuffPanel")
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 {
 

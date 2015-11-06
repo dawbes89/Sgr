@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +16,6 @@ import sgr.app.api.teachingStuff.TeachingStuffService;
  * @author dawbes
  */
 @Controller
-@ManagedBean(name = "teachingStuffPanel")
-@ViewScoped
 public class TeachingStuffPanel implements Serializable
 {
 

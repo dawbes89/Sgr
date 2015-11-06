@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -18,7 +17,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * @param <T>
  *           data type used in panel
  */
-@ViewScoped
 public abstract class AbstractPanel<T> implements Serializable
 {
 
