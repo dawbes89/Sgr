@@ -1,6 +1,5 @@
 package sgr.admin.frontend.teachingStuff;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
@@ -19,7 +18,6 @@ import sgr.commons.frontend.EditablePanel;
  * @author dawbes
  */
 @Controller
-@ManagedBean(name = "teachingStuffPanel")
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
       EditablePanel<TeachingStuff>
 {

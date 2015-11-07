@@ -158,7 +158,7 @@
 							required="true" />
 						<p:commandButton id="confirmUpdate"
 							value="#{common.button_update}"
-							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.teachingStuff)}"
+							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
 							update=":root:panel :update:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 							<p:ajax event="dialogReturn"
