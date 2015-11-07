@@ -26,7 +26,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    private static final long serialVersionUID = 2553933126154263063L;
 
-   private Account account = new Account();
+   private Account account;
 
    @Autowired
    private TeachingStuffService teachingStuffService;
@@ -40,6 +40,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    public void init()
    {
       entity = new TeachingStuff();
+      account = new Account();
    }
 
    @Override

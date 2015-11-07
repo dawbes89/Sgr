@@ -16,6 +16,8 @@ import sgr.commons.core.DaoSupport;
 public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
 
+   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+
    @Override
    public List<TeachingStuff> search()
    {
@@ -33,8 +35,7 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    public void create(TeachingStuff teachingStuff)
    {
       String password = teachingStuff.getAccount().getPassword();
-      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-      teachingStuff.getAccount().setPassword((passwordEncoder.encode(password)));
+      teachingStuff.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
       createEntity(teachingStuff);
    }
 
