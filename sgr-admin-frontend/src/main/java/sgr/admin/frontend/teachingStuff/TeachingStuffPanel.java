@@ -5,13 +5,13 @@ import javax.faces.context.FacesContext;
 import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.RandomPasswordGenerator;
 import sgr.commons.frontend.AbstractPanel;
+import sgr.commons.frontend.Bean;
 import sgr.commons.frontend.EditablePanel;
 
 /**
@@ -29,10 +29,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    @Autowired
    private TeachingStuffService teachingStuffService;
 
-   public TeachingStuffPanel()
-   {
-      SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-   }
+   @Bean(form = "add", name = "password")
+   private InputText passwordField;
 
    @Override
    public void init()
@@ -44,6 +42,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    @Override
    public void onLoad()
    {
+      InputText passwordField1 = (InputText) FacesContext.getCurrentInstance().getViewRoot()
+            .findComponent("add:password");
       entities = teachingStuffService.search();
    }
 
@@ -74,7 +74,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    public void generatePassword(String component)
    {
-      InputText passwordField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
+      InputText passwordField1 = (InputText) FacesContext.getCurrentInstance().getViewRoot()
             .findComponent(component);
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
