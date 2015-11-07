@@ -13,13 +13,15 @@ import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.RandomPasswordGenerator;
 import sgr.commons.frontend.AbstractPanel;
+import sgr.commons.frontend.EditablePanel;
 
 /**
  * @author dawbes
  */
 @Controller
 @ManagedBean(name = "teachingStuffPanel")
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
+      EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -46,7 +48,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
       entities = teachingStuffService.search();
    }
 
-   public void addTeacher()
+   @Override
+   public void create()
    {
       entity.setAccount(account);
       teachingStuffService.create(entity);
@@ -55,17 +58,19 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
       account = new Account();
    }
 
-   public void deleteTeacher(Long id)
+   @Override
+   public void update(TeachingStuff object)
+   {
+      teachingStuffService.update(object);
+      entities = teachingStuffService.search();
+      entity = new TeachingStuff();
+   }
+
+   @Override
+   public void remove(Long id)
    {
       teachingStuffService.remove(id);
       entities = teachingStuffService.search();
-   }
-
-   public void updateTeacher(TeachingStuff teachingStuff)
-   {
-      teachingStuffService.update(teachingStuff);
-      entities = teachingStuffService.search();
-      teachingStuff = new TeachingStuff();
    }
 
    public void generatePassword(String component)

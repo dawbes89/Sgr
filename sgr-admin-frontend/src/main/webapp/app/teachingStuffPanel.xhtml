@@ -44,10 +44,10 @@
 					<p:column style="width:90px">
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
-							actionListener="#{teachingStuffPanel.deleteTeacher(teachingStuff.id)}"
+							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
 							update=":root:panel">
 							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.deleteTeacher}"
+								listener="#{teachingStuffPanel.remove}"
 								update=":root:panel" />
 						</p:commandButton>
 					</p:column>
@@ -103,7 +103,7 @@
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
 						<p:commandButton id="confirmAdd" value="#{common.button_add}"
-							action="#{teachingStuffPanel.addTeacher}"
+							action="#{teachingStuffPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
@@ -158,11 +158,11 @@
 							required="true" />
 						<p:commandButton id="confirmUpdate"
 							value="#{common.button_update}"
-							actionListener="#{teachingStuffPanel.updateTeacher(teachingStuffPanel.teachingStuff)}"
+							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.teachingStuff)}"
 							update=":root:panel :update:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.updateTeacher}"
+								listener="#{teachingStuffPanel.update}"
 								update=":root:panel" />
 						</p:commandButton>
 					</p:panelGrid>
