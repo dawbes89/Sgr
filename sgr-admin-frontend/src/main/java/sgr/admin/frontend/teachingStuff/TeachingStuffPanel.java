@@ -1,9 +1,5 @@
 package sgr.admin.frontend.teachingStuff;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -17,6 +13,7 @@ import sgr.app.api.account.Account;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.RandomPasswordGenerator;
+import sgr.commons.frontend.AbstractPanel;
 
 /**
  * @author dawbes
@@ -24,16 +21,15 @@ import sgr.commons.core.RandomPasswordGenerator;
 @Controller
 @ManagedBean(name = "teachingStuffPanel")
 @ViewScoped
-public class TeachingStuffPanel implements Serializable
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
 
-   private TeachingStuff teachingStuff = new TeachingStuff();
-   // REVIEW a ten account jest potrzebny?
+   // private TeachingStuff teachingStuff = new TeachingStuff();
    private Account account = new Account();
 
-   private List<TeachingStuff> teachingStuffs;
+   // private List<TeachingStuff> teachingStuffs;
 
    @Autowired
    private TeachingStuffService teachingStuffService;
@@ -43,60 +39,46 @@ public class TeachingStuffPanel implements Serializable
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
    }
 
-   @PostConstruct
+   @Override
    public void init()
    {
-      teachingStuffs = teachingStuffService.search();
+      entity = new TeachingStuff();
+   }
+
+   @Override
+   public void onLoad()
+   {
+      entities = teachingStuffService.search();
    }
 
    public void addTeacher()
    {
-      teachingStuff.setAccount(account);
-      teachingStuffService.create(teachingStuff);
-      teachingStuffs = teachingStuffService.search();
-      teachingStuff = new TeachingStuff();
+      entity.setAccount(account);
+      teachingStuffService.create(entity);
+      entities = teachingStuffService.search();
+      entity = new TeachingStuff();
       account = new Account();
    }
 
    public void deleteTeacher(Long id)
    {
       teachingStuffService.remove(id);
-      teachingStuffs = teachingStuffService.search();
+      entities = teachingStuffService.search();
    }
 
    public void updateTeacher(TeachingStuff teachingStuff)
    {
       teachingStuffService.update(teachingStuff);
-      teachingStuffs = teachingStuffService.search();
+      entities = teachingStuffService.search();
       teachingStuff = new TeachingStuff();
    }
 
-   public void generatePassword()
+   public void generatePassword(String component)
    {
       InputText passwordField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
-            .findComponent("add:password");
+            .findComponent(component);
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
-   }
-
-   public TeachingStuff getTeachingStuff()
-   {
-      return teachingStuff;
-   }
-
-   public void setTeachingStuff(TeachingStuff teachingStuff)
-   {
-      this.teachingStuff = teachingStuff;
-   }
-
-   public List<TeachingStuff> getTeachingStuffs()
-   {
-      return teachingStuffs;
-   }
-
-   public void setTeachingStuffs(List<TeachingStuff> teachingStuffs)
-   {
-      this.teachingStuffs = teachingStuffs;
    }
 
    public Account getAccount()
