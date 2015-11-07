@@ -29,6 +29,7 @@ public abstract class AbstractPanel<T> implements Serializable
    public AbstractPanel()
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+      BeanInjector.proccessInjection(this);
    }
 
    /**
