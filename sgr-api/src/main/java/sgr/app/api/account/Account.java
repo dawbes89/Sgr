@@ -19,8 +19,6 @@ public class Account implements Serializable
    private static final long serialVersionUID = 5425777781237535276L;
 
    @Id
-   // REVIEW nie może być po prostu id? Moze wtedy w encji nauczyciela trzeba by
-   // użyć jeszcze referencedColumnName = "id" dla account
    @Column(name = "account_id")
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;

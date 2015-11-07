@@ -7,8 +7,10 @@
 
 	<ui:define name="content">
 		<h:form id="root">
+			<p:remoteCommand name="onload" action="#{teachingStuffPanel.onLoad}"
+				autoRun="true" update=":root:table" />
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:dataTable value="#{teachingStuffPanel.teachingStuffs}"
+				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="table" editable="true">
 					<p:column style="width:60px">
 						<h:panelGrid columns="3" styleClass="actions" cellpanding="2">
@@ -16,7 +18,7 @@
 								oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
 								title="#{common.button_details}">
 								<f:setPropertyActionListener value="#{teachingStuff}"
-									target="#{teachingStuffPanel.teachingStuff}" />
+									target="#{teachingStuffPanel.entity}" />
 							</p:commandButton>
 						</h:panelGrid>
 					</p:column>
@@ -53,7 +55,7 @@
 						<p:commandButton id="updateButton" value="#{common.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()">
 							<f:setPropertyActionListener value="#{teachingStuff}"
-								target="#{teachingStuffPanel.teachingStuff}" />
+								target="#{teachingStuffPanel.entity}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -72,33 +74,32 @@
 							value="#{admin_translation.teachingStuff_firstName} : *"
 							for="firstName" />
 						<p:inputText id="firstName"
-							value="#{teachingStuffPanel.teachingStuff.firstName}"
-							required="true" />
+							value="#{teachingStuffPanel.entity.firstName}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_lastName} : *"
 							for="lastName" />
 						<p:inputText id="lastName"
-							value="#{teachingStuffPanel.teachingStuff.lastName}"
-							required="true" />
+							value="#{teachingStuffPanel.entity.lastName}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_schoolSubject} : *"
 							for="schoolSubject" />
 						<p:inputText id="schoolSubject"
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}"
+							value="#{teachingStuffPanel.entity.schoolSubject}"
 							required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_academicTitle} : *"
 							for="academicTitle" />
 						<p:inputText id="academicTitle"
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
+							value="#{teachingStuffPanel.entity.academicTitle}"
 							required="true" />
-						<!-- 							REVIEW A tutaj zjadło tłumaczenie? -->
-						<h:outputLabel value="login: *" for="login" />
+						<h:outputLabel
+							value="#{admin_translation.teachingStuff_login} : *"
+							for="#{admin_translation.teachingStuff_login}" />
 						<p:inputText id="login"
 							value="#{teachingStuffPanel.account.login}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_password} : *"
-							for="login" />
+							for="#{admin_translation.teachingStuff_password}" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
 						<p:commandButton id="confirmAdd" value="#{common.button_add}"
@@ -108,7 +109,8 @@
 						</p:commandButton>
 						<p:commandButton id="generatePassword" immediate="true"
 							value="#{common.button_generatePassword}"
-							action="#{teachingStuffPanel.generatePassword}" update="password">
+							action="#{teachingStuffPanel.generatePassword('add:password')}"
+							update="password">
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>
@@ -124,30 +126,35 @@
 							value="#{admin_translation.teachingStuff_firstName} : *"
 							for="firstName" />
 						<p:inputText id="firstName"
-							value="#{teachingStuffPanel.teachingStuff.firstName}"
-							required="true" />
+							value="#{teachingStuffPanel.entity.firstName}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_lastName} : *"
 							for="lastName" />
 						<p:inputText id="lastName"
-							value="#{teachingStuffPanel.teachingStuff.lastName}"
-							required="true" />
+							value="#{teachingStuffPanel.entity.lastName}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_schoolSubject} : *"
 							for="schoolSubject" />
 						<p:inputText id="schoolSubject"
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}"
+							value="#{teachingStuffPanel.entity.schoolSubject}"
 							required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_academicTitle} : *"
 							for="academicTitle" />
 						<p:inputText id="academicTitle"
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}"
+							value="#{teachingStuffPanel.entity.academicTitle}"
 							required="true" />
-						<!-- 							REVIEW Tłumaczenie, rozumiem że hasła nie aktualizujemy -->
-						<h:outputLabel value="login: *" for="login" />
+						<h:outputLabel
+							value="#{admin_translation.teachingStuff_login} : *"
+							for="#{admin_translation.teachingStuff_login}" />
 						<p:inputText id="login"
-							value="#{teachingStuffPanel.teachingStuff.account.login}"
+							value="#{teachingStuffPanel.entity.account.login}"
+							required="true" />
+						<h:outputLabel
+							value="#{admin_translation.teachingStuff_password} : *"
+							for="#{admin_translation.teachingStuff_password}" />
+						<p:inputText id="password"
+							value="#{teachingStuffPanel.entity.account.password}"
 							required="true" />
 						<p:commandButton id="confirmUpdate"
 							value="#{common.button_update}"
@@ -171,26 +178,22 @@
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_firstName} :"
 							for="#{translation.teachingStuff_firstName}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.firstName}" />
+						<h:outputText value="#{teachingStuffPanel.entity.firstName}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_lastName} :"
 							for="#{translation.teachingStuff_lastName}" />
-						<h:outputText value="#{teachingStuffPanel.teachingStuff.lastName}" />
+						<h:outputText value="#{teachingStuffPanel.entity.lastName}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_schoolSubject} :"
 							for="#{translation.teachingStuff_shoolSubject}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.schoolSubject}" />
+						<h:outputText value="#{teachingStuffPanel.entity.schoolSubject}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_academicTitle} :"
 							for="#{translation.teachingStuff_academicTitle}" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.academicTitle}" />
-						<!-- 							REVIEW I znowu tłumaczenie -->
-						<h:outputLabel value="login :" for="login" />
-						<h:outputText
-							value="#{teachingStuffPanel.teachingStuff.account.login}" />
+						<h:outputText value="#{teachingStuffPanel.entity.academicTitle}" />
+						<h:outputLabel value="#{admin_translation.teachingStuff_login} :"
+							for="#{admin_translation.teachingStuff_login}" />
+						<h:outputText value="#{teachingStuffPanel.entity.account.login}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
