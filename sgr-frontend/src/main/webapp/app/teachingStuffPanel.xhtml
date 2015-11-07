@@ -33,7 +33,7 @@
 					<p:column headerText="#{translation.teachingStuff_lastName}"
 						filterBy="#{teachingStuff.lastName}" filterMatchMode="contains">#{teachingStuff.lastName}
                    </p:column>
-					<p:column headerText="#{translation.teachingStuff_shoolSubject}"
+					<p:column headerText="#{translation.teachingStuff_schoolSubject}"
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
@@ -45,16 +45,25 @@
 			<p:dialog header="#{common.window_caption_details}" resizable="false"
 				showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
-					<p:panelGrid columns="2" columnClasses="label, value">
-						<h:outputLabel value="#{translation.teachingStuff_firstName} :" />
-						<h:outputText value="#{teachingStuffPanel.entity.firstName}" />
-						<h:outputLabel value="#{translation.teachingStuff_lastName} :" />
-						<h:outputText value="#{teachingStuffPanel.entity.lastName}" />
-						<h:outputLabel value="#{translation.teachingStuff_shoolSubject} :" />
-						<h:outputText value="#{teachingStuffPanel.entity.schoolSubject}" />
+					<p:panelGrid id="output" columns="2" columnClasses="label, value">
+						<h:outputLabel value="#{translation.teachingStuff_firstName} :"
+							for="firstName" />
+						<h:outputText id="firstName"
+							value="#{teachingStuffPanel.entity.firstName}" />
+						<h:outputLabel value="#{translation.teachingStuff_lastName} :"
+							for="lastName" />
+						<h:outputText id="lastName"
+							value="#{teachingStuffPanel.entity.lastName}" />
 						<h:outputLabel
-							value="#{translation.teachingStuff_academicTitle} :" />
-						<h:outputText value="#{teachingStuffPanel.entity.academicTitle}" />
+							value="#{translation.teachingStuff_schoolSubject} :"
+							for="shoolSubject" />
+						<h:outputText id="shoolSubject"
+							value="#{teachingStuffPanel.entity.schoolSubject}" />
+						<h:outputLabel
+							value="#{translation.teachingStuff_academicTitle} :"
+							for="academicTitle" />
+						<h:outputText id="academicTitle"
+							value="#{teachingStuffPanel.entity.academicTitle}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>

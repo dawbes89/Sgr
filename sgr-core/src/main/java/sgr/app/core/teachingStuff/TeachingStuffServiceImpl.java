@@ -3,6 +3,8 @@ package sgr.app.core.teachingStuff;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
@@ -13,6 +15,8 @@ import sgr.commons.core.DaoSupport;
  */
 public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
+
+   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
    @Override
    public List<TeachingStuff> search()
@@ -30,6 +34,8 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    @Override
    public void create(TeachingStuff teachingStuff)
    {
+      String password = teachingStuff.getAccount().getPassword();
+      teachingStuff.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
       createEntity(teachingStuff);
    }
 
