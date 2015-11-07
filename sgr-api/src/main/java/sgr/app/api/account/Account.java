@@ -23,8 +23,8 @@ public class Account implements Serializable
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
-   @Column(name = "login", length = 20)
-   private String login;
+   @Column(name = "userName", length = 20)
+   private String userName;
 
    @Column(name = "password", length = 74)
    private String password;
@@ -39,14 +39,14 @@ public class Account implements Serializable
       this.id = id;
    }
 
-   public String getLogin()
+   public String getUserName()
    {
-      return login;
+      return userName;
    }
 
-   public void setLogin(String login)
+   public void setUserName(String userName)
    {
-      this.login = login;
+      this.userName = userName;
    }
 
    public String getPassword()

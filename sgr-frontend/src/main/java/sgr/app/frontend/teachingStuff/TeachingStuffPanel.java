@@ -34,9 +34,4 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
       entities = teachingStuffService.search();
    }
 
-   public void setTeachingStuffService(TeachingStuffService teachingStuffService)
-   {
-      this.teachingStuffService = teachingStuffService;
-   }
-
 }
