@@ -17,17 +17,17 @@ public interface EditablePanel<T>
    /**
     * Updates entity.
     *
-    * @param entity
+    * @param object
     *           to update
     */
-   void update(T entity);
+   void update(T object);
 
    /**
     * Removes entity.
     *
-    * @param entity
-    *           to remove
+    * @param id
+    *           of entity to remove
     */
-   void remove(T entity);
+   void remove(Long id);
 
 }
