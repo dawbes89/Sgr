@@ -37,9 +37,9 @@
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
-					<p:column headerText="login"
-						filterBy="#{teachingStuff.account.login}"
-						filterMatchMode="contains">#{teachingStuff.account.login}
+					<p:column headerText="userName"
+						filterBy="#{teachingStuff.account.userName}"
+						filterMatchMode="contains">#{teachingStuff.account.userName}
                    </p:column>
 					<p:column style="width:90px">
 						<p:commandButton id="deleteTeacher"
@@ -93,13 +93,13 @@
 							value="#{teachingStuffPanel.entity.academicTitle}"
 							required="true" />
 						<h:outputLabel
-							value="#{admin_translation.teachingStuff_login} : *"
-							for="#{admin_translation.teachingStuff_login}" />
-						<p:inputText id="login"
-							value="#{teachingStuffPanel.account.login}" required="true" />
+							value="#{admin_translation.teachingStuff_userName} : *"
+							for="userName" />
+						<p:inputText id="userName"
+							value="#{teachingStuffPanel.account.userName}" required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_password} : *"
-							for="#{admin_translation.teachingStuff_password}" />
+							for="password" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
 						<p:commandButton id="confirmAdd" value="#{common.button_add}"
@@ -145,14 +145,14 @@
 							value="#{teachingStuffPanel.entity.academicTitle}"
 							required="true" />
 						<h:outputLabel
-							value="#{admin_translation.teachingStuff_login} : *"
-							for="#{admin_translation.teachingStuff_login}" />
-						<p:inputText id="login"
-							value="#{teachingStuffPanel.entity.account.login}"
+							value="#{admin_translation.teachingStuff_userName} : *"
+							for="userName" />
+						<p:inputText id="userName"
+							value="#{teachingStuffPanel.entity.account.userName}"
 							required="true" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_password} : *"
-							for="#{admin_translation.teachingStuff_password}" />
+							for="password" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.entity.account.password}"
 							required="true" />
@@ -177,23 +177,29 @@
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_firstName} :"
-							for="#{translation.teachingStuff_firstName}" />
-						<h:outputText value="#{teachingStuffPanel.entity.firstName}" />
+							for="firstName" />
+						<h:outputText id="firstName"
+							value="#{teachingStuffPanel.entity.firstName}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_lastName} :"
-							for="#{translation.teachingStuff_lastName}" />
-						<h:outputText value="#{teachingStuffPanel.entity.lastName}" />
+							for="lastName" />
+						<h:outputText id="lastName"
+							value="#{teachingStuffPanel.entity.lastName}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_schoolSubject} :"
-							for="#{translation.teachingStuff_shoolSubject}" />
-						<h:outputText value="#{teachingStuffPanel.entity.schoolSubject}" />
+							for="shoolSubject" />
+						<h:outputText id="shoolSubject"
+							value="#{teachingStuffPanel.entity.schoolSubject}" />
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_academicTitle} :"
-							for="#{translation.teachingStuff_academicTitle}" />
-						<h:outputText value="#{teachingStuffPanel.entity.academicTitle}" />
-						<h:outputLabel value="#{admin_translation.teachingStuff_login} :"
-							for="#{admin_translation.teachingStuff_login}" />
-						<h:outputText value="#{teachingStuffPanel.entity.account.login}" />
+							for="academicTitle" />
+						<h:outputText id="academicTitle"
+							value="#{teachingStuffPanel.entity.academicTitle}" />
+						<h:outputLabel
+							value="#{admin_translation.teachingStuff_userName} :"
+							for="userName" />
+						<h:outputText id="userName"
+							value="#{teachingStuffPanel.entity.account.userName}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>

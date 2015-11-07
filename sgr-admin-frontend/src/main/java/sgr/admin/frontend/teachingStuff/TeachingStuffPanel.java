@@ -1,7 +1,6 @@
 package sgr.admin.frontend.teachingStuff;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
@@ -20,16 +19,12 @@ import sgr.commons.frontend.AbstractPanel;
  */
 @Controller
 @ManagedBean(name = "teachingStuffPanel")
-@ViewScoped
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
 
-   // private TeachingStuff teachingStuff = new TeachingStuff();
    private Account account = new Account();
-
-   // private List<TeachingStuff> teachingStuffs;
 
    @Autowired
    private TeachingStuffService teachingStuffService;
