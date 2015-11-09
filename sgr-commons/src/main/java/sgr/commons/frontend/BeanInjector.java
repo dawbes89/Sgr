@@ -30,8 +30,7 @@ public class BeanInjector
          {
             Bean annotation = field.getDeclaredAnnotation(Bean.class);
             final String componentName = annotation.form() + ":" + annotation.name();
-            UIComponent component = FacesContext.getCurrentInstance().getViewRoot()
-                  .findComponent(componentName);
+            UIComponent component = getComponent(componentName);
             if (component == null)
             {
                continue;
@@ -48,6 +47,11 @@ public class BeanInjector
             }
          }
       }
+   }
+
+   private static UIComponent getComponent(final String componentName)
+   {
+      return FacesContext.getCurrentInstance().getViewRoot().findComponent(componentName);
    }
 
 }
