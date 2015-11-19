@@ -6,6 +6,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+<f:view locale="#{localeManager.locale}" />
+
 <h:head>
 	<title><h:outputText
 			value="#{admin_translation.application_title}" /></title>
@@ -14,7 +16,7 @@
 <h:body>
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north"
-			header="#{admin_translation.application_title}" size="120">
+			header="#{admin_translation.application_title}" size="130">
 			<ui:include src="menu/horizontal.xhtml" />
 		</p:layoutUnit>
 

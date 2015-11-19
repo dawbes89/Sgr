@@ -12,9 +12,18 @@
 			outcome="index" icon="ui-icon-star" />
 
 		<f:facet name="options">
-			<p:commandButton type="button"
-				value="#{admin_translation.menu_horizontal_logout}"
-				icon="ui-icon-extlink" />
+			<h:panelGrid columns="2">
+				<h:form>
+					<h:selectOneMenu value="#{localeManager.language}"
+						onchange="submit()">
+						<f:selectItem itemValue="pl" itemLabel="#{common.locale_polish}" />
+						<f:selectItem itemValue="en" itemLabel="#{common.locale_english}" />
+					</h:selectOneMenu>
+				</h:form>
+				<p:commandButton type="button"
+					value="#{admin_translation.menu_horizontal_logout}"
+					icon="ui-icon-extlink" />
+			</h:panelGrid>
 		</f:facet>
 	</p:menubar>
 
