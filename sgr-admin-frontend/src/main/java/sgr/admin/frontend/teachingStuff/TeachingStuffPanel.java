@@ -1,7 +1,5 @@
 package sgr.admin.frontend.teachingStuff;
 
-import javax.faces.context.FacesContext;
-
 import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.RandomPasswordGenerator;
 import sgr.commons.frontend.AbstractPanel;
+import sgr.commons.frontend.Bean;
 import sgr.commons.frontend.EditablePanel;
 
 /**
@@ -25,6 +24,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    private static final long serialVersionUID = 2553933126154263063L;
 
    private Account account;
+
+   private InputText passwordField;
 
    @Autowired
    private TeachingStuffService teachingStuffService;
@@ -74,8 +75,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    public void generatePassword(String component)
    {
-      InputText passwordField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
-            .findComponent(component);
+      passwordField = Bean.get("add", "password");
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }
