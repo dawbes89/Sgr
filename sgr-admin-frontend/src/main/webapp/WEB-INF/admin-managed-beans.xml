@@ -8,5 +8,10 @@
       <managed-bean-class>sgr.admin.frontend.teachingStuff.TeachingStuffPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
+   <managed-bean>
+      <managed-bean-name>classGroupPanel</managed-bean-name>
+      <managed-bean-class>sgr.admin.frontend.classgroup.ClassGroupPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
 
 </faces-config>

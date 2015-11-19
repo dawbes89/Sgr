@@ -45,20 +45,6 @@ public class TeachingStuff implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   public TeachingStuff()
-   {}
-
-   public TeachingStuff(Long id, String firstName, String lastName, String schoolSubject,
-         String academicTitle)
-   {
-      super();
-      this.id = id;
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.schoolSubject = schoolSubject;
-      this.academicTitle = academicTitle;
-   }
-
    public Long getId()
    {
       return id;
