@@ -43,9 +43,12 @@
 						<h:outputLabel value="Klasa : *" for="groupNumber" />
 						<p:inputText id="groupNumber"
 							value="#{classGroupPanel.entity.groupNumber}" required="true" />
+<!-- 							// walidacja ? Można użyć <f:validateLength minimum="2" /> -->
 						<h:outputLabel value="Kod : *" for="groupName" />
 						<p:inputText id="groupName"
 							value="#{classGroupPanel.entity.groupName}" required="true" />
+<!-- 						// co do tego to tak jak rozmawialiśmy że lepszy tutaj byłby combo z latami  -->
+<!-- 						// bo w tej chwili przewijanie do odpowiedniego roku trwa wieki -->
 						<h:outputLabel value="Rocznik : *" for="year" />
 						<p:calendar id="year" value="#{classGroupPanel.entity.year}"
 							mask="true" pattern="yyyy" required="true" />
