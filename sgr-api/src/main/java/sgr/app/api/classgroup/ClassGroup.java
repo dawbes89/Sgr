@@ -29,6 +29,8 @@ public class ClassGroup implements Serializable
    @Column(name = "group_number", precision = 1)
    private Integer groupNumber;
 
+   //REVIEW DB: d³ugoœæ maksymalna na 1? A jezeli tak ma byæ to
+   //trzeba jeszcze zrobiæ maksymaln¹ d³ugoœæ w panelu frontend bo w tej chwili aplikacja siê wywali
    @Column(name = "group_name", length = 1, nullable = false)
    private String groupName;
 
