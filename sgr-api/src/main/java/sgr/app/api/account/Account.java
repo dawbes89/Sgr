@@ -18,6 +18,9 @@ public class Account implements Serializable
 {
    private static final long serialVersionUID = 5425777781237535276L;
 
+   public static final String PROPERTY_USER_NAME = "userName";
+   public static final String PROPERTY_PASSWORD = "password";
+
    @Id
    @Column(name = "account_id")
    @GeneratedValue(strategy = GenerationType.AUTO)

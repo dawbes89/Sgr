@@ -14,4 +14,9 @@
    <bean id="announcementService" class="sgr.app.core.announcement.AnnouncementServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
+   
+    <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
 </beans>
