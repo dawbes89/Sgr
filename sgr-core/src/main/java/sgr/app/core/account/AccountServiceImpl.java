@@ -19,6 +19,7 @@ public class AccountServiceImpl extends DaoSupport implements AccountService
 {
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
+   //REVIEW to jest totalna abstrakcja :)
    @Override
    public boolean checkLogin(String userName, String password)
    {

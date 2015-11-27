@@ -23,8 +23,11 @@ public class LoginPanel implements Serializable
    @Autowired
    public AccountService accountService;
 
+   //REVIEW nazwa metody? checKLogin jak już eventualnie loginUser - zaloguj uzytkownika
    public String chectLogin() throws IOException
    {
+      //REVIEW jak mówiłem trzeba zmienić te metody na taką która zwraca użytkownika przy udanym logowaniu
+      // lub wyrzuca jakiś exception nawet jakiś nasz napisać przy nieudanym      
       InputText loginField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
             .findComponent("loginForm:loginInput");
 
