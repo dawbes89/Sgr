@@ -18,5 +18,10 @@
       <managed-bean-class>sgr.commons.frontend.LocaleManager</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
+   <managed-bean>
+      <managed-bean-name>loginPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.frontend.loginPanel.LoginPanel</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+   </managed-bean>
 
 </faces-config>
