@@ -20,6 +20,7 @@ public class Account implements Serializable
 
    public static final String PROPERTY_USER_NAME = "userName";
    public static final String PROPERTY_PASSWORD = "password";
+   public static final String PROPERTY_ID = "id";
 
    @Id
    @Column(name = "account_id")
