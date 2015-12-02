@@ -1,5 +1,7 @@
 package sgr.admin.frontend.teachingStuff;
 
+import java.util.List;
+
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.account.Account;
+import sgr.app.api.classgroup.ClassGroup;
+import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.commons.core.RandomPasswordGenerator;
@@ -24,10 +28,14 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    private static final long serialVersionUID = 2553933126154263063L;
 
-   private Account account;
-
    @Autowired
    private TeachingStuffService teachingStuffService;
+
+   @Autowired
+   private ClassGroupService classGroupService;
+
+   private Account account;
+   private List<ClassGroup> availableClasses;
 
    public TeachingStuffPanel()
    {
@@ -39,6 +47,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    {
       entity = new TeachingStuff();
       account = new Account();
+      availableClasses = classGroupService.search();
    }
 
    @Override
@@ -90,4 +99,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
       this.account = account;
    }
 
+   public List<ClassGroup> getAvailableClasses()
+   {
+      return availableClasses;
+   }
 }
