@@ -1,5 +1,7 @@
 package sgr.admin.frontend.classgroup;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -19,6 +21,18 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
 
    @Autowired
    private ClassGroupService classGroupService;
+
+   @Override
+   public void init()
+   {
+      entity = new ClassGroup();
+   }
+
+   @Override
+   public void onLoad()
+   {
+      entities = classGroupService.search();
+   }
 
    @Override
    public void create()
@@ -41,16 +55,8 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
       entities = classGroupService.search();
    }
 
-   @Override
-   public void init()
+   public List<String> getYears()
    {
-      entity = new ClassGroup();
+      return classGroupService.getYears();
    }
-
-   @Override
-   public void onLoad()
-   {
-      entities = classGroupService.search();
-   }
-
 }
