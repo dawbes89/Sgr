@@ -69,12 +69,12 @@ public abstract class DaoSupport
    {
       return getSession().getCurrentLockMode(entity);
    }
-   
+
    protected Session openSession()
    {
       return sessionFactory.openSession();
    }
-   
+
    protected Session closeSession()
    {
       return sessionFactory.openSession();
