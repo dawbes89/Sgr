@@ -19,8 +19,8 @@ public interface AccountService
    public List<Account> search(AccountQuery query);
 
    // REVIEW do zmiany tak jak mówiłem - przeniesienie do innego serwisu
-   public boolean checkLogin(String userName, String password);
+   public <T> boolean checkLogin(String userName, String password);
 
-   public Optional<Object> findByLogin(String login);
+   public <T> Optional<T> findByLogin(String login);
 
 }

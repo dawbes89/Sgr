@@ -13,6 +13,7 @@ import sgr.app.api.account.AccountQuery;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.commons.core.DaoSupport;
+import sgr.commons.core.ObjectsHelper;
 
 /**
  * @author dawbes
@@ -22,25 +23,20 @@ public class AccountServiceImpl extends DaoSupport implements AccountService
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
    @Override
-   public boolean checkLogin(String userName, String password)
+   public <T> boolean checkLogin(String userName, String password)
    {
       openSession();
       boolean userFound = false;
       AccountQuery query = AccountQuery.withLogin(userName);
-      Optional<Object> object = findByLogin(userName);
+      Optional<T> object = findByLogin(userName);
       if (object.isPresent())
       {
          if (object.get() instanceof TeachingStuff)
          {
             TeachingStuff teachingStuff = (TeachingStuff) object.get();
             Account account = teachingStuff.getAccount();
-            if (PASSWORD_ENCODER.matches(password, account.getPassword()))
-            {
-               if (account != null)
-               {
-                  userFound = true;
-               }
-            }
+
+            userFound = PASSWORD_ENCODER.matches(password, account.getPassword());
          }
       }
 
@@ -52,7 +48,7 @@ public class AccountServiceImpl extends DaoSupport implements AccountService
    public List<Account> search(AccountQuery query)
    {
       Criteria crit = createCriteria(query);
-      return crit.list();
+      return search(crit);
    }
 
    private Criteria createCriteria(AccountQuery query)
@@ -74,14 +70,14 @@ public class AccountServiceImpl extends DaoSupport implements AccountService
    }
 
    @Override
-   public Optional<Object> findByLogin(String login)
+   public <T> Optional<T> findByLogin(String login)
    {
       Criteria criteria = createCriteria(Account.class);
       criteria.add(Restrictions.eq(Account.PROPERTY_USER_NAME, login));
       Account result = (Account) criteria.uniqueResult();
       Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
       teachingStuffCriteria.add(Restrictions.eq("account", result));
-      Object object = teachingStuffCriteria.uniqueResult();
+      T object = ObjectsHelper.uncheckedCast(teachingStuffCriteria.uniqueResult());
       return Optional.ofNullable(object);
    }
 
