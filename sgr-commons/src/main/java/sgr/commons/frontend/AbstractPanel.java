@@ -1,6 +1,7 @@
 package sgr.commons.frontend;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,7 @@ public abstract class AbstractPanel<T> implements Serializable
    public AbstractPanel()
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+      entities = new ArrayList<T>();
    }
 
    /**
