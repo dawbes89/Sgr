@@ -35,7 +35,7 @@
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">#{teachingStuff.schoolSubject}
                    </p:column>
-					<p:column headerText="userName"
+					<p:column headerText="#{admin_translation.teachingStuff_userName}"
 						filterBy="#{teachingStuff.account.userName}"
 						filterMatchMode="contains">#{teachingStuff.account.userName}
                    </p:column>
@@ -45,7 +45,7 @@
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
-							update=":root:panel">
+							update=":root:panel :add:panel">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
 						</p:commandButton>

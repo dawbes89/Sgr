@@ -77,7 +77,10 @@ public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupServi
       criteria.addOrder(Order.asc("groupName"));
       criteria.addOrder(Order.asc("year"));
       if (query.isAvailableForTeacher())
-      {}
+      {
+         criteria.add(Restrictions
+               .sqlRestriction("this_.id not in (select preceptor_class_id from teaching_stuff)"));
+      }
       return criteria;
    }
 }
