@@ -11,7 +11,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
 
-@FacesConverter("classConverter")
+@FacesConverter(value = "classConverter", forClass = ClassGroup.class)
 public class PreceptorClassConverter implements Converter
 {
 
@@ -30,7 +30,7 @@ public class PreceptorClassConverter implements Converter
          return null;
       ClassGroup classGroup = classGroupService.getClass(Integer.valueOf(value.charAt(0)) - 48,
             String.valueOf(value.charAt(1)));
-      return classGroup.getId();
+      return classGroup;
    }
 
    @Override
