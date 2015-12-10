@@ -84,4 +84,20 @@ public class ClassGroup implements Serializable
    {
       return String.format("%d%s", groupNumber, groupName);
    }
+
+   @Override
+   public boolean equals(Object obj)
+   {
+      if (obj == null)
+      {
+         return false;
+      }
+      ClassGroup object = (ClassGroup) obj;
+      if (this.id != object.id)
+      {
+         return false;
+      }
+      return true;
+   }
+
 }
