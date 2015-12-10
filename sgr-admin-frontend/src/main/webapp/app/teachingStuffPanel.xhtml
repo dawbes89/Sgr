@@ -13,14 +13,12 @@
 				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="table" editable="true">
 					<p:column style="width:60px">
-						<h:panelGrid columns="3" styleClass="actions" cellpanding="2">
-							<p:commandButton id="selectButton" update=":details:panel"
-								oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
-								title="#{common.button_details}">
-								<f:setPropertyActionListener value="#{teachingStuff}"
-									target="#{teachingStuffPanel.entity}" />
-							</p:commandButton>
-						</h:panelGrid>
+						<p:commandButton id="selectButton" update=":details:panel"
+							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+							title="#{common.button_details}">
+							<f:setPropertyActionListener value="#{teachingStuff}"
+								target="#{teachingStuffPanel.entity}" />
+						</p:commandButton>
 					</p:column>
 					<p:column
 						headerText="#{admin_translation.teachingStuff_academicTitle}"
@@ -41,17 +39,16 @@
 						filterBy="#{teachingStuff.account.userName}"
 						filterMatchMode="contains">#{teachingStuff.account.userName}
                    </p:column>
-					<p:column style="width:90px">
+					<p:column headerText="#{admin_translation.teachingStuff_preceptor}">#{teachingStuff.preceptorClass.className}
+					</p:column>
+					<p:column style="width:180px">
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
-							update=":root:panel">
+							update=":root:panel :add:panel">
 							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.remove}"
-								update=":root:panel" />
+								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
 						</p:commandButton>
-					</p:column>
-					<p:column style="width:90px">
 						<p:commandButton id="updateButton" value="#{common.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()">
 							<f:setPropertyActionListener value="#{teachingStuff}"
@@ -92,6 +89,20 @@
 						<p:inputText id="academicTitle"
 							value="#{teachingStuffPanel.entity.academicTitle}"
 							required="true" />
+						<h:outputLabel
+							value="#{admin_translation.teachingStuff_preceptor} :"
+							for="preceptorClass" />
+						<p:selectOneMenu id="preceptorClass"
+							value="#{teachingStuffPanel.entity.preceptorClass}" effect="fade"
+							filter="true" filterMatchMode="startsWith"
+							converter="classConverter" hideNoSelectionOption="true">
+							<f:selectItem itemValue="#{null}"
+								itemLabel="#{common.selectOneMenu_select}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{teachingStuffPanel.availableClasses}"
+								var="classGroup" itemLabel="#{classGroup.className}"
+								itemValue="#{classGroup}" />
+						</p:selectOneMenu>
 						<h:outputLabel
 							value="#{admin_translation.teachingStuff_userName} : *"
 							for="userName" />
@@ -162,8 +173,7 @@
 							update=":root:panel :update:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.update}"
-								update=":root:panel" />
+								listener="#{teachingStuffPanel.update}" update=":root:panel" />
 						</p:commandButton>
 					</p:panelGrid>
 				</p:outputPanel>

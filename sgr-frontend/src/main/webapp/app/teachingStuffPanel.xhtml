@@ -14,14 +14,12 @@
 				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="table" editable="false">
 					<p:column style="width:60px">
-						<h:panelGrid columns="1" styleClass="actions" cellpanding="1">
-							<p:commandButton update=":details:panel"
-								oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
-								title="#{common.button_details}">
-								<f:setPropertyActionListener value="#{teachingStuff}"
-									target="#{teachingStuffPanel.entity}" />
-							</p:commandButton>
-						</h:panelGrid>
+						<p:commandButton update=":details:panel"
+							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+							title="#{common.button_details}">
+							<f:setPropertyActionListener value="#{teachingStuff}"
+								target="#{teachingStuffPanel.entity}" />
+						</p:commandButton>
 					</p:column>
 					<p:column headerText="#{translation.teachingStuff_academicTitle}"
 						filterBy="#{teachingStuff.academicTitle}"

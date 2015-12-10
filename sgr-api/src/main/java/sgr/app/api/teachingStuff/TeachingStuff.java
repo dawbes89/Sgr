@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.account.Account;
+import sgr.app.api.classgroup.ClassGroup;
 
 /**
  * @author dawbes
@@ -45,19 +46,9 @@ public class TeachingStuff implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   public TeachingStuff()
-   {}
-
-   public TeachingStuff(Long id, String firstName, String lastName, String schoolSubject,
-         String academicTitle)
-   {
-      super();
-      this.id = id;
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.schoolSubject = schoolSubject;
-      this.academicTitle = academicTitle;
-   }
+   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+   @JoinColumn(name = "preceptor_class_id")
+   private ClassGroup preceptorClass;
 
    public Long getId()
    {
@@ -119,4 +110,13 @@ public class TeachingStuff implements Serializable
       this.account = account;
    }
 
+   public ClassGroup getPreceptorClass()
+   {
+      return preceptorClass;
+   }
+
+   public void setPreceptorClass(ClassGroup preceptorClass)
+   {
+      this.preceptorClass = preceptorClass;
+   }
 }
