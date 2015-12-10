@@ -1,44 +1,34 @@
 package sgr.admin.frontend.teachingStuff;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
+import sgr.commons.core.ObjectsHelper;
+import sgr.commons.frontend.AbstractConverter;
 
 @FacesConverter(value = "classConverter", forClass = ClassGroup.class)
-public class PreceptorClassConverter implements Converter
+public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
 {
 
    @Autowired
    private ClassGroupService classGroupService;
 
-   public PreceptorClassConverter()
-   {
-      SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-   }
-
    @Override
-   public Object getAsObject(FacesContext context, UIComponent component, String value)
+   protected ClassGroup convertToObject(String value)
    {
-      if (value == null)
-         return null;
-      ClassGroup classGroup = classGroupService.getClass(Integer.valueOf(value.charAt(0)) - 48,
-            String.valueOf(value.charAt(1)));
+      int groupNumber = Integer.valueOf(value.charAt(0)) - 48;
+      String groupName = String.valueOf(value.charAt(1));
+      ClassGroup classGroup = classGroupService.getClass(groupNumber, groupName);
       return classGroup;
    }
 
    @Override
-   public String getAsString(FacesContext context, UIComponent component, Object value)
+   protected String convertToString(Object object)
    {
-      if (value == null)
-         return null;
-      ClassGroup classGroup = (ClassGroup) value;
+      ClassGroup classGroup = ObjectsHelper.uncheckedCast(object);
       return classGroup.getClassName();
    }
 

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import sgr.app.api.classgroup.ClassGroup;
+import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.commons.core.DaoSupport;
 
@@ -31,12 +32,9 @@ public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupServi
    }
 
    @Override
-   public List<ClassGroup> search()
+   public List<ClassGroup> search(ClassGroupQuery query)
    {
-      Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.addOrder(Order.asc("groupNumber"));
-      criteria.addOrder(Order.asc("groupName"));
-      criteria.addOrder(Order.asc("year"));
+      Criteria criteria = createCriteriaFromQuery(query);
       return search(criteria);
    }
 
@@ -59,14 +57,27 @@ public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupServi
    }
 
    @Override
-   public ClassGroup getClass(Integer id, String code)
+   public ClassGroup getClass(Integer groupNumber, String groupName)
    {
       Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.add(Restrictions.eq("groupNumber", id));
-      criteria.add(Restrictions.eq("groupName", code));
+      criteria.add(Restrictions.eq("groupNumber", groupNumber));
+      criteria.add(Restrictions.eq("groupName", groupName));
       List<ClassGroup> result = search(criteria);
       if (result.size() > 0)
+      {
          return result.get(0);
+      }
       return null;
+   }
+
+   private Criteria createCriteriaFromQuery(ClassGroupQuery query)
+   {
+      Criteria criteria = createCriteria(ClassGroup.class);
+      criteria.addOrder(Order.asc("groupNumber"));
+      criteria.addOrder(Order.asc("groupName"));
+      criteria.addOrder(Order.asc("year"));
+      if (query.isAvailableForTeacher())
+      {}
+      return criteria;
    }
 }
