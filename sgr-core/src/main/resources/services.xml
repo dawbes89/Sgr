@@ -14,4 +14,8 @@
    <bean id="announcementService" class="sgr.app.core.announcement.AnnouncementServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
+
+   <bean id="classGroupService" class="sgr.app.core.classgroup.ClassGroupServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
 </beans>
