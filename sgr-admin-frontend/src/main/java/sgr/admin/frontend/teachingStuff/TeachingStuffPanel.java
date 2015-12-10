@@ -2,12 +2,9 @@ package sgr.admin.frontend.teachingStuff;
 
 import java.util.List;
 
-import javax.faces.context.FacesContext;
-
 import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
@@ -30,17 +27,16 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    private static final long serialVersionUID = 2553933126154263063L;
 
-   private Account account;
-
-   private InputText passwordField;
-
    @Autowired
    private TeachingStuffService teachingStuffService;
 
    @Autowired
    private ClassGroupService classGroupService;
 
+   private InputText passwordField;
+
    private Account account;
+
    private List<ClassGroup> availableClasses;
 
    @Override
