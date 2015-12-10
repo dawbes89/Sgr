@@ -4,10 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
+import sgr.commons.frontend.AbstractConverter;
 
 /**
  * Converter for year. Converts {@link String} value of year to {@link Date}.
@@ -15,13 +14,13 @@ import javax.faces.convert.FacesConverter;
  * @author leonzio
  */
 @FacesConverter("yearConverter")
-public class YearConverter implements Converter
+public class YearConverter extends AbstractConverter<Date>
 {
 
    private final static SimpleDateFormat YEAR_FORMATTER = new SimpleDateFormat("yyyy");
 
    @Override
-   public Object getAsObject(FacesContext context, UIComponent component, String value)
+   protected Date convertToObject(String value)
    {
       Date date = null;
       try
@@ -36,9 +35,9 @@ public class YearConverter implements Converter
    }
 
    @Override
-   public String getAsString(FacesContext context, UIComponent component, Object value)
+   protected String convertToString(Object object)
    {
-      return value.toString();
+      return object.toString();
    }
 
 }

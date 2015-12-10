@@ -46,8 +46,8 @@ public class TeachingStuff implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "preceptor_class", nullable = true, unique = true)
+   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+   @JoinColumn(name = "preceptor_class_id")
    private ClassGroup preceptorClass;
 
    public Long getId()

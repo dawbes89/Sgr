@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import sgr.app.api.classgroup.ClassGroup;
+import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.commons.frontend.AbstractPanel;
 import sgr.commons.frontend.EditablePanel;
@@ -26,20 +27,20 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
    public void init()
    {
       entity = new ClassGroup();
+      entities = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
    public void onLoad()
    {
-      entities = classGroupService.search();
+      init();
    }
 
    @Override
    public void create()
    {
       classGroupService.create(entity);
-      entities = classGroupService.search();
-      entity = new ClassGroup();
+      init();
    }
 
    @Override
@@ -52,7 +53,7 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
    public void remove(Long id)
    {
       classGroupService.remove(id);
-      entities = classGroupService.search();
+      init();
    }
 
    public List<String> getYears()

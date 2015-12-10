@@ -6,8 +6,6 @@ import javax.faces.convert.Converter;
 
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import sgr.commons.core.ObjectsHelper;
-
 /**
  * Abstract base for converters.
  *
@@ -38,11 +36,11 @@ public abstract class AbstractConverter<T> implements Converter
       {
          return null;
       }
-      T object = ObjectsHelper.uncheckedCast(value);
-      return convertToString(object);
+      return convertToString(value);
    }
 
-   protected abstract String convertToString(T value);
-
    protected abstract T convertToObject(String value);
+
+   protected abstract String convertToString(Object object);
+
 }

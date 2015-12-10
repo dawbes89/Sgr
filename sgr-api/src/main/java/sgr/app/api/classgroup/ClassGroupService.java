@@ -8,7 +8,7 @@ import java.util.List;
 public interface ClassGroupService
 {
 
-   List<ClassGroup> search();
+   List<ClassGroup> search(ClassGroupQuery query);
 
    void create(ClassGroup classGroup);
 
@@ -16,5 +16,5 @@ public interface ClassGroupService
 
    List<String> getYears();
 
-   ClassGroup getClass(Integer id, String code);
+   ClassGroup getClass(Integer groupNumber, String groupName);
 }
