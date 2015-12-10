@@ -12,7 +12,7 @@
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="table" editable="true">
-					<p:column style="width:60px">
+					<p:column style="width:50px">
 						<p:commandButton id="selectButton" update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
 							title="#{common.button_details}">
@@ -41,7 +41,7 @@
                    </p:column>
 					<p:column headerText="#{admin_translation.teachingStuff_preceptor}">#{teachingStuff.preceptorClass.className}
 					</p:column>
-					<p:column style="width:180px">
+					<p:column style="width:190px">
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
