@@ -1,8 +1,10 @@
 package sgr.app.api.login;
 
-import sgr.app.api.account.Account;
+import java.util.MissingResourceException;
+import java.util.Optional;
 
 public interface LoginService
 {
-   public Account checkLogin(String userName, String password);
+   public <T> Optional<T> checkLogin(String userName, String password)
+         throws MissingResourceException;
 }

@@ -2,7 +2,9 @@ package sgr.app.frontend.loginPanel;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Optional;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
@@ -10,7 +12,7 @@ import org.primefaces.component.password.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import sgr.app.api.account.AccountService;
+import sgr.app.api.login.LoginService;
 
 /**
  * @author dawbes
@@ -21,24 +23,28 @@ public class LoginPanel implements Serializable
    private static final long serialVersionUID = -7242960918445825945L;
 
    @Autowired
-   public AccountService accountService;
+   public LoginService loginService;
 
-   //REVIEW nazwa metody? checKLogin jak już eventualnie loginUser - zaloguj uzytkownika
-   public String chectLogin() throws IOException
+   public <T> void checkLogin() throws IOException
    {
-      //REVIEW jak mówiłem trzeba zmienić te metody na taką która zwraca użytkownika przy udanym logowaniu
-      // lub wyrzuca jakiś exception nawet jakiś nasz napisać przy nieudanym      
       InputText loginField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
             .findComponent("loginForm:loginInput");
 
       Password passwordField = (Password) FacesContext.getCurrentInstance().getViewRoot()
             .findComponent("loginForm:passwordInput");
-      boolean existUser = accountService.checkLogin(loginField.getValue().toString(), passwordField
-            .getValue().toString());
-      if (existUser)
-         return "index";
+      Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
+            passwordField.getValue().toString());
+      ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+      if (existUser.isPresent())
+      {
+         ec.redirect(ec.getRequestContextPath() + "/app/index.jsf");
+      }
       else
-         return "";
+      {
+         // FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+         // "B��d",
+         // );
+         // RequestContext.getCurrentInstance().showMessageInDialog(message);
+      }
    }
-
 }

@@ -75,9 +75,14 @@ public abstract class DaoSupport
       return sessionFactory.openSession();
    }
 
-   protected Session closeSession()
+   protected void closeSession()
    {
-      return sessionFactory.openSession();
+      sessionFactory.close();
+   }
+
+   public boolean isSession()
+   {
+      return sessionFactory.isClosed();
    }
 
    @Required

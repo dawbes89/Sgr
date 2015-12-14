@@ -1,15 +1,41 @@
 package sgr.app.core.login;
 
-import sgr.app.api.account.Account;
-import sgr.app.api.login.LoginService;
+import java.util.MissingResourceException;
+import java.util.Optional;
 
-public class LoginServiceImpl implements LoginService
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import sgr.app.api.account.Account;
+import sgr.app.api.account.AccountService;
+import sgr.app.api.login.LoginService;
+import sgr.commons.core.DaoSupport;
+
+public class LoginServiceImpl extends DaoSupport implements LoginService
 {
+   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+   private AccountService accountService;
 
    @Override
-   public Account checkLogin(String userName, String password)
+   public <T> Optional<T> checkLogin(String userName, String password)
+         throws MissingResourceException
+         {
+
+      Optional<Account> account = accountService.findAccountByLogin(userName);
+      if (account.isPresent())
+      {
+         if (PASSWORD_ENCODER.matches(password, account.get().getPassword()))
+            return accountService.findUserByAccount(account.get());
+      }
+
+      return Optional.empty();
+         }
+
+   @Required
+   public void setAccountService(AccountService accountService)
    {
-      // TODO Auto-generated method stub
-      return null;
+      this.accountService = accountService;
    }
+
 }

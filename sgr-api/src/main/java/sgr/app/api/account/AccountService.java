@@ -1,6 +1,5 @@
 package sgr.app.api.account;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,11 +15,13 @@ public interface AccountService
 {
    // REVIEW nie wiem czy listowanie kont nam się przyda, ale to jeszcze do
    // obgadania
-   public List<Account> search(AccountQuery query);
+   // public List<Account> search(AccountQuery query);
 
    // REVIEW do zmiany tak jak mówiłem - przeniesienie do innego serwisu
-   public <T> boolean checkLogin(String userName, String password);
+   // public <T> boolean checkLogin(String userName, String password);
 
-   public <T> Optional<T> findByLogin(String login);
+   public Optional<Account> findAccountByLogin(String login);
+
+   public <T> Optional<T> findUserByAccount(Account account);
 
 }
