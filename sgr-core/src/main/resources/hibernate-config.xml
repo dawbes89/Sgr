@@ -16,12 +16,9 @@
 
    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
       <property name="dataSource" ref="dataSource" />
-      <property name="annotatedClasses">
+      <property name="packagesToScan">
          <list>
-            <value>sgr.app.api.account.Account</value>
-            <value>sgr.app.api.teachingStuff.TeachingStuff</value>
-            <value>sgr.app.api.announcement.Announcement</value>
-            <value>sgr.app.api.classgroup.ClassGroup</value>
+            <value>sgr.app.api.**.*</value>
          </list>
       </property>
       <property name="hibernateProperties">
