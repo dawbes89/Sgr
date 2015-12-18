@@ -10,6 +10,7 @@ import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
+import sgr.app.api.person.Person;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
 import sgr.commons.core.RandomPasswordGenerator;
@@ -36,6 +37,8 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
 
    private Account account;
 
+   private Person person;
+
    private List<ClassGroup> availableClasses;
 
    @Override
@@ -43,6 +46,7 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
    {
       entity = new Student();
       account = new Account();
+      person = new Person();
       entities = studentService.search();
       availableClasses = classGroupService.search(ClassGroupQuery.EMPTY);
    }
@@ -57,6 +61,7 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
    public void create()
    {
       entity.setAccount(account);
+      entity.setPerson(person);
       studentService.create(entity);
       init();
    }
@@ -90,6 +95,16 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
    public void setAccount(Account account)
    {
       this.account = account;
+   }
+
+   public Person getPerson()
+   {
+      return person;
+   }
+
+   public void setPerson(Person person)
+   {
+      this.person = person;
    }
 
    public List<ClassGroup> getAvailableClasses()
