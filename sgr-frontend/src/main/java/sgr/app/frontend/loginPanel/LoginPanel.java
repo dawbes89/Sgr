@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Optional;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -41,10 +43,9 @@ public class LoginPanel implements Serializable
       }
       else
       {
-         // FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-         // "B³¹d",
-         // );
-         // RequestContext.getCurrentInstance().showMessageInDialog(message);
+         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d",
+               "Nie poprawny login lub has³o");
+         RequestContext.getCurrentInstance().showMessageInDialog(message);
       }
    }
 }
