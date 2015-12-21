@@ -30,7 +30,6 @@ public class TeachingStuff implements Serializable
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
-   // REVIEW DB: tutaj te¿ trzeba by by³o to mnieniæ na person.
    @Column(name = "first_name", length = 20)
    private String firstName;
 
