@@ -12,11 +12,11 @@
 				<h:form>
 					<h:outputLabel value="#{common.languageSettings_choose}: "
 						for="languageSelection" />
-					<h:selectOneMenu id="languageSelection"
+					<p:selectOneMenu id="languageSelection"
 						value="#{localeManager.language}" onchange="submit()">
 						<f:selectItem itemValue="pl" itemLabel="#{common.locale_polish}" />
 						<f:selectItem itemValue="en" itemLabel="#{common.locale_english}" />
-					</h:selectOneMenu>
+					</p:selectOneMenu>
 				</h:form>
 			</h:panelGrid>
 		</p:fieldset>
