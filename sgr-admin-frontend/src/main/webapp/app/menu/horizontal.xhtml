@@ -6,21 +6,21 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<p:menubar>
-		<p:menuitem value="#{admin_translation.menu_horizontal_teachingStuff}"
-			outcome="teachingStuffPanel" icon="ui-icon-star" />
-		<p:menuitem value="#{admin_translation.menu_horizontal_users}"
-			outcome="index" icon="ui-icon-star" />
 		<p:menuitem value="#{admin_translation.menu_horizontal_classGroup}"
 			outcome="classGroupPanel" icon="ui-icon-star" />
+		<p:menuitem value="#{admin_translation.menu_horizontal_teachingStuff}"
+			outcome="teachingStuffPanel" icon="ui-icon-star" />
+		<p:menuitem value="#{admin_translation.menu_horizontal_student}"
+			outcome="studentPanel" icon="ui-icon-star" />
 
 		<f:facet name="options">
 			<h:panelGrid columns="2">
 				<h:form>
-					<h:selectOneMenu value="#{localeManager.language}"
+					<p:selectOneMenu value="#{localeManager.language}"
 						onchange="submit()">
 						<f:selectItem itemValue="pl" itemLabel="#{common.locale_polish}" />
 						<f:selectItem itemValue="en" itemLabel="#{common.locale_english}" />
-					</h:selectOneMenu>
+					</p:selectOneMenu>
 				</h:form>
 				<p:commandButton type="button"
 					value="#{admin_translation.menu_horizontal_logout}"
