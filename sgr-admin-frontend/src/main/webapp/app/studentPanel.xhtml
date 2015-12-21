@@ -6,6 +6,11 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
+<!-- REVIEW: DB	z tego co mi się wydaje to ten typ komentarzy jest czytany przez xhtml i może to w przyszłości powodowa błędy żeby tego uniknąc -->
+<!-- 	można dodać w pliku web.xml coś takiego <context-param> -->
+<!--     <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name> -->
+<!--     <param-value>true</param-value> -->
+</context-param>
 		<!-- 	MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{studentPanel.onLoad}"
@@ -53,7 +58,7 @@
 				</p:dataTable>
 			</p:outputPanel>
 		</h:form>
-
+<!--     REVIEW: DB j.w. -->
 		<!-- ADD FORM -->
 		<h:form id="add">
 			<p:dialog header="#{common.window_caption_add}" resizable="false"
@@ -113,7 +118,7 @@
 				</h:panelGrid>
 			</p:dialog>
 		</h:form>
-
+<!--     REVIEW: DB j.w. -->
 		<!-- UPDATE FORM -->
 		<h:form id="update">
 			<p:dialog header="#{common.window_caption_update}" resizable="false"
@@ -168,7 +173,7 @@
 				</h:panelGrid>
 			</p:dialog>
 		</h:form>
-
+<!--     REVIEW: DB j.w. -->
 		<!-- DETAILS FORM -->
 		<h:form id="details">
 			<p:dialog header="#{common.window_caption_details}" resizable="false"
