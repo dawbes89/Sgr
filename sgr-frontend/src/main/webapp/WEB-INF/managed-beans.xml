@@ -17,6 +17,10 @@
       <managed-bean-name>announcementPanel</managed-bean-name>
       <managed-bean-class>sgr.app.frontend.announcement.AnnouncementPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
+   <managed-bean>
+      <managed-bean-name>loginPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.frontend.loginPanel.LoginPanel</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
 
 </faces-config>

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,10 @@ public class Account implements Serializable
 {
    private static final long serialVersionUID = 5425777781237535276L;
 
+   public static final String PROPERTY_USER_NAME = "userName";
+   public static final String PROPERTY_PASSWORD = "password";
+   public static final String PROPERTY_ID = "id";
+
    @Id
    @Column(name = "account_id")
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +34,20 @@ public class Account implements Serializable
 
    @Column(name = "password", length = 74)
    private String password;
+
+   @Enumerated(EnumType.STRING)
+   @Column(name = "type")
+   private AccountType type;
+
+   public AccountType getType()
+   {
+      return type;
+   }
+
+   public void setType(AccountType type)
+   {
+      this.type = type;
+   }
 
    public Long getId()
    {
