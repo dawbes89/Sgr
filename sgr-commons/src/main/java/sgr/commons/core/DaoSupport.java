@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Required;
 public abstract class DaoSupport
 {
 
-   private SessionFactory sessionFactory;
+   public SessionFactory sessionFactory;
 
    private Session getSession()
    {
@@ -68,6 +68,21 @@ public abstract class DaoSupport
    protected <T> LockMode getCurrentLockMode(T entity)
    {
       return getSession().getCurrentLockMode(entity);
+   }
+
+   protected Session openSession()
+   {
+      return sessionFactory.openSession();
+   }
+
+   protected void closeSession()
+   {
+      sessionFactory.close();
+   }
+
+   public boolean isSession()
+   {
+      return sessionFactory.isClosed();
    }
 
    @Required
