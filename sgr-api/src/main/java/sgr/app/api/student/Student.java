@@ -33,6 +33,9 @@ public class Student implements Serializable
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
+   // REVIEW DB: zastanowi³ bym siê nad tym czy nie lepiej by³o by zamiast
+   // ustawiaæ FeatchType na Eager daæ w implementacji hibernate.inicialized na
+   // odpowiednich polach
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "person_id", nullable = false, unique = true)
    private Person person;
@@ -41,8 +44,7 @@ public class Student implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
-         fetch = FetchType.EAGER)
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 
