@@ -45,7 +45,7 @@
 						<p:commandButton id="deleteTeacher"
 							value="#{common.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
-							update=":root:panel :add:panel">
+							update=":root:panel">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
 						</p:commandButton>

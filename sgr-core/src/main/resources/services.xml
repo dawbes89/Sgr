@@ -18,4 +18,8 @@
    <bean id="classGroupService" class="sgr.app.core.classgroup.ClassGroupServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
+
+   <bean id="studentService" class="sgr.app.core.student.StudentServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
 </beans>
