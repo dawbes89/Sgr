@@ -7,28 +7,32 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><h:outputText value="#{translation.application_invitation}" /></title>
+	<title><h:outputText
+			value="#{translation.application_invitation}" /></title>
 </h:head>
 <h:body>
-<!-- 		REVIEW tutaj jak mówiłem trzeba zmienić wyśrodkowanie na takie działające w każdej sytuacji -->
-		<h:form id="loginForm">
-			<p:outputPanel id="panel">
-			<H3><h:outputText value="#{sgr-translation.form_person_login}" style="position:absolute; top:50px; left:560px;" /></H3>
-					<p:panelGrid columns="1" layout="grid" style="position:absolute; top:100px; left:500px;">
-						<h:outputLabel value="#{sgr-translation.form_account_userName}"
-							for="loginInput" />
-						<p:inputText id="loginInput"
-							required="true" />
-						<h:outputLabel value="#{sgr-translation.form_account_password}"
-							for="passwordInput" />
-						<p:password id="passwordInput"
-							required="true" />
-						<p:commandButton id="loginButton" value="#{sgr-translation.form_person_login}"
-							action="#{loginPanel.checkLogin}">
-						</p:commandButton>
-						</p:panelGrid> 
-				</p:outputPanel>
-		</h:form>
+
+	<h:form id="loginForm">
+		<p:outputPanel id="panel">
+			<h3>
+				<h:outputText value="#{sgr-translation.form_person_login}"
+					style="position:absolute; top:50px; left:560px;" />
+			</h3>
+			<p:panelGrid columns="1" layout="grid"
+				style="position:absolute; top:100px; left:500px;">
+				<h:outputLabel value="#{sgr-translation.form_account_userName}"
+					for="loginInput" />
+				<p:inputText id="loginInput" required="true" />
+				<h:outputLabel value="#{sgr-translation.form_account_password}"
+					for="passwordInput" />
+				<p:password id="passwordInput" required="true" />
+				<p:commandButton id="loginButton"
+					value="#{sgr-translation.form_person_login}"
+					action="#{loginPanel.checkLogin}">
+				</p:commandButton>
+			</p:panelGrid>
+		</p:outputPanel>
+	</h:form>
 </h:body>
 
 </html>
