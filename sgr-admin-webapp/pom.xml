@@ -7,8 +7,8 @@
       <version>0.0.1-SNAPSHOT</version>
    </parent>
 
-   <artifactId>sgr-admin-frontend</artifactId>
-   <name>sgr-admin-frontend</name>
+   <artifactId>sgr-admin-webapp</artifactId>
+   <name>sgr-admin-webapp</name>
 
    <repositories>
       <repository>

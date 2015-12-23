@@ -8,9 +8,9 @@
    </parent>
 
    <artifactId>sgr-app-webapp</artifactId>
+   <name>primefaces Maven Webapp</name>
    <packaging>war</packaging>
 
-   <name>primefaces Maven Webapp</name>
    <url>http://maven.apache.org</url>
 
    <repositories>
