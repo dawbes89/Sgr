@@ -11,7 +11,7 @@
       <module>sgr-admin-frontend</module>
       <module>sgr-api</module>
       <module>sgr-core</module>
-      <module>sgr-frontend</module>
+      <module>sgr-app-webapp</module>
       <module>sgr-commons</module>
    </modules>
 
@@ -35,7 +35,7 @@
          </dependency>
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-frontend</artifactId>
+            <artifactId>sgr-app-webapp</artifactId>
             <version>${project.version}</version>
          </dependency>
          <dependency>
