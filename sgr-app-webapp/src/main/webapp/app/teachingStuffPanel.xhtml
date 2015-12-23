@@ -16,7 +16,7 @@
 					<p:column style="width:60px">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
-							title="#{sgr-translation.button_details}">
+							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{teachingStuff}"
 								target="#{teachingStuffPanel.entity}" />
 						</p:commandButton>
@@ -40,7 +40,7 @@
 		</h:form>
 
 		<h:form id="details">
-			<p:dialog header="#{sgr-translation.window_caption_details}" resizable="false"
+			<p:dialog header="#{sgr_translation.window_caption_details}" resizable="false"
 				showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">

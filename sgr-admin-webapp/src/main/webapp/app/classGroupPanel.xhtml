@@ -21,7 +21,7 @@
 						filterMatchMode="contains">#{classGroup.formattedYear}
                    </p:column>
 					<p:column style="width:80px">
-						<p:commandButton value="#{sgr-translation.button_remove}"
+						<p:commandButton value="#{sgr_translation.button_remove}"
 							actionListener="#{classGroupPanel.remove(classGroup.id)}"
 							update=":root:panel">
 							<p:ajax event="dialogReturn" listener="#{classGroupPanel.remove}"
@@ -30,13 +30,13 @@
 					</p:column>
 				</p:dataTable>
 				<p:separator />
-				<p:commandButton value="#{sgr-translation.button_add}" icon="ui-icon-check"
+				<p:commandButton value="#{sgr_translation.button_add}" icon="ui-icon-check"
 					oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
 		<h:form id="add">
-			<p:dialog header="#{sgr-translation.window_caption_add}" resizable="false"
+			<p:dialog header="#{sgr_translation.window_caption_add}" resizable="false"
 				showEffect="explode" widgetVar="addDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
@@ -72,7 +72,7 @@
 							<f:selectItems value="#{classGroupPanel.years}" var="date"
 								itemLabel="#{year}" itemValue="#{year}" />
 						</p:selectOneMenu>
-						<p:commandButton id="confirmAdd" value="#{sgr-translation.button_add}"
+						<p:commandButton id="confirmAdd" value="#{sgr_translation.button_add}"
 							action="#{classGroupPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
