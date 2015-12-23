@@ -13,7 +13,7 @@ import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.person.Person;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
-import sgr.commons.core.RandomPasswordGenerator;
+import sgr.app.core.RandomPasswordGenerator;
 import sgr.commons.frontend.AbstractPanel;
 import sgr.commons.frontend.Bean;
 import sgr.commons.frontend.EditablePanel;

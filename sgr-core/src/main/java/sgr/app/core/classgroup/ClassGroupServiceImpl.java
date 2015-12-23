@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author leonzio

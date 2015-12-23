@@ -9,8 +9,8 @@ import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.commons.core.DaoSupport;
-import sgr.commons.core.ObjectsHelper;
+import sgr.app.core.DaoSupport;
+import sgr.app.core.ObjectsHelper;
 
 /**
  * @author dawbes

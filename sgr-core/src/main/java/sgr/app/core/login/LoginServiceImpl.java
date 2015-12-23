@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.login.LoginService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 public class LoginServiceImpl extends DaoSupport implements LoginService
 {
@@ -20,17 +20,19 @@ public class LoginServiceImpl extends DaoSupport implements LoginService
    @Override
    public <T> Optional<T> checkLogin(String userName, String password)
          throws MissingResourceException
-         {
+   {
 
       Optional<Account> account = accountService.findAccountByLogin(userName);
       if (account.isPresent())
       {
          if (PASSWORD_ENCODER.matches(password, account.get().getPassword()))
+         {
             return accountService.findUserByAccount(account.get());
+         }
       }
 
       return Optional.empty();
-         }
+   }
 
    @Required
    public void setAccountService(AccountService accountService)

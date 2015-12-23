@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 
 import sgr.app.api.announcement.Announcement;
 import sgr.app.api.announcement.AnnouncementService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author dawbes
