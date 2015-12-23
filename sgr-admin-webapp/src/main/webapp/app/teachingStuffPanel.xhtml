@@ -15,7 +15,7 @@
 					<p:column style="width:50px">
 						<p:commandButton id="selectButton" update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
-							title="#{common.button_details}">
+							title="#{sgr-translation.button_details}">
 							<f:setPropertyActionListener value="#{teachingStuff}"
 								target="#{teachingStuffPanel.entity}" />
 						</p:commandButton>
@@ -43,13 +43,13 @@
 					</p:column>
 					<p:column style="width:190px">
 						<p:commandButton id="deleteTeacher"
-							value="#{common.button_remove}"
+							value="#{sgr-translation.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
 							update=":root:panel">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
 						</p:commandButton>
-						<p:commandButton id="updateButton" value="#{common.button_update}"
+						<p:commandButton id="updateButton" value="#{sgr-translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()">
 							<f:setPropertyActionListener value="#{teachingStuff}"
 								target="#{teachingStuffPanel.entity}" />
@@ -57,13 +57,13 @@
 					</p:column>
 				</p:dataTable>
 				<p:separator />
-				<p:commandButton value="#{common.button_add}" icon="ui-icon-check"
+				<p:commandButton value="#{sgr-translation.button_add}" icon="ui-icon-check"
 					oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
 		<h:form id="add">
-			<p:dialog header="#{common.window_caption_add}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_add}" resizable="false"
 				showEffect="explode" widgetVar="addDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
@@ -97,7 +97,7 @@
 							filter="true" filterMatchMode="startsWith"
 							converter="classConverter" hideNoSelectionOption="true">
 							<f:selectItem itemValue="#{null}"
-								itemLabel="#{common.selectOneMenu_select}"
+								itemLabel="#{sgr-translation.selectOneMenu_select}"
 								noSelectionOption="true" />
 							<f:selectItems value="#{teachingStuffPanel.availableClasses}"
 								var="classGroup" itemLabel="#{classGroup.className}"
@@ -113,13 +113,13 @@
 							for="password" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
-						<p:commandButton id="confirmAdd" value="#{common.button_add}"
+						<p:commandButton id="confirmAdd" value="#{sgr-translation.button_add}"
 							action="#{teachingStuffPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
 						<p:commandButton id="generatePassword" immediate="true"
-							value="#{common.button_generatePassword}"
+							value="#{sgr-translation.button_generatePassword}"
 							action="#{teachingStuffPanel.generatePassword('add:password')}"
 							update="password">
 						</p:commandButton>
@@ -129,7 +129,7 @@
 		</h:form>
 
 		<h:form id="update">
-			<p:dialog header="#{common.window_caption_update}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_update}" resizable="false"
 				showEffect="explode" widgetVar="updateDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
@@ -168,7 +168,7 @@
 							value="#{teachingStuffPanel.entity.account.password}"
 							required="true" />
 						<p:commandButton id="confirmUpdate"
-							value="#{common.button_update}"
+							value="#{sgr-translation.button_update}"
 							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
 							update=":root:panel :update:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
@@ -181,7 +181,7 @@
 		</h:form>
 
 		<h:form id="details">
-			<p:dialog header="#{common.window_caption_details}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_details}" resizable="false"
 				showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">

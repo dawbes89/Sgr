@@ -13,7 +13,7 @@
 
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:commandButton value="#{common.button_add}" icon="ui-icon-check"
+				<p:commandButton value="#{sgr-translation.button_add}" icon="ui-icon-check"
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 				<p:dataTable value="#{studentPanel.entities}" var="student"
@@ -21,30 +21,30 @@
 					<p:column style="width:50px">
 						<p:commandButton id="selectButton" update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
-							title="#{common.button_details}">
+							title="#{sgr-translation.button_details}">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
 						</p:commandButton>
 					</p:column>
-					<p:column headerText="#{common.form_person_firstName}"
+					<p:column headerText="#{sgr-translation.form_person_firstName}"
 						filterBy="#{student.person.firstName}" filterMatchMode="contains">
 						<h:outputLabel value="#{student.person.firstName}" />
 					</p:column>
-					<p:column headerText="#{common.form_person_lastName}"
+					<p:column headerText="#{sgr-translation.form_person_lastName}"
 						filterBy="#{student.person.lastName}" filterMatchMode="contains">
 						<h:outputLabel value="#{student.person.lastName}" />
 					</p:column>
-					<p:column headerText="#{common.form_class}">
+					<p:column headerText="#{sgr-translation.form_class}">
 						<h:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
 					<p:column style="width:190px">
-						<p:commandButton value="#{common.button_remove}"
+						<p:commandButton value="#{sgr-translation.button_remove}"
 							actionListener="#{studentPanel.remove(student.id)}"
 							update=":root:panel">
 							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}"
 								update=":root:panel" />
 						</p:commandButton>
-						<p:commandButton value="#{common.button_update}"
+						<p:commandButton value="#{sgr-translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
@@ -56,49 +56,49 @@
 		<!--     REVIEW: DB j.w. -->
 		<!-- ADD FORM -->
 		<h:form id="add">
-			<p:dialog header="#{common.window_caption_add}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_add}" resizable="false"
 				showEffect="explode" widgetVar="addDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
-					<p:panel id="personal" header="#{common.form_person}">
+					<p:panel id="personal" header="#{sgr-translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_person_firstName}: *" />
+							<h:outputText value="#{sgr-translation.form_person_firstName}: *" />
 							<p:inputText id="firstName"
-								label="#{common.form_person_firstName}"
+								label="#{sgr-translation.form_person_firstName}"
 								value="#{studentPanel.person.firstName}" required="true" />
-							<h:outputText value="#{common.form_person_lastName}: *" />
-							<p:inputText label="#{common.form_person_firstName}"
+							<h:outputText value="#{sgr-translation.form_person_lastName}: *" />
+							<p:inputText label="#{sgr-translation.form_person_firstName}"
 								value="#{studentPanel.person.lastName}" required="true" />
-							<h:outputText value="#{common.form_person_birthDate}: *" />
-							<p:calendar label="#{common.form_person_birthDate}"
+							<h:outputText value="#{sgr-translation.form_person_birthDate}: *" />
+							<p:calendar label="#{sgr-translation.form_person_birthDate}"
 								value="#{studentPanel.person.birthDate}" pattern="yyyy-MM-dd"
 								mask="true" required="true" />
 						</h:panelGrid>
 					</p:panel>
-					<p:panel id="account" header="#{common.form_account}">
+					<p:panel id="account" header="#{sgr-translation.form_account}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_account_userName}: *" />
-							<p:inputText label="#{common.form_account_userName}"
+							<h:outputText value="#{sgr-translation.form_account_userName}: *" />
+							<p:inputText label="#{sgr-translation.form_account_userName}"
 								value="#{studentPanel.account.userName}" required="true" />
-							<h:outputText value="#{common.form_account_password}: *" />
+							<h:outputText value="#{sgr-translation.form_account_password}: *" />
 							<p:inputText id="password"
-								label="#{common.form_account_userName}"
+								label="#{sgr-translation.form_account_userName}"
 								value="#{studentPanel.account.password}" required="true" />
 							<p:commandButton id="generatePassword" immediate="true"
-								value="#{common.form_button_generatePassword}"
+								value="#{sgr-translation.form_button_generatePassword}"
 								action="#{studentPanel.generatePassword('add:password')}"
 								update="password">
 							</p:commandButton>
 						</h:panelGrid>
 					</p:panel>
-					<p:panel id="other" header="#{common.form_other}">
+					<p:panel id="other" header="#{sgr-translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_class}: *" />
-							<p:selectOneMenu label="#{common.form_class}" required="true"
+							<h:outputText value="#{sgr-translation.form_class}: *" />
+							<p:selectOneMenu label="#{sgr-translation.form_class}" required="true"
 								value="#{studentPanel.entity.classGroup}" effect="fade"
 								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
-									itemLabel="#{common.selectOneMenu_select}"
+									itemLabel="#{sgr-translation.selectOneMenu_select}"
 									noSelectionOption="true" />
 								<f:selectItems value="#{studentPanel.availableClasses}"
 									var="classGroup" itemLabel="#{classGroup.className}"
@@ -106,7 +106,7 @@
 							</p:selectOneMenu>
 						</h:panelGrid>
 					</p:panel>
-					<p:commandButton id="confirmAdd" value="#{common.form_button_save}"
+					<p:commandButton id="confirmAdd" value="#{sgr-translation.form_button_save}"
 						action="#{studentPanel.create}" update=":root:panel :add:panel"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 					</p:commandButton>
@@ -116,40 +116,40 @@
 		<!--     REVIEW: DB j.w. -->
 		<!-- UPDATE FORM -->
 		<h:form id="update">
-			<p:dialog header="#{common.window_caption_update}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_update}" resizable="false"
 				showEffect="explode" widgetVar="updateDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
-					<p:panel id="personal" header="#{common.form_person}">
+					<p:panel id="personal" header="#{sgr-translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_person_firstName}: *" />
+							<h:outputText value="#{sgr-translation.form_person_firstName}: *" />
 							<p:inputText id="firstName"
-								label="#{common.form_person_firstName}"
+								label="#{sgr-translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true" />
-							<h:outputText value="#{common.form_person_lastName}: *" />
-							<p:inputText label="#{common.form_person_firstName}"
+							<h:outputText value="#{sgr-translation.form_person_lastName}: *" />
+							<p:inputText label="#{sgr-translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.lastName}" required="true" />
-							<h:outputText value="#{common.form_person_birthDate}: *" />
-							<p:calendar label="#{common.form_person_birthDate}"
+							<h:outputText value="#{sgr-translation.form_person_birthDate}: *" />
+							<p:calendar label="#{sgr-translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</h:panelGrid>
 					</p:panel>
-					<p:panel id="account" header="#{common.form_account}">
+					<p:panel id="account" header="#{sgr-translation.form_account}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_account_userName}: *" />
-							<p:inputText label="#{common.form_account_userName}"
+							<h:outputText value="#{sgr-translation.form_account_userName}: *" />
+							<p:inputText label="#{sgr-translation.form_account_userName}"
 								value="#{studentPanel.entity.account.userName}" required="true" />
 						</h:panelGrid>
 					</p:panel>
-					<p:panel id="other" header="#{common.form_other}">
+					<p:panel id="other" header="#{sgr-translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{common.form_class}: *" />
-							<p:selectOneMenu label="#{common.form_class}" required="true"
+							<h:outputText value="#{sgr-translation.form_class}: *" />
+							<p:selectOneMenu label="#{sgr-translation.form_class}" required="true"
 								value="#{studentPanel.entity.classGroup}" effect="fade"
 								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
-									itemLabel="#{common.selectOneMenu_select}"
+									itemLabel="#{sgr-translation.selectOneMenu_select}"
 									noSelectionOption="true" />
 								<f:selectItems value="#{studentPanel.availableClasses}"
 									var="classGroup" itemLabel="#{classGroup.className}"
@@ -158,7 +158,7 @@
 						</h:panelGrid>
 					</p:panel>
 					<p:commandButton id="confirmUpdate"
-						value="#{common.form_button_update}"
+						value="#{sgr-translation.form_button_update}"
 						actionListener="#{studentPanel.update(studentPanel.entity)}"
 						update=":root:panel :update:panel"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
@@ -171,30 +171,30 @@
 		<!--     REVIEW: DB j.w. -->
 		<!-- DETAILS FORM -->
 		<h:form id="details">
-			<p:dialog header="#{common.window_caption_details}" resizable="false"
+			<p:dialog header="#{sgr-translation.window_caption_details}" resizable="false"
 				showEffect="explode" widgetVar="detailsDialog">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<h:outputLabel value="#{common.form_person_firstName}:"
+					<h:outputLabel value="#{sgr-translation.form_person_firstName}:"
 						for="firstName" />
 					<h:outputText id="firstName"
 						value="#{studentPanel.entity.person.firstName}" />
 
-					<h:outputLabel value="#{common.form_person_lastName}:"
+					<h:outputLabel value="#{sgr-translation.form_person_lastName}:"
 						for="lastName" />
 					<h:outputText id="lastName"
 						value="#{studentPanel.entity.person.lastName}" />
 
-					<h:outputLabel value="#{common.form_person_birthDate}:"
+					<h:outputLabel value="#{sgr-translation.form_person_birthDate}:"
 						for="birthDate" />
 					<h:outputText id="birthDate"
 						value="#{studentPanel.entity.person.birthDate}" />
 
-					<h:outputLabel value="#{common.form_account_userName} :"
+					<h:outputLabel value="#{sgr-translation.form_account_userName} :"
 						for="userName" />
 					<h:outputText id="userName"
 						value="#{studentPanel.entity.account.userName}" />
 
-					<h:outputLabel value="#{common.form_class} :" for="class" />
+					<h:outputLabel value="#{sgr-translation.form_class} :" for="class" />
 					<h:outputText id="class"
 						value="#{studentPanel.entity.classGroup.className}" />
 				</p:panelGrid>

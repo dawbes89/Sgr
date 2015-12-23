@@ -6,16 +6,16 @@
 	xmlns:p="http://primefaces.org/ui" template="/app/template.xhtml">
 
 	<ui:define name="content">
-		<p:fieldset legend="#{common.languageSettings}"
+		<p:fieldset legend="#{sgr-translation.languageSettings}"
 			style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="2">
 				<h:form>
-					<h:outputLabel value="#{common.languageSettings_choose}: "
+					<h:outputLabel value="#{sgr-translation.languageSettings_choose}: "
 						for="languageSelection" />
 					<p:selectOneMenu id="languageSelection"
 						value="#{localeManager.language}" onchange="submit()">
-						<f:selectItem itemValue="pl" itemLabel="#{common.locale_polish}" />
-						<f:selectItem itemValue="en" itemLabel="#{common.locale_english}" />
+						<f:selectItem itemValue="pl" itemLabel="#{sgr-translation.locale_polish}" />
+						<f:selectItem itemValue="en" itemLabel="#{sgr-translation.locale_english}" />
 					</p:selectOneMenu>
 				</h:form>
 			</h:panelGrid>

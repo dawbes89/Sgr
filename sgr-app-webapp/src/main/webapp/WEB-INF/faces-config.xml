@@ -17,8 +17,8 @@
          <var>translation</var>
       </resource-bundle>
       <resource-bundle>
-         <base-name>sgr-common-translations</base-name>
-         <var>common</var>
+         <base-name>sgr-frontend-translations</base-name>
+         <var>sgr-translation</var>
       </resource-bundle>
    </application>
 
