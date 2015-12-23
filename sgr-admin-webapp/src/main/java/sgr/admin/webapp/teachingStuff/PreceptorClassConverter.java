@@ -1,4 +1,4 @@
-package sgr.admin.frontend.teachingStuff;
+package sgr.admin.webapp.teachingStuff;
 
 import javax.faces.convert.FacesConverter;
 
