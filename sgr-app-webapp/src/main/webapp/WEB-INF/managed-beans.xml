@@ -5,22 +5,22 @@
 
    <managed-bean>
       <managed-bean-name>localeManager</managed-bean-name>
-      <managed-bean-class>sgr.commons.frontend.LocaleManager</managed-bean-class>
+      <managed-bean-class>sgr.app.frontend.LocaleManager</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>teachingStuffPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.teachingStuff.TeachingStuffPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingStuff.TeachingStuffPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>announcementPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.announcement.AnnouncementPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.announcement.AnnouncementPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>loginPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.loginPanel.LoginPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.loginPanel.LoginPanel</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
 

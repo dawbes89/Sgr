@@ -13,9 +13,9 @@ import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.core.RandomPasswordGenerator;
-import sgr.commons.frontend.AbstractPanel;
-import sgr.commons.frontend.Bean;
-import sgr.commons.frontend.EditablePanel;
+import sgr.app.frontend.AbstractPanel;
+import sgr.app.frontend.Bean;
+import sgr.app.frontend.EditablePanel;
 
 /**
  * @author dawbes

@@ -1,4 +1,4 @@
-package sgr.commons.frontend;
+package sgr.app.frontend;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

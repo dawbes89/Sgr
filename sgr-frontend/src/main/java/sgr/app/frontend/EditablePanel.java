@@ -1,4 +1,4 @@
-package sgr.commons.frontend;
+package sgr.app.frontend;
 
 /**
  * This interface should be implemented by panel which provides editing data.

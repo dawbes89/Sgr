@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.core.ObjectsHelper;
-import sgr.commons.frontend.AbstractConverter;
+import sgr.app.frontend.AbstractConverter;
 
 @FacesConverter(value = "classConverter", forClass = ClassGroup.class)
 public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
