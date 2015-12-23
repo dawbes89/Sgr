@@ -1,4 +1,4 @@
-package sgr.admin.frontend.student;
+package sgr.admin.webapp.student;
 
 import java.util.List;
 

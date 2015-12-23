@@ -1,4 +1,4 @@
-package sgr.admin.frontend.classgroup;
+package sgr.admin.webapp.classgroup;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
