@@ -12,12 +12,13 @@
 			outcome="teachingStuffPanel" icon="ui-icon-star" />
 		<p:menuitem value="#{translation.menu_horizontal_news}"
 			outcome="announcementPanel" icon="ui-icon-clipboard" />
-		<p:menuitem value="#{translation.menu_horizontal_ads}" outcome="index"
-			icon="ui-icon-info" />
 
 		<f:facet name="options">
-			<p:commandButton type="button"
-				value="#{translation.menu_horizontal_logout}" icon="ui-icon-extlink" />
+			<h:form>
+				<p:commandButton type="button"
+					value="#{translation.menu_horizontal_logout}" immediate="true"
+					icon="ui-icon-extlink" action="#{loginPanel.logout}" />
+			</h:form>
 		</f:facet>
 	</p:menubar>
 
