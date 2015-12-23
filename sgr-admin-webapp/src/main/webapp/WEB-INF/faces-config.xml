@@ -14,7 +14,7 @@
       </resource-bundle>
       <resource-bundle>
          <base-name>sgr-frontend-translations</base-name>
-         <var>sgr-translation</var>
+         <var>sgr_translation</var>
       </resource-bundle>
    </application>
 

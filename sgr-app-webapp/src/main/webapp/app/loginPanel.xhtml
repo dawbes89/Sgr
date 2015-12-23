@@ -15,19 +15,19 @@
 	<h:form id="loginForm">
 		<p:outputPanel id="panel">
 			<h3>
-				<h:outputText value="#{sgr-translation.form_person_login}"
+				<h:outputText value="#{sgr_translation.form_person_login}"
 					style="position:absolute; top:50px; left:560px;" />
 			</h3>
 			<p:panelGrid columns="1" layout="grid"
 				style="position:absolute; top:100px; left:500px;">
-				<h:outputLabel value="#{sgr-translation.form_account_userName}"
+				<h:outputLabel value="#{sgr_translation.form_account_userName}"
 					for="loginInput" />
 				<p:inputText id="loginInput" required="true" />
-				<h:outputLabel value="#{sgr-translation.form_account_password}"
+				<h:outputLabel value="#{sgr_translation.form_account_password}"
 					for="passwordInput" />
 				<p:password id="passwordInput" required="true" />
 				<p:commandButton id="loginButton"
-					value="#{sgr-translation.form_person_login}"
+					value="#{sgr_translation.form_person_login}"
 					action="#{loginPanel.checkLogin}">
 				</p:commandButton>
 			</p:panelGrid>
