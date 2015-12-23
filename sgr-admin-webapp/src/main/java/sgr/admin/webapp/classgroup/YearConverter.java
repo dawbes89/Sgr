@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.faces.convert.FacesConverter;
 
-import sgr.commons.frontend.AbstractConverter;
+import sgr.app.frontend.AbstractConverter;
 
 /**
  * Converter for year. Converts {@link String} value of year to {@link Date}.

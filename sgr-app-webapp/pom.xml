@@ -4,7 +4,7 @@
    <parent>
       <groupId>StudentGradeRecord</groupId>
       <artifactId>sgr-parent</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.2-SNAPSHOT</version>
    </parent>
 
    <artifactId>sgr-app-webapp</artifactId>

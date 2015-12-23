@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.commons.frontend.AbstractPanel;
-import sgr.commons.frontend.EditablePanel;
+import sgr.app.frontend.AbstractPanel;
+import sgr.app.frontend.EditablePanel;
 
 /**
  * @author leonzio

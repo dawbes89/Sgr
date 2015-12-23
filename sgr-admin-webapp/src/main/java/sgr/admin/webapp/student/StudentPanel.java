@@ -14,9 +14,9 @@ import sgr.app.api.person.Person;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
 import sgr.app.core.RandomPasswordGenerator;
-import sgr.commons.frontend.AbstractPanel;
-import sgr.commons.frontend.Bean;
-import sgr.commons.frontend.EditablePanel;
+import sgr.app.frontend.AbstractPanel;
+import sgr.app.frontend.Bean;
+import sgr.app.frontend.EditablePanel;
 
 /**
  * @author leonzio
