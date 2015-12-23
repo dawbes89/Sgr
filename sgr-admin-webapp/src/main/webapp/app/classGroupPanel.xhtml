@@ -12,13 +12,14 @@
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable value="#{classGroupPanel.entities}" var="classGroup"
 					id="table" editable="true">
-					<p:column headerText="Klasa" filterBy="#{classGroup.groupNumber}">#{classGroup.groupNumber}
+					<p:column headerText="#{sgr_translation.form_class_name}"
+						filterBy="#{classGroup.groupNumber}">#{classGroup.groupNumber}
                    </p:column>
-					<p:column headerText="Kod" filterBy="#{classGroup.groupName}"
-						filterMatchMode="contains">#{classGroup.groupName}
+					<p:column headerText="#{sgr_translation.form_class_group}"
+						filterBy="#{classGroup.groupName}" filterMatchMode="contains">#{classGroup.groupName}
                    </p:column>
-					<p:column headerText="Rocznik" filterBy="#{classGroup.year}"
-						filterMatchMode="contains">#{classGroup.formattedYear}
+					<p:column headerText="#{sgr_translation.form_class_year}"
+						filterBy="#{classGroup.year}" filterMatchMode="contains">#{classGroup.formattedYear}
                    </p:column>
 					<p:column style="width:80px">
 						<p:commandButton value="#{sgr_translation.button_remove}"
@@ -30,17 +31,17 @@
 					</p:column>
 				</p:dataTable>
 				<p:separator />
-				<p:commandButton value="#{sgr_translation.button_add}" icon="ui-icon-check"
-					oncomplete="PF('addDialog').show()" />
+				<p:commandButton value="#{sgr_translation.button_add}"
+					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
 		<h:form id="add">
-			<p:dialog header="#{sgr_translation.window_caption_add}" resizable="false"
-				showEffect="explode" widgetVar="addDialog">
+			<p:dialog header="#{sgr_translation.form_window_caption_add}"
+				resizable="false" showEffect="explode" widgetVar="addDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="#{admin_translation.class_groupNumber} : *"
+						<h:outputLabel value="#{sgr_translation.form_class_name} : *"
 							for="groupNumber" />
 						<p:selectOneMenu id="groupNumber"
 							value="#{classGroupPanel.entity.groupNumber}" required="true">
@@ -51,7 +52,7 @@
 							<f:selectItem itemValue="5" itemLabel="5" />
 							<f:selectItem itemValue="6" itemLabel="6" />
 						</p:selectOneMenu>
-						<h:outputLabel value="#{admin_translation.class_groupName} : *"
+						<h:outputLabel value="#{sgr_translation.form_class_group} : *"
 							for="groupName" />
 						<p:selectOneMenu id="groupName"
 							value="#{classGroupPanel.entity.groupName}" required="true">
@@ -64,7 +65,7 @@
 							<f:selectItem itemValue="G" itemLabel="G" />
 							<f:selectItem itemValue="H" itemLabel="H" />
 						</p:selectOneMenu>
-						<h:outputLabel value="#{admin_translation.class_year} : *"
+						<h:outputLabel value="#{sgr_translation.form_class_year} : *"
 							for="year" />
 						<p:selectOneMenu id="year" value="#{classGroupPanel.entity.year}"
 							required="true" converter="yearConverter" effect="fade"
@@ -72,7 +73,8 @@
 							<f:selectItems value="#{classGroupPanel.years}" var="date"
 								itemLabel="#{year}" itemValue="#{year}" />
 						</p:selectOneMenu>
-						<p:commandButton id="confirmAdd" value="#{sgr_translation.button_add}"
+						<p:commandButton id="confirmAdd"
+							value="#{sgr_translation.button_save}"
 							action="#{classGroupPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
