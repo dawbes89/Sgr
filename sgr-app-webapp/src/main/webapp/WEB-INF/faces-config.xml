@@ -21,12 +21,13 @@
          <var>common</var>
       </resource-bundle>
    </application>
+
    <navigation-rule>
-        <from-view-id>/loginPanel.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>index</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+      <from-view-id>/loginPanel.xhtml</from-view-id>
+      <navigation-case>
+         <from-outcome>index</from-outcome>
+         <to-view-id>/index.xhtml</to-view-id>
+      </navigation-case>
+   </navigation-rule>
 
 </faces-config>
