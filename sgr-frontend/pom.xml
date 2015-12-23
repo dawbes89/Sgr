@@ -8,8 +8,8 @@
       <version>0.0.1-SNAPSHOT</version>
    </parent>
 
-   <artifactId>sgr-commons</artifactId>
-   <name>sgr-commons</name>
+   <artifactId>sgr-frontend</artifactId>
+   <name>sgr-frontend</name>
 
    <url>http://maven.apache.org</url>
 

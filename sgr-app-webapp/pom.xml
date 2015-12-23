@@ -33,7 +33,7 @@
       </dependency>
       <dependency>
          <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-commons</artifactId>
+         <artifactId>sgr-frontend</artifactId>
       </dependency>
 
       <!-- PrimeFaces -->
