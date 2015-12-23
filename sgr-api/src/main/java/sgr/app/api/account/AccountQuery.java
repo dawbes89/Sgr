@@ -5,9 +5,6 @@ import java.io.Serializable;
 /**
  * @author dawbes
  */
-// REVIEW jak już jest to może zostać tak jak serwis ale nie w takiej formie,
-// hasło nigdy nie powinno być kryterium
-// przy wyszukiwaniu
 public class AccountQuery implements Serializable
 {
    private static final long serialVersionUID = 3742970813731527612L;
