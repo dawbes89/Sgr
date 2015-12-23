@@ -16,9 +16,5 @@
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-api</artifactId>
       </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-commons</artifactId>
-      </dependency>
    </dependencies>
 </project>

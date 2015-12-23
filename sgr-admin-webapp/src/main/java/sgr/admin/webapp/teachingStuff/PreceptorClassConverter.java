@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.commons.core.ObjectsHelper;
+import sgr.app.core.ObjectsHelper;
 import sgr.commons.frontend.AbstractConverter;
 
 @FacesConverter(value = "classConverter", forClass = ClassGroup.class)

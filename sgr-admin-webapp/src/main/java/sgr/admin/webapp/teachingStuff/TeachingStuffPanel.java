@@ -12,7 +12,7 @@ import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.commons.core.RandomPasswordGenerator;
+import sgr.app.core.RandomPasswordGenerator;
 import sgr.commons.frontend.AbstractPanel;
 import sgr.commons.frontend.Bean;
 import sgr.commons.frontend.EditablePanel;
@@ -22,7 +22,7 @@ import sgr.commons.frontend.EditablePanel;
  */
 @Controller
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
-      EditablePanel<TeachingStuff>
+EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;

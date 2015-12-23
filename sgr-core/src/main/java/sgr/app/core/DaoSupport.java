@@ -1,4 +1,4 @@
-package sgr.commons.core;
+package sgr.app.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
