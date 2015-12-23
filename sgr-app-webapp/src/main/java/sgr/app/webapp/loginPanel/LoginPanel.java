@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import sgr.app.api.login.LoginService;
+import sgr.app.frontend.Bean;
 
 /**
  * @author dawbes
@@ -29,23 +30,28 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      InputText loginField = (InputText) FacesContext.getCurrentInstance().getViewRoot()
-            .findComponent("loginForm:loginInput");
+      InputText loginField = Bean.get("loginForm", "loginInput");
+      Password passwordField = Bean.get("loginForm", "passwordInput");
 
-      Password passwordField = (Password) FacesContext.getCurrentInstance().getViewRoot()
-            .findComponent("loginForm:passwordInput");
       Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
             passwordField.getValue().toString());
-      ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
       if (existUser.isPresent())
       {
-         ec.redirect(ec.getRequestContextPath() + "/app/index.jsf");
+         externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.jsf");
       }
       else
       {
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "B��d",
-               "Nie poprawny login lub has�o");
+         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd",
+               "Niepoprawny login lub hasło");
          RequestContext.getCurrentInstance().showMessageInDialog(message);
       }
+   }
+
+   public void logout() throws IOException
+   {
+      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+      externalContext.redirect(externalContext.getRequestContextPath());
    }
 }
