@@ -22,14 +22,6 @@
       <!-- StudentGradeRecord -->
       <dependency>
          <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-admin-api</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-admin-core</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-api</artifactId>
       </dependency>
       <dependency>
