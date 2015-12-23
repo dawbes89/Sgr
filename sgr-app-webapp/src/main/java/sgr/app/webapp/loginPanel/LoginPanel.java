@@ -1,4 +1,4 @@
-package sgr.app.frontend.loginPanel;
+package sgr.app.webapp.loginPanel;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -43,8 +43,8 @@ public class LoginPanel implements Serializable
       }
       else
       {
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d",
-               "Nie poprawny login lub has³o");
+         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Bï¿½ï¿½d",
+               "Nie poprawny login lub hasï¿½o");
          RequestContext.getCurrentInstance().showMessageInDialog(message);
       }
    }
