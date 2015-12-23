@@ -8,7 +8,7 @@
    <name>Studen Grade Record</name>
 
    <modules>
-      <module>sgr-admin-frontend</module>
+      <module>sgr-admin-webapp</module>
       <module>sgr-api</module>
       <module>sgr-core</module>
       <module>sgr-app-webapp</module>
@@ -20,7 +20,7 @@
          <!-- StudentGradeRecord -->
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-frontend</artifactId>
+            <artifactId>sgr-admin-webapp</artifactId>
             <version>${project.version}</version>
          </dependency>
          <dependency>
