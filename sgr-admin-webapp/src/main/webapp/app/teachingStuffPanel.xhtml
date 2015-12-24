@@ -113,7 +113,7 @@
 							for="password" />
 						<p:inputText id="password"
 							value="#{teachingStuffPanel.account.password}" required="true" />
-						<p:commandButton id="confirmAdd" value="#{sgr_translation.button_save}"
+						<p:commandButton id="confirmAdd" value="#{sgr_translation.form_button_save}"
 							action="#{teachingStuffPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
