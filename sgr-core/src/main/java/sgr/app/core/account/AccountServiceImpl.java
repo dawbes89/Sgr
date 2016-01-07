@@ -10,7 +10,6 @@ import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.core.DaoSupport;
-import sgr.app.core.ObjectsHelper;
 
 /**
  * @author dawbes
@@ -34,7 +33,8 @@ class AccountServiceImpl extends DaoSupport implements AccountService
       {
          Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
          teachingStuffCriteria.add(Restrictions.eq("account", account));
-         T object = ObjectsHelper.uncheckedCast(teachingStuffCriteria.uniqueResult());
+         @SuppressWarnings("unchecked")
+         T object = (T) teachingStuffCriteria.uniqueResult();
          return Optional.ofNullable(object);
       }
       // TODO Student criteria

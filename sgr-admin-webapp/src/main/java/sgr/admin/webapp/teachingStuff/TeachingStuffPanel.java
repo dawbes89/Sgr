@@ -12,17 +12,17 @@ import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.app.core.RandomPasswordGenerator;
 import sgr.app.frontend.AbstractPanel;
 import sgr.app.frontend.Bean;
 import sgr.app.frontend.EditablePanel;
+import sgr.app.frontend.RandomPasswordGenerator;
 
 /**
  * @author dawbes
  */
 @Controller
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
-EditablePanel<TeachingStuff>
+      EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;

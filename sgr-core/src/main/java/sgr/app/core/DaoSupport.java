@@ -31,27 +31,29 @@ public abstract class DaoSupport
       return getSession().createCriteria(persistentClass);
    }
 
+   @SuppressWarnings("unchecked")
    protected <T> List<T> search(Criteria criteria)
    {
       Collection<?> result = criteria.list();
       List<T> resultList = new ArrayList<T>(result.size());
       for (Object object : result)
       {
-         resultList.add(ObjectsHelper.uncheckedCast(object));
+         resultList.add((T) object);
       }
       return resultList;
    }
 
+   @SuppressWarnings("unchecked")
    protected <T> T createEntity(T entity)
    {
-      Object object = getSession().save(entity);
-      return ObjectsHelper.uncheckedCast(object);
+      T object = (T) getSession().save(entity);
+      return object;
    }
 
    protected <T> T updateEntity(T entity)
    {
       getSession().update(entity);
-      return ObjectsHelper.uncheckedCast(entity);
+      return entity;
    }
 
    protected <T> void removeEntity(T entity)
@@ -59,10 +61,11 @@ public abstract class DaoSupport
       getSession().delete(entity);
    }
 
+   @SuppressWarnings("unchecked")
    protected <T> T getEntity(Class<T> clazz, Long id)
    {
       Object entity = getSession().get(clazz, id);
-      return ObjectsHelper.uncheckedCast(entity);
+      return (T) entity;
    }
 
    protected <T> LockMode getCurrentLockMode(T entity)

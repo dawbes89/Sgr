@@ -14,7 +14,7 @@ import sgr.app.core.DaoSupport;
 /**
  * @author dawbes
  */
-public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
+class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

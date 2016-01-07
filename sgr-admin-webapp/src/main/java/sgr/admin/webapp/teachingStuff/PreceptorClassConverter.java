@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.core.ObjectsHelper;
 import sgr.app.frontend.AbstractConverter;
 
 @FacesConverter(value = "classConverter")
@@ -28,7 +27,7 @@ public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
    @Override
    protected String convertToString(Object object)
    {
-      ClassGroup classGroup = ObjectsHelper.uncheckedCast(object);
+      ClassGroup classGroup = (ClassGroup) object;
       return classGroup.getClassName();
    }
 

@@ -1,13 +1,17 @@
-package sgr.app.core;
+package sgr.app.frontend;
 
+import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.Random;
 
 /**
  * @author dawbes
  */
-public class RandomPasswordGenerator
+public class RandomPasswordGenerator implements Serializable
 {
+
+   private static final long serialVersionUID = 3763153537818133347L;
+
    private static final char[] DEFAULT_CODEC = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
          .toCharArray();
    private static final int LENGHT = 6;
@@ -30,4 +34,5 @@ public class RandomPasswordGenerator
       }
       return new String(chars);
    }
+
 }
