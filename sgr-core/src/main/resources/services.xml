@@ -7,7 +7,7 @@
 
    <import resource="classpath:hibernate-config.xml" />
 
-   <bean id="TeachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
+   <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 

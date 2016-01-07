@@ -11,7 +11,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 /**
  * Panel extender for all panels in application.<br>
  * For using entites list in xhtml part use {@link #entities} and for single use
- * {@link #entity}. Somethimes with panel name
+ * {@link #entity}. Somethimes with panel name eq.
  * <code>panelName.entity.entityProperty</code>.
  *
  * @author leonzio
@@ -23,14 +23,13 @@ public abstract class AbstractPanel<T> implements Serializable
 
    private static final long serialVersionUID = 6754605828742536669L;
 
-   protected List<T> entities;
+   protected List<T> entities = new ArrayList<T>();
 
    protected T entity;
 
    public AbstractPanel()
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-      entities = new ArrayList<T>();
    }
 
    /**
