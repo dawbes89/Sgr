@@ -12,7 +12,7 @@ import sgr.app.api.account.AccountService;
 import sgr.app.api.login.LoginService;
 import sgr.app.core.DaoSupport;
 
-public class LoginServiceImpl extends DaoSupport implements LoginService
+class LoginServiceImpl extends DaoSupport implements LoginService
 {
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
    private AccountService accountService;

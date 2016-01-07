@@ -16,7 +16,7 @@ import sgr.app.core.DaoSupport;
 /**
  * @author leonzio
  */
-public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
+class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
 {
 
    private final static Long START_YEAR = 2000L;
@@ -79,8 +79,8 @@ public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupServi
       if (query.isAvailableForTeacher())
       {
          criteria
-         .add(Restrictions
-               .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
+               .add(Restrictions
+                     .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
       }
       return criteria;
    }

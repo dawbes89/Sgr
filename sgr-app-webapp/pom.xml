@@ -7,9 +7,10 @@
       <version>0.0.2-SNAPSHOT</version>
    </parent>
 
-   <artifactId>sgr-app-webapp</artifactId>
-   <name>primefaces Maven Webapp</name>
    <packaging>war</packaging>
+
+   <artifactId>sgr-app-webapp</artifactId>
+   <name>SGR app webapp</name>
 
    <url>http://maven.apache.org</url>
 
@@ -23,14 +24,6 @@
 
    <dependencies>
       <!-- StudentGradeRecord -->
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-api</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-core</artifactId>
-      </dependency>
       <dependency>
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-frontend</artifactId>

@@ -13,7 +13,7 @@ import sgr.app.core.DaoSupport;
 /**
  * @author leonzio
  */
-public class StudentServiceImpl extends DaoSupport implements StudentService
+class StudentServiceImpl extends DaoSupport implements StudentService
 {
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

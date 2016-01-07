@@ -15,7 +15,7 @@ import sgr.app.core.ObjectsHelper;
 /**
  * @author dawbes
  */
-public class AccountServiceImpl extends DaoSupport implements AccountService
+class AccountServiceImpl extends DaoSupport implements AccountService
 {
 
    @Override
