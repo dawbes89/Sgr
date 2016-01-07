@@ -7,8 +7,10 @@
       <version>0.0.2-SNAPSHOT</version>
    </parent>
 
+   <packaging>war</packaging>
+
    <artifactId>sgr-admin-webapp</artifactId>
-   <name>sgr-admin-webapp</name>
+   <name>SGR admin webapp</name>
 
    <repositories>
       <repository>
@@ -20,14 +22,6 @@
 
    <dependencies>
       <!-- StudentGradeRecord -->
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-api</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-core</artifactId>
-      </dependency>
       <dependency>
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-frontend</artifactId>
@@ -69,6 +63,4 @@
          </plugin>
       </plugins>
    </build>
-
-   <packaging>war</packaging>
 </project>

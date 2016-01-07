@@ -9,12 +9,20 @@
    </parent>
 
    <artifactId>sgr-frontend</artifactId>
-   <name>sgr-frontend</name>
+   <name>SGR frontend</name>
 
    <url>http://maven.apache.org</url>
 
-   <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   </properties>
+   <dependencies>
+      <!-- StudentGradeRecord -->
+      <dependency>
+         <groupId>StudentGradeRecord</groupId>
+         <artifactId>sgr-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>StudentGradeRecord</groupId>
+         <artifactId>sgr-core</artifactId>
+      </dependency>
+   </dependencies>
 
 </project>

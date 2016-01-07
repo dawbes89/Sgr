@@ -8,6 +8,6 @@
    </parent>
 
    <artifactId>sgr-api</artifactId>
-   <name>sgr-api</name>
+   <name>SGR api</name>
 
 </project>

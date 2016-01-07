@@ -11,7 +11,7 @@ import sgr.app.core.DaoSupport;
 /**
  * @author dawbes
  */
-public class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
+class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
 {
 
    @Override

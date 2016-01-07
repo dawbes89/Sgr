@@ -8,7 +8,7 @@
    </parent>
 
    <artifactId>sgr-core</artifactId>
-   <name>sgr-core</name>
+   <name>SGR core</name>
 
    <dependencies>
       <!-- StudentGradeRecord -->

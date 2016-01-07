@@ -9,7 +9,7 @@ import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.core.ObjectsHelper;
 import sgr.app.frontend.AbstractConverter;
 
-@FacesConverter(value = "classConverter", forClass = ClassGroup.class)
+@FacesConverter(value = "classConverter")
 public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
 {
 
