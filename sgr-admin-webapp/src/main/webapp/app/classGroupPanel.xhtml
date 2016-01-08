@@ -6,9 +6,15 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
+		<!-- MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{classGroupPanel.onLoad}"
 				autoRun="true" update=":root:table" />
+
+			<p:commandButton value="#{sgr_translation.button_add}"
+				icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
+			<p:separator />
+
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable value="#{classGroupPanel.entities}" var="classGroup"
 					id="table" editable="true">
@@ -30,12 +36,10 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-				<p:separator />
-				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
+		<!-- ADD FORM -->
 		<h:form id="add">
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">

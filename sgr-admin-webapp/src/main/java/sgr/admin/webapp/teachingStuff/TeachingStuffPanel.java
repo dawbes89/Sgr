@@ -10,6 +10,7 @@ import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
+import sgr.app.api.person.Person;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.AbstractPanel;
@@ -37,6 +38,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    private Account account;
 
+   private Person person;
+
    private List<ClassGroup> availableClasses;
 
    @Override
@@ -44,8 +47,9 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    {
       entity = new TeachingStuff();
       account = new Account();
+      person = new Person();
       entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.setAvailableForTeacher(true));
+      availableClasses = classGroupService.search(ClassGroupQuery.setAvailableForTeachers(true));
    }
 
    @Override
@@ -57,6 +61,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    @Override
    public void create()
    {
+      entity.setPerson(person);
       entity.setAccount(account);
       teachingStuffService.create(entity);
       init();
@@ -76,6 +81,19 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
       init();
    }
 
+   @Override
+   public void setEntity(TeachingStuff entity)
+   {
+      super.setEntity(entity);
+      ClassGroupQuery query = ClassGroupQuery.setAvailableForTeachers(true);
+      final ClassGroup preceptorClass = entity.getPreceptorClass();
+      if (preceptorClass != null)
+      {
+         query = ClassGroupQuery.setAvailableForCurrentTeacher(preceptorClass.getId());
+      }
+      availableClasses = classGroupService.search(query);
+   }
+
    public void generatePassword(String component)
    {
       passwordField = Bean.get("add", "password");
@@ -91,6 +109,16 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    public void setAccount(Account account)
    {
       this.account = account;
+   }
+
+   public Person getPerson()
+   {
+      return person;
+   }
+
+   public void setPerson(Person person)
+   {
+      this.person = person;
    }
 
    public List<ClassGroup> getAvailableClasses()
