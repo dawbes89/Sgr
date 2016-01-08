@@ -7,7 +7,7 @@
 
    <import resource="classpath:hibernate-config.xml" />
 
-   <bean id="TeachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
+   <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
@@ -17,5 +17,18 @@
 
    <bean id="classGroupService" class="sgr.app.core.classgroup.ClassGroupServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <bean id="studentService" class="sgr.app.core.student.StudentServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <bean id="loginService" class="sgr.app.core.login.LoginServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
    </bean>
 </beans>

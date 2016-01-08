@@ -1,0 +1,25 @@
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:menubar>
+		<p:menuitem value="#{translation.menu_horizontal_aboutSchool}"
+			outcome="index" icon="ui-icon-home" />
+		<p:menuitem value="#{translation.menu_horizontal_teachingStuff}"
+			outcome="teachingStuffPanel" icon="ui-icon-star" />
+		<p:menuitem value="#{translation.menu_horizontal_news}"
+			outcome="announcementPanel" icon="ui-icon-clipboard" />
+
+		<f:facet name="options">
+			<h:form>
+				<p:commandButton type="button"
+					value="#{translation.menu_horizontal_logout}" immediate="true"
+					icon="ui-icon-extlink" action="#{loginPanel.logout}" />
+			</h:form>
+		</f:facet>
+	</p:menubar>
+
+</ui:composition>
