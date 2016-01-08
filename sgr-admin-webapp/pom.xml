@@ -24,6 +24,10 @@
       <!-- StudentGradeRecord -->
       <dependency>
          <groupId>StudentGradeRecord</groupId>
+         <artifactId>sgr-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-frontend</artifactId>
       </dependency>
 

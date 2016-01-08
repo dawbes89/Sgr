@@ -19,10 +19,6 @@
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-api</artifactId>
       </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-core</artifactId>
-      </dependency>
    </dependencies>
 
 </project>
