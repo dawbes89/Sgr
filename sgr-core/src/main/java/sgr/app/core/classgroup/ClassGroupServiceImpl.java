@@ -11,12 +11,12 @@ import org.hibernate.criterion.Restrictions;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author leonzio
  */
-public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
+class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
 {
 
    private final static Long START_YEAR = 2000L;
@@ -73,14 +73,20 @@ public class ClassGroupServiceImpl extends DaoSupport implements ClassGroupServi
    private Criteria createCriteriaFromQuery(ClassGroupQuery query)
    {
       Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.addOrder(Order.asc("groupNumber"));
-      criteria.addOrder(Order.asc("groupName"));
-      criteria.addOrder(Order.asc("year"));
-      if (query.isAvailableForTeacher())
+      criteria.addOrder(Order.asc("groupNumber")).addOrder(Order.asc("groupName"))
+            .addOrder(Order.asc("year"));
+      if (query.hasTeacherClassId())
       {
          criteria
-         .add(Restrictions
-               .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
+               .add(Restrictions
+                     .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
+                           + query.getTeacherClassId() + ")"));
+      }
+      if (query.isAvailableForTeachers())
+      {
+         criteria
+               .add(Restrictions
+                     .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
       }
       return criteria;
    }

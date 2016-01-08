@@ -9,12 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author dawbes
  */
-public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
+class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
