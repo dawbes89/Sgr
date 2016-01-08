@@ -107,7 +107,7 @@
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
 								action="#{teachingStuffPanel.generatePassword('add:password')}"
-								update="password">
+								update="password" icon="ui-icon-locked">
 							</p:commandButton>
 						</h:panelGrid>
 					</p:panel>
@@ -144,7 +144,7 @@
 					<p:commandButton id="confirmAdd"
 						value="#{sgr_translation.form_button_save}"
 						action="#{teachingStuffPanel.create}"
-						update=":root:panel :add:panel"
+						update=":root:panel :add:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 					</p:commandButton>
 				</h:panelGrid>
@@ -214,7 +214,7 @@
 					<p:commandButton id="confirmUpdate"
 						value="#{sgr_translation.button_update}"
 						actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
-						update=":root:panel :update:panel"
+						update=":root:panel :update:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 						<p:ajax event="dialogReturn"
 							listener="#{teachingStuffPanel.update}" update=":root:panel" />

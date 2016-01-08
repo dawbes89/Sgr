@@ -13,14 +13,14 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
+					icon="ui-icon-plus" oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
 				<p:dataTable value="#{studentPanel.entities}" var="student"
 					id="table" editable="true">
-					<p:column style="width:50px">
+					<p:column style="width:40px">
 						<p:commandButton id="selectButton" update=":details:panel"
-							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
@@ -37,15 +37,16 @@
 					<p:column headerText="#{sgr_translation.form_class}">
 						<h:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
-					<p:column style="width:190px">
-						<p:commandButton value="#{sgr_translation.button_remove}"
+					<p:column style="width:80px">
+						<p:commandButton title="#{sgr_translation.button_remove}"
 							actionListener="#{studentPanel.remove(student.id)}"
-							update=":root:panel">
+							update=":root:panel" icon="ui-icon-trash">
 							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}"
 								update=":root:panel" />
 						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.button_update}"
-							update=":update:panel" oncomplete="PF('updateDialog').show()">
+						<p:commandButton title="#{sgr_translation.button_update}"
+							update=":update:panel" oncomplete="PF('updateDialog').show()"
+							icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
 						</p:commandButton>
@@ -86,7 +87,7 @@
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
 								action="#{studentPanel.generatePassword('add:password')}"
-								update="password">
+								update="password" icon="ui-icon-locked">
 							</p:commandButton>
 						</h:panelGrid>
 					</p:panel>
@@ -109,6 +110,7 @@
 					<p:commandButton id="confirmAdd"
 						value="#{sgr_translation.form_button_save}"
 						action="#{studentPanel.create}" update=":root:panel :add:panel"
+						icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 					</p:commandButton>
 				</h:panelGrid>
@@ -161,7 +163,7 @@
 					<p:commandButton id="confirmUpdate"
 						value="#{sgr_translation.form_button_update}"
 						actionListener="#{studentPanel.update(studentPanel.entity)}"
-						update=":root:panel :update:panel"
+						update=":root:panel :update:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 						<p:ajax event="dialogReturn" listener="#{studentPanel.update}"
 							update=":root:panel" />
