@@ -6,14 +6,15 @@ import org.hibernate.Criteria;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author dawbes
  */
-public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
+class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -36,6 +37,7 @@ public class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuf
    {
       String password = teachingStuff.getAccount().getPassword();
       teachingStuff.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
+      teachingStuff.getAccount().setType(AccountType.TEACHER);
       createEntity(teachingStuff);
    }
 
