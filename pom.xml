@@ -3,36 +3,29 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>StudentGradeRecord</groupId>
    <artifactId>sgr-parent</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
+   <version>0.0.2-SNAPSHOT</version>
    <packaging>pom</packaging>
-   <name>Studen Grade Record</name>
+
+   <name>Student Grade Record - Parent</name>
 
    <modules>
-      <module>sgr-admin-api</module>
-      <module>sgr-admin-core</module>
-      <module>sgr-admin-frontend</module>
+      <module>sgr-admin-webapp</module>
       <module>sgr-api</module>
       <module>sgr-core</module>
+      <module>sgr-app-webapp</module>
       <module>sgr-frontend</module>
-      <module>sgr-commons</module>
    </modules>
+
+   <properties>
+      <spring.version>4.1.5.RELEASE</spring.version>
+   </properties>
 
    <dependencyManagement>
       <dependencies>
          <!-- StudentGradeRecord -->
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-api</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-         <dependency>
-            <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-core</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-         <dependency>
-            <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-admin-frontend</artifactId>
+            <artifactId>sgr-admin-webapp</artifactId>
             <version>${project.version}</version>
          </dependency>
          <dependency>
@@ -47,12 +40,12 @@
          </dependency>
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-frontend</artifactId>
+            <artifactId>sgr-app-webapp</artifactId>
             <version>${project.version}</version>
          </dependency>
          <dependency>
             <groupId>StudentGradeRecord</groupId>
-            <artifactId>sgr-commons</artifactId>
+            <artifactId>sgr-frontend</artifactId>
             <version>${project.version}</version>
          </dependency>
       </dependencies>
@@ -63,37 +56,34 @@
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-context</artifactId>
-         <version>4.1.5.RELEASE</version>
+         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-core</artifactId>
-         <version>4.1.5.RELEASE</version>
+         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-orm</artifactId>
-         <version>4.1.5.RELEASE</version>
+         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-web</artifactId>
-         <version>4.1.5.RELEASE</version>
+         <version>${spring.version}</version>
       </dependency>
-      <dependency>
-         <groupId>commons-dbcp</groupId>
-         <artifactId>commons-dbcp</artifactId>
-         <version>1.4</version>
-      </dependency>
-      <dependency>
-         <groupId>javax.persistence</groupId>
-         <artifactId>persistence-api</artifactId>
-         <version>1.0.2</version>
-      </dependency>
+
       <dependency>
          <groupId>org.springframework.security</groupId>
          <artifactId>spring-security-core</artifactId>
          <version>4.0.3.RELEASE</version>
+      </dependency>
+
+      <dependency>
+         <groupId>commons-dbcp</groupId>
+         <artifactId>commons-dbcp</artifactId>
+         <version>1.4</version>
       </dependency>
 
       <!-- HIBERNATE -->
@@ -140,4 +130,5 @@
          </plugin>
       </plugins>
    </build>
+
 </project>

@@ -8,12 +8,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
-import sgr.commons.core.DaoSupport;
+import sgr.app.core.DaoSupport;
 
 /**
  * @author leonzio
  */
-public class StudentServiceImpl extends DaoSupport implements StudentService
+class StudentServiceImpl extends DaoSupport implements StudentService
 {
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
