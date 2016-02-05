@@ -64,8 +64,8 @@
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" width="100%"/>
-							<p:inputText id="firstName" width="100%"
+							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
+							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.person.firstName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
@@ -128,6 +128,8 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_update}"
 				resizable="false" showEffect="explode" widgetVar="updateDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
@@ -141,13 +143,6 @@
 							<p:calendar label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
-						</h:panelGrid>
-					</p:panel>
-					<p:panel id="account" header="#{sgr_translation.form_account}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{studentPanel.entity.account.userName}" required="true" />
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">

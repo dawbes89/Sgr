@@ -47,6 +47,8 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:messages id="msgs" />
+
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
 						<h:outputLabel value="#{sgr_translation.form_class_name} : *"
 							for="groupNumber" />
