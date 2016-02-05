@@ -13,7 +13,7 @@ import sgr.app.frontend.AbstractValidator;
 
 /**
  * Validator for login. Not allows to use twice and more times the same login.
- * 
+ *
  * @author leonzio
  */
 @FacesValidator(value = "uniqueLoginValidator")
@@ -25,7 +25,7 @@ public class UniqueLoginValidator extends AbstractValidator<String>
 
    public UniqueLoginValidator()
    {
-      super(FacesMessage.SEVERITY_ERROR, "validation.loginIsUsed");
+      super(FacesMessage.SEVERITY_ERROR, "validation_userNameIsUsed");
    }
 
    @Override
