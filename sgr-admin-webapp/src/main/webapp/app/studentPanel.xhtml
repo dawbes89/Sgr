@@ -60,14 +60,16 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
-							<p:inputText id="firstName"
+							<h:outputText value="#{sgr_translation.form_person_firstName}: *" width="100%"/>
+							<p:inputText id="firstName" width="100%"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.person.firstName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:inputText label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.person.lastName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
 							<p:calendar label="#{sgr_translation.form_person_birthDate}"
@@ -78,12 +80,16 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{studentPanel.account.userName}" required="true" />
+							<p:inputText id="login"
+								label="#{sgr_translation.form_account_userName}"
+								value="#{studentPanel.account.userName}" required="true">
+								<f:validator validatorId="uniqueLoginValidator" />
+							</p:inputText>
 							<h:outputText value="#{sgr_translation.form_account_password}: *" />
 							<p:inputText id="password"
-								label="#{sgr_translation.form_account_userName}"
+								label="#{sgr_translation.form_account_password}"
 								value="#{studentPanel.account.password}" required="true" />
+							<p:column />
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
 								action="#{studentPanel.generatePassword('add:password')}"
