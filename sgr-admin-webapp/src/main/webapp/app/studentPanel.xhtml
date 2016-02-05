@@ -29,14 +29,14 @@
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_firstName}"
 						filterBy="#{student.person.firstName}" filterMatchMode="contains">
-						<h:outputLabel value="#{student.person.firstName}" />
+						<p:outputLabel value="#{student.person.firstName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_lastName}"
 						filterBy="#{student.person.lastName}" filterMatchMode="contains">
-						<h:outputLabel value="#{student.person.lastName}" />
+						<p:outputLabel value="#{student.person.lastName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_class}">
-						<h:outputLabel value="#{student.classGroup.className}" />
+						<p:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
 					<p:column style="width:80px">
 						<p:commandButton title="#{sgr_translation.button_update}"
@@ -65,28 +65,35 @@
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
+							<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
+								for="firstName" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.person.firstName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_lastName}"
+							<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
+								for="lastName" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.person.lastName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
-							<p:calendar label="#{sgr_translation.form_person_birthDate}"
+							<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
+								for="birthDate" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.person.birthDate}" pattern="yyyy-MM-dd"
 								mask="true" required="true" />
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText id="login"
+							<p:outputLabel value="#{sgr_translation.form_account_userName}:"
+								for="userName" />
+							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
 								value="#{studentPanel.account.userName}" required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
 							</p:inputText>
-							<h:outputText value="#{sgr_translation.form_account_password}: *" />
+							<p:outputLabel value="#{sgr_translation.form_account_password}:"
+								for="password" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{studentPanel.account.password}" required="true" />
@@ -100,10 +107,12 @@
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_class}: *" />
-							<p:selectOneMenu label="#{sgr_translation.form_class}"
-								required="true" value="#{studentPanel.entity.classGroup}"
-								effect="fade" filter="true" filterMatchMode="startsWith"
+							<p:outputLabel value="#{sgr_translation.form_class}:"
+								for="classGroup" />
+							<p:selectOneMenu id="classGroup"
+								label="#{sgr_translation.form_class}" required="true"
+								value="#{studentPanel.entity.classGroup}" effect="fade"
+								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
@@ -133,25 +142,32 @@
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
+							<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
+								for="firstName" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_lastName}"
+							<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
+								for="lastName" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.entity.person.lastName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
-							<p:calendar label="#{sgr_translation.form_person_birthDate}"
+							<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
+								for="birthDate" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_class}: *" />
-							<p:selectOneMenu label="#{sgr_translation.form_class}"
-								required="true" value="#{studentPanel.entity.classGroup}"
-								effect="fade" filter="true" filterMatchMode="startsWith"
+							<p:outputLabel value="#{sgr_translation.form_class}:"
+								for="classGroup" />
+							<p:selectOneMenu id="classGroup"
+								label="#{sgr_translation.form_class}" required="true"
+								value="#{studentPanel.entity.classGroup}" effect="fade"
+								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
@@ -179,28 +195,28 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_details}"
 				resizable="false" showEffect="explode" widgetVar="detailsDialog">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<h:outputLabel value="#{sgr_translation.form_person_firstName}:"
+					<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
 						for="firstName" />
-					<h:outputText id="firstName"
+					<p:outputLabel id="firstName"
 						value="#{studentPanel.entity.person.firstName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_lastName}:"
+					<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
 						for="lastName" />
-					<h:outputText id="lastName"
+					<p:outputLabel id="lastName"
 						value="#{studentPanel.entity.person.lastName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_birthDate}:"
+					<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
 						for="birthDate" />
-					<h:outputText id="birthDate"
+					<p:outputLabel id="birthDate"
 						value="#{studentPanel.entity.person.birthDate}" />
 
-					<h:outputLabel value="#{sgr_translation.form_account_userName} :"
+					<p:outputLabel value="#{sgr_translation.form_account_userName}:"
 						for="userName" />
-					<h:outputText id="userName"
+					<p:outputLabel id="userName"
 						value="#{studentPanel.entity.account.userName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_class} :" for="class" />
-					<h:outputText id="class"
+					<p:outputLabel value="#{sgr_translation.form_class}:" for="class" />
+					<p:outputLabel id="class"
 						value="#{studentPanel.entity.classGroup.className}" />
 				</p:panelGrid>
 			</p:dialog>

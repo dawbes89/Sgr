@@ -16,13 +16,13 @@
 					columnClasses="logo,detail">
 					<p:outputPanel>
 						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Date: " />
-							<h:outputText value="#{announcement.date}" style="color: blue" />
-							<h:outputText value="Title: " />
-							<h:outputText value="#{announcement.title}"
+							<p:outputLabel value="Date: " />
+							<p:outputLabel value="#{announcement.date}" style="color: blue" />
+							<p:outputLabel value="Title: " />
+							<p:outputLabel value="#{announcement.title}"
 								style="font-weight: bold" />
-							<h:outputText value="Message: " />
-							<h:outputText value="#{announcement.message}"
+							<p:outputLabel value="Message: " />
+							<p:outputLabel value="#{announcement.message}"
 								style="font-margin: 3px" />
 						</h:panelGrid>
 						<p:separator />
