@@ -30,20 +30,21 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      InputText loginField = Bean.get("loginForm", "loginInput");
-      Password passwordField = Bean.get("loginForm", "passwordInput");
+      final InputText loginField = Bean.get("loginForm", "loginInput");
+      final Password passwordField = Bean.get("loginForm", "passwordInput");
 
-      Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
+      final Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
             passwordField.getValue().toString());
 
-      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
       if (existUser.isPresent())
       {
+         final ExternalContext externalContext = FacesContext.getCurrentInstance()
+               .getExternalContext();
          externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.jsf");
       }
       else
       {
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd",
+         final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd",
                "Niepoprawny login lub hasło");
          RequestContext.getCurrentInstance().showMessageInDialog(message);
       }
@@ -51,7 +52,8 @@ public class LoginPanel implements Serializable
 
    public void logout() throws IOException
    {
-      ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+      final ExternalContext externalContext = FacesContext.getCurrentInstance()
+            .getExternalContext();
       externalContext.redirect(externalContext.getRequestContextPath());
    }
 }

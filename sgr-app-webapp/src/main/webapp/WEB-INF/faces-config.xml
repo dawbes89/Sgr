@@ -12,6 +12,7 @@
          <default-locale>pl</default-locale>
       </locale-config>
 
+      <message-bundle>jsf-validation-errors</message-bundle>
       <resource-bundle>
          <base-name>sgr-translations</base-name>
          <var>translation</var>
