@@ -13,7 +13,8 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-plus" oncomplete="PF('addDialog').show()" />
+					title="#{sgr_translation.button_add_student}" icon="ui-icon-plus"
+					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
 				<p:dataTable value="#{studentPanel.entities}" var="student"
@@ -38,17 +39,17 @@
 						<h:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
 					<p:column style="width:80px">
-						<p:commandButton title="#{sgr_translation.button_remove}"
-							actionListener="#{studentPanel.remove(student.id)}"
-							update=":root:panel" icon="ui-icon-trash">
-							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}"
-								update=":root:panel" />
-						</p:commandButton>
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
 							icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
+						</p:commandButton>
+						<p:commandButton title="#{sgr_translation.button_remove}"
+							actionListener="#{studentPanel.remove(student.id)}"
+							update=":root:panel" icon="ui-icon-trash">
+							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}"
+								update=":root:panel" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -137,7 +138,7 @@
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:inputText label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.entity.person.lastName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
 							<p:calendar label="#{sgr_translation.form_person_birthDate}"
