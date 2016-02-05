@@ -13,7 +13,8 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-plus" oncomplete="PF('addDialog').show()" />
+					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
+					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
 				<p:dataTable value="#{teachingStuffPanel.entities}"
@@ -57,18 +58,17 @@
 						<h:outputLabel value="#{teachingStuff.preceptorClass.className}" />
 					</p:column>
 					<p:column style="width:80px">
-						<p:commandButton id="deleteTeacher"
-							title="#{sgr_translation.button_remove}"
+						<p:commandButton title="#{sgr_translation.button_update}"
+							update=":update:panel" oncomplete="PF('updateDialog').show()"
+							icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{teachingStuff}"
+								target="#{teachingStuffPanel.entity}" />
+						</p:commandButton>
+						<p:commandButton title="#{sgr_translation.button_remove}"
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
 							update=":root:panel" icon="ui-icon-trash">
 							<p:ajax event="dialogReturn"
 								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
-						</p:commandButton>
-						<p:commandButton id="updateButton"
-							title="#{sgr_translation.button_update}" update=":update:panel"
-							oncomplete="PF('updateDialog').show()" icon="ui-icon-pencil">
-							<f:setPropertyActionListener value="#{teachingStuff}"
-								target="#{teachingStuffPanel.entity}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -108,6 +108,7 @@
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{teachingStuffPanel.account.password}" required="true" />
+							<p:column />
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
 								action="#{teachingStuffPanel.generatePassword('add:password')}"
@@ -122,12 +123,14 @@
 								for="schoolSubject" />
 							<p:inputText id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}"
+								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
 								required="true" />
 							<h:outputLabel
 								value="#{sgr_translation.form_teachingStuff_academicTitle} : *"
 								for="academicTitle" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
+								label="#{sgr_translation.form_teachingStuff_academicTitle}"
 								required="true" />
 							<h:outputLabel
 								value="#{sgr_translation.form_teachingStuff_preceptor} :"
@@ -170,7 +173,7 @@
 								value="#{teachingStuffPanel.entity.person.firstName}"
 								required="true" />
 							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:inputText label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.entity.person.lastName}"
 								required="true" />
 							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
@@ -186,12 +189,14 @@
 								for="schoolSubject" />
 							<p:inputText id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}"
+								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
 								required="true" />
 							<h:outputLabel
 								value="#{sgr_translation.form_teachingStuff_academicTitle} : *"
 								for="academicTitle" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
+								label="#{sgr_translation.form_teachingStuff_academicTitle}"
 								required="true" />
 							<h:outputLabel
 								value="#{sgr_translation.form_teachingStuff_preceptor} :"
