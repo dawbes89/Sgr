@@ -12,6 +12,8 @@ import sgr.app.api.account.AccountService;
 import sgr.app.frontend.AbstractValidator;
 
 /**
+ * Validator for login. Not allows to use twice and more times the same login.
+ * 
  * @author leonzio
  */
 @FacesValidator(value = "uniqueLoginValidator")

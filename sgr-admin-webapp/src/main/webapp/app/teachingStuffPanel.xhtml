@@ -80,6 +80,8 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
@@ -87,7 +89,7 @@
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStuffPanel.person.firstName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:inputText label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.person.lastName}" required="true" />
 							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
 							<p:calendar label="#{sgr_translation.form_person_birthDate}"
@@ -99,10 +101,12 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
 							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{teachingStuffPanel.account.userName}" required="true" />
+								value="#{teachingStuffPanel.account.userName}" required="true">
+								<f:validator validatorId="uniqueLoginValidator" />
+							</p:inputText>
 							<h:outputText value="#{sgr_translation.form_account_password}: *" />
 							<p:inputText id="password"
-								label="#{sgr_translation.form_account_userName}"
+								label="#{sgr_translation.form_account_password}"
 								value="#{teachingStuffPanel.account.password}" required="true" />
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
@@ -156,6 +160,8 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_update}"
 				resizable="false" showEffect="explode" widgetVar="updateDialog">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
@@ -171,14 +177,6 @@
 							<p:calendar label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStuffPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
-						</h:panelGrid>
-					</p:panel>
-					<p:panel id="account" header="#{sgr_translation.form_account}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{teachingStuffPanel.entity.account.userName}"
-								required="true" />
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
