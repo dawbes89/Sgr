@@ -11,14 +11,14 @@
 			<p:remoteCommand name="onload" action="#{classGroupPanel.onLoad}"
 				autoRun="true" update=":root:table" />
 
-			<p:commandButton value="#{sgr_translation.button_add}"
-				title="#{sgr_translation.button_add_class}" icon="ui-icon-plus"
-				oncomplete="PF('addDialog').show()" />
-			<p:separator />
-
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:dataTable value="#{classGroupPanel.entities}" var="classGroup"
-					id="table" editable="true">
+				<p:commandButton value="#{sgr_translation.button_add}"
+					title="#{sgr_translation.button_add_class}" icon="ui-icon-plus"
+					oncomplete="PF('addDialog').show()" />
+				<p:separator />
+
+				<p:dataTable id="table" var="classGroup"
+					value="#{classGroupPanel.entities}" editable="true">
 					<p:column headerText="#{sgr_translation.form_class_name}"
 						filterBy="#{classGroup.groupNumber}">
 						<p:outputLabel value="#{classGroup.groupNumber}" />
@@ -31,7 +31,7 @@
 						filterBy="#{classGroup.year}" filterMatchMode="contains">
 						<p:outputLabel value="#{classGroup.formattedYear}" />
 					</p:column>
-					<p:column style="width:40px">
+					<p:column width="40">
 						<p:commandButton title="#{sgr_translation.button_remove}"
 							actionListener="#{classGroupPanel.remove(classGroup.id)}"
 							update=":root:panel" icon="ui-icon-trash">
