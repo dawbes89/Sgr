@@ -10,8 +10,8 @@
 			<p:dataScroller value="#{announcementPanel.announcementsList}"
 				var="announcement" chunkSize="10">
 				<f:facet name="header">
-				#{translation.menu_horizontal_news}
-        </f:facet>
+					<p:outputLabel value="#{translation.menu_horizontal_news}" />
+				</f:facet>
 				<h:panelGrid columns="2" style="width:100%"
 					columnClasses="logo,detail">
 					<p:outputPanel>
@@ -31,5 +31,5 @@
 			</p:dataScroller>
 		</h:form>
 	</ui:define>
-	
+
 </ui:composition>

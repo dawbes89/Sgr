@@ -40,8 +40,8 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      final InputText loginField = Bean.get("loginForm", "loginInput");
-      final Password passwordField = Bean.get("loginForm", "passwordInput");
+      final InputText loginField = Bean.getComponent("loginForm", "loginInput");
+      final Password passwordField = Bean.getComponent("loginForm", "passwordInput");
 
       final Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
             passwordField.getValue().toString());

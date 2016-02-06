@@ -12,10 +12,10 @@
 				autoRun="true" update=":root:table" />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:dataTable value="#{teachingStuffPanel.entities}"
-					var="teachingStuff" id="table" editable="true">
+				<p:dataTable id="table" value="#{teachingStuffPanel.entities}"
+					var="teachingStuff" editable="true">
 					<p:column style="width:40px">
-						<p:commandButton id="selectButton" update=":details:panel"
+						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{teachingStuff}"
@@ -43,39 +43,37 @@
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
-			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode" widgetVar="detailsDialog">
+			<p:dialog widgetVar="detailsDialog"
+				header="#{sgr_translation.form_window_caption_details}"
+				resizable="false" showEffect="explode">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
-						for="firstName" />
+					<p:outputLabel for="firstName"
+						value="#{sgr_translation.form_person_firstName}:" />
 					<p:outputLabel id="firstName"
 						value="#{teachingStuffPanel.entity.person.firstName}" />
 
-					<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
-						for="lastName" />
+					<p:outputLabel for="lastName"
+						value="#{sgr_translation.form_person_lastName}:" />
 					<p:outputLabel id="lastName"
 						value="#{teachingStuffPanel.entity.person.lastName}" />
 
-					<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-						for="birthDate" />
+					<p:outputLabel for="birthDate"
+						value="#{sgr_translation.form_person_birthDate}:" />
 					<p:outputLabel id="birthDate"
 						value="#{teachingStuffPanel.entity.person.birthDate}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_schoolSubject}:"
-						for="shoolSubject" />
+					<p:outputLabel for="shoolSubject"
+						value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 					<p:outputLabel id="shoolSubject"
 						value="#{teachingStuffPanel.entity.schoolSubject}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_academicTitle}:"
-						for="academicTitle" />
+					<p:outputLabel for="academicTitle"
+						value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 					<p:outputLabel id="academicTitle"
 						value="#{teachingStuffPanel.entity.academicTitle}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_preceptor}:"
-						for="class" />
+					<p:outputLabel for="class"
+						value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 					<p:outputLabel id="class"
 						value="#{teachingStuffPanel.entity.preceptorClass.className}" />
 				</p:panelGrid>
