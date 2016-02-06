@@ -20,7 +20,7 @@
 				<p:dataTable value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" id="table" editable="true">
 					<p:column style="width:40px">
-						<p:commandButton id="selectButton" update=":details:panel"
+						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{teachingStuff}"
@@ -68,7 +68,7 @@
 							actionListener="#{teachingStuffPanel.remove(teachingStuff.id)}"
 							update=":root:panel" icon="ui-icon-trash">
 							<p:ajax event="dialogReturn"
-								listener="#{teachingStuffPanel.remove}" update=":root:panel" />
+								listener="#{teachingStuffPanel.remove}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -77,25 +77,26 @@
 
 		<!-- ADD FORM -->
 		<h:form id="add">
-			<p:dialog header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="explode" widgetVar="addDialog">
+			<p:dialog widgetVar="addDialog"
+				header="#{sgr_translation.form_window_caption_add}"
+				resizable="false" showEffect="explode" width="500px">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
-								for="firstName" />
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStuffPanel.person.firstName}" required="true" />
-							<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
-								for="lastName" />
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.person.lastName}" required="true" />
-							<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-								for="birthDate" />
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStuffPanel.person.birthDate}"
@@ -104,45 +105,42 @@
 					</p:panel>
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel value="#{sgr_translation.form_account_userName}:"
-								for="userName" />
+							<p:outputLabel for="userName"
+								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
 								value="#{teachingStuffPanel.account.userName}" required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
 							</p:inputText>
-							<p:outputLabel value="#{sgr_translation.form_account_password}:"
-								for="password" />
+							<p:outputLabel for="password"
+								value="#{sgr_translation.form_account_password}:" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{teachingStuffPanel.account.password}" required="true" />
 							<p:column />
-							<p:commandButton id="generatePassword" immediate="true"
+							<p:commandButton immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
-								action="#{teachingStuffPanel.generatePassword('add:password')}"
+								action="#{teachingStuffPanel.generatePassword('add', 'password')}"
 								update="password" icon="ui-icon-locked">
 							</p:commandButton>
 						</h:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_schoolSubject}:"
-								for="schoolSubject" />
+							<p:outputLabel for="schoolSubject"
+								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:inputText id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}"
 								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
 								required="true" />
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_academicTitle}:"
-								for="academicTitle" />
+							<p:outputLabel for="academicTitle"
+								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStuff_academicTitle}"
 								required="true" />
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_preceptor}:"
-								for="preceptorClass" />
+							<p:outputLabel for="preceptorClass"
+								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 							<p:selectOneMenu id="preceptorClass"
 								value="#{teachingStuffPanel.entity.preceptorClass}"
 								effect="fade" filter="true" filterMatchMode="startsWith"
@@ -156,8 +154,7 @@
 							</p:selectOneMenu>
 						</h:panelGrid>
 					</p:panel>
-					<p:commandButton id="confirmAdd"
-						value="#{sgr_translation.form_button_save}"
+					<p:commandButton value="#{sgr_translation.form_button_save}"
 						action="#{teachingStuffPanel.create}"
 						update=":root:panel :add:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
@@ -168,27 +165,28 @@
 
 		<!-- UPDATE FORM -->
 		<h:form id="update">
-			<p:dialog header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="explode" widgetVar="updateDialog">
+			<p:dialog widgetVar="updateDialog"
+				header="#{sgr_translation.form_window_caption_update}"
+				resizable="false" showEffect="explode" width="500px">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
-								for="firstName" />
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStuffPanel.entity.person.firstName}"
 								required="true" />
-							<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
-								for="lastName" />
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.entity.person.lastName}"
 								required="true" />
-							<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-								for="birthDate" />
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStuffPanel.entity.person.birthDate}"
@@ -197,23 +195,20 @@
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_schoolSubject}:"
-								for="schoolSubject" />
+							<p:outputLabel for="schoolSubject"
+								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:inputText id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}"
 								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
 								required="true" />
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_academicTitle}:"
-								for="academicTitle" />
+							<p:outputLabel for="academicTitle"
+								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStuff_academicTitle}"
 								required="true" />
-							<p:outputLabel
-								value="#{sgr_translation.form_teachingStuff_preceptor}:"
-								for="preceptorClass" />
+							<p:outputLabel for="preceptorClass"
+								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 							<p:selectOneMenu id="preceptorClass"
 								value="#{teachingStuffPanel.entity.preceptorClass}"
 								effect="fade" filter="true" filterMatchMode="startsWith"
@@ -227,13 +222,12 @@
 							</p:selectOneMenu>
 						</h:panelGrid>
 					</p:panel>
-					<p:commandButton id="confirmUpdate"
-						value="#{sgr_translation.button_update}"
+					<p:commandButton value="#{sgr_translation.button_update}"
 						actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
 						update=":root:panel :update:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 						<p:ajax event="dialogReturn"
-							listener="#{teachingStuffPanel.update}" update=":root:panel" />
+							listener="#{teachingStuffPanel.update}" />
 					</p:commandButton>
 				</h:panelGrid>
 			</p:dialog>
@@ -241,44 +235,42 @@
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
-			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode" widgetVar="detailsDialog">
+			<p:dialog widgetVar="detailsDialog"
+				header="#{sgr_translation.form_window_caption_details}"
+				resizable="false" showEffect="explode">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<p:outputLabel value="#{sgr_translation.form_person_firstName}:"
-						for="firstName" />
+					<p:outputLabel for="firstName"
+						value="#{sgr_translation.form_person_firstName}:" />
 					<p:outputLabel id="firstName"
 						value="#{teachingStuffPanel.entity.person.firstName}" />
 
-					<p:outputLabel value="#{sgr_translation.form_person_lastName}:"
-						for="lastName" />
+					<p:outputLabel for="lastName"
+						value="#{sgr_translation.form_person_lastName}:" />
 					<p:outputLabel id="lastName"
 						value="#{teachingStuffPanel.entity.person.lastName}" />
 
-					<p:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-						for="birthDate" />
+					<p:outputLabel for="birthDate"
+						value="#{sgr_translation.form_person_birthDate}:" />
 					<p:outputLabel id="birthDate"
 						value="#{teachingStuffPanel.entity.person.birthDate}" />
 
-					<p:outputLabel value="#{sgr_translation.form_account_userName}:"
-						for="userName" />
+					<p:outputLabel for="userName"
+						value="#{sgr_translation.form_account_userName}:" />
 					<p:outputLabel id="userName"
 						value="#{teachingStuffPanel.entity.account.userName}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_schoolSubject}:"
-						for="shoolSubject" />
+					<p:outputLabel for="shoolSubject"
+						value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 					<p:outputLabel id="shoolSubject"
 						value="#{teachingStuffPanel.entity.schoolSubject}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_academicTitle}:"
-						for="academicTitle" />
+					<p:outputLabel for="academicTitle"
+						value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 					<p:outputLabel id="academicTitle"
 						value="#{teachingStuffPanel.entity.academicTitle}" />
 
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_preceptor}:"
-						for="class" />
+					<p:outputLabel for="class"
+						value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 					<p:outputLabel id="class"
 						value="#{teachingStuffPanel.entity.preceptorClass.className}" />
 				</p:panelGrid>
