@@ -8,6 +8,5 @@
 
    <context:component-scan base-package="sgr.app.api" />
    <context:component-scan base-package="sgr.admin.webapp" />
-   <context:component-scan base-package="sgr.app.frontend" />
 
 </beans>
