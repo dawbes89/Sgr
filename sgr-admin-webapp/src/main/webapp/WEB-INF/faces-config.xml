@@ -8,6 +8,7 @@
          <default-locale>pl</default-locale>
       </locale-config>
 
+      <message-bundle>jsf-validation-errors</message-bundle>
       <resource-bundle>
          <base-name>sgr-admin-translations</base-name>
          <var>admin_translation</var>

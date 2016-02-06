@@ -12,7 +12,8 @@
 				autoRun="true" update=":root:table" />
 
 			<p:commandButton value="#{sgr_translation.button_add}"
-				icon="ui-icon-plus" oncomplete="PF('addDialog').show()" />
+				title="#{sgr_translation.button_add_class}" icon="ui-icon-plus"
+				oncomplete="PF('addDialog').show()" />
 			<p:separator />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
@@ -20,15 +21,15 @@
 					id="table" editable="true">
 					<p:column headerText="#{sgr_translation.form_class_name}"
 						filterBy="#{classGroup.groupNumber}">
-						<h:outputLabel value="#{classGroup.groupNumber}" />
+						<p:outputLabel value="#{classGroup.groupNumber}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_class_group}"
 						filterBy="#{classGroup.groupName}" filterMatchMode="contains">
-						<h:outputLabel value="#{classGroup.groupName}" />
+						<p:outputLabel value="#{classGroup.groupName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_class_year}"
 						filterBy="#{classGroup.year}" filterMatchMode="contains">
-						<h:outputLabel value="#{classGroup.formattedYear}" />
+						<p:outputLabel value="#{classGroup.formattedYear}" />
 					</p:column>
 					<p:column style="width:40px">
 						<p:commandButton title="#{sgr_translation.button_remove}"
@@ -47,8 +48,10 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:messages id="msgs" />
+
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="#{sgr_translation.form_class_name} : *"
+						<p:outputLabel value="#{sgr_translation.form_class_name}:"
 							for="groupNumber" />
 						<p:selectOneMenu id="groupNumber"
 							value="#{classGroupPanel.entity.groupNumber}" required="true">
@@ -59,7 +62,7 @@
 							<f:selectItem itemValue="5" itemLabel="5" />
 							<f:selectItem itemValue="6" itemLabel="6" />
 						</p:selectOneMenu>
-						<h:outputLabel value="#{sgr_translation.form_class_group} : *"
+						<p:outputLabel value="#{sgr_translation.form_class_group}:"
 							for="groupName" />
 						<p:selectOneMenu id="groupName"
 							value="#{classGroupPanel.entity.groupName}" required="true">
@@ -72,7 +75,7 @@
 							<f:selectItem itemValue="G" itemLabel="G" />
 							<f:selectItem itemValue="H" itemLabel="H" />
 						</p:selectOneMenu>
-						<h:outputLabel value="#{sgr_translation.form_class_year} : *"
+						<p:outputLabel value="#{sgr_translation.form_class_year}:"
 							for="year" />
 						<p:selectOneMenu id="year" value="#{classGroupPanel.entity.year}"
 							required="true" converter="yearConverter" effect="fade"
