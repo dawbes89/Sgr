@@ -12,9 +12,10 @@
          <default-locale>pl</default-locale>
       </locale-config>
 
+      <message-bundle>jsf-validation-errors</message-bundle>
       <resource-bundle>
-         <base-name>sgr-translations</base-name>
-         <var>translation</var>
+         <base-name>sgr-app-translations</base-name>
+         <var>sgr_app_translation</var>
       </resource-bundle>
       <resource-bundle>
          <base-name>sgr-frontend-translations</base-name>

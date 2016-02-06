@@ -18,16 +18,16 @@ public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
    @Override
    protected ClassGroup convertToObject(String value)
    {
-      int groupNumber = Integer.valueOf(value.charAt(0)) - 48;
-      String groupName = String.valueOf(value.charAt(1));
-      ClassGroup classGroup = classGroupService.getClass(groupNumber, groupName);
+      final int groupNumber = Integer.valueOf(value.charAt(0)) - 48;
+      final String groupName = String.valueOf(value.charAt(1));
+      final ClassGroup classGroup = classGroupService.getClass(groupNumber, groupName);
       return classGroup;
    }
 
    @Override
    protected String convertToString(Object object)
    {
-      ClassGroup classGroup = (ClassGroup) object;
+      final ClassGroup classGroup = (ClassGroup) object;
       return classGroup.getClassName();
    }
 

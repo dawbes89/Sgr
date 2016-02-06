@@ -12,10 +12,10 @@
 				autoRun="true" update=":root:table" />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:dataTable value="#{teachingStuffPanel.entities}"
-					var="teachingStuff" id="table" editable="true">
-					<p:column style="width:40px">
-						<p:commandButton id="selectButton" update=":details:panel"
+				<p:dataTable id="table" value="#{teachingStuffPanel.entities}"
+					var="teachingStuff" editable="true">
+					<p:column width="40">
+						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{teachingStuff}"
@@ -25,17 +25,17 @@
 					<p:column
 						headerText="#{sgr_translation.form_teachingStuff_academicTitle}"
 						filterBy="#{teachingStuff.academicTitle}">
-						<h:outputLabel value="#{teachingStuff.academicTitle}" />
+						<p:outputLabel value="#{teachingStuff.academicTitle}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_firstName}"
 						filterBy="#{teachingStuff.person.firstName}"
 						filterMatchMode="contains">
-						<h:outputLabel value="#{teachingStuff.person.firstName}" />
+						<p:outputLabel value="#{teachingStuff.person.firstName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_lastName}"
 						filterBy="#{teachingStuff.person.lastName}"
 						filterMatchMode="contains">
-						<h:outputLabel value="#{teachingStuff.person.lastName}" />
+						<p:outputLabel value="#{teachingStuff.person.lastName}" />
 					</p:column>
 				</p:dataTable>
 			</p:outputPanel>
@@ -43,40 +43,38 @@
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
-			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode" widgetVar="detailsDialog">
+			<p:dialog widgetVar="detailsDialog"
+				header="#{sgr_translation.form_window_caption_details}"
+				resizable="false" showEffect="clip" hideEffect="clip">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<h:outputLabel value="#{sgr_translation.form_person_firstName}:"
-						for="firstName" />
-					<h:outputText id="firstName"
+					<p:outputLabel for="firstName"
+						value="#{sgr_translation.form_person_firstName}:" />
+					<p:outputLabel id="firstName"
 						value="#{teachingStuffPanel.entity.person.firstName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_lastName}:"
-						for="lastName" />
-					<h:outputText id="lastName"
+					<p:outputLabel for="lastName"
+						value="#{sgr_translation.form_person_lastName}:" />
+					<p:outputLabel id="lastName"
 						value="#{teachingStuffPanel.entity.person.lastName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-						for="birthDate" />
-					<h:outputText id="birthDate"
+					<p:outputLabel for="birthDate"
+						value="#{sgr_translation.form_person_birthDate}:" />
+					<p:outputLabel id="birthDate"
 						value="#{teachingStuffPanel.entity.person.birthDate}" />
 
-					<h:outputLabel
-						value="#{sgr_translation.form_teachingStuff_schoolSubject} :"
-						for="shoolSubject" />
-					<h:outputText id="shoolSubject"
+					<p:outputLabel for="shoolSubject"
+						value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
+					<p:outputLabel id="shoolSubject"
 						value="#{teachingStuffPanel.entity.schoolSubject}" />
 
-					<h:outputLabel
-						value="#{sgr_translation.form_teachingStuff_academicTitle} :"
-						for="academicTitle" />
-					<h:outputText id="academicTitle"
+					<p:outputLabel for="academicTitle"
+						value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
+					<p:outputLabel id="academicTitle"
 						value="#{teachingStuffPanel.entity.academicTitle}" />
 
-					<h:outputLabel
-						value="#{sgr_translation.form_teachingStuff_preceptor} :"
-						for="class" />
-					<h:outputText id="class"
+					<p:outputLabel for="class"
+						value="#{sgr_translation.form_teachingStuff_preceptor}:" />
+					<p:outputLabel id="class"
 						value="#{teachingStuffPanel.entity.preceptorClass.className}" />
 				</p:panelGrid>
 			</p:dialog>
