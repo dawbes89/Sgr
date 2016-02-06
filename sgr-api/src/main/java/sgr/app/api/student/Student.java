@@ -1,7 +1,6 @@
 package sgr.app.api.student;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,15 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.comment.Comment;
 import sgr.app.api.person.Person;
 
 /**
@@ -50,9 +46,9 @@ public class Student implements Serializable
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 
-   @ManyToMany()
-   @JoinTable(name = "studebt_comments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
-   private Set<Comment> comments;
+   //   @ManyToMany()
+   //   @JoinTable(name = "studebt_comments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+   //   private Set<Comment> comments;
 
    public Long getId()
    {
@@ -94,15 +90,15 @@ public class Student implements Serializable
       this.classGroup = classGroup;
    }
 
-   public Set<Comment> getComments()
-   {
-      return comments;
-   }
-
-   public void setComments(Set<Comment> comments)
-   {
-      this.comments = comments;
-   }
+   //   public Set<Comment> getComments()
+   //   {
+   //      return comments;
+   //   }
+   //
+   //   public void setComments(Set<Comment> comments)
+   //   {
+   //      this.comments = comments;
+   //   }
 
 
 

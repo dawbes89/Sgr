@@ -5,8 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +15,7 @@ import javax.persistence.Table;
  * @author dawbes
  */
 @Entity
-@Table(name = "account")
+@Table(name = "comment")
 public class Comment  implements Serializable
 {
 
@@ -34,9 +32,11 @@ public class Comment  implements Serializable
    @Column(name = "content")
    private String content;
 
-   @Enumerated(EnumType.STRING)
-   @Column(name = "commentType")
-   private CommentType commentType;
+   @Column(name = "comment_type")
+   private String commentType;
+
+   @Column(name = "student_id")
+   private Long studentId;
 
    public Long getId()
    {
@@ -68,16 +68,25 @@ public class Comment  implements Serializable
       this.content = content;
    }
 
-   public CommentType getCommentType()
+   public String getCommentType()
    {
       return commentType;
    }
 
-   public void setCommentType(CommentType commentType)
+   public void setCommentType(String commentType)
    {
       this.commentType = commentType;
    }
 
+   public Long getStudentId()
+   {
+      return studentId;
+   }
+
+   public void setStudentId(Long studentId)
+   {
+      this.studentId = studentId;
+   }
 
 
 }

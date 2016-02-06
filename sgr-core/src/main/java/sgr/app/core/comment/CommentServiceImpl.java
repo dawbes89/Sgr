@@ -2,6 +2,7 @@ package sgr.app.core.comment;
 
 import org.springframework.beans.factory.annotation.Required;
 
+import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
@@ -25,6 +26,13 @@ public class CommentServiceImpl extends DaoSupport implements CommentService
    public void setStudentService(StudentService studentService)
    {
       this.studentService = studentService;
+   }
+
+   @Override
+   public void create(Comment comment)
+   {
+      createEntity(comment);
+
    }
 
 }

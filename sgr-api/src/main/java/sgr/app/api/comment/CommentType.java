@@ -4,9 +4,22 @@ package sgr.app.api.comment;
  */
 public enum CommentType
 {
-   POSITIVE,
-   NEGATIVE,
-   REPREHENSIBLE;
+   POSITIVE("POSitive"),
+   NEGATIVE("NEGATIVE"),
+   REPREHENSIBLE("REPREHENSIBLE");
+
+   private String label;
+
+   private CommentType(String label)
+   {
+      this.label = label;
+   }
+
+   public String getLabel()
+   {
+      return label;
+   }
+
 
 
 }
