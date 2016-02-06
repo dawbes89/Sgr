@@ -11,17 +11,17 @@
 <h:head>
 	<h:outputStylesheet library="css" name="custom.css" />
 	<title><h:outputText
-			value="#{translation.application_title}" /></title>
+			value="#{sgr_app_translation.application_title}" /></title>
 </h:head>
 <h:body>
 
 	<h:form id="loginForm">
-		<h:panelGrid id="panel" columns="1" columnClasses="grid"
+		<p:panelGrid id="panel" columns="1" columnClasses="grid"
 			class="center">
 			<p:messages id="msgs" />
 
-			<p:panel header="#{translation.application_invitation}">
-				<h:panelGrid columns="2" columnClasses="label, value">
+			<p:panel header="#{sgr_app_translation.application_invitation}">
+				<p:panelGrid columns="2" columnClasses="label, value">
 					<p:outputLabel value="#{sgr_translation.form_account_userName}: "
 						for="loginInput" />
 					<p:inputText id="loginInput"
@@ -34,9 +34,9 @@
 					<p:commandButton value="#{sgr_translation.form_button_login}"
 						action="#{loginPanel.checkLogin}" update=":loginForm:panel"
 						icon="ui-icon-key" />
-				</h:panelGrid>
+				</p:panelGrid>
 			</p:panel>
-		</h:panelGrid>
+		</p:panelGrid>
 	</h:form>
 
 </h:body>
