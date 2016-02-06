@@ -9,6 +9,7 @@
       <param-value>Production</param-value>
    </context-param>
 
+   <!-- APPLICATION THEME -->
    <context-param>
       <param-name>primefaces.THEME</param-name>
       <param-value>start</param-value>
@@ -54,11 +55,11 @@
       <param-value>true</param-value>
    </context-param>
 
-   <!-- BEANS/CONVERTERS/VALIDATORS -->
+   <!-- CONVERTERS/MANAGED_BEANS/VALIDATORS -->
    <context-param>
       <param-name>javax.faces.CONFIG_FILES</param-name>
-      <param-value>WEB-INF/sgr-admin-managed-beans.xml, 
-      WEB-INF/sgr-admin-converters.xml, 
+      <param-value>WEB-INF/sgr-admin-converters.xml,
+      WEB-INF/sgr-admin-managed-beans.xml, 
       WEB-INF/sgr-admin-validators.xml</param-value>
    </context-param>
 

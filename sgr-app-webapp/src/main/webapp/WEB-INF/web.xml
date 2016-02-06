@@ -8,6 +8,7 @@
       <param-value>Production</param-value>
    </context-param>
 
+   <!-- APPLICATION THEME -->
    <context-param>
       <param-name>primefaces.THEME</param-name>
       <param-value>start</param-value>
@@ -49,15 +50,19 @@
       <param-value>classpath:sgr-spring-config.xml</param-value>
    </context-param>
    <context-param>
-      <param-name>javax.faces.CONFIG_FILES</param-name>
-      <param-value>WEB-INF/managed-beans.xml</param-value>
-   </context-param>
-
-   <context-param>
       <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
       <param-value>true</param-value>
    </context-param>
 
+   <!-- CONVERTERS/MANAGED_BEANS/VALIDATORS -->
+   <context-param>
+      <param-name>javax.faces.CONFIG_FILES</param-name>
+      <param-value>WEB-INF/sgr-app-converters.xml,
+      WEB-INF/sgr-app-managed-beans.xml, 
+      WEB-INF/sgr-app-validators.xml</param-value>
+   </context-param>
+
+   <!-- LISTENERS -->
    <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
    </listener>

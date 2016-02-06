@@ -230,7 +230,8 @@
 					<p:outputLabel for="birthDate"
 						value="#{sgr_translation.form_person_birthDate}:" />
 					<p:outputLabel id="birthDate"
-						value="#{studentPanel.entity.person.birthDate}" />
+						value="#{studentPanel.entity.person.birthDate}"
+						converter="yearConverter" />
 
 					<p:outputLabel for="userName"
 						value="#{sgr_translation.form_account_userName}:" />
