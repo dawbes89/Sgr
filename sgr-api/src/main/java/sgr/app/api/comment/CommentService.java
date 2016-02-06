@@ -10,4 +10,6 @@ public interface CommentService
 
    public void createCommentForStudent(Student student);
 
+   public void create(Comment comment);
+
 }
