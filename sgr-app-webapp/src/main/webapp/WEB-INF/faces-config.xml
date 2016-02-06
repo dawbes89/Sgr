@@ -14,7 +14,7 @@
 
       <message-bundle>jsf-validation-errors</message-bundle>
       <resource-bundle>
-         <base-name>sgr-translations</base-name>
+         <base-name>sgr-app-translations</base-name>
          <var>sgr_app_translation</var>
       </resource-bundle>
       <resource-bundle>
