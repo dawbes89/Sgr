@@ -13,13 +13,14 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-plus" oncomplete="PF('addDialog').show()" />
+					title="#{sgr_translation.button_add_student}" icon="ui-icon-plus"
+					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
-				<p:dataTable value="#{studentPanel.entities}" var="student"
-					id="table" editable="true">
-					<p:column style="width:40px">
-						<p:commandButton id="selectButton" update=":details:panel"
+				<p:dataTable id="table" var="student"
+					value="#{studentPanel.entities}" editable="true">
+					<p:column width="40">
+						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{student}"
@@ -28,27 +29,26 @@
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_firstName}"
 						filterBy="#{student.person.firstName}" filterMatchMode="contains">
-						<h:outputLabel value="#{student.person.firstName}" />
+						<p:outputLabel value="#{student.person.firstName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_lastName}"
 						filterBy="#{student.person.lastName}" filterMatchMode="contains">
-						<h:outputLabel value="#{student.person.lastName}" />
+						<p:outputLabel value="#{student.person.lastName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_class}">
-						<h:outputLabel value="#{student.classGroup.className}" />
+						<p:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
-					<p:column style="width:80px">
-						<p:commandButton title="#{sgr_translation.button_remove}"
-							actionListener="#{studentPanel.remove(student.id)}"
-							update=":root:panel" icon="ui-icon-trash">
-							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}"
-								update=":root:panel" />
-						</p:commandButton>
+					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
 							icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{studentPanel.entity}" />
+						</p:commandButton>
+						<p:commandButton title="#{sgr_translation.button_remove}"
+							actionListener="#{studentPanel.remove(student.id)}"
+							update=":root:panel" icon="ui-icon-trash">
+							<p:ajax event="dialogReturn" listener="#{studentPanel.remove}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -56,47 +56,65 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<h:form id="add">
-			<p:dialog header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="explode" widgetVar="addDialog">
-				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:firstName">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.person.firstName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.person.lastName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
-							<p:calendar label="#{sgr_translation.form_person_birthDate}"
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.person.birthDate}" pattern="yyyy-MM-dd"
 								mask="true" required="true" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="account" header="#{sgr_translation.form_account}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{studentPanel.account.userName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_account_password}: *" />
-							<p:inputText id="password"
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="userName"
+								value="#{sgr_translation.form_account_userName}:" />
+							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
+								value="#{studentPanel.account.userName}" required="true">
+								<f:validator validatorId="uniqueLoginValidator" />
+							</p:inputText>
+							<p:outputLabel for="password"
+								value="#{sgr_translation.form_account_password}:" />
+							<p:inputText id="password"
+								label="#{sgr_translation.form_account_password}"
 								value="#{studentPanel.account.password}" required="true" />
+							<p:column />
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
-								action="#{studentPanel.generatePassword('add:password')}"
+								action="#{studentPanel.generatePassword('add', 'password')}"
 								update="password" icon="ui-icon-locked">
 							</p:commandButton>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_class}: *" />
-							<p:selectOneMenu label="#{sgr_translation.form_class}"
-								required="true" value="#{studentPanel.entity.classGroup}"
-								effect="fade" filter="true" filterMatchMode="startsWith"
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="classGroup"
+								value="#{sgr_translation.form_class}:" />
+							<p:selectOneMenu id="classGroup"
+								label="#{sgr_translation.form_class}" required="true"
+								value="#{studentPanel.entity.classGroup}" effect="fade"
+								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
@@ -105,51 +123,66 @@
 									var="classGroup" itemLabel="#{classGroup.className}"
 									itemValue="#{classGroup}" />
 							</p:selectOneMenu>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
-					<p:commandButton id="confirmAdd"
-						value="#{sgr_translation.form_button_save}"
-						action="#{studentPanel.create}" update=":root:panel :add:panel"
-						icon="ui-icon-disk"
-						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-					</p:commandButton>
-				</h:panelGrid>
-			</p:dialog>
-		</h:form>
+					<p:panelGrid columns="3">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{studentPanel.create}" update=":add:panel :root:panel"
+							icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panelGrid>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
 		<!-- UPDATE FORM -->
-		<h:form id="update">
-			<p:dialog header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="explode" widgetVar="updateDialog">
-				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+		<p:dialog widgetVar="updateDialog"
+			header="#{sgr_translation.form_window_caption_update}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" dynamic="true">
+			<h:form id="update">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_person_firstName}: *" />
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_lastName}: *" />
-							<p:inputText label="#{sgr_translation.form_person_firstName}"
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.entity.person.lastName}" required="true" />
-							<h:outputText value="#{sgr_translation.form_person_birthDate}: *" />
-							<p:calendar label="#{sgr_translation.form_person_birthDate}"
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
-						</h:panelGrid>
-					</p:panel>
-					<p:panel id="account" header="#{sgr_translation.form_account}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_account_userName}: *" />
-							<p:inputText label="#{sgr_translation.form_account_userName}"
-								value="#{studentPanel.entity.account.userName}" required="true" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="#{sgr_translation.form_class}: *" />
-							<p:selectOneMenu label="#{sgr_translation.form_class}"
-								required="true" value="#{studentPanel.entity.classGroup}"
-								effect="fade" filter="true" filterMatchMode="startsWith"
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="classGroup"
+								value="#{sgr_translation.form_class}:" />
+							<p:selectOneMenu id="classGroup"
+								label="#{sgr_translation.form_class}" required="true"
+								value="#{studentPanel.entity.classGroup}" effect="fade"
+								filter="true" filterMatchMode="startsWith"
 								converter="classConverter" hideNoSelectionOption="true">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
@@ -158,47 +191,54 @@
 									var="classGroup" itemLabel="#{classGroup.className}"
 									itemValue="#{classGroup}" />
 							</p:selectOneMenu>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
-					<p:commandButton id="confirmUpdate"
-						value="#{sgr_translation.form_button_update}"
-						actionListener="#{studentPanel.update(studentPanel.entity)}"
-						update=":root:panel :update:panel" icon="ui-icon-disk"
-						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-						<p:ajax event="dialogReturn" listener="#{studentPanel.update}"
-							update=":root:panel" />
-					</p:commandButton>
-				</h:panelGrid>
-			</p:dialog>
-		</h:form>
+					<p:panelGrid columns="">
+						<p:commandButton value="#{sgr_translation.form_button_update}"
+							actionListener="#{studentPanel.update(studentPanel.entity)}"
+							update=":root:panel :update:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
+							<p:ajax event="dialogReturn" listener="#{studentPanel.update}" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":update:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('updateDialog').hide()">
+							<p:resetInput target=":update:panel" />
+						</p:commandButton>
+					</p:panelGrid>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
-			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode" widgetVar="detailsDialog">
+			<p:dialog widgetVar="detailsDialog"
+				header="#{sgr_translation.form_window_caption_details}"
+				resizable="false" showEffect="clip" hideEffect="clip">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
-					<h:outputLabel value="#{sgr_translation.form_person_firstName}:"
-						for="firstName" />
-					<h:outputText id="firstName"
+					<p:outputLabel for="firstName"
+						value="#{sgr_translation.form_person_firstName}:" />
+					<p:outputLabel id="firstName"
 						value="#{studentPanel.entity.person.firstName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_lastName}:"
-						for="lastName" />
-					<h:outputText id="lastName"
+					<p:outputLabel for="lastName"
+						value="#{sgr_translation.form_person_lastName}:" />
+					<p:outputLabel id="lastName"
 						value="#{studentPanel.entity.person.lastName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_person_birthDate}:"
-						for="birthDate" />
-					<h:outputText id="birthDate"
+					<p:outputLabel for="birthDate"
+						value="#{sgr_translation.form_person_birthDate}:" />
+					<p:outputLabel id="birthDate"
 						value="#{studentPanel.entity.person.birthDate}" />
 
-					<h:outputLabel value="#{sgr_translation.form_account_userName} :"
-						for="userName" />
-					<h:outputText id="userName"
+					<p:outputLabel for="userName"
+						value="#{sgr_translation.form_account_userName}:" />
+					<p:outputLabel id="userName"
 						value="#{studentPanel.entity.account.userName}" />
 
-					<h:outputLabel value="#{sgr_translation.form_class} :" for="class" />
-					<h:outputText id="class"
+					<p:outputLabel for="class" value="#{sgr_translation.form_class}:" />
+					<p:outputLabel id="class"
 						value="#{studentPanel.entity.classGroup.className}" />
 				</p:panelGrid>
 			</p:dialog>

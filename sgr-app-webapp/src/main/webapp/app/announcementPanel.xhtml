@@ -10,26 +10,26 @@
 			<p:dataScroller value="#{announcementPanel.announcementsList}"
 				var="announcement" chunkSize="10">
 				<f:facet name="header">
-				#{translation.menu_horizontal_news}
-        </f:facet>
-				<h:panelGrid columns="2" style="width:100%"
+					<p:outputLabel value="#{sgr_app_translation.menu_horizontal_news}" />
+				</f:facet>
+				<p:panelGrid columns="2" style="width:100%"
 					columnClasses="logo,detail">
 					<p:outputPanel>
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="#{sgr_translation.form_announcement_date} : " />
-							<h:outputText value="#{announcement.date}" style="color: blue" />
-							<h:outputText value="#{sgr_translation.form_announcement_title} : " />
-							<h:outputText value="#{announcement.title}"
+						<p:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="#{sgr_translation.form_announcement_date}: " />
+							<p:outputLabel value="#{announcement.date}" style="color: blue" />
+							<p:outputLabel value="#{sgr_translation.form_announcement_title}: " />
+							<p:outputLabel value="#{announcement.title}"
 								style="font-weight: bold" />
-							<h:outputText value="#{sgr_translation.form_announcement_message} : " />
-							<h:outputText value="#{announcement.message}"
+							<p:outputLabel value="#{sgr_translation.form_announcement_message}: " />
+							<p:outputLabel value="#{announcement.message}"
 								style="font-margin: 3px" />
-						</h:panelGrid>
+						</p:panelGrid>
 						<p:separator />
 					</p:outputPanel>
-				</h:panelGrid>
+				</p:panelGrid>
 			</p:dataScroller>
 		</h:form>
 	</ui:define>
-	
+
 </ui:composition>

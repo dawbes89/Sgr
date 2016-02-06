@@ -5,7 +5,7 @@
 
    <context-param>
       <param-name>javax.faces.PROJECT_STAGE</param-name>
-      <param-value>Development</param-value>
+      <param-value>Production</param-value>
    </context-param>
 
    <context-param>
@@ -46,7 +46,7 @@
    <!-- CONFIG -->
    <context-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring-config.xml</param-value>
+      <param-value>classpath:sgr-spring-config.xml</param-value>
    </context-param>
    <context-param>
       <param-name>javax.faces.CONFIG_FILES</param-name>

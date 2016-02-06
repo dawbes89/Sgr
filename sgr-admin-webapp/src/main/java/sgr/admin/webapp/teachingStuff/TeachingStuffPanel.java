@@ -22,8 +22,8 @@ import sgr.app.frontend.RandomPasswordGenerator;
  * @author dawbes
  */
 @Controller
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
-      EditablePanel<TeachingStuff>
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
+      implements EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -33,8 +33,6 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
 
    @Autowired
    private ClassGroupService classGroupService;
-
-   private InputText passwordField;
 
    private Account account;
 
@@ -94,9 +92,9 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
       availableClasses = classGroupService.search(query);
    }
 
-   public void generatePassword(String component)
+   public void generatePassword(String formId, String componentId)
    {
-      passwordField = Bean.get("add", "password");
+      InputText passwordField = Bean.getComponent(formId, componentId);
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }
