@@ -17,7 +17,8 @@
 					<p:outputPanel>
 						<p:panelGrid columns="2" cellpadding="5">
 							<p:outputLabel value="Date: " />
-							<p:outputLabel value="#{announcement.date}" style="color: blue" />
+							<p:outputLabel value="#{announcement.date}" style="color: blue"
+								converter="yearConverter" />
 							<p:outputLabel value="Title: " />
 							<p:outputLabel value="#{announcement.title}"
 								style="font-weight: bold" />
