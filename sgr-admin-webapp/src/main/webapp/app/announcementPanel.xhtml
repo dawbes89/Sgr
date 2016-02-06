@@ -14,28 +14,27 @@
 					var="announcement" id="table" editable="true">
 					<p:column style="width:50px">
 						<p:commandButton id="selectButton" update=":details:panel"
-							oncomplete="PF('detailsDialog').show()" icon="ui-icon-search"
+							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{announcement}"
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
 					</p:column>
-					<p:column headerText="Date" filterBy="#{announcement.date}">#{announcement.date}
+					<p:column headerText="#{sgr_translation.form_announcement_date}"
+						filterBy="#{announcement.date}">#{announcement.date}
                    </p:column>
-					<p:column headerText="Title" filterBy="#{announcement.title}"
-						filterMatchMode="contains">#{announcement.title}
+					<p:column headerText="#{sgr_translation.form_announcement_title}"
+						filterBy="#{announcement.title}" filterMatchMode="contains">#{announcement.title}
                    </p:column>
-					<p:column style="width:190px">
+					<p:column style="width:80px">
 						<p:commandButton id="deleteAnnouncement"
-							value="#{sgr_translation.button_remove}"
 							actionListener="#{announcementPanel.remove(announcement.id)}"
-							update=":root:panel">
+							update=":root:panel" icon="ui-icon-trash">
 							<p:ajax event="dialogReturn"
 								listener="#{announcementPanel.remove}" update=":root:panel" />
 						</p:commandButton>
-						<p:commandButton id="updateButton"
-							value="#{sgr_translation.button_update}" update=":update:panel"
-							oncomplete="PF('updateDialog').show()">
+						<p:commandButton id="updateButton" update=":update:panel"
+							oncomplete="PF('updateDialog').show()" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{announcement}"
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
@@ -50,19 +49,24 @@
 		<h:form id="add">
 			<p:dialog header="#{sgr_translation.form_window_caption_add}"
 				resizable="false" showEffect="explode" widgetVar="addDialog">
-				<p:outputPanel id="panel" style="text-align:center;" layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="title : *" for="title" />
+				<p:outputPanel id="panel">
+					<p:panelGrid id="panelGrid" columns="2">
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_title} : *"
+							for="title" />
 						<p:inputText id="title" value="#{announcementPanel.entity.title}"
 							required="true" />
-						<h:outputText value="Date: *" />
+						<h:outputText
+							value="#{sgr_translation.form_announcement_date} : *" />
 						<p:calendar label="date" value="#{announcementPanel.entity.date}"
 							pattern="yyyy-MM-dd" mask="true" required="true" />
-						<h:outputLabel value="message : *" for="message" />
-						<p:inputTextarea value="#{announcementPanel.entity.message}" required="true" rows="5" cols="30"
-							autoResize="false" />
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_message} : *"
+							for="message" />
+						<p:inputTextarea value="#{announcementPanel.entity.message}"
+							required="true" rows="5" cols="30" autoResize="false" />
 						<p:commandButton id="confirmAdd"
-							value="#{sgr_translation.button_save}"
+							value="#{sgr_translation.form_button_save}"
 							action="#{announcementPanel.create}"
 							update=":root:panel :add:panel"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
@@ -77,15 +81,20 @@
 				resizable="false" showEffect="explode" widgetVar="updateDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="title : *" for="title" />
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_title} : *"
+							for="title" />
 						<p:inputText id="title" value="#{announcementPanel.entity.title}"
 							required="true" />
-						<h:outputText value="Date: *" />
+						<h:outputText
+							value="#{sgr_translation.form_announcement_date} : *" />
 						<p:calendar label="date" value="#{announcementPanel.entity.date}"
 							pattern="yyyy-MM-dd" mask="true" required="true" />
-						<h:outputLabel value="message : *" for="message" />
-						<p:inputText id="message"
-							value="#{announcementPanel.entity.message}" required="true" />
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_message} : *"
+							for="message" />
+						<p:inputTextarea value="#{announcementPanel.entity.message}"
+							required="true" rows="5" cols="30" autoResize="false" />
 						<p:commandButton id="confirmUpdate"
 							value="#{sgr_translation.button_update}"
 							actionListener="#{announcementPanel.update(announcementPanel.entity)}"
@@ -104,15 +113,20 @@
 				resizable="false" showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel value="title : *" for="title" />
-						<p:inputText id="title" value="#{announcementPanel.entity.title}"
-							required="true" />
-						<h:outputText value="Date: *" />
-						<p:calendar label="date" value="#{announcementPanel.entity.date}"
-							pattern="yyyy-MM-dd" mask="true" required="true" />
-						<h:outputLabel value="message : *" for="message" />
-						<p:inputText id="message"
-							value="#{announcementPanel.entity.message}" required="true" />
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_title} : *"
+							for="title" />
+						<h:outputText id="title" value="#{announcementPanel.entity.title}" />
+
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_date} : *" for="date" />
+						<h:outputText value="#{announcementPanel.entity.date}"
+							pattern="yyyy-MM-dd" />
+						<h:outputLabel
+							value="#{sgr_translation.form_announcement_message} : *"
+							for="message" />
+						<h:outputText id="message"
+							value="#{announcementPanel.entity.message}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>

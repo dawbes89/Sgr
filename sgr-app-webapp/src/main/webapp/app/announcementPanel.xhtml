@@ -16,12 +16,12 @@
 					columnClasses="logo,detail">
 					<p:outputPanel>
 						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Date: " />
+							<h:outputText value="#{sgr_translation.form_announcement_date} : " />
 							<h:outputText value="#{announcement.date}" style="color: blue" />
-							<h:outputText value="Title: " />
+							<h:outputText value="#{sgr_translation.form_announcement_title} : " />
 							<h:outputText value="#{announcement.title}"
 								style="font-weight: bold" />
-							<h:outputText value="Message: " />
+							<h:outputText value="#{sgr_translation.form_announcement_message} : " />
 							<h:outputText value="#{announcement.message}"
 								style="font-margin: 3px" />
 						</h:panelGrid>
