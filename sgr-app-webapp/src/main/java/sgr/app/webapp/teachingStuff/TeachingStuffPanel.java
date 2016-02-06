@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.app.frontend.AbstractPanel;
+import sgr.app.frontend.panels.AbstractPanel;
 
 /**
  * @author dawbes

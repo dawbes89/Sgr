@@ -13,10 +13,10 @@ import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.person.Person;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.app.frontend.AbstractPanel;
 import sgr.app.frontend.Bean;
-import sgr.app.frontend.EditablePanel;
 import sgr.app.frontend.RandomPasswordGenerator;
+import sgr.app.frontend.panels.AbstractPanel;
+import sgr.app.frontend.panels.EditablePanel;
 
 /**
  * @author dawbes

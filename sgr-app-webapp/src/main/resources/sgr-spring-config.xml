@@ -6,7 +6,7 @@
 
    <import resource="classpath:sgr-services.xml" />
    
-   <context:component-scan base-package="sgr.app.core" />
+   <context:component-scan base-package="sgr.app.api" />
    <context:component-scan base-package="sgr.app.webapp" />
 
 </beans>
