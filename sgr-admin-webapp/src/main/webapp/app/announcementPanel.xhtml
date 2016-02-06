@@ -13,130 +13,117 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 
-				<!-- REVIEW tutaj powinien pojewić się przycisk dodawania i pod nim separator -->
-				<!-- ogólnie przyciski wszystkie nie muszą mieć id jeśli ich nie wywołujemy w innym miejscu -->
+				<p:commandButton value="#{sgr_translation.button_add}"
+					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
+				<p:separator />
+
 				<p:dataTable value="#{announcementPanel.entities}"
 					var="announcement" id="table" editable="true">
-					<!-- REVIEW styl kolumn zmien na width="40" - szerokość dla jednego przyciksu, im wiejcej ich to dajemy wielokrotność -->
-					<p:column style="width:50px">
-						<!-- REVIEW nie potrzeba id -->
-						<p:commandButton id="selectButton" update=":details:panel"
+					<p:column width="40">
+						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
 							<f:setPropertyActionListener value="#{announcement}"
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
 					</p:column>
-					<!-- REVIEW to co ma się wyświetlać dawaj w <p:outputLabel value="#{announcement.date}" /> -->
-					<!-- fajnie się wtedy formatuje kod -->
-					<!-- ponadto będzie można dodać converter="yearConverter" -->
 					<p:column headerText="#{sgr_translation.form_announcement_date}"
-						filterBy="#{announcement.date}">#{announcement.date}
-                   </p:column>
+						filterBy="#{announcement.date}">
+						<p:outputLabel value="#{announcement.date}"
+							converter="yearConverter" />
+					</p:column>
 					<p:column headerText="#{sgr_translation.form_announcement_title}"
-						filterBy="#{announcement.title}" filterMatchMode="contains">#{announcement.title}
-                   </p:column>
-					<!-- REVIEW width="80" -->
-					<p:column style="width:80px">
-						<!-- REVIEw nie potrzeba id, niżej też nie, i zmien kolejnośc przycisków najpierw update -->
-						<p:commandButton id="deleteAnnouncement"
-							actionListener="#{announcementPanel.remove(announcement.id)}"
-							update=":root:panel" icon="ui-icon-trash">
-							<!-- REVIEW tutaj nie potrzeba już update, dzieje się wyżej w przycisku -->
-							<p:ajax event="dialogReturn"
-								listener="#{announcementPanel.remove}" update=":root:panel" />
-						</p:commandButton>
-						<!-- REVIEW id j.w. -->
-						<p:commandButton id="updateButton" update=":update:panel"
+						filterBy="#{announcement.title}" filterMatchMode="contains">
+						<p:outputLabel value="#{announcement.title}" />
+					</p:column>
+					<p:column width="80">
+						<p:commandButton update=":update:panel"
 							oncomplete="PF('updateDialog').show()" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{announcement}"
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
+						<p:commandButton id="deleteAnnouncement"
+							actionListener="#{announcementPanel.remove(announcement.id)}"
+							update=":root:panel" icon="ui-icon-trash">
+							<p:ajax event="dialogReturn"
+								listener="#{announcementPanel.remove}" />
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-				<p:separator />
-				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
 			</p:outputPanel>
 		</h:form>
 
 		<!-- ADD FORM -->
-		<!-- REVIEW starajmy się robić teraz okna modalne, a co za tym idzie tylko w takim wypadku form jest w dialog -->
-		<!-- nie zapomnij zmienić kolejności tagów zamykających -->
-		<h:form id="add">
-			<!-- REVIEW widgetVar na początek -->
-			<!-- pozatym zobacz sobie jakie dodałem atrybuty dla dialog w np. studentPanel  -->
-			<!-- - dla formularza dodawania są nieco inne jak dla update, i pamiętaj takiej kolejności jaka tam jest -->
-			<p:dialog header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="explode" widgetVar="addDialog">
-				<p:outputPanel id="panel">
-					<p:panelGrid id="panelGrid" columns="2">
-						<!-- REVIEW h:outputLabel zmieniamy na p:outputLabel, for="..." na początek deklaracji -->
-						<!-- a w tłumaczeniu nie dajemy _:_* tylko sam : -->
-						<!-- jeśli pole o id z for ma required gwiazdka sie wstawi -->
-						<h:outputLabel
-							value="#{sgr_translation.form_announcement_title} : *"
-							for="title" />
-						<p:inputText id="title" value="#{announcementPanel.entity.title}"
-							required="true" />
-						<!-- REVIEW daty nie potrzeba, lepiej wstawiać automatycznie -->
-						<h:outputText
-							value="#{sgr_translation.form_announcement_date} : *" />
-						<p:calendar label="date" value="#{announcementPanel.entity.date}"
-							pattern="yyyy-MM-dd" mask="true" required="true" />
-						<!-- REVIEW uwaga jak przy pierwszej labelce -->
-						<h:outputLabel
-							value="#{sgr_translation.form_announcement_message} : *"
-							for="message" />
-						<p:inputTextarea value="#{announcementPanel.entity.message}"
-							required="true" rows="5" cols="30" autoResize="false" />
-						<!-- REVIEW dodaj przyciski jak w innych panelach, będziesz musiał nieco zmienić layout tego formularza -->
-						<p:commandButton id="confirmAdd"
-							value="#{sgr_translation.form_button_save}"
-							action="#{announcementPanel.create}"
-							update=":root:panel :add:panel"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-						</p:commandButton>
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:title">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:outputLabel for="title"
+						value="#{sgr_translation.form_announcement_title} :" />
+					<p:inputText id="title" value="#{announcementPanel.entity.title}"
+						required="true" />
+					<p:outputLabel for="message"
+						value="#{sgr_translation.form_announcement_message} :" />
+					<p:inputTextarea id="message"
+						value="#{announcementPanel.entity.message}" required="true"
+						rows="10" cols="50" autoResize="false" />
+						<p:panelGrid columns="3">
+							<p:commandButton value="#{sgr_translation.form_button_save}"
+								action="#{announcementPanel.create}"
+								update=":add:panel :root:panel" icon="ui-icon-disk"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+							</p:commandButton>
+							<p:commandButton value="#{sgr_translation.form_button_clear}"
+								update=":add:panel" process="@this" icon="ui-icon-close">
+								<p:resetInput target=":add:panel" />
+							</p:commandButton>
+							<p:commandButton value="#{sgr_translation.form_button_cancel}"
+								update=":add:panel" process="@this" icon="ui-icon-cancel"
+								oncomplete="PF('addDialog').hide()">
+								<p:resetInput target=":add:panel" />
+							</p:commandButton>
+						</p:panelGrid>
 					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-		</h:form>
+			</h:form>
+		</p:dialog>
 
-		<!-- REVIEW uwagi jak wyżej -->
 		<!-- UPDATE FORM -->
-		<h:form id="update">
-			<p:dialog header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="explode" widgetVar="updateDialog">
-				<p:outputPanel id="panel" style="text-align:center;" layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel
-							value="#{sgr_translation.form_announcement_title} : *"
-							for="title" />
+		<p:dialog widgetVar="updateDialog"
+			header="#{sgr_translation.form_window_caption_update}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" dynamic="true">
+			<h:form id="update">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+						<h:outputLabel for="title"
+							value="#{sgr_translation.form_announcement_title} :" />
 						<p:inputText id="title" value="#{announcementPanel.entity.title}"
 							required="true" />
-						<h:outputText
-							value="#{sgr_translation.form_announcement_date} : *" />
-						<p:calendar label="date" value="#{announcementPanel.entity.date}"
-							pattern="yyyy-MM-dd" mask="true" required="true" />
-						<h:outputLabel
-							value="#{sgr_translation.form_announcement_message} : *"
-							for="message" />
-						<p:inputTextarea value="#{announcementPanel.entity.message}"
-							required="true" rows="5" cols="30" autoResize="false" />
-						<p:commandButton id="confirmUpdate"
-							value="#{sgr_translation.button_update}"
-							actionListener="#{announcementPanel.update(announcementPanel.entity)}"
-							update=":root:panel :update:panel"
+						<h:outputLabel for="message"
+							value="#{sgr_translation.form_announcement_message} :" />
+						<p:inputTextarea id="message"
+							value="#{announcementPanel.entity.message}" required="true"
+							rows="10" cols="50" autoResize="false" />
+						<p:panelGrid columns="">
+						<p:commandButton value="#{sgr_translation.form_button_update}"
+							actionListener="#{announcementPanel.update(studentPanel.entity)}"
+							update=":root:panel :update:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-							<p:ajax event="dialogReturn"
-								listener="#{announcementPanel.update}" update=":root:panel" />
+							<p:ajax event="dialogReturn" listener="#{announcementPanel.update}" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":update:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('updateDialog').hide()">
+							<p:resetInput target=":update:panel" />
 						</p:commandButton>
 					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-		</h:form>
+					</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
-		<!-- REVIEW to może zostać jak jest, będę się jeszcze tymi formularzami zajmował -->
 		<!-- DETAILS FORM -->
 		<h:form id="details">
 			<p:dialog header="#{sgr_translation.form_window_caption_details}"
