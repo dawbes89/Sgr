@@ -29,6 +29,7 @@
 					</p:column>
 					<!-- REVIEW to co ma się wyświetlać dawaj w <p:outputLabel value="#{announcement.date}" /> -->
 					<!-- fajnie się wtedy formatuje kod -->
+					<!-- ponadto będzie można dodać converter="yearConverter" -->
 					<p:column headerText="#{sgr_translation.form_announcement_date}"
 						filterBy="#{announcement.date}">#{announcement.date}
                    </p:column>
@@ -150,7 +151,7 @@
 						<h:outputLabel
 							value="#{sgr_translation.form_announcement_date} : *" for="date" />
 						<h:outputText value="#{announcementPanel.entity.date}"
-							pattern="yyyy-MM-dd" />
+							converter="yearConverter" />
 						<h:outputLabel
 							value="#{sgr_translation.form_announcement_message} : *"
 							for="message" />
