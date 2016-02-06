@@ -79,7 +79,8 @@
 		<h:form id="add">
 			<p:dialog widgetVar="addDialog"
 				header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="explode" width="500px">
+				resizable="false" showEffect="fold" hideEffect="fold" width="500px"
+				closable="false" draggable="false">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
@@ -158,6 +159,14 @@
 						action="#{teachingStuffPanel.create}"
 						update=":root:panel :add:panel" icon="ui-icon-disk"
 						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+					</p:commandButton>
+					<p:commandButton value="Wyczyść" update=":add:panel"
+						process="@this" style="margin-right:20px;">
+						<p:resetInput target=":add:panel" />
+					</p:commandButton>
+					<p:commandButton value="Anuluj" update=":add:panel" process="@this"
+						oncomplete="PF('addDialog').hide()" style="margin-right:20px;">
+						<p:resetInput target=":add:panel" />
 					</p:commandButton>
 				</h:panelGrid>
 			</p:dialog>
