@@ -17,9 +17,9 @@
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
-				<p:dataTable value="#{studentPanel.entities}" var="student"
-					id="table" editable="true">
-					<p:column style="width:40px">
+				<p:dataTable id="table" var="student"
+					value="#{studentPanel.entities}" editable="true">
+					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
@@ -38,7 +38,7 @@
 					<p:column headerText="#{sgr_translation.form_class}">
 						<p:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
-					<p:column style="width:80px">
+					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
 							icon="ui-icon-pencil">
@@ -56,15 +56,17 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<h:form id="add">
-			<p:dialog widgetVar="addDialog"
-				header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="explode" width="500px">
-				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:firstName">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
@@ -81,10 +83,10 @@
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.person.birthDate}" pattern="yyyy-MM-dd"
 								mask="true" required="true" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="account" header="#{sgr_translation.form_account}">
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
@@ -103,10 +105,10 @@
 								action="#{studentPanel.generatePassword('add', 'password')}"
 								update="password" icon="ui-icon-locked">
 							</p:commandButton>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"
 								value="#{sgr_translation.form_class}:" />
 							<p:selectOneMenu id="classGroup"
@@ -121,27 +123,40 @@
 									var="classGroup" itemLabel="#{classGroup.className}"
 									itemValue="#{classGroup}" />
 							</p:selectOneMenu>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
-					<p:commandButton value="#{sgr_translation.form_button_save}"
-						action="#{studentPanel.create}" update=":root:panel :add:panel"
-						icon="ui-icon-disk"
-						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-					</p:commandButton>
-				</h:panelGrid>
-			</p:dialog>
-		</h:form>
+					<p:panelGrid columns="3">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{studentPanel.create}" update=":add:panel :root:panel"
+							icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panelGrid>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
 		<!-- UPDATE FORM -->
-		<h:form id="update">
-			<p:dialog widgetVar="updateDialog"
-				header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="explode" width="500px">
-				<h:panelGrid id="panel" columns="1" columnClasses="grid">
+		<p:dialog widgetVar="updateDialog"
+			header="#{sgr_translation.form_window_caption_update}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" dynamic="true">
+			<h:form id="update">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
@@ -158,10 +173,10 @@
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
 					<p:panel id="other" header="#{sgr_translation.form_other}">
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"
 								value="#{sgr_translation.form_class}:" />
 							<p:selectOneMenu id="classGroup"
@@ -176,23 +191,31 @@
 									var="classGroup" itemLabel="#{classGroup.className}"
 									itemValue="#{classGroup}" />
 							</p:selectOneMenu>
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:panel>
-					<p:commandButton value="#{sgr_translation.form_button_update}"
-						actionListener="#{studentPanel.update(studentPanel.entity)}"
-						update=":root:panel :update:panel" icon="ui-icon-disk"
-						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-						<p:ajax event="dialogReturn" listener="#{studentPanel.update}" />
-					</p:commandButton>
-				</h:panelGrid>
-			</p:dialog>
-		</h:form>
+					<p:panelGrid columns="">
+						<p:commandButton value="#{sgr_translation.form_button_update}"
+							actionListener="#{studentPanel.update(studentPanel.entity)}"
+							update=":root:panel :update:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
+							<p:ajax event="dialogReturn" listener="#{studentPanel.update}" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":update:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('updateDialog').hide()">
+							<p:resetInput target=":update:panel" />
+						</p:commandButton>
+					</p:panelGrid>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
 			<p:dialog widgetVar="detailsDialog"
 				header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode">
+				resizable="false" showEffect="clip" hideEffect="clip">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
 					<p:outputLabel for="firstName"
 						value="#{sgr_translation.form_person_firstName}:" />
