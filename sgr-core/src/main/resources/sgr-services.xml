@@ -7,6 +7,8 @@
 
    <import resource="classpath:sgr-hibernate-config.xml" />
 
+   <bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl" />
+
    <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
