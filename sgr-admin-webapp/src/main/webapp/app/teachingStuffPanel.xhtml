@@ -176,7 +176,7 @@
 		<h:form id="update">
 			<p:dialog widgetVar="updateDialog"
 				header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="explode" width="500px">
+				resizable="false" showEffect="fold" hideEffect="fold" width="500px">
 				<h:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
@@ -246,7 +246,7 @@
 		<h:form id="details">
 			<p:dialog widgetVar="detailsDialog"
 				header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode">
+				resizable="false" showEffect="clip" hideEffect="clip">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
 					<p:outputLabel for="firstName"
 						value="#{sgr_translation.form_person_firstName}:" />
