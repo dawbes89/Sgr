@@ -17,9 +17,9 @@
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
-				<p:dataTable value="#{teachingStuffPanel.entities}"
-					var="teachingStuff" id="table" editable="true">
-					<p:column style="width:40px">
+				<p:dataTable id="table" var="teachingStuff"
+					value="#{teachingStuffPanel.entities}" editable="true">
+					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
@@ -57,7 +57,7 @@
 						headerText="#{sgr_translation.form_teachingStuff_preceptor}">
 						<p:outputLabel value="#{teachingStuff.preceptorClass.className}" />
 					</p:column>
-					<p:column style="width:80px">
+					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
 							icon="ui-icon-pencil">
