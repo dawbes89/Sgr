@@ -14,7 +14,7 @@
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:dataTable id="table" value="#{teachingStuffPanel.entities}"
 					var="teachingStuff" editable="true">
-					<p:column style="width:40px">
+					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
@@ -45,7 +45,7 @@
 		<h:form id="details">
 			<p:dialog widgetVar="detailsDialog"
 				header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode">
+				resizable="false" showEffect="clip" hideEffect="clip">
 				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
 					<p:outputLabel for="firstName"
 						value="#{sgr_translation.form_person_firstName}:" />
