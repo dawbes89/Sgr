@@ -43,55 +43,67 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<h:form id="add">
-			<p:dialog widgetVar="addDialog"
-				header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="fold" hideEffect="fold" width="500px">
-				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="380px" height="280px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
+					<p:panel header="inne">
 
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<p:outputLabel for="groupNumber"
-							value="#{sgr_translation.form_class_name}:" />
-						<p:selectOneMenu id="groupNumber"
-							value="#{classGroupPanel.entity.groupNumber}" required="true">
-							<f:selectItem itemValue="1" itemLabel="1" />
-							<f:selectItem itemValue="2" itemLabel="2" />
-							<f:selectItem itemValue="3" itemLabel="3" />
-							<f:selectItem itemValue="4" itemLabel="4" />
-							<f:selectItem itemValue="5" itemLabel="5" />
-							<f:selectItem itemValue="6" itemLabel="6" />
-						</p:selectOneMenu>
-						<p:outputLabel for="groupName"
-							value="#{sgr_translation.form_class_group}:" />
-						<p:selectOneMenu id="groupName"
-							value="#{classGroupPanel.entity.groupName}" required="true">
-							<f:selectItem itemValue="A" itemLabel="A" />
-							<f:selectItem itemValue="B" itemLabel="B" />
-							<f:selectItem itemValue="C" itemLabel="C" />
-							<f:selectItem itemValue="D" itemLabel="D" />
-							<f:selectItem itemValue="E" itemLabel="E" />
-							<f:selectItem itemValue="F" itemLabel="F" />
-							<f:selectItem itemValue="G" itemLabel="G" />
-							<f:selectItem itemValue="H" itemLabel="H" />
-						</p:selectOneMenu>
-						<p:outputLabel for="year"
-							value="#{sgr_translation.form_class_year}:" />
-						<p:selectOneMenu id="year" value="#{classGroupPanel.entity.year}"
-							required="true" converter="yearConverter" effect="fade"
-							filter="true" filterMatchMode="startsWith">
-							<f:selectItems value="#{classGroupPanel.years}" var="date"
-								itemLabel="#{year}" itemValue="#{year}" />
-						</p:selectOneMenu>
+						<p:panelGrid id="output" columns="2" columnClasses="label, value">
+							<p:outputLabel for="groupNumber"
+								value="#{sgr_translation.form_class_name}:" />
+							<p:selectOneMenu id="groupNumber"
+								value="#{classGroupPanel.entity.groupNumber}" required="true">
+								<f:selectItem itemValue="1" itemLabel="1" />
+								<f:selectItem itemValue="2" itemLabel="2" />
+								<f:selectItem itemValue="3" itemLabel="3" />
+								<f:selectItem itemValue="4" itemLabel="4" />
+								<f:selectItem itemValue="5" itemLabel="5" />
+								<f:selectItem itemValue="6" itemLabel="6" />
+							</p:selectOneMenu>
+							<p:outputLabel for="groupName"
+								value="#{sgr_translation.form_class_group}:" />
+							<p:selectOneMenu id="groupName"
+								value="#{classGroupPanel.entity.groupName}" required="true">
+								<f:selectItem itemValue="A" itemLabel="A" />
+								<f:selectItem itemValue="B" itemLabel="B" />
+								<f:selectItem itemValue="C" itemLabel="C" />
+								<f:selectItem itemValue="D" itemLabel="D" />
+								<f:selectItem itemValue="E" itemLabel="E" />
+								<f:selectItem itemValue="F" itemLabel="F" />
+								<f:selectItem itemValue="G" itemLabel="G" />
+								<f:selectItem itemValue="H" itemLabel="H" />
+							</p:selectOneMenu>
+							<p:outputLabel for="year"
+								value="#{sgr_translation.form_class_year}:" />
+							<p:selectOneMenu id="year" value="#{classGroupPanel.entity.year}"
+								required="true" converter="yearConverter" effect="fade"
+								filter="true" filterMatchMode="startsWith">
+								<f:selectItems value="#{classGroupPanel.years}" var="date"
+									itemLabel="#{year}" itemValue="#{year}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</p:panel>
+
+					<p:panelGrid columns="2">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{classGroupPanel.create}"
 							update=":root:panel :add:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
 					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-		</h:form>
+				</p:panelGrid>
+
+			</h:form>
+		</p:dialog>
 
 	</ui:define>
 
