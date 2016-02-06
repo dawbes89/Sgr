@@ -28,8 +28,8 @@
 					</p:column>
 					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
-							update=":add:panel" oncomplete="PF('addDialog').show()"
-							icon="ui-icon-pencil">
+							action="#{teacherCommentPanel.findComments}" update=":add:panel"
+							oncomplete="PF('addDialog').show()" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{student}"
 								target="#{teacherCommentPanel.entity}" />
 						</p:commandButton>
@@ -38,36 +38,46 @@
 			</p:outputPanel>
 		</h:form>
 
-		<!-- UPDATE FORM -->
+		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
 			header="#{sgr_translation.form_window_caption_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			showEffect="fold" hideEffect="fold" width="650px" height="500px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)"
 			focus=":add:content">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
-					
-					<p:selectOneMenu
-								value="#{teacherCommentPanel.comment.commentType}" var="status"  required="true">
-								<f:selectItem value="teacherCommentPanle.CommentTypeValues" var="g" 
-    itemValue="#{g}" itemLabel="#{g.label}"/>
-							</p:selectOneMenu>
 
-<!-- 					<p:panel id="personal" header="#{sgr_translation.form_person}"> -->
-<!-- 						<p:panelGrid columns="2" columnClasses="label, value"> -->
-							<p:outputLabel for="content"
-								value="treść:" />
-							<p:inputTextarea id="content" rows="6" cols="33" 
-								label="treść"
-								value="#{teacherCommentPanel.comment.content}" required="true" />
+					<p:selectOneMenu value="#{teacherCommentPanel.comment.commentType}"
+						var="status" required="true">
+						<f:selectItem itemValue="POSITIVE" itemLabel="#{sgr_translation.commetn_type_positive}" />
+						<f:selectItem itemValue="NEGATIVE" itemLabel="negatywna" />
+						<f:selectItem itemValue="REPREHENSIBLE" itemLabel="naganna" />
+					</p:selectOneMenu>
 
-<!-- 						</p:panelGrid> -->
-<!-- 					</p:panel> -->
-					<p:panelGrid columns="">
+					<p:outputLabel for="content" value="treść:" />
+					<p:inputTextarea id="content" rows="6" cols="50" label="treść"
+						value="#{teacherCommentPanel.comment.content}" required="true" />
+
+					<p:separator />
+
+					<p:dataTable id="commentTable" var="comment"
+						value="#{teacherCommentPanel.comments}" editable="true">
+						<p:column headerText="data">
+							<p:outputLabel value="#{comment.date}" />
+						</p:column>
+						<p:column headerText="content">
+							<p:outputLabel value="#{comment.content}" />
+						</p:column>
+						<p:column headerText="typ">
+							<p:outputLabel value="#{comment.commentType}"/>
+						</p:column>
+					</p:dataTable>
+
+					<p:panelGrid columns="3">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{teacherCommentPanel.create}" update=":add:panel :root:panel"
-							icon="ui-icon-disk"
+							action="#{teacherCommentPanel.create}"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_clear}"
@@ -84,7 +94,7 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-		
+
 	</ui:define>
 
 </ui:composition>

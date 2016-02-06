@@ -1,5 +1,9 @@
 package sgr.app.core.comment;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.comment.Comment;
@@ -33,6 +37,14 @@ public class CommentServiceImpl extends DaoSupport implements CommentService
    {
       createEntity(comment);
 
+   }
+
+   @Override
+   public List<Comment> findByStudentId(Long studentId)
+   {
+      Criteria criteria = createCriteria(Comment.class);
+      criteria.add(Restrictions.eq(Comment.PROPERTY_STUDENT_ID, studentId));
+      return search(criteria);
    }
 
 }

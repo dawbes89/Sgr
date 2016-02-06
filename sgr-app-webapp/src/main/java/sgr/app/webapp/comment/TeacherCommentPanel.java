@@ -1,15 +1,14 @@
 package sgr.app.webapp.comment;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import javax.faces.model.SelectItem;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
-import sgr.app.api.comment.CommentType;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
 import sgr.app.frontend.AbstractPanel;
@@ -29,6 +28,8 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private StudentService studentService;
 
+   private List<Comment> comments;
+
    private Comment comment;
 
    @Override
@@ -36,6 +37,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    {
       comment = new Comment();
       entity = new Student();
+      comments = new ArrayList<>();
    }
 
    @Override
@@ -46,24 +48,15 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    public void create()
    {
-      comment.setId(entity.getId());
+      comment.setStudentId(entity.getId());
       comment.setDate(new Date());
       commentService.create(comment);
       init();
    }
 
-   public CommentType[] getCommentType()
+   public void findComments()
    {
-      return CommentType.values();
-   }
-
-   public SelectItem[] getCommentTypeValues() {
-      SelectItem[] items = new SelectItem[CommentType.values().length];
-      int i = 0;
-      for(CommentType g: CommentType.values()) {
-         items[i++] = new SelectItem(g, g.getLabel());
-      }
-      return items;
+      comments = commentService.findByStudentId(entity.getId());
    }
 
    public Comment getComment()
@@ -74,6 +67,16 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void setComment(Comment comment)
    {
       this.comment = comment;
+   }
+
+   public List<Comment> getComments()
+   {
+      return comments;
+   }
+
+   public void setComments(List<Comment> comments)
+   {
+      this.comments = comments;
    }
 
 
