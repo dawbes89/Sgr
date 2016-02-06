@@ -5,21 +5,24 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 
 /**
  * @author dawbes
  */
 @Entity
 @Table(name = "comment")
-public class Comment  implements Serializable
+public class Comment implements Serializable
 {
 
    private static final long serialVersionUID = -5937580296121716355L;
+
+   public static String PROPERTY_STUDENT_ID = "studentId";
 
    @Id
    @Column(name = "comment_id")
@@ -32,8 +35,9 @@ public class Comment  implements Serializable
    @Column(name = "content")
    private String content;
 
+   @Enumerated(EnumType.STRING)
    @Column(name = "comment_type")
-   private String commentType;
+   private CommentType commentType;
 
    @Column(name = "student_id")
    private Long studentId;
@@ -68,14 +72,14 @@ public class Comment  implements Serializable
       this.content = content;
    }
 
-   public String getCommentType()
+   public CommentType getCommentType()
    {
       return commentType;
    }
 
-   public void setCommentType(String commentType)
+   public void setCommentType(CommentType status)
    {
-      this.commentType = commentType;
+      this.commentType = status;
    }
 
    public Long getStudentId()
@@ -87,6 +91,5 @@ public class Comment  implements Serializable
    {
       this.studentId = studentId;
    }
-
 
 }
