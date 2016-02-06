@@ -11,7 +11,7 @@
       <message-bundle>jsf-validation-errors</message-bundle>
       <resource-bundle>
          <base-name>sgr-admin-translations</base-name>
-         <var>admin_translation</var>
+         <var>sgr_admin_translation</var>
       </resource-bundle>
       <resource-bundle>
          <base-name>sgr-frontend-translations</base-name>
