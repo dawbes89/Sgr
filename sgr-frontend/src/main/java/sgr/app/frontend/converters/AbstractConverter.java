@@ -1,4 +1,4 @@
-package sgr.app.frontend;
+package sgr.app.frontend.converters;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

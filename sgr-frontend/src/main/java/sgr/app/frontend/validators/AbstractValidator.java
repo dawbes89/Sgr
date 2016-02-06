@@ -1,4 +1,4 @@
-package sgr.app.frontend;
+package sgr.app.frontend.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;

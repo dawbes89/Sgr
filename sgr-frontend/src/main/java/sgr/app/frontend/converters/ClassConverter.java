@@ -1,15 +1,16 @@
-package sgr.admin.webapp.teachingStuff;
-
-import javax.faces.convert.FacesConverter;
+package sgr.app.frontend.converters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.frontend.AbstractConverter;
 
-@FacesConverter(value = "classConverter")
-public class PreceptorClassConverter extends AbstractConverter<ClassGroup>
+/**
+ * Converter for class.
+ *
+ * @author leonzio
+ */
+public class ClassConverter extends AbstractConverter<ClassGroup>
 {
 
    @Autowired
