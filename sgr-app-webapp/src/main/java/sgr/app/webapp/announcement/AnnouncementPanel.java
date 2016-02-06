@@ -15,6 +15,7 @@ import sgr.app.api.announcement.AnnouncementService;
  * @author dawbes
  */
 @Controller
+// REVIEW ten panel powinien rozszerzaæ AbstractPanel i mieæ w xhtml onLoad
 public class AnnouncementPanel implements Serializable
 {
 
@@ -22,6 +23,8 @@ public class AnnouncementPanel implements Serializable
 
    @Autowired
    private AnnouncementService announcementService;
+   // REVIEW praktycznie ca³a treœc idzie do wywalenia i najlepiej
+   // zaimplementowaæ abstractPanel
 
    public AnnouncementService getAnnouncementService()
    {

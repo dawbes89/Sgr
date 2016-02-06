@@ -12,23 +12,21 @@
 				<f:facet name="header">
 					<p:outputLabel value="#{sgr_app_translation.menu_horizontal_news}" />
 				</f:facet>
-				<p:panelGrid columns="2" style="width:100%"
-					columnClasses="logo,detail">
-					<p:outputPanel>
-						<p:panelGrid columns="2" cellpadding="5">
-							<p:outputLabel value="Date: " />
-							<p:outputLabel value="#{announcement.date}" style="color: blue"
-								converter="yearConverter" />
-							<p:outputLabel value="Title: " />
-							<p:outputLabel value="#{announcement.title}"
-								style="font-weight: bold" />
-							<p:outputLabel value="Message: " />
-							<p:outputLabel value="#{announcement.message}"
-								style="font-margin: 3px" />
-						</p:panelGrid>
-						<p:separator />
-					</p:outputPanel>
-				</p:panelGrid>
+				<p:outputPanel>
+					<p:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="#{sgr_translation.form_announcement_date}: " />
+						<p:outputLabel value="#{announcement.date}" style="color: blue" converter="yearConverter" />
+						<p:outputLabel
+							value="#{sgr_translation.form_announcement_title}: " />
+						<p:outputLabel value="#{announcement.title}"
+							style="font-weight: bold" />
+						<p:outputLabel
+							value="#{sgr_translation.form_announcement_message}: " />
+						<p:outputLabel value="#{announcement.message}"
+							style="font-margin: 3px" />
+					</p:panelGrid>
+					<p:separator />
+				</p:outputPanel>
 			</p:dataScroller>
 		</h:form>
 	</ui:define>
