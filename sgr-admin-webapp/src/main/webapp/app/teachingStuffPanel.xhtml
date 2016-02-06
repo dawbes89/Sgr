@@ -76,12 +76,12 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<h:form id="add">
-			<p:dialog widgetVar="addDialog"
-				header="#{sgr_translation.form_window_caption_add}"
-				resizable="false" showEffect="fold" hideEffect="fold" width="500px"
-				closable="false" draggable="false" focus="firstName" modal="true"
-				appendTo="@(body)">
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:firstName">
+			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
@@ -159,28 +159,30 @@
 					<p:panelGrid columns="3">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{teachingStuffPanel.create}"
-							update=":root:panel :add:panel" icon="ui-icon-disk"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
-						<p:commandButton value="Wyczyść" update=":add:panel"
-							process="@this" style="margin-right:20px;">
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
-						<p:commandButton value="Anuluj" update=":add:panel"
-							process="@this" oncomplete="PF('addDialog').hide()"
-							style="margin-right:20px;">
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
 					</p:panelGrid>
 				</p:panelGrid>
-			</p:dialog>
-		</h:form>
+			</h:form>
+		</p:dialog>
 
 		<!-- UPDATE FORM -->
-		<h:form id="update">
-			<p:dialog widgetVar="updateDialog"
-				header="#{sgr_translation.form_window_caption_update}"
-				resizable="false" showEffect="fold" hideEffect="fold" width="500px">
+		<p:dialog widgetVar="updateDialog"
+			header="#{sgr_translation.form_window_caption_update}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" dynamic="true">
+			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
 
@@ -235,16 +237,23 @@
 							</p:selectOneMenu>
 						</p:panelGrid>
 					</p:panel>
-					<p:commandButton value="#{sgr_translation.button_update}"
-						actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
-						update=":root:panel :update:panel" icon="ui-icon-disk"
-						oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-						<p:ajax event="dialogReturn"
-							listener="#{teachingStuffPanel.update}" />
-					</p:commandButton>
+					<p:panelGrid columns="">
+						<p:commandButton value="#{sgr_translation.button_update}"
+							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
+							update=":update:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
+							<p:ajax event="dialogReturn"
+								listener="#{teachingStuffPanel.update}" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":update:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('updateDialog').hide()">
+							<p:resetInput target=":update:panel" />
+						</p:commandButton>
+					</p:panelGrid>
 				</p:panelGrid>
-			</p:dialog>
-		</h:form>
+			</h:form>
+		</p:dialog>
 
 		<!-- DETAILS FORM -->
 		<h:form id="details">
