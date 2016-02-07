@@ -6,16 +6,21 @@
 	xmlns:p="http://primefaces.org/ui" template="/app/template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="announcementForm">
-			<p:dataScroller value="#{announcementPanel.announcementsList}"
-				var="announcement" chunkSize="10">
+		<h:form id="root">
+			<p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
+				autoRun="true" update=":root:announcements" />
+
+			<p:dataScroller id="announcements"
+				value="#{announcementPanel.entities}" var="announcement"
+				chunkSize="10">
 				<f:facet name="header">
 					<p:outputLabel value="#{sgr_app_translation.menu_horizontal_news}" />
 				</f:facet>
 				<p:outputPanel>
 					<p:panelGrid columns="2" cellpadding="5">
 						<p:outputLabel value="#{sgr_translation.form_announcement_date}: " />
-						<p:outputLabel value="#{announcement.date}" style="color: blue" converter="yearConverter" />
+						<p:outputLabel value="#{announcement.date}" style="color: blue"
+							converter="yearConverter" />
 						<p:outputLabel
 							value="#{sgr_translation.form_announcement_title}: " />
 						<p:outputLabel value="#{announcement.title}"
