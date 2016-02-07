@@ -29,7 +29,7 @@ public class Account implements Serializable
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
 
-   @Column(name = "userName", length = 20, unique = true, nullable = false, updatable = false)
+   @Column(name = "user_name", length = 20, unique = true, nullable = false, updatable = false)
    private String userName;
 
    @Column(name = "password", length = 74, nullable = false)
