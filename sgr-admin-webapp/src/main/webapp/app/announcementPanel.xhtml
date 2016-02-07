@@ -61,32 +61,41 @@
 			focus=":add:title">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<!-- REVIEW w tym miejscu powinno być jeszcze <p:messages id="msgs" /> - dzięki temu pojawią się jeszcze  -->
+					<!-- wiadomości walidacyjne, tak samo w update -->
+
+					<!-- REVIEW w value jak podajesz klucz tłumaczeń nie rób odstępu po między nim a : -->
 					<p:outputLabel for="title"
-						value="#{sgr_translation.form_announcement_title} :" />
+						value="#{sgr_translation.form_announcement_title}:" />
+					<!-- REVIEW a tutaj czyli do pól gdzie wprowadzamy dane dodawaj label o wartości klucza tlumaczenia z labelki wyzej ale bez : -->
+					<!-- i tak dla wszystkich pol, sprawi to, że jak się pojawi wiadomość walidacyjna to nie będzie jakaś dziwna -->
+					<!-- w stylu :form:field : value is required -->
+					<!-- tylko będzie przetłuamczony label np. Tytuł: pole jest wymagane -->
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
-						required="true" />
+						label="#{sgr_translation.form_announcement_title}" required="true" />
 					<p:outputLabel for="message"
-						value="#{sgr_translation.form_announcement_message} :" />
+						value="#{sgr_translation.form_announcement_message}:" />
 					<p:inputTextarea id="message"
-						value="#{announcementPanel.entity.message}" required="true"
-						rows="10" cols="50" autoResize="false" />
-						<p:panelGrid columns="3">
-							<p:commandButton value="#{sgr_translation.form_button_save}"
-								action="#{announcementPanel.create}"
-								update=":add:panel :root:panel" icon="ui-icon-disk"
-								oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-							</p:commandButton>
-							<p:commandButton value="#{sgr_translation.form_button_clear}"
-								update=":add:panel" process="@this" icon="ui-icon-close">
-								<p:resetInput target=":add:panel" />
-							</p:commandButton>
-							<p:commandButton value="#{sgr_translation.form_button_cancel}"
-								update=":add:panel" process="@this" icon="ui-icon-cancel"
-								oncomplete="PF('addDialog').hide()">
-								<p:resetInput target=":add:panel" />
-							</p:commandButton>
-						</p:panelGrid>
+						value="#{announcementPanel.entity.message}"
+						label="#{sgr_translation.form_announcement_message}"
+						required="true" rows="10" cols="50" autoResize="false" />
+					<p:panelGrid columns="3">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{announcementPanel.create}"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
 					</p:panelGrid>
+				</p:panelGrid>
 			</h:form>
 		</p:dialog>
 
@@ -98,21 +107,22 @@
 			appendTo="@(body)" dynamic="true">
 			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
-						<h:outputLabel for="title"
-							value="#{sgr_translation.form_announcement_title} :" />
-						<p:inputText id="title" value="#{announcementPanel.entity.title}"
-							required="true" />
-						<h:outputLabel for="message"
-							value="#{sgr_translation.form_announcement_message} :" />
-						<p:inputTextarea id="message"
-							value="#{announcementPanel.entity.message}" required="true"
-							rows="10" cols="50" autoResize="false" />
-						<p:panelGrid columns="">
+					<h:outputLabel for="title"
+						value="#{sgr_translation.form_announcement_title} :" />
+					<p:inputText id="title" value="#{announcementPanel.entity.title}"
+						required="true" />
+					<h:outputLabel for="message"
+						value="#{sgr_translation.form_announcement_message} :" />
+					<p:inputTextarea id="message"
+						value="#{announcementPanel.entity.message}" required="true"
+						rows="10" cols="50" autoResize="false" />
+					<p:panelGrid columns="">
 						<p:commandButton value="#{sgr_translation.form_button_update}"
 							actionListener="#{announcementPanel.update(studentPanel.entity)}"
 							update=":root:panel :update:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-							<p:ajax event="dialogReturn" listener="#{announcementPanel.update}" />
+							<p:ajax event="dialogReturn"
+								listener="#{announcementPanel.update}" />
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_cancel}"
 							update=":update:panel" process="@this" icon="ui-icon-cancel"
@@ -120,7 +130,7 @@
 							<p:resetInput target=":update:panel" />
 						</p:commandButton>
 					</p:panelGrid>
-					</p:panelGrid>
+				</p:panelGrid>
 			</h:form>
 		</p:dialog>
 
