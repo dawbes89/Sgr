@@ -16,6 +16,12 @@ import sgr.app.frontend.panels.AbstractPanel;
 /**
  * @author dawbes89
  */
+// REVIEW tak siê zastanawiam, czy tabelki z uczniami lepiej nie zrobiæ bez
+// klasy a klasê wybieraæ nad tabelk¹ z comboboxa, i po wybraniu robiæ update na
+// tabeli wyœwietlaj¹c listê uczniów z tej klasy, ale o tym pasuje jeszcze
+// pogadaæ.
+// A i wsumie ten panel mo¿na przenieœc do paczki nauczyciela, bo to dla niego
+// panel, a dla ucznia zrobiæ podobnie w jego paczce
 @Controller
 public class TeacherCommentPanel extends AbstractPanel<Student>
 {
@@ -28,6 +34,10 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private StudentService studentService;
 
+   // REVIEW tak siê zastanawiam bo entites jest nieu¿ywane wiêc chyba mo¿na by
+   // go tutaj u¿yæ, ale trzeba by w AbstractPanel zrobiæ dwa parametry
+   // generyczne, LISTED - do listy, EDITED - do entity zamiast aktualnego T i
+   // zrobiæ update tam gdzie ju¿ jest wykorzystywany
    private List<Comment> comments;
 
    private Comment comment;
