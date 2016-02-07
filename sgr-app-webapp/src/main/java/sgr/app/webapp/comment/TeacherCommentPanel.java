@@ -34,10 +34,6 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private StudentService studentService;
 
-   // REVIEW tak siê zastanawiam bo entites jest nieu¿ywane wiêc chyba mo¿na by
-   // go tutaj u¿yæ, ale trzeba by w AbstractPanel zrobiæ dwa parametry
-   // generyczne, LISTED - do listy, EDITED - do entity zamiast aktualnego T i
-   // zrobiæ update tam gdzie ju¿ jest wykorzystywany
    private List<Comment> comments;
 
    private Comment comment;
