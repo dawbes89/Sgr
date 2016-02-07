@@ -11,7 +11,7 @@ import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
-import sgr.app.frontend.AbstractPanel;
+import sgr.app.frontend.panels.AbstractPanel;
 
 /**
  * @author dawbes89
@@ -78,9 +78,5 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    {
       this.comments = comments;
    }
-
-
-
-
 
 }

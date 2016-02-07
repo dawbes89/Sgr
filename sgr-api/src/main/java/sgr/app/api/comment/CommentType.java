@@ -4,9 +4,9 @@ package sgr.app.api.comment;
  */
 public enum CommentType
 {
-   POSITIVE("#{sgr_translation.commetn_type_positive}"),
-   NEGATIVE("sgr_app_translation.sgr.app.api.comment.CommentType.NEGATIVE"),
-   REPREHENSIBLE("sgr_app_translation.sgr.app.api.comment.CommentType.REPREHENSIBLE");
+   POSITIVE("comment_type_positive"),
+   NEGATIVE("comment_type_negative"),
+   REPREHENSIBLE("comment_type_reprehensible");
 
    private String label;
 
