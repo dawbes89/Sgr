@@ -50,7 +50,7 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    @Override
    public void remove(Long id)
    {
-      announcementService.delete(entity);
+      announcementService.delete(id);
       init();
    }
 
