@@ -36,7 +36,6 @@
    
    <bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
-      <property name="studentService" ref="studentService" />
    </bean>
    
 </beans>
