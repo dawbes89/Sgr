@@ -109,4 +109,9 @@ public class TeachingStuff implements Serializable
    {
       this.preceptorClass = preceptorClass;
    }
+
+   public String getTeacherFullName()
+   {
+      return String.format("%s %s %s", academicTitle, person.getFirstName(), person.getLastName());
+   }
 }

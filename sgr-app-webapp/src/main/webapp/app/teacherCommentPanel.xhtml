@@ -54,7 +54,7 @@
 					<!-- dopasuj szerokość pola z trescią uwagi do całego okna -->
 					<p:outputLabel for="type" value="#{sgr_translation.form_type}" />
 					<p:selectOneMenu id="type"
-						value="#{teacherCommentPanel.comment.commentType}:" var="status"
+						value="#{teacherCommentPanel.comment.commentType}" var="status"
 						required="true">
 						<f:selectItem itemValue="POSITIVE"
 							itemLabel="#{sgr_translation.comment_type_positive}" />
@@ -89,6 +89,9 @@
 								<p:column headerText="#{sgr_translation.form_type}">
 									<p:outputLabel value="#{comment.commentType}"
 										converter="enumTranslationConverter" />
+								</p:column>
+								<p:column headerText="#{sgr_translation.form_issuer_name}">
+									<p:outputLabel value="#{comment.issuerName}" />
 								</p:column>
 							</p:dataTable>
 						</p:panelGrid>
