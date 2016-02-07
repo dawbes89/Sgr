@@ -28,19 +28,8 @@ public class Announcement
    @Column(name = "date")
    private Date date;
 
-   @Column(name = "message")
-   private String message;
-
-   public Announcement()
-   {}
-
-   public Announcement(Long id, String title, Date date, String message)
-   {
-      this.id = id;
-      this.title = title;
-      this.date = date;
-      this.message = message;
-   }
+   @Column(name = "content")
+   private String content;
 
    public Long getId()
    {
@@ -72,14 +61,14 @@ public class Announcement
       this.date = date;
    }
 
-   public String getMessage()
+   public String getcontent()
    {
-      return message;
+      return content;
    }
 
-   public void setMessage(String message)
+   public void setcontent(String content)
    {
-      this.message = message;
+      this.content = content;
    }
 
 }

@@ -14,11 +14,13 @@
 				value="#{announcementPanel.entities}" var="announcement"
 				chunkSize="10">
 				<f:facet name="header">
-					<p:outputLabel value="#{sgr_app_translation.menu_horizontal_news}" />
+					<p:outputLabel
+						value="#{sgr_app_translation.menu_horizontal_announcement}" />
 				</f:facet>
 				<p:outputPanel>
 					<p:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel value="#{sgr_translation.form_announcement_added}: " />
+						<p:outputLabel
+							value="#{sgr_translation.form_announcement_added}: " />
 						<p:outputLabel value="#{announcement.date}" style="color: blue"
 							converter="yearConverter" />
 						<p:outputLabel
@@ -26,8 +28,8 @@
 						<p:outputLabel value="#{announcement.title}"
 							style="font-weight: bold" />
 						<p:outputLabel
-							value="#{sgr_translation.form_announcement_message}: " />
-						<p:outputLabel value="#{announcement.message}"
+							value="#{sgr_translation.form_announcement_content}: " />
+						<p:outputLabel value="#{announcement.content}"
 							style="font-margin: 3px" />
 					</p:panelGrid>
 					<p:separator />

@@ -13,6 +13,6 @@ public interface AnnouncementService
 
    public void update(Announcement announcement);
 
-   public void delete(Announcement announcement);
+   public void delete(Long id);
 
 }
