@@ -46,6 +46,10 @@ public class Student implements Serializable
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 
+   //   @ManyToMany()
+   //   @JoinTable(name = "studebt_comments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
+   //   private Set<Comment> comments;
+
    public Long getId()
    {
       return id;
@@ -85,5 +89,17 @@ public class Student implements Serializable
    {
       this.classGroup = classGroup;
    }
+
+   //   public Set<Comment> getComments()
+   //   {
+   //      return comments;
+   //   }
+   //
+   //   public void setComments(Set<Comment> comments)
+   //   {
+   //      this.comments = comments;
+   //   }
+
+
 
 }

@@ -7,5 +7,9 @@
       <converter-id>yearConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.YearConverter</converter-class>
    </converter>
+   <converter>
+      <converter-id>enumTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.EnumTranslationConverter</converter-class>
+   </converter>
 
 </faces-config>
