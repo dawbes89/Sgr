@@ -61,16 +61,9 @@
 			focus=":add:title">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
-					<!-- REVIEW w tym miejscu powinno być jeszcze <p:messages id="msgs" /> - dzięki temu pojawią się jeszcze  -->
-					<!-- wiadomości walidacyjne, tak samo w update -->
-
-					<!-- REVIEW w value jak podajesz klucz tłumaczeń nie rób odstępu po między nim a : -->
+					<p:messages id="msgs" />
 					<p:outputLabel for="title"
 						value="#{sgr_translation.form_announcement_title}:" />
-					<!-- REVIEW a tutaj czyli do pól gdzie wprowadzamy dane dodawaj label o wartości klucza tlumaczenia z labelki wyzej ale bez : -->
-					<!-- i tak dla wszystkich pol, sprawi to, że jak się pojawi wiadomość walidacyjna to nie będzie jakaś dziwna -->
-					<!-- w stylu :form:field : value is required -->
-					<!-- tylko będzie przetłuamczony label np. Tytuł: pole jest wymagane -->
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						label="#{sgr_translation.form_announcement_title}" required="true" />
 					<p:outputLabel for="message"
@@ -78,7 +71,7 @@
 					<p:inputTextarea id="message"
 						value="#{announcementPanel.entity.message}"
 						label="#{sgr_translation.form_announcement_message}"
-						required="true" rows="10" cols="50" autoResize="false" />
+						required="true" rows="10" cols="50" />
 					<p:panelGrid columns="3">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{announcementPanel.create}"
@@ -107,15 +100,16 @@
 			appendTo="@(body)" dynamic="true">
 			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
 					<h:outputLabel for="title"
-						value="#{sgr_translation.form_announcement_title} :" />
+						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						required="true" />
 					<h:outputLabel for="message"
-						value="#{sgr_translation.form_announcement_message} :" />
+						value="#{sgr_translation.form_announcement_message}:" />
 					<p:inputTextarea id="message"
 						value="#{announcementPanel.entity.message}" required="true"
-						rows="10" cols="50" autoResize="false" />
+						rows="10" cols="50" />
 					<p:panelGrid columns="">
 						<p:commandButton value="#{sgr_translation.form_button_update}"
 							actionListener="#{announcementPanel.update(studentPanel.entity)}"
