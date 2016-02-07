@@ -27,7 +27,7 @@
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
 					</p:column>
-					<p:column headerText="#{sgr_translation.form_announcement_date}"
+					<p:column headerText="#{sgr_translation.form_announcement_added}"
 						filterBy="#{announcement.date}">
 						<p:outputLabel value="#{announcement.date}"
 							converter="yearConverter" />
@@ -140,7 +140,7 @@
 						<h:outputText id="title" value="#{announcementPanel.entity.title}" />
 
 						<h:outputLabel
-							value="#{sgr_translation.form_announcement_date} : *" for="date" />
+							value="#{sgr_translation.form_announcement_added} : *" for="date" />
 						<h:outputText value="#{announcementPanel.entity.date}"
 							converter="yearConverter" />
 						<h:outputLabel
