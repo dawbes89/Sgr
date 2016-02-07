@@ -16,8 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.login.LoginService;
+import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.translation.TranslationService;
-import sgr.app.frontend.Bean;
+import sgr.app.frontend.BeanHelper;
 
 /**
  * @author dawbes
@@ -33,6 +34,8 @@ public class LoginPanel implements Serializable
    @Autowired
    private TranslationService translationService;
 
+    TeachingStuff existTeacher;
+
    public LoginPanel()
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
@@ -40,11 +43,15 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      final InputText loginField = Bean.getComponent("loginForm", "loginInput");
-      final Password passwordField = Bean.getComponent("loginForm", "passwordInput");
+      final InputText loginField = BeanHelper.getComponent("loginForm", "loginInput");
+      final Password passwordField = BeanHelper.getComponent("loginForm", "passwordInput");
 
       final Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
             passwordField.getValue().toString());
+      if(existUser.get() instanceof TeachingStuff)
+      {
+         existTeacher = (TeachingStuff) existUser.get();
+      }
 
       if (existUser.isPresent())
       {
@@ -68,4 +75,16 @@ public class LoginPanel implements Serializable
             .getExternalContext();
       externalContext.redirect(externalContext.getRequestContextPath());
    }
+
+   public TeachingStuff getExistTeacher()
+   {
+      return existTeacher;
+   }
+
+   public void setExistTeacher(TeachingStuff existTeacher)
+   {
+      this.existTeacher = existTeacher;
+   }
+
+
 }

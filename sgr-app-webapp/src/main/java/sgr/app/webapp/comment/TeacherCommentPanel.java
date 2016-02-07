@@ -11,17 +11,19 @@ import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentService;
+import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
+import sgr.app.webapp.loginPanel.LoginPanel;
 
 /**
  * @author dawbes89
  */
-// REVIEW tak siê zastanawiam, czy tabelki z uczniami lepiej nie zrobiæ bez
-// klasy a klasê wybieraæ nad tabelk¹ z comboboxa, i po wybraniu robiæ update na
-// tabeli wyœwietlaj¹c listê uczniów z tej klasy, ale o tym pasuje jeszcze
-// pogadaæ.
-// A i wsumie ten panel mo¿na przenieœc do paczki nauczyciela, bo to dla niego
-// panel, a dla ucznia zrobiæ podobnie w jego paczce
+// REVIEW tak siï¿½ zastanawiam, czy tabelki z uczniami lepiej nie zrobiï¿½ bez
+// klasy a klasï¿½ wybieraï¿½ nad tabelkï¿½ z comboboxa, i po wybraniu robiï¿½ update na
+// tabeli wyï¿½wietlajï¿½c listï¿½ uczniï¿½w z tej klasy, ale o tym pasuje jeszcze
+// pogadaï¿½.
+// A i wsumie ten panel moï¿½na przenieï¿½c do paczki nauczyciela, bo to dla niego
+// panel, a dla ucznia zrobiï¿½ podobnie w jego paczce
 @Controller
 public class TeacherCommentPanel extends AbstractPanel<Student>
 {
@@ -41,6 +43,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Override
    public void init()
    {
+
       comment = new Comment();
       entity = new Student();
       comments = new ArrayList<>();
@@ -54,7 +57,10 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    public void create()
    {
+      LoginPanel loginPanel  = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
+      loginPanel.getExistTeacher();
       comment.setStudentId(entity.getId());
+      comment.setIssuerName(loginPanel.getExistTeacher().getTeacherFullName());
       comment.setDate(new Date());
       commentService.create(comment);
       init();

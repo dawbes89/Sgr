@@ -42,6 +42,9 @@ public class Comment implements Serializable
    @Column(name = "student_id")
    private Long studentId;
 
+   @Column(name = "issuer_name")
+   private String issuerName;
+
    public Long getId()
    {
       return id;
@@ -91,5 +94,17 @@ public class Comment implements Serializable
    {
       this.studentId = studentId;
    }
+
+   public String getIssuerName()
+   {
+      return issuerName;
+   }
+
+   public void setIssuerName(String issuerName)
+   {
+      this.issuerName = issuerName;
+   }
+
+
 
 }

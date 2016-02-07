@@ -13,7 +13,7 @@ import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.person.Person;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.app.frontend.Bean;
+import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.RandomPasswordGenerator;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
@@ -94,7 +94,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 
    public void generatePassword(String formId, String componentId)
    {
-      InputText passwordField = Bean.getComponent(formId, componentId);
+      InputText passwordField = BeanHelper.getComponent(formId, componentId);
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

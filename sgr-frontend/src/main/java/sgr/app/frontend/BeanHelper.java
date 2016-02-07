@@ -3,12 +3,13 @@ package sgr.app.frontend;
 import javax.faces.context.FacesContext;
 
 /**
- * Bean used to gets components from xhtml file into java file for perform
+ * BeanHelper used to get menagmentBean and gets components from xhtml file into java file for perform
  * operations on it.
  *
  * @author leonzio
+ * @author dawbes89
  */
-public final class Bean
+public final class BeanHelper
 {
    /**
     * Gets component.
@@ -24,5 +25,20 @@ public final class Bean
    {
       return (T) FacesContext.getCurrentInstance().getViewRoot()
             .findComponent(formId + ":" + componentId);
+   }
+
+   /**
+    * Gets management bean.
+    *
+    * @param panelName
+    *           alias bean name
+    * @param clazz
+    *           bean class
+    * @return management bean
+    */
+   public static <T> T findBean(String panelName, Class<T> clazz)
+   {
+      FacesContext context = FacesContext.getCurrentInstance();
+      return context.getApplication().evaluateExpressionGet(context, panelName, clazz);
    }
 }
