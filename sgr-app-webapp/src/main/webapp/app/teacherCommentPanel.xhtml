@@ -27,6 +27,7 @@
 						<p:outputLabel value="#{student.classGroup.className}" />
 					</p:column>
 					<p:column width="40">
+						<!-- REVIEW tutaj pasowało by inne tłumaczenie, coś w stylu "uwagi" lub "edytuj uwagi" -->
 						<p:commandButton title="#{sgr_translation.button_update}"
 							action="#{teacherCommentPanel.findComments}" update=":add:panel"
 							oncomplete="PF('addDialog').show()" icon="ui-icon-pencil">
@@ -47,9 +48,13 @@
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
+
+					<!-- REVIEW te pola z dodawaniem uwag zamknij w p:panel jak masz niżej pozostałe uwagi -->
+					<!-- i jeszcze w gridzie z dwoma kolumnami, czyli to co jest do separatora, jak to zrobisz -->
+					<!-- dopasuj szerokość pola z trescią uwagi do całego okna -->
 					<p:outputLabel for="type" value="#{sgr_translation.form_type}" />
 					<p:selectOneMenu id="type"
-						value="#{teacherCommentPanel.comment.commentType}" var="status"
+						value="#{teacherCommentPanel.comment.commentType}:" var="status"
 						required="true">
 						<f:selectItem itemValue="POSITIVE"
 							itemLabel="#{sgr_translation.comment_type_positive}" />
@@ -65,15 +70,18 @@
 						label="#{sgr_translation.form_content}"
 						value="#{teacherCommentPanel.comment.content}" required="true" />
 
+					<!-- REVIEW separator niepotrzebny -->
 					<p:separator />
 
+					<!-- REVIEW dodaj na tym panelu, że można go zamykać i żeby był domyślnie zamknięty -->
 					<p:panel id="otherCommentsPanel"
 						header="#{sgr_translation.form_other_student_comments}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:dataTable id="commentTable" var="comment"
 								value="#{teacherCommentPanel.comments}" editable="true">
 								<p:column headerText="#{sgr_translation.form_date_of_issue}">
-									<p:outputLabel value="#{comment.date}" converter="yearConverter" />
+									<p:outputLabel value="#{comment.date}"
+										converter="yearConverter" />
 								</p:column>
 								<p:column headerText="#{sgr_translation.form_content}">
 									<p:outputLabel value="#{comment.content}" />
@@ -86,6 +94,7 @@
 						</p:panelGrid>
 					</p:panel>
 
+					<!-- REVIEW te przyciski przenies wyzej ponad tabele z pozostalymi uwagami -->
 					<p:panelGrid columns="3">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{teacherCommentPanel.create}"
