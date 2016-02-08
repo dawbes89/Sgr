@@ -1,5 +1,7 @@
 package sgr.app.core.authentication;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 
 import sgr.app.api.authentication.AuthenticationService;
@@ -21,16 +23,25 @@ class AuthenticationServiceImpl implements AuthenticationService
    }
 
    @Override
-   public void logoutUser()
+   public boolean logoutUser()
    {
-      SessionHelper.getSession().invalidate();
+      try
+      {
+         SessionHelper.getSession().invalidate();
+         return true;
+      }
+      catch (IllegalStateException e)
+      {
+         return false;
+      }
    }
 
    @SuppressWarnings("unchecked")
    @Override
-   public <T> T getCurrentLoggedUser()
+   public <T> Optional<T> getCurrentLoggedUser()
    {
-      return (T) SessionHelper.getSession().getAttribute("user");
+      final Object user = SessionHelper.getSession().getAttribute("user");
+      return Optional.ofNullable((T) user);
    }
 
 }

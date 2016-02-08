@@ -1,5 +1,7 @@
 package sgr.app.api.authentication;
 
+import java.util.Optional;
+
 /**
  * Service for authenticate users in application.
  *
@@ -7,9 +9,14 @@ package sgr.app.api.authentication;
  */
 public interface AuthenticationService
 {
+
+   String USER_ATTRIBUTE = "user";
+   String LOGIN_PAGE = "loginPanel.xhtml";
+   String MAIN_PAGE = "index.xhtml";
+
    <T> boolean loginUser(T user);
 
-   void logoutUser();
+   boolean logoutUser();
 
-   <T> T getCurrentLoggedUser();
+   <T> Optional<T> getCurrentLoggedUser();
 }

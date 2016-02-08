@@ -12,40 +12,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sgr.app.api.authentication.AuthenticationService;
+
 public class AuthorizationFilter implements Filter
 {
 
    @Override
    public void init(FilterConfig filterConfig) throws ServletException
-   {
-      String b = "d";
-      String d = b;
-   }
+   {}
 
    @Override
    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
          throws IOException, ServletException
    {
-      HttpServletRequest request = (HttpServletRequest) req;
-      HttpServletResponse response = (HttpServletResponse) res;
-      HttpSession session = request.getSession(false);
-      Object user = (session != null) ? session.getAttribute("user") : null;
-      String loginURL = request.getContextPath() + "/app/loginPanel.xhtml";
+      final HttpServletRequest request = (HttpServletRequest) req;
+      final HttpServletResponse response = (HttpServletResponse) res;
+      final HttpSession session = request.getSession(false);
+      Object user = (session != null) ? session.getAttribute(AuthenticationService.USER_ATTRIBUTE)
+            : null;
 
-      if (user == null && !request.getRequestURI().equals(loginURL))
+      final String loginURL = request.getContextPath() + "/app/" + AuthenticationService.LOGIN_PAGE;
+      final String mainURL = request.getContextPath() + "/app/" + AuthenticationService.MAIN_PAGE;
+
+      if (user != null && request.getRequestURI().endsWith(AuthenticationService.LOGIN_PAGE))
+      {
+         response.sendRedirect(mainURL);
+         chain.doFilter(request, response);
+         return;
+      }
+
+      if (user == null && !request.getRequestURI().endsWith(AuthenticationService.LOGIN_PAGE))
       {
          response.sendRedirect(loginURL);
+         return;
       }
       else
       {
          chain.doFilter(request, response);
+         return;
       }
    }
 
    @Override
    public void destroy()
-   {
-
-   }
+   {}
 
 }
