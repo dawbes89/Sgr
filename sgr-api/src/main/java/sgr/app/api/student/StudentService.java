@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface StudentService
 {
-   public List<Student> search();
+   public List<Student> search(StudentQuery query);
 
    public Student get(Long id);
 

@@ -20,7 +20,7 @@
    </managed-bean>
    <managed-bean>
       <managed-bean-name>teacherCommentPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.comment.TeacherCommentPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingStuff.TeacherCommentPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>

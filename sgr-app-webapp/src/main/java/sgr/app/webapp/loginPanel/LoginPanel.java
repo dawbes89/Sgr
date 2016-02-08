@@ -76,7 +76,7 @@ public class LoginPanel implements Serializable
       externalContext.redirect(externalContext.getRequestContextPath());
    }
 
-   public TeachingStuff getExistTeacher()
+   public TeachingStuff getCurrentTeacher()
    {
       return existTeacher;
    }

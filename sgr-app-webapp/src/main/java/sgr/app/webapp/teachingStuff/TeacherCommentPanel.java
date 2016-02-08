@@ -1,4 +1,4 @@
-package sgr.app.webapp.comment;
+package sgr.app.webapp.teachingStuff;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,9 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import sgr.app.api.classgroup.ClassGroup;
+import sgr.app.api.classgroup.ClassGroupQuery;
+import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
+import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
@@ -18,12 +22,6 @@ import sgr.app.webapp.loginPanel.LoginPanel;
 /**
  * @author dawbes89
  */
-// REVIEW tak si� zastanawiam, czy tabelki z uczniami lepiej nie zrobi� bez
-// klasy a klas� wybiera� nad tabelk� z comboboxa, i po wybraniu robi� update na
-// tabeli wy�wietlaj�c list� uczni�w z tej klasy, ale o tym pasuje jeszcze
-// pogada�.
-// A i wsumie ten panel mo�na przenie�c do paczki nauczyciela, bo to dla niego
-// panel, a dla ucznia zrobi� podobnie w jego paczce
 @Controller
 public class TeacherCommentPanel extends AbstractPanel<Student>
 {
@@ -36,31 +34,40 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private StudentService studentService;
 
+   @Autowired
+   private ClassGroupService classGroupService;
+
    private List<Comment> comments;
 
    private Comment comment;
 
+   private ClassGroup classGroup;
+
+   private List<ClassGroup> classes;
+
    @Override
    public void init()
    {
-
+      classGroup = new ClassGroup();
       comment = new Comment();
       entity = new Student();
       comments = new ArrayList<>();
+      classes = new ArrayList<>();
    }
 
    @Override
    public void onLoad()
    {
-      entities = studentService.search();
+      init();
+//      entities = studentService.search(StudentQuery.EMPTY);
+      classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    public void create()
    {
       LoginPanel loginPanel  = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
-      loginPanel.getExistTeacher();
       comment.setStudentId(entity.getId());
-      comment.setIssuerName(loginPanel.getExistTeacher().getTeacherFullName());
+      comment.setIssuerName(loginPanel.getCurrentTeacher().getTeacherFullName());
       comment.setDate(new Date());
       commentService.create(comment);
       init();
@@ -69,6 +76,17 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void findComments()
    {
       comments = commentService.findByStudentId(entity.getId());
+   }
+
+   public void handleChange()
+   {
+      StudentQuery query = new StudentQuery();
+      if(classGroup != null)
+      {
+         query.setClassGroupId(classGroup.getId());
+      }
+
+      entities = studentService.search(query);
    }
 
    public Comment getComment()
@@ -89,6 +107,26 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void setComments(List<Comment> comments)
    {
       this.comments = comments;
+   }
+
+   public ClassGroup getClassGroup()
+   {
+      return classGroup;
+   }
+
+   public void setClassGroup(ClassGroup classGroup)
+   {
+      this.classGroup = classGroup;
+   }
+
+   public List<ClassGroup> getClasses()
+   {
+      return classes;
+   }
+
+   public void setClasses(List<ClassGroup> classes)
+   {
+      this.classes = classes;
    }
 
 }

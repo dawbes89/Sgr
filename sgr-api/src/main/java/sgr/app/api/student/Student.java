@@ -28,6 +28,8 @@ public class Student implements Serializable
 
    private static final long serialVersionUID = -2795415011971757723L;
 
+   public static String PROPERTY_CLASS_GROUP = "classGroup";
+
    @Id
    @Column(name = "student_id")
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,10 +47,6 @@ public class Student implements Serializable
          fetch = FetchType.EAGER)
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
-
-   //   @ManyToMany()
-   //   @JoinTable(name = "studebt_comments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "comment_id"))
-   //   private Set<Comment> comments;
 
    public Long getId()
    {

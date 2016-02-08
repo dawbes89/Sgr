@@ -9,73 +9,99 @@
 		<!-- 	MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
-				autoRun="true" update=":root:table" />
+				autoRun="true" update=":root:table, :root:classGroup" />
+			<p:panel id="commentsPanel" header="#{sgr_app_translation.menu_vertical_class_comments}">
+				<p:panelGrid id="pane" columns="1" columnClasses="grid">
+					<p:outputLabel value="#{sgr_translation.form_class}:" />
+					<p:selectOneMenu id="classGroup"
+						value="#{teacherCommentPanel.classGroup}" effect="fade"
+						filter="true" filterMatchMode="startsWith" validatorMessage="dupa"
+						converter="classConverter">
+						<p:ajax listener="#{teacherCommentPanel.handleChange}"
+							update=":root:table" />
+						<f:selectItems value="#{teacherCommentPanel.classes}"
+							var="classGroup" itemLabel="#{classGroup.className}"
+							itemValue="#{classGroup}" />
+					</p:selectOneMenu>
 
-			<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:outputPanel id="panel" style="text-align:center;" layout="block">
 
-				<p:dataTable id="table" var="student"
-					value="#{teacherCommentPanel.entities}" editable="true">
-					<p:column headerText="#{sgr_translation.form_person_firstName}"
-						filterBy="#{student.person.firstName}" filterMatchMode="contains">
-						<p:outputLabel value="#{student.person.firstName}" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.form_person_lastName}"
-						filterBy="#{student.person.lastName}" filterMatchMode="contains">
-						<p:outputLabel value="#{student.person.lastName}" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.form_class}">
-						<p:outputLabel value="#{student.classGroup.className}" />
-					</p:column>
-					<p:column width="40">
-						<!-- REVIEW tutaj pasowało by inne tłumaczenie, coś w stylu "uwagi" lub "edytuj uwagi" -->
-						<p:commandButton title="#{sgr_translation.button_update}"
-							action="#{teacherCommentPanel.findComments}" update=":add:panel"
-							oncomplete="PF('addDialog').show()" icon="ui-icon-pencil">
-							<f:setPropertyActionListener value="#{student}"
-								target="#{teacherCommentPanel.entity}" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-			</p:outputPanel>
+						<p:dataTable id="table" var="student"
+							value="#{teacherCommentPanel.entities}" editable="true">
+							<p:column headerText="#{sgr_translation.form_person_firstName}"
+								filterBy="#{student.person.firstName}"
+								filterMatchMode="contains">
+								<p:outputLabel value="#{student.person.firstName}" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_person_lastName}"
+								filterBy="#{student.person.lastName}" filterMatchMode="contains">
+								<p:outputLabel value="#{student.person.lastName}" />
+							</p:column>
+							<p:column width="40">
+								<p:commandButton title="#{sgr_translation.button_comments}"
+									action="#{teacherCommentPanel.findComments}"
+									update=":add:panel" oncomplete="PF('addDialog').show()"
+									icon="ui-icon-pencil">
+									<f:setPropertyActionListener value="#{student}"
+										target="#{teacherCommentPanel.entity}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:panelGrid>
+			</p:panel>
 		</h:form>
 
 		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
 			header="#{sgr_translation.form_window_caption_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="650px" height="500px"
+			showEffect="fold" hideEffect="fold" width="750px" height="500px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)"
 			focus=":add:content">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
+					<p:panelGrid columns="3">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{teacherCommentPanel.create}"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panelGrid>
 
-					<!-- REVIEW te pola z dodawaniem uwag zamknij w p:panel jak masz niżej pozostałe uwagi -->
-					<!-- i jeszcze w gridzie z dwoma kolumnami, czyli to co jest do separatora, jak to zrobisz -->
-					<!-- dopasuj szerokość pola z trescią uwagi do całego okna -->
-					<p:outputLabel for="type" value="#{sgr_translation.form_type}" />
-					<p:selectOneMenu id="type"
-						value="#{teacherCommentPanel.comment.commentType}" var="status"
-						required="true">
-						<f:selectItem itemValue="POSITIVE"
-							itemLabel="#{sgr_translation.comment_type_positive}" />
-						<f:selectItem itemValue="NEGATIVE"
-							itemLabel="#{sgr_translation.comment_type_negative}" />
-						<f:selectItem itemValue="REPREHENSIBLE"
-							itemLabel="#{sgr_translation.comment_type_reprehensible}" />
-					</p:selectOneMenu>
+					<p:panel id="personal" header="#{sgr_translation.comment}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="type" value="#{sgr_translation.form_type}" />
+							<p:selectOneMenu id="type"
+								value="#{teacherCommentPanel.comment.commentType}" var="status"
+								required="true">
+								<f:selectItem itemValue="POSITIVE"
+									itemLabel="#{sgr_translation.comment_type_positive}" />
+								<f:selectItem itemValue="NEGATIVE"
+									itemLabel="#{sgr_translation.comment_type_negative}" />
+								<f:selectItem itemValue="REPREHENSIBLE"
+									itemLabel="#{sgr_translation.comment_type_reprehensible}" />
+							</p:selectOneMenu>
 
-					<p:outputLabel for="content"
-						value="#{sgr_translation.form_content}:" />
-					<p:inputTextarea id="content" rows="6" cols="50"
-						label="#{sgr_translation.form_content}"
-						value="#{teacherCommentPanel.comment.content}" required="true" />
-
-					<!-- REVIEW separator niepotrzebny -->
-					<p:separator />
-
-					<!-- REVIEW dodaj na tym panelu, że można go zamykać i żeby był domyślnie zamknięty -->
+							<p:outputLabel for="content"
+								value="#{sgr_translation.form_content}:" />
+							<p:inputTextarea id="content" rows="6" cols="50"
+								label="#{sgr_translation.form_content}"
+								value="#{teacherCommentPanel.comment.content}" required="true" />
+						</p:panelGrid>
+					</p:panel>
 					<p:panel id="otherCommentsPanel"
-						header="#{sgr_translation.form_other_student_comments}">
+						header="#{sgr_translation.form_other_student_comments}"
+						toggleable="true">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:dataTable id="commentTable" var="comment"
 								value="#{teacherCommentPanel.comments}" editable="true">
@@ -96,24 +122,6 @@
 							</p:dataTable>
 						</p:panelGrid>
 					</p:panel>
-
-					<!-- REVIEW te przyciski przenies wyzej ponad tabele z pozostalymi uwagami -->
-					<p:panelGrid columns="3">
-						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{teacherCommentPanel.create}"
-							update=":add:panel :root:panel" icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_clear}"
-							update=":add:panel" process="@this" icon="ui-icon-close">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_cancel}"
-							update=":add:panel" process="@this" icon="ui-icon-cancel"
-							oncomplete="PF('addDialog').hide()">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-					</p:panelGrid>
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
