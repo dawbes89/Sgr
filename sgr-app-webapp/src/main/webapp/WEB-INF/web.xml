@@ -69,4 +69,13 @@
    <listener>
       <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
    </listener>
+
+   <filter>
+      <filter-name>authorizationFilter</filter-name>
+      <filter-class>sgr.app.frontend.authorization.AuthorizationFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>authorizationFilter</filter-name>
+      <servlet-name>Faces Servlet</servlet-name>
+   </filter-mapping>
 </web-app>

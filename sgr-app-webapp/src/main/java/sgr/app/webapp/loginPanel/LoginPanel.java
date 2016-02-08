@@ -10,11 +10,11 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.login.LoginService;
 import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.Bean;
@@ -33,6 +33,9 @@ public class LoginPanel implements Serializable
    @Autowired
    private TranslationService translationService;
 
+   @Autowired
+   private AuthenticationService authenticationService;
+
    public LoginPanel()
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
@@ -48,24 +51,26 @@ public class LoginPanel implements Serializable
 
       if (existUser.isPresent())
       {
+         authenticationService.loginUser(existUser.get());
          final ExternalContext externalContext = FacesContext.getCurrentInstance()
                .getExternalContext();
          externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.jsf");
       }
       else
       {
-         final String windowCaption = translationService.translate("validation_loginError");
          final String validationMessage = translationService.translate("validation_loginUserError");
-         final FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, windowCaption,
-               validationMessage);
-         RequestContext.getCurrentInstance().showMessageInDialog(message);
+         final FacesMessage message = new FacesMessage(validationMessage);
+         message.setSeverity(FacesMessage.SEVERITY_ERROR);
+         FacesContext.getCurrentInstance().addMessage("loginForm", message);
       }
    }
 
-   public void logout() throws IOException
+   public void logout()
    {
-      final ExternalContext externalContext = FacesContext.getCurrentInstance()
-            .getExternalContext();
-      externalContext.redirect(externalContext.getRequestContextPath());
+      authenticationService.logoutUser();
+      // final ExternalContext externalContext =
+      // FacesContext.getCurrentInstance()
+      // .getExternalContext();
+      // externalContext.redirect(externalContext.getRequestContextPath());
    }
 }

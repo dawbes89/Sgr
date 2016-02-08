@@ -4,7 +4,7 @@
 	position: relative;
 	margin: 5% auto;
 	padding: 0 0;
-	width: 460px;
+	max-width: 500px;
 }
 
 .ui-panelgrid td, .ui-panelgrid tr {
