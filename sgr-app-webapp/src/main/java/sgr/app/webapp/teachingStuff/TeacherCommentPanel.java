@@ -59,13 +59,15 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void onLoad()
    {
       init();
-//      entities = studentService.search(StudentQuery.EMPTY);
+      // entities = studentService.search(StudentQuery.EMPTY);
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    public void create()
    {
-      LoginPanel loginPanel  = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
+      // REVIEW pamiêtaj, ¿e to bêdzie mo¿na zast¹piæ serwisem jak moje zadanie
+      // wrzuce i pobieraæ aktualnie zalogowanego nauczyciela
+      LoginPanel loginPanel = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
       comment.setStudentId(entity.getId());
       comment.setIssuerName(loginPanel.getCurrentTeacher().getTeacherFullName());
       comment.setDate(new Date());
@@ -81,7 +83,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void handleChange()
    {
       StudentQuery query = new StudentQuery();
-      if(classGroup != null)
+      if (classGroup != null)
       {
          query.setClassGroupId(classGroup.getId());
       }
