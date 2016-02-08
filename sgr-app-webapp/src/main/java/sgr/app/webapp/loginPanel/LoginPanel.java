@@ -54,7 +54,7 @@ public class LoginPanel implements Serializable
          authenticationService.loginUser(existUser.get());
          final ExternalContext externalContext = FacesContext.getCurrentInstance()
                .getExternalContext();
-         externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.jsf");
+         externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.xhtml");
       }
       else
       {
@@ -65,12 +65,11 @@ public class LoginPanel implements Serializable
       }
    }
 
-   public void logout()
+   public void logout() throws IOException
    {
       authenticationService.logoutUser();
-      // final ExternalContext externalContext =
-      // FacesContext.getCurrentInstance()
-      // .getExternalContext();
-      // externalContext.redirect(externalContext.getRequestContextPath());
+      final ExternalContext externalContext = FacesContext.getCurrentInstance()
+            .getExternalContext();
+      externalContext.redirect(externalContext.getRequestContextPath());
    }
 }
