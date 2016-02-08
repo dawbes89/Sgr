@@ -12,6 +12,7 @@ import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.person.Person;
 import sgr.app.api.student.Student;
+import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.RandomPasswordGenerator;
@@ -45,7 +46,7 @@ public class StudentPanel extends AbstractPanel<Student>implements EditablePanel
       entity = new Student();
       account = new Account();
       person = new Person();
-      entities = studentService.search();
+      entities = studentService.search(StudentQuery.EMPTY);
       availableClasses = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
