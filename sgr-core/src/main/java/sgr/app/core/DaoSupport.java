@@ -89,7 +89,7 @@ public abstract class DaoSupport
    }
 
    @Required
-   public void setSessionFactory(SessionFactory sessionFactory)
+   public final void setSessionFactory(SessionFactory sessionFactory)
    {
       this.sessionFactory = sessionFactory;
    }
