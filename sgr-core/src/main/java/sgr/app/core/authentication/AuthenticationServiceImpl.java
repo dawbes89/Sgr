@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.authentication.AuthenticationService;
+import sgr.app.api.authentication.SessionService;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -22,6 +23,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
    private AccountService accountService;
+   private SessionService sessionService;
 
    @Override
    public boolean authenticateUser(String userName, String password)
@@ -41,7 +43,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       Object user = accountService.findUserByAccount(account.get());
       try
       {
-         SessionHelper.getSession().setAttribute(USER_ATTRIBUTE, user);
+         sessionService.setAttributeValue(USER_ATTRIBUTE, user);
          return true;
       }
       catch (IllegalStateException e)
@@ -55,7 +57,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    {
       try
       {
-         SessionHelper.getSession().invalidate();
+         sessionService.getSession().invalidate();
          return true;
       }
       catch (IllegalStateException e)
@@ -68,13 +70,19 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    @Override
    public <T> T getCurrentLoggedUser()
    {
-      return (T) SessionHelper.getSession().getAttribute(USER_ATTRIBUTE);
+      return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
    }
 
    @Required
    public void setAccountService(AccountService accountService)
    {
       this.accountService = accountService;
+   }
+
+   @Required
+   public void setSessionService(SessionService sessionService)
+   {
+      this.sessionService = sessionService;
    }
 
 }
