@@ -11,8 +11,8 @@ public interface AuthenticationService
 {
 
    String USER_ATTRIBUTE = "user";
-   String LOGIN_PAGE = "loginPanel.xhtml";
-   String MAIN_PAGE = "index.xhtml";
+   String LOGIN_PAGE = "loginPanel";
+   String MAIN_PAGE = "index";
 
    <T> boolean loginUser(T user);
 

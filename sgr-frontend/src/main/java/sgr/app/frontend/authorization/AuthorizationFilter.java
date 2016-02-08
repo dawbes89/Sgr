@@ -14,8 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import sgr.app.api.authentication.AuthenticationService;
 
+/**
+ * Filter used to filter pages with proper restrictions.
+ *
+ * @author leonzio
+ */
 public class AuthorizationFilter implements Filter
 {
+
+   private final static String URL_FORMAT = "%s/app/%s.xhtml";
 
    @Override
    public void init(FilterConfig filterConfig) throws ServletException
@@ -28,20 +35,23 @@ public class AuthorizationFilter implements Filter
       final HttpServletRequest request = (HttpServletRequest) req;
       final HttpServletResponse response = (HttpServletResponse) res;
       final HttpSession session = request.getSession(false);
-      Object user = (session != null) ? session.getAttribute(AuthenticationService.USER_ATTRIBUTE)
+
+      Object user = session != null ? session.getAttribute(AuthenticationService.USER_ATTRIBUTE)
             : null;
 
-      final String loginURL = request.getContextPath() + "/app/" + AuthenticationService.LOGIN_PAGE;
-      final String mainURL = request.getContextPath() + "/app/" + AuthenticationService.MAIN_PAGE;
+      final String loginURL = String.format(URL_FORMAT, request.getContextPath(),
+            AuthenticationService.LOGIN_PAGE);
+      final String mainURL = String.format(URL_FORMAT, request.getContextPath(),
+            AuthenticationService.MAIN_PAGE);
 
-      if (user != null && request.getRequestURI().endsWith(AuthenticationService.LOGIN_PAGE))
+      if (user != null && request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE))
       {
          response.sendRedirect(mainURL);
          chain.doFilter(request, response);
          return;
       }
 
-      if (user == null && !request.getRequestURI().endsWith(AuthenticationService.LOGIN_PAGE))
+      if (user == null && !request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE))
       {
          response.sendRedirect(loginURL);
          return;
