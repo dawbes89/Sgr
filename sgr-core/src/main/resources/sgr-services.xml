@@ -9,7 +9,10 @@
 
    <bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl" />
 
-   <bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl" />
+   <bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
+   </bean>
 
    <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
@@ -29,10 +32,5 @@
 
    <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
-   </bean>
-
-   <bean id="loginService" class="sgr.app.core.login.LoginServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="accountService" ref="accountService" />
    </bean>
 </beans>

@@ -2,7 +2,6 @@ package sgr.app.webapp.loginPanel;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.authentication.AuthenticationService;
-import sgr.app.api.login.LoginService;
 import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.Bean;
 
@@ -26,9 +24,6 @@ import sgr.app.frontend.Bean;
 public class LoginPanel implements Serializable
 {
    private static final long serialVersionUID = -7242960918445825945L;
-
-   @Autowired
-   private LoginService loginService;
 
    @Autowired
    private TranslationService translationService;
@@ -43,15 +38,13 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      final InputText loginField = Bean.getComponent("loginForm", "loginInput");
+      final InputText loginField = Bean.getComponent("loginForm", "userNameInput");
       final Password passwordField = Bean.getComponent("loginForm", "passwordInput");
 
-      final Optional<T> existUser = loginService.checkLogin(loginField.getValue().toString(),
-            passwordField.getValue().toString());
-
-      if (existUser.isPresent())
+      final boolean isAuthenticated = authenticationService.authenticateUser(
+            loginField.getValue().toString(), passwordField.getValue().toString());
+      if (isAuthenticated)
       {
-         authenticationService.loginUser(existUser.get());
          final ExternalContext externalContext = FacesContext.getCurrentInstance()
                .getExternalContext();
          externalContext.redirect(externalContext.getRequestContextPath() + "/app/index.xhtml");
