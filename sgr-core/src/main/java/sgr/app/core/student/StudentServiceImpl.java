@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import sgr.app.api.account.AccountType;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
@@ -40,6 +41,7 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    {
       String password = student.getAccount().getPassword();
       student.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
+      student.getAccount().setType(AccountType.STUDENT);
       createEntity(student);
    }
 

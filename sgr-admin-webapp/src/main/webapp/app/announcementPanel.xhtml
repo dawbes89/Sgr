@@ -66,11 +66,11 @@
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						label="#{sgr_translation.form_announcement_title}" required="true" />
-					<p:outputLabel for="message"
-						value="#{sgr_translation.form_announcement_message}:" />
-					<p:inputTextarea id="message"
-						value="#{announcementPanel.entity.message}"
-						label="#{sgr_translation.form_announcement_message}"
+					<p:outputLabel for="content"
+						value="#{sgr_translation.form_announcement_content}:" />
+					<p:inputTextarea id="content"
+						value="#{announcementPanel.entity.content}"
+						label="#{sgr_translation.form_announcement_content}"
 						required="true" rows="10" cols="50" />
 					<p:panelGrid columns="3">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
@@ -105,10 +105,10 @@
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						required="true" />
-					<h:outputLabel for="message"
-						value="#{sgr_translation.form_announcement_message}:" />
-					<p:inputTextarea id="message"
-						value="#{announcementPanel.entity.message}" required="true"
+					<h:outputLabel for="content"
+						value="#{sgr_translation.form_announcement_content}:" />
+					<p:inputTextarea id="content"
+						value="#{announcementPanel.entity.content}" required="true"
 						rows="10" cols="50" />
 					<p:panelGrid columns="">
 						<p:commandButton value="#{sgr_translation.form_button_update}"
@@ -134,20 +134,22 @@
 				resizable="false" showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<h:outputLabel
+						<p:outputLabel
 							value="#{sgr_translation.form_announcement_title} : *"
 							for="title" />
-						<h:outputText id="title" value="#{announcementPanel.entity.title}" />
+						<p:outputLabel id="title"
+							value="#{announcementPanel.entity.title}" />
 
-						<h:outputLabel
+						<p:outputLabel
 							value="#{sgr_translation.form_announcement_added} : *" for="date" />
-						<h:outputText value="#{announcementPanel.entity.date}"
+						<p:outputLabel id="date" value="#{announcementPanel.entity.date}"
 							converter="yearConverter" />
-						<h:outputLabel
-							value="#{sgr_translation.form_announcement_message} : *"
-							for="message" />
-						<h:outputText id="message"
-							value="#{announcementPanel.entity.message}" />
+
+						<p:outputLabel
+							value="#{sgr_translation.form_announcement_content} : *"
+							for="content" />
+						<p:outputLabel id="content"
+							value="#{announcementPanel.entity.content}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
