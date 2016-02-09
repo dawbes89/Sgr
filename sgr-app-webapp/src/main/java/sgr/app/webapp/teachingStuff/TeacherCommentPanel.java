@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
@@ -15,6 +16,7 @@ import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
+import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.webapp.loginPanel.LoginPanel;
@@ -37,6 +39,9 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private ClassGroupService classGroupService;
 
+   @Autowired
+   private AuthenticationService authenticationService;
+
    private List<Comment> comments;
 
    private Comment comment;
@@ -44,6 +49,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    private ClassGroup classGroup;
 
    private List<ClassGroup> classes;
+
 
    @Override
    public void init()
@@ -65,11 +71,12 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    public void create()
    {
-      // REVIEW pamiêtaj, ¿e to bêdzie mo¿na zast¹piæ serwisem jak moje zadanie
-      // wrzuce i pobieraæ aktualnie zalogowanego nauczyciela
+      // REVIEW pamiï¿½taj, ï¿½e to bï¿½dzie moï¿½na zastï¿½piï¿½ serwisem jak moje zadanie
+      // wrzuce i pobieraï¿½ aktualnie zalogowanego nauczyciela
       LoginPanel loginPanel = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
       comment.setStudentId(entity.getId());
-      comment.setIssuerName(loginPanel.getCurrentTeacher().getTeacherFullName());
+      TeachingStuff stuff = authenticationService.getCurrentLoggedUser();
+      comment.setIssuerName(stuff.getTeacherFullName());
       comment.setDate(new Date());
       commentService.create(comment);
       init();
