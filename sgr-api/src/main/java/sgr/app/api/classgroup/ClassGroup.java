@@ -93,11 +93,7 @@ public class ClassGroup implements Serializable
          return false;
       }
       ClassGroup object = (ClassGroup) obj;
-      if (this.id != object.id)
-      {
-         return false;
-      }
-      return true;
+      return object.id.equals(this.id);
    }
 
 }

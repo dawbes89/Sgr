@@ -9,13 +9,14 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.translation.TranslationService;
-import sgr.app.frontend.Bean;
+import sgr.app.frontend.BeanHelper;
 
 /**
  * @author dawbes
@@ -65,4 +66,16 @@ public class LoginPanel implements Serializable
             .getExternalContext();
       externalContext.redirect(externalContext.getRequestContextPath());
    }
+
+   public TeachingStuff getCurrentTeacher()
+   {
+      return existTeacher;
+   }
+
+   public void setExistTeacher(TeachingStuff existTeacher)
+   {
+      this.existTeacher = existTeacher;
+   }
+
+
 }
