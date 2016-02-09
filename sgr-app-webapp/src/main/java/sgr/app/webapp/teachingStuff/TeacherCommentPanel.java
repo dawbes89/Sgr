@@ -3,6 +3,7 @@ package sgr.app.webapp.teachingStuff;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,7 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
-import sgr.app.webapp.loginPanel.LoginPanel;
 
 /**
  * @author dawbes89
@@ -65,18 +64,15 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public void onLoad()
    {
       init();
-      // entities = studentService.search(StudentQuery.EMPTY);
+      entities = studentService.search(StudentQuery.EMPTY);
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    public void create()
    {
-      // REVIEW pami�taj, �e to b�dzie mo�na zast�pi� serwisem jak moje zadanie
-      // wrzuce i pobiera� aktualnie zalogowanego nauczyciela
-      LoginPanel loginPanel = BeanHelper.findBean("#{loginPanel}", LoginPanel.class);
       comment.setStudentId(entity.getId());
-      TeachingStuff stuff = authenticationService.getCurrentLoggedUser();
-      comment.setIssuerName(stuff.getTeacherFullName());
+      Optional<TeachingStuff> stuff = authenticationService.getCurrentLoggedUser();
+      comment.setIssuerName(stuff.get().getTeacherFullName());
       comment.setDate(new Date());
       commentService.create(comment);
       init();

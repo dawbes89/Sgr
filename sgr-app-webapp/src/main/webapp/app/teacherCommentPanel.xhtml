@@ -6,30 +6,15 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
+	<ui:include src="choseClassPanel.xhtml"></ui:include>
 		<!-- 	MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
-				autoRun="true" update=":root:table :root:classGroup" />
+				autoRun="true" update=":root:table" />
 
 			<p:panel id="commentsPanel"
 				header="#{sgr_app_translation.menu_vertical_class_comments}">
-				<p:panelGrid columns="1">
-					<p:panelGrid columns="2">
-						<p:outputLabel value="#{sgr_translation.form_class}:" />
-						<p:selectOneMenu id="classGroup"
-							value="#{teacherCommentPanel.classGroup}" effect="fade"
-							filter="true" filterMatchMode="startsWith"
-							validatorMessage="dupa" converter="classConverter">
-							<p:ajax listener="#{teacherCommentPanel.handleChange}"
-								update=":root:table" />
-							<f:selectItems value="#{teacherCommentPanel.classes}"
-								var="classGroup" itemLabel="#{classGroup.className}"
-								itemValue="#{classGroup}" />
-						</p:selectOneMenu>
-					</p:panelGrid>
-
 					<p:outputPanel id="panel" style="text-align:center;" layout="block">
-
 						<p:dataTable id="table" var="student"
 							value="#{teacherCommentPanel.entities}" editable="true">
 							<p:column headerText="#{sgr_translation.form_person_firstName}"
@@ -52,7 +37,6 @@
 							</p:column>
 						</p:dataTable>
 					</p:outputPanel>
-				</p:panelGrid>
 			</p:panel>
 		</h:form>
 
