@@ -28,6 +28,8 @@ public class Student implements Serializable
 
    private static final long serialVersionUID = -2795415011971757723L;
 
+   public static String PROPERTY_CLASS_GROUP = "classGroup";
+
    @Id
    @Column(name = "student_id")
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -85,5 +87,17 @@ public class Student implements Serializable
    {
       this.classGroup = classGroup;
    }
+
+   //   public Set<Comment> getComments()
+   //   {
+   //      return comments;
+   //   }
+   //
+   //   public void setComments(Set<Comment> comments)
+   //   {
+   //      this.comments = comments;
+   //   }
+
+
 
 }

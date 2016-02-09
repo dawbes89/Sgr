@@ -3,11 +3,13 @@ package sgr.app.core.student;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.account.AccountType;
 import sgr.app.api.student.Student;
+import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.core.DaoSupport;
 
@@ -19,10 +21,12 @@ class StudentServiceImpl extends DaoSupport implements StudentService
 
    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
+   public static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
+
    @Override
-   public List<Student> search()
+   public List<Student> search(StudentQuery query)
    {
-      Criteria criteria = createCriteria(Student.class);
+      Criteria criteria = createCriteriaFromQuery(query);
       return search(criteria);
    }
 
@@ -52,6 +56,17 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    public void update(Student student)
    {
       updateEntity(student);
+   }
+
+   private Criteria createCriteriaFromQuery(StudentQuery query)
+   {
+      Criteria criteria = createCriteria(Student.class);
+
+      if(query.hasClassGroupId())
+      {
+         criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
+      }
+         return criteria;
    }
 
 }

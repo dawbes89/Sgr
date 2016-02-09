@@ -36,4 +36,14 @@
    <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
+
+   <bean id="loginService" class="sgr.app.core.login.LoginServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
+   </bean>
+   
+   <bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
 </beans>

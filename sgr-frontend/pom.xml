@@ -19,6 +19,18 @@
          <groupId>StudentGradeRecord</groupId>
          <artifactId>sgr-api</artifactId>
       </dependency>
+      
+      <!-- JSF -->
+      <dependency>
+         <groupId>com.sun.faces</groupId>
+         <artifactId>jsf-impl</artifactId>
+         <version>2.2.10</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.tomcat</groupId>
+         <artifactId>tomcat-el-api</artifactId>
+         <version>8.0.27</version>
+      </dependency>
    </dependencies>
 
 </project>
