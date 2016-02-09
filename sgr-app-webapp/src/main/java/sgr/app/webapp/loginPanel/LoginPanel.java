@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -39,8 +38,8 @@ public class LoginPanel implements Serializable
 
    public <T> void checkLogin() throws IOException
    {
-      final InputText loginField = Bean.getComponent("loginForm", "userNameInput");
-      final Password passwordField = Bean.getComponent("loginForm", "passwordInput");
+      final InputText loginField = BeanHelper.getComponent("loginForm", "userNameInput");
+      final Password passwordField = BeanHelper.getComponent("loginForm", "passwordInput");
 
       final boolean isAuthenticated = authenticationService.authenticateUser(
             loginField.getValue().toString(), passwordField.getValue().toString());
@@ -66,16 +65,5 @@ public class LoginPanel implements Serializable
             .getExternalContext();
       externalContext.redirect(externalContext.getRequestContextPath());
    }
-
-   public TeachingStuff getCurrentTeacher()
-   {
-      return existTeacher;
-   }
-
-   public void setExistTeacher(TeachingStuff existTeacher)
-   {
-      this.existTeacher = existTeacher;
-   }
-
 
 }
