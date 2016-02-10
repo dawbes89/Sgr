@@ -11,6 +11,7 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.person.Person;
+import sgr.app.api.teachingStuff.SchoolSubject;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.BeanHelper;
@@ -97,6 +98,11 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
       InputText passwordField = BeanHelper.getComponent(formId, componentId);
       String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
+   }
+
+   public SchoolSubject[] getSchoolSubjects()
+   {
+      return SchoolSubject.values();
    }
 
    public Account getAccount()
