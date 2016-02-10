@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,8 +46,9 @@ public class TeachingStuff implements Serializable
    @JoinColumn(name = "preceptor_class_id")
    private ClassGroup preceptorClass;
 
-   @Column(name = "school_subject", length = 50)
-   private String schoolSubject;
+   @Enumerated(EnumType.STRING)
+   @Column(name = "school_subject")
+   private SchoolSubject schoolSubject;
 
    @Column(name = "academic_title", length = 25)
    private String academicTitle;
@@ -70,12 +73,12 @@ public class TeachingStuff implements Serializable
       this.person = person;
    }
 
-   public String getSchoolSubject()
+   public SchoolSubject getSchoolSubject()
    {
       return schoolSubject;
    }
 
-   public void setSchoolSubject(String schoolSubject)
+   public void setSchoolSubject(SchoolSubject schoolSubject)
    {
       this.schoolSubject = schoolSubject;
    }
