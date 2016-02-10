@@ -4,7 +4,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import sgr.app.api.translation.TranslationService;
 
 /**
  * Abstract base for converters.
@@ -13,6 +16,9 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  */
 public abstract class AbstractConverter<T> implements Converter
 {
+
+   @Autowired
+   protected TranslationService translationService;
 
    public AbstractConverter()
    {

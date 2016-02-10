@@ -80,9 +80,9 @@ public class Comment implements Serializable
       return commentType;
    }
 
-   public void setCommentType(CommentType status)
+   public void setCommentType(CommentType type)
    {
-      this.commentType = status;
+      this.commentType = type;
    }
 
    public Long getStudentId()
@@ -104,7 +104,5 @@ public class Comment implements Serializable
    {
       this.issuerName = issuerName;
    }
-
-
 
 }

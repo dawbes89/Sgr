@@ -6,37 +6,54 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
-	<ui:include src="choseClassPanel.xhtml"></ui:include>
-		<!-- 	MAIN TABLE -->
-		<h:form id="root">
-			<p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
-				autoRun="true" update=":root:table" />
+		<!-- SEARCH PANEL -->
+		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
+			<h:form id="search">
+				<p:remoteCommand name="onload"
+					action="#{teacherCommentPanel.onLoad}" autoRun="true"
+					update=":root:table" />
 
+				<p:outputLabel value="#{sgr_translation.form_class}:" />
+				<p:selectOneMenu id="classGroup"
+					value="#{teacherCommentPanel.classGroup}" effect="fade"
+					filter="true" filterMatchMode="contains" converter="classConverter">
+					<p:ajax listener="#{teacherCommentPanel.handleClassChange}"
+						update=":root:table" />
+					<f:selectItem itemValue="#{null}"
+						itemLabel="#{sgr_translation.selectOneMenu_select}"
+						noSelectionOption="true" />
+					<f:selectItems value="#{teacherCommentPanel.classes}"
+						var="classGroup" itemLabel="#{classGroup.className}"
+						itemValue="#{classGroup}" />
+				</p:selectOneMenu>
+			</h:form>
+		</p:panel>
+
+		<!-- MAIN TABLE -->
+		<h:form id="root">
 			<p:panel id="commentsPanel"
-				header="#{sgr_app_translation.menu_vertical_class_comments}">
-					<p:outputPanel id="panel" style="text-align:center;" layout="block">
-						<p:dataTable id="table" var="student"
-							value="#{teacherCommentPanel.entities}" editable="true">
-							<p:column headerText="#{sgr_translation.form_person_firstName}"
-								filterBy="#{student.person.firstName}"
-								filterMatchMode="contains">
-								<p:outputLabel value="#{student.person.firstName}" />
-							</p:column>
-							<p:column headerText="#{sgr_translation.form_person_lastName}"
-								filterBy="#{student.person.lastName}" filterMatchMode="contains">
-								<p:outputLabel value="#{student.person.lastName}" />
-							</p:column>
-							<p:column width="40">
-								<p:commandButton title="#{sgr_translation.button_comments}"
-									action="#{teacherCommentPanel.findComments}"
-									update=":add:panel" oncomplete="PF('addDialog').show()"
-									icon="ui-icon-pencil">
-									<f:setPropertyActionListener value="#{student}"
-										target="#{teacherCommentPanel.entity}" />
-								</p:commandButton>
-							</p:column>
-						</p:dataTable>
-					</p:outputPanel>
+				header="#{sgr_translation.form_comment_studentList}">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:dataTable id="table" var="student"
+						value="#{teacherCommentPanel.entities}" editable="true">
+						<p:column headerText="#{sgr_translation.form_person_firstName}"
+							filterBy="#{student.person.firstName}" filterMatchMode="contains">
+							<p:outputLabel value="#{student.person.firstName}" />
+						</p:column>
+						<p:column headerText="#{sgr_translation.form_person_lastName}"
+							filterBy="#{student.person.lastName}" filterMatchMode="contains">
+							<p:outputLabel value="#{student.person.lastName}" />
+						</p:column>
+						<p:column width="40">
+							<p:commandButton title="#{sgr_translation.button_comments}"
+								update=":add:panel" oncomplete="PF('addDialog').show()"
+								icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{student}"
+									target="#{teacherCommentPanel.entity}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
 			</p:panel>
 		</h:form>
 
@@ -50,11 +67,17 @@
 				<p:panelGrid id="panel" columns="1">
 					<p:messages id="msgs" />
 
-					<p:panel id="comment" header="#{sgr_translation.comment}">
+					<p:panel id="comment" header="#{sgr_translation.form_comment_new}">
 						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="type" value="#{sgr_translation.form_type}" />
+							<p:outputLabel for="student"
+								value="#{sgr_translation.form_comment_studentName}" />
+							<p:outputLabel id="student"
+								value="#{teacherCommentPanel.entity.fullName}" />
+
+							<p:outputLabel for="type"
+								value="#{sgr_translation.form_comment_type}" />
 							<p:selectOneMenu id="type"
-								value="#{teacherCommentPanel.comment.commentType}" var="status"
+								value="#{teacherCommentPanel.comment.commentType}:" var="type"
 								required="true">
 								<f:selectItem itemValue="POSITIVE"
 									itemLabel="#{sgr_translation.comment_type_positive}" />
@@ -65,52 +88,48 @@
 							</p:selectOneMenu>
 
 							<p:outputLabel for="content"
-								value="#{sgr_translation.form_content}:" />
+								value="#{sgr_translation.form_comment_content}:" />
 							<p:inputTextarea id="content" rows="6" cols="50"
-								label="#{sgr_translation.form_content}"
+								label="#{sgr_translation.form_comment_content}"
 								value="#{teacherCommentPanel.comment.content}" required="true" />
 						</p:panelGrid>
 					</p:panel>
 
-					<p:panelGrid columns="3">
+					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{teacherCommentPanel.create}"
-							update=":add:panel :root:panel" icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+							action="#{teacherCommentPanel.create}" update=":add:panel"
+							icon="ui-icon-disk">
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_clear}"
 							update=":add:panel" process="@this" icon="ui-icon-close">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+						<p:commandButton value="#{sgr_translation.form_button_close}"
 							update=":add:panel" process="@this" icon="ui-icon-cancel"
 							oncomplete="PF('addDialog').hide()">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
-					</p:panelGrid>
+					</p:panel>
 
 					<p:panel id="otherCommentsPanel"
-						header="#{sgr_translation.form_other_student_comments}"
-						toggleable="true" collapsed="true">
-						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:dataTable id="commentTable" var="comment"
-								value="#{teacherCommentPanel.comments}" editable="true">
-								<p:column headerText="#{sgr_translation.form_date_of_issue}">
-									<p:outputLabel value="#{comment.date}"
-										converter="yearConverter" />
-								</p:column>
-								<p:column headerText="#{sgr_translation.form_content}">
-									<p:outputLabel value="#{comment.content}" />
-								</p:column>
-								<p:column headerText="#{sgr_translation.form_type}">
-									<p:outputLabel value="#{comment.commentType}"
-										converter="enumTranslationConverter" />
-								</p:column>
-								<p:column headerText="#{sgr_translation.form_issuer_name}">
-									<p:outputLabel value="#{comment.issuerName}" />
-								</p:column>
-							</p:dataTable>
-						</p:panelGrid>
+						header="#{sgr_translation.form_comment_other}" toggleable="true"
+						collapsed="true">
+						<p:dataTable id="commentTable" var="comment"
+							value="#{teacherCommentPanel.comments}" editable="true">
+							<p:column headerText="#{sgr_translation.form_comment_addingDate}">
+								<p:outputLabel value="#{comment.date}" converter="yearConverter" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_comment_issuer}">
+								<p:outputLabel value="#{comment.issuerName}" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_comment_type}">
+								<p:outputLabel value="#{comment.commentType}"
+									converter="enumTranslationConverter" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_comment_content}">
+								<p:outputLabel value="#{comment.content}" />
+							</p:column>
+						</p:dataTable>
 					</p:panel>
 				</p:panelGrid>
 			</h:form>
