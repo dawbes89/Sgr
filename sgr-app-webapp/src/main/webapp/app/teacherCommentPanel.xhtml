@@ -115,20 +115,26 @@
 						header="#{sgr_translation.form_comment_other}" toggleable="true"
 						collapsed="true">
 						<p:dataTable id="commentTable" var="comment"
-							value="#{teacherCommentPanel.comments}" editable="true">
-							<p:column headerText="#{sgr_translation.form_comment_addingDate}">
+							value="#{teacherCommentPanel.comments}" editable="true"
+							cellSeparator="true">
+							<p:column width="16">
+								<p:rowToggler />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_comment_addingDate}"
+								width="110">
 								<p:outputLabel value="#{comment.date}" converter="yearConverter" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_comment_type}"
+								width="110">
+								<p:outputLabel value="#{comment.commentType}"
+									converter="commentTypeTranslationConverter" />
 							</p:column>
 							<p:column headerText="#{sgr_translation.form_comment_issuer}">
 								<p:outputLabel value="#{comment.issuerName}" />
 							</p:column>
-							<p:column headerText="#{sgr_translation.form_comment_type}">
-								<p:outputLabel value="#{comment.commentType}"
-									converter="commentTypeTranslationConverter" />
-							</p:column>
-							<p:column headerText="#{sgr_translation.form_comment_content}">
+							<p:rowExpansion>
 								<p:outputLabel value="#{comment.content}" />
-							</p:column>
+							</p:rowExpansion>
 						</p:dataTable>
 					</p:panel>
 				</p:panelGrid>
