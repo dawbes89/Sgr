@@ -3,11 +3,11 @@ package sgr.app.frontend.converters;
 import sgr.app.api.comment.CommentType;
 
 /**
- * Converts {@link Enum} to translated value.
+ * Converts {@link CommentType} enum to translated value.
  *
  * @author dawbes89
  */
-public class EnumTranslationConverter extends AbstractConverter<Enum<?>>
+public class CommentTypeTranslationConverter extends AbstractConverter<CommentType>
 {
 
    @Override
