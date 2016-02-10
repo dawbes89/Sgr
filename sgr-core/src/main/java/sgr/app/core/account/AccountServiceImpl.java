@@ -4,10 +4,11 @@ import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
-import sgr.app.api.account.AccountType;
+import sgr.app.api.student.Student;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.core.DaoSupport;
 
@@ -16,6 +17,8 @@ import sgr.app.core.DaoSupport;
  */
 class AccountServiceImpl extends DaoSupport implements AccountService
 {
+
+   private static final String ACCOUNT = "account";
 
    @Override
    public Optional<Account> findAccountByLogin(String login)
@@ -26,19 +29,31 @@ class AccountServiceImpl extends DaoSupport implements AccountService
       return Optional.ofNullable(result);
    }
 
+   @SuppressWarnings("unchecked")
    @Override
    public <T> Optional<T> findUserByAccount(Account account)
    {
-      if (account.getType().equals(AccountType.TEACHER))
+      Optional<T> user = Optional.empty();
+
+      final SimpleExpression accountRestriction = Restrictions.eq(ACCOUNT, account);
+
+      switch (account.getType())
       {
-         Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
-         teachingStuffCriteria.add(Restrictions.eq("account", account));
-         @SuppressWarnings("unchecked")
-         T object = (T) teachingStuffCriteria.uniqueResult();
-         return Optional.ofNullable(object);
+         case TEACHER:
+            Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
+            teachingStuffCriteria.add(accountRestriction);
+            user = Optional.of((T) teachingStuffCriteria.uniqueResult());
+            break;
+         case STUDENT:
+            Criteria studentCriteria = createCriteria(Student.class);
+            studentCriteria.add(accountRestriction);
+            user = Optional.of((T) studentCriteria.uniqueResult());
+            break;
+         default:
+            break;
       }
-      // TODO Student criteria
-      return null;
+
+      return user;
    }
 
 }

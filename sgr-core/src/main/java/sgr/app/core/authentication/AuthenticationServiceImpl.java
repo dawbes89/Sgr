@@ -40,7 +40,11 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
          return false;
       }
 
-      Object user = accountService.findUserByAccount(account.get());
+      Optional<Object> user = accountService.findUserByAccount(account.get());
+      if (!user.isPresent())
+      {
+         return false;
+      }
       try
       {
          sessionService.setAttributeValue(USER_ATTRIBUTE, user);
