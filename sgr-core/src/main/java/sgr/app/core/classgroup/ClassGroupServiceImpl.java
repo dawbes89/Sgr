@@ -75,12 +75,12 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       Criteria criteria = createCriteria(ClassGroup.class);
       criteria.addOrder(Order.asc("groupNumber")).addOrder(Order.asc("groupName"))
             .addOrder(Order.asc("year"));
-      if (query.hasTeacherClassId())
+      if (query.hasClassId())
       {
          criteria
                .add(Restrictions
                      .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
-                           + query.getTeacherClassId() + ")"));
+                           + query.getClassId() + ")"));
       }
       if (query.isAvailableForTeachers())
       {

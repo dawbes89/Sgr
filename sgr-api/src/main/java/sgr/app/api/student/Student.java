@@ -43,8 +43,8 @@ public class Student implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
-         fetch = FetchType.EAGER)
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
+         CascadeType.REFRESH }, fetch = FetchType.EAGER)
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 
@@ -88,16 +88,13 @@ public class Student implements Serializable
       this.classGroup = classGroup;
    }
 
-   //   public Set<Comment> getComments()
-   //   {
-   //      return comments;
-   //   }
-   //
-   //   public void setComments(Set<Comment> comments)
-   //   {
-   //      this.comments = comments;
-   //   }
-
-
+   public String getFullName()
+   {
+      if (person == null)
+      {
+         return null;
+      }
+      return String.format("%s %s", person.getFirstName(), person.getLastName());
+   }
 
 }

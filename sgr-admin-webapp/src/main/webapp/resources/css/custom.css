@@ -7,6 +7,10 @@
 	max-width: 500px;
 }
 
+.ui-panelgrid {
+	width: 100%;
+}
+
 .ui-panelgrid td, .ui-panelgrid tr {
 	border-style: none !important;
 }

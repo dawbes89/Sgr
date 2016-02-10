@@ -8,8 +8,8 @@
       <converter-class>sgr.app.frontend.converters.YearConverter</converter-class>
    </converter>
    <converter>
-      <converter-id>enumTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.EnumTranslationConverter</converter-class>
+      <converter-id>commentTypeTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.CommentTypeTranslationConverter</converter-class>
    </converter>
    <converter>
       <converter-id>classConverter</converter-id>

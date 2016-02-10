@@ -3,7 +3,6 @@ package sgr.app.webapp.teachingStuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import sgr.app.api.account.AccountService;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.panels.AbstractPanel;
@@ -20,19 +19,17 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    @Autowired
    private TeachingStuffService teachingStuffService;
 
-   @Autowired
-   private AccountService accountService;
-
    @Override
    public void init()
    {
       entity = new TeachingStuff();
+      entities = teachingStuffService.search();
    }
 
    @Override
    public void onLoad()
    {
-      entities = teachingStuffService.search();
+      init();
    }
 
 }
