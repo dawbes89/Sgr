@@ -1,5 +1,8 @@
 package sgr.app.api.teachingStuff;
 
+/**
+ * @author dawbes89
+ */
 public enum SchoolSubject
 {
    POLISH_LANGUAGE("school_subject_polish_language"),
@@ -29,9 +32,5 @@ public enum SchoolSubject
    {
       return label;
    }
-
-
-
-
 
 }

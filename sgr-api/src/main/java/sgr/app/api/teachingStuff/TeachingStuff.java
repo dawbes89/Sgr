@@ -42,15 +42,16 @@ public class TeachingStuff implements Serializable
    @JoinColumn(name = "account_id", nullable = false, unique = true)
    private Account account;
 
-   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "preceptor_class_id")
+   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
+         CascadeType.REFRESH }, fetch = FetchType.EAGER)
+   @JoinColumn(name = "preceptor_class_id", nullable = true, unique = true)
    private ClassGroup preceptorClass;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject")
+   @Column(name = "school_subject", nullable = false)
    private SchoolSubject schoolSubject;
 
-   @Column(name = "academic_title", length = 25)
+   @Column(name = "academic_title", length = 25, nullable = false)
    private String academicTitle;
 
    public Long getId()
