@@ -46,7 +46,8 @@
 						headerText="#{sgr_translation.form_teachingStuff_schoolSubject}"
 						filterBy="#{teachingStuff.schoolSubject}"
 						filterMatchMode="contains">
-						<p:outputLabel value="#{teachingStuff.schoolSubject}" converter="schoolSubjectTranslationConverter" />
+						<p:outputLabel value="#{teachingStuff.schoolSubject}"
+							converter="schoolSubjectTranslationConverter" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_account_userName}"
 						filterBy="#{teachingStuff.account.userName}"
@@ -133,13 +134,14 @@
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:selectOneMenu id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
-								filter="true" filterMatchMode="contains" >
+								filter="true" filterMatchMode="contains"
+								converter="schoolSubjectTranslationConverter">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
 									noSelectionOption="true" />
 								<f:selectItems value="#{teachingStuffPanel.schoolSubjects}"
-									var="schoolSubject"
-									itemValue="#{schoolSubject}" itemLabel="#{schoolSubject}" />
+									var="schoolSubject" itemValue="#{schoolSubject}"
+									itemLabel="#{schoolSubject.label}" />
 							</p:selectOneMenu>
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
@@ -218,10 +220,17 @@
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="schoolSubject"
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
-							<p:inputText id="schoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}"
-								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
-								required="true" />
+							<p:selectOneMenu id="schoolSubject"
+								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
+								filter="true" filterMatchMode="contains"
+								converter="schoolSubjectTranslationConverter">
+								<f:selectItem itemValue="#{null}"
+									itemLabel="#{sgr_translation.selectOneMenu_select}"
+									noSelectionOption="true" />
+								<f:selectItems value="#{teachingStuffPanel.schoolSubjects}"
+									var="schoolSubject" itemValue="#{schoolSubject}"
+									itemLabel="#{schoolSubject.label}" />
+							</p:selectOneMenu>
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 							<p:inputText id="academicTitle"
