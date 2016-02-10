@@ -11,5 +11,9 @@
       <converter-id>yearConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.YearConverter</converter-class>
    </converter>
+   <converter>
+      <converter-id>schoolSubjectTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
+   </converter>
 
 </faces-config>
