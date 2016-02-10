@@ -26,7 +26,12 @@
    <managed-bean>
       <managed-bean-name>loginPanel</managed-bean-name>
       <managed-bean-class>sgr.app.webapp.loginPanel.LoginPanel</managed-bean-class>
-      <managed-bean-scope>session</managed-bean-scope>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   <managed-bean>
+      <managed-bean-name>studentCommentPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.student.StudentCommentPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
 
 </faces-config>
