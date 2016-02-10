@@ -2,6 +2,7 @@ package sgr.app.frontend.authorization;
 
 import java.io.IOException;
 
+import javax.faces.application.ResourceHandler;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -35,6 +36,13 @@ public class AuthorizationFilter implements Filter
       final HttpServletRequest request = (HttpServletRequest) req;
       final HttpServletResponse response = (HttpServletResponse) res;
       final HttpSession session = request.getSession(false);
+
+      if (request.getRequestURI()
+            .startsWith(request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER))
+      {
+         chain.doFilter(request, response);
+         return;
+      }
 
       Object user = session != null ? session.getAttribute(AuthenticationService.USER_ATTRIBUTE)
             : null;
