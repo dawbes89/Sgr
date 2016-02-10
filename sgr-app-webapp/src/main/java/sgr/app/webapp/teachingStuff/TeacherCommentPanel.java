@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,6 +21,7 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -28,6 +32,9 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 {
 
    private static final long serialVersionUID = -6502541271869290855L;
+
+   @Autowired
+   private TranslationService translationService;
 
    @Autowired
    private CommentService commentService;
@@ -41,7 +48,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private AuthenticationService authenticationService;
 
-   private List<Comment> comments;
+   private TeachingStuff currentLoggedTeacher;
 
    private Comment comment;
 
@@ -49,48 +56,64 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    private List<ClassGroup> classes;
 
-
    @Override
    public void init()
    {
       classGroup = new ClassGroup();
       comment = new Comment();
       entity = new Student();
-      comments = new ArrayList<>();
-      classes = new ArrayList<>();
+      entities = new ArrayList<>();
+      classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
    public void onLoad()
    {
       init();
-      entities = studentService.search(StudentQuery.EMPTY);
-      classes = classGroupService.search(ClassGroupQuery.EMPTY);
+
+      currentLoggedTeacher = new TeachingStuff();
+      final Optional<TeachingStuff> teacher = authenticationService.getCurrentLoggedUser();
+      if (teacher.isPresent())
+      {
+         currentLoggedTeacher = teacher.get();
+         final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
+         if (preceptorClass != null)
+         {
+            classGroup = preceptorClass;
+            searchStudents(preceptorClass.getId());
+         }
+      }
+   }
+
+   public void handleClassChange()
+   {
+      if (classGroup.getId() != null)
+      {
+         searchStudents(classGroup.getId());
+      }
+      else
+      {
+         entities = new ArrayList<>();
+      }
    }
 
    public void create()
    {
       comment.setStudentId(entity.getId());
-      Optional<TeachingStuff> stuff = authenticationService.getCurrentLoggedUser();
-      comment.setIssuerName(stuff.get().getTeacherFullName());
+      comment.setIssuerName(currentLoggedTeacher.getTeacherFullName());
       comment.setDate(new Date());
       commentService.create(comment);
-      init();
+      comment = new Comment();
+
+      final String messageContent = translationService.translate("form_comment_savedMessage");
+      final FacesMessage message = new FacesMessage(messageContent);
+      message.setSeverity(FacesMessage.SEVERITY_INFO);
+      FacesContext.getCurrentInstance().addMessage("add", message);
    }
 
-   public void findComments()
+   private void searchStudents(Long classId)
    {
-      comments = commentService.findByStudentId(entity.getId());
-   }
-
-   public void handleChange()
-   {
-      StudentQuery query = new StudentQuery();
-      if (classGroup != null)
-      {
-         query.setClassGroupId(classGroup.getId());
-      }
-
+      final StudentQuery query = StudentQuery.withClassGroupId(classId);
       entities = studentService.search(query);
    }
 
@@ -106,12 +129,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    public List<Comment> getComments()
    {
-      return comments;
-   }
-
-   public void setComments(List<Comment> comments)
-   {
-      this.comments = comments;
+      return commentService.findByStudentId(entity.getId());
    }
 
    public ClassGroup getClassGroup()
@@ -127,11 +145,6 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    public List<ClassGroup> getClasses()
    {
       return classes;
-   }
-
-   public void setClasses(List<ClassGroup> classes)
-   {
-      this.classes = classes;
    }
 
 }

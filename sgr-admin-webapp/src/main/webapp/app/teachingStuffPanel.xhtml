@@ -156,7 +156,7 @@
 							</p:selectOneMenu>
 						</p:panelGrid>
 					</p:panel>
-					<p:panelGrid columns="3">
+					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{teachingStuffPanel.create}"
 							update=":add:panel :root:panel" icon="ui-icon-disk"
@@ -171,7 +171,7 @@
 							oncomplete="PF('addDialog').hide()">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
-					</p:panelGrid>
+					</p:panel>
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
@@ -237,7 +237,7 @@
 							</p:selectOneMenu>
 						</p:panelGrid>
 					</p:panel>
-					<p:panelGrid columns="">
+					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.button_update}"
 							actionListener="#{teachingStuffPanel.update(teachingStuffPanel.entity)}"
 							update=":update:panel :root:panel" icon="ui-icon-disk"
@@ -250,7 +250,7 @@
 							oncomplete="PF('updateDialog').hide()">
 							<p:resetInput target=":update:panel" />
 						</p:commandButton>
-					</p:panelGrid>
+					</p:panel>
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>

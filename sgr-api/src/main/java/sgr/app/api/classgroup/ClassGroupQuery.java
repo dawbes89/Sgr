@@ -19,12 +19,12 @@ public class ClassGroupQuery implements Serializable
    public static final ClassGroupQuery EMPTY = new ClassGroupQuery();
 
    private boolean availableForTeachers;
-   private Optional<Long> teacherClassId = Optional.empty();
+   private Optional<Long> classId = Optional.empty();
 
    public static ClassGroupQuery setAvailableForCurrentTeacher(Long classId)
    {
       ClassGroupQuery query = new ClassGroupQuery();
-      query.setTeacherClassId(classId);
+      query.setClassId(classId);
       return query;
    }
 
@@ -40,19 +40,19 @@ public class ClassGroupQuery implements Serializable
       return availableForTeachers;
    }
 
-   public boolean hasTeacherClassId()
+   public boolean hasClassId()
    {
-      return teacherClassId.isPresent();
+      return classId.isPresent();
    }
 
-   public Long getTeacherClassId()
+   public Long getClassId()
    {
-      return teacherClassId.get();
+      return classId.get();
    }
 
-   public void setTeacherClassId(Long teacherClassId)
+   public void setClassId(Long classId)
    {
-      this.teacherClassId = Optional.of(teacherClassId);
+      this.classId = Optional.of(classId);
    }
 
 }

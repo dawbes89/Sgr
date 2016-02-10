@@ -88,7 +88,7 @@
 						</p:panelGrid>
 					</p:panel>
 
-					<p:panelGrid columns="2">
+					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{classGroupPanel.create}"
 							update=":root:panel :add:panel" icon="ui-icon-disk"
@@ -99,7 +99,7 @@
 							oncomplete="PF('addDialog').hide()">
 							<p:resetInput target=":add:panel" />
 						</p:commandButton>
-					</p:panelGrid>
+					</p:panel>
 				</p:panelGrid>
 
 			</h:form>
