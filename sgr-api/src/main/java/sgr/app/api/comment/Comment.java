@@ -80,9 +80,9 @@ public class Comment implements Serializable
       return commentType;
    }
 
-   public void setCommentType(CommentType type)
+   public void setCommentType(CommentType commentType)
    {
-      this.commentType = type;
+      this.commentType = commentType;
    }
 
    public Long getStudentId()
