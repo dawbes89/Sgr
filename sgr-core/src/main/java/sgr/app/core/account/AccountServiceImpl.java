@@ -8,6 +8,7 @@ import org.hibernate.criterion.SimpleExpression;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
+import sgr.app.api.admin.Admin;
 import sgr.app.api.student.Student;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.core.DaoSupport;
@@ -49,6 +50,11 @@ class AccountServiceImpl extends DaoSupport implements AccountService
             studentCriteria.add(accountRestriction);
             user = Optional.of((T) studentCriteria.uniqueResult());
             break;
+         case ADMIN:
+            Criteria adminCriteria = createCriteria(Admin.class);
+            adminCriteria.add(accountRestriction);
+            user = Optional.of((T) adminCriteria.uniqueResult());
+
          default:
             break;
       }

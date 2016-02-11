@@ -12,7 +12,7 @@ public interface AuthenticationService
    String LOGIN_PAGE = "loginPanel";
    String MAIN_PAGE = "index";
 
-   boolean authenticateUser(String userName, String password);
+   boolean authenticateUser(String userName, String password, boolean isAdmin);
 
    boolean logoutUser();
 

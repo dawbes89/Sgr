@@ -1,4 +1,4 @@
-package sgr.app.webapp.loginPanel;
+package sgr.admin.webapp.login;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -42,7 +42,7 @@ public class LoginPanel implements Serializable
       final Password passwordField = BeanHelper.getComponent("loginForm", "passwordInput");
 
       final boolean isAuthenticated = authenticationService.authenticateUser(
-            loginField.getValue().toString(), passwordField.getValue().toString(), false);
+            loginField.getValue().toString(), passwordField.getValue().toString(), true);
       if (isAuthenticated)
       {
          final ExternalContext externalContext = FacesContext.getCurrentInstance()

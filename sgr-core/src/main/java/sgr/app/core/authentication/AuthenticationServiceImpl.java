@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
+import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
 import sgr.app.core.DaoSupport;
@@ -26,13 +27,20 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    private SessionService sessionService;
 
    @Override
-   public boolean authenticateUser(String userName, String password)
+   public boolean authenticateUser(String userName, String password, boolean isAdmin)
    {
       final Optional<Account> account = accountService.findAccountByLogin(userName);
 
       if (!account.isPresent())
       {
          return false;
+      }
+      if(isAdmin)
+      {
+         if(!account.get().getType().equals(AccountType.ADMIN))
+         {
+            return false;
+         }
       }
 
       if (!PASSWORD_ENCODER.matches(password, account.get().getPassword()))
@@ -88,5 +96,6 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    {
       this.sessionService = sessionService;
    }
+
 
 }
