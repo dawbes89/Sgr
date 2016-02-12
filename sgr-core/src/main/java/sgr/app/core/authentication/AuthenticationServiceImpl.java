@@ -1,5 +1,6 @@
 package sgr.app.core.authentication;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -9,8 +10,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
+import sgr.app.api.admin.Admin;
+import sgr.app.api.admin.AdminService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
+import sgr.app.api.person.Person;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -25,6 +29,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 
    private AccountService accountService;
    private SessionService sessionService;
+   private AdminService adminService;
 
    @Override
    public boolean authenticateUser(String userName, String password, boolean isAdmin)
@@ -35,9 +40,9 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       {
          return false;
       }
-      if(isAdmin)
+      if (isAdmin)
       {
-         if(!account.get().getType().equals(AccountType.ADMIN))
+         if (!account.get().getType().equals(AccountType.ADMIN))
          {
             return false;
          }
@@ -78,6 +83,31 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       }
    }
 
+   @Override
+   public void createSuperAdmin()
+   {
+      Optional<Account> account = accountService.findAccountByLogin("root");
+      if(account.isPresent())
+      {
+         return;
+      }
+      Account superAccount = new Account();
+      superAccount.setPassword("$2a$10$UsbrNrF6hlL3DUMs5UTK9eRNCiYCGlW4Hb6kMPYv1ERMfuwJpVF.O");
+      superAccount.setType(AccountType.ADMIN);
+      superAccount.setUserName("root");
+
+      Person superPerson = new Person();
+      superPerson.setFirstName("root");
+      superPerson.setBirthDate(new Date());
+      superPerson.setLastName("root");
+
+      Admin superAdmin = new Admin();
+      superAdmin.setAccount(superAccount);
+      superAdmin.setPerson(superPerson);
+      adminService.create(superAdmin);
+
+   }
+
    @SuppressWarnings("unchecked")
    @Override
    public <T> T getCurrentLoggedUser()
@@ -97,5 +127,10 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       this.sessionService = sessionService;
    }
 
+   @Required
+   public void setAdminService(AdminService adminService)
+   {
+      this.adminService = adminService;
+   }
 
 }
