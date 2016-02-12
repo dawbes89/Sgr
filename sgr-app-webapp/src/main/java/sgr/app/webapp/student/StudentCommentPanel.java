@@ -1,7 +1,6 @@
 package sgr.app.webapp.student;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,9 +37,8 @@ public class StudentCommentPanel extends AbstractPanel<Comment>
    @Override
    public void onLoad()
    {
-      final Optional<Student> currentLoggedUser = authenticationService.getCurrentLoggedUser();
-      final Student student = currentLoggedUser.get();
-      entities = commentService.findByStudentId(student.getId());
+      final Student currentLoggedUser = authenticationService.getCurrentLoggedUser();
+      entities = commentService.findByStudentId(currentLoggedUser.getId());
    }
 
 }
