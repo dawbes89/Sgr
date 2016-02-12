@@ -41,4 +41,8 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
    
+   <bean id="adminService" class="sgr.app.core.admin.AdminServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
 </beans>

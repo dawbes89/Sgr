@@ -29,6 +29,11 @@
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
+      <managed-bean-name>adminPanel</managed-bean-name>
+      <managed-bean-class>sgr.admin.webapp.admin.AdminPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   <managed-bean>
       <managed-bean-name>loginPanel</managed-bean-name>
       <managed-bean-class>sgr.admin.webapp.login.LoginPanel</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
