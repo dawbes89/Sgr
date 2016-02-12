@@ -3,7 +3,6 @@ package sgr.app.webapp.teachingStuff;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -71,11 +70,9 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    {
       init();
 
-      currentLoggedTeacher = new TeachingStuff();
-      final Optional<TeachingStuff> teacher = authenticationService.getCurrentLoggedUser();
-      if (teacher.isPresent())
+      currentLoggedTeacher = authenticationService.getCurrentLoggedUser();
+      if (currentLoggedTeacher != null)
       {
-         currentLoggedTeacher = teacher.get();
          final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
          if (preceptorClass != null)
          {

@@ -19,9 +19,9 @@ import org.springframework.beans.factory.annotation.Required;
 public abstract class DaoSupport
 {
 
-   public SessionFactory sessionFactory;
+   private SessionFactory sessionFactory;
 
-   private Session getSession()
+   protected final Session getSession()
    {
       return sessionFactory.getCurrentSession();
    }
