@@ -87,12 +87,12 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    public void createSuperAdmin()
    {
       Optional<Account> account = accountService.findAccountByLogin("root");
-      if(account.isPresent())
+      if (account.isPresent())
       {
          return;
       }
       Account superAccount = new Account();
-      superAccount.setPassword("$2a$10$UsbrNrF6hlL3DUMs5UTK9eRNCiYCGlW4Hb6kMPYv1ERMfuwJpVF.O");
+      superAccount.setPassword("kopytko");
       superAccount.setType(AccountType.ADMIN);
       superAccount.setUserName("root");
 
