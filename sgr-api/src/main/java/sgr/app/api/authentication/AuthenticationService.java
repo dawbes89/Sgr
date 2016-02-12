@@ -16,5 +16,7 @@ public interface AuthenticationService
 
    boolean logoutUser();
 
+   void createSuperAdmin();
+
    <T> T getCurrentLoggedUser();
 }
