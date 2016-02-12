@@ -60,7 +60,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       }
       try
       {
-         sessionService.setAttributeValue(USER_ATTRIBUTE, user);
+         sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
          return true;
       }
       catch (IllegalStateException e)
@@ -105,7 +105,6 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       superAdmin.setAccount(superAccount);
       superAdmin.setPerson(superPerson);
       adminService.create(superAdmin);
-
    }
 
    @SuppressWarnings("unchecked")

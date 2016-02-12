@@ -19,8 +19,6 @@ import sgr.app.core.DaoSupport;
 class AccountServiceImpl extends DaoSupport implements AccountService
 {
 
-   private static final String ACCOUNT = "account";
-
    @Override
    public Optional<Account> findAccountByLogin(String login)
    {
@@ -34,31 +32,26 @@ class AccountServiceImpl extends DaoSupport implements AccountService
    @Override
    public <T> Optional<T> findUserByAccount(Account account)
    {
-      Optional<T> user = Optional.empty();
-
-      final SimpleExpression accountRestriction = Restrictions.eq(ACCOUNT, account);
-
+      Criteria criteria = null;
       switch (account.getType())
       {
          case TEACHER:
-            Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
-            teachingStuffCriteria.add(accountRestriction);
-            user = Optional.of((T) teachingStuffCriteria.uniqueResult());
+            criteria = createCriteria(TeachingStuff.class);
             break;
          case STUDENT:
-            Criteria studentCriteria = createCriteria(Student.class);
-            studentCriteria.add(accountRestriction);
-            user = Optional.of((T) studentCriteria.uniqueResult());
+            criteria = createCriteria(Student.class);
             break;
          case ADMIN:
-            Criteria adminCriteria = createCriteria(Admin.class);
-            adminCriteria.add(accountRestriction);
-            user = Optional.of((T) adminCriteria.uniqueResult());
-
-         default:
+            criteria = createCriteria(Admin.class);
             break;
+         default:
+            return Optional.empty();
       }
 
+      Optional<T> user = Optional.empty();
+      final SimpleExpression accountRestriction = Restrictions.eq("account", account);
+      criteria.add(accountRestriction);
+      user = Optional.of((T) criteria.uniqueResult());
       return user;
    }
 

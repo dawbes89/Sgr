@@ -27,10 +27,12 @@
 							<p:outputLabel value="#{sgr_translation.form_account_userName}: "
 								for="userNameInput" />
 							<p:inputText id="userNameInput"
+								value="#{loginPanel.loginBean.userName}"
 								label="#{sgr_translation.form_account_userName}" required="true" />
 							<p:outputLabel value="#{sgr_translation.form_account_password}: "
 								for="passwordInput" />
 							<p:password id="passwordInput"
+								value="#{loginPanel.loginBean.password}"
 								label="#{sgr_translation.form_account_password}" required="true" />
 							<p:column />
 							<p:commandButton value="#{sgr_translation.form_button_login}"
