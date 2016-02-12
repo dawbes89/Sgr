@@ -1,0 +1,214 @@
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<ui:define name="content">
+		<!-- 	MAIN TABLE -->
+		<h:form id="root">
+			<p:remoteCommand name="onload" action="#{adminPanel.onLoad}"
+				autoRun="true" update=":root:table" />
+
+			<p:outputPanel id="panel" style="text-align:center;" layout="block">
+				<p:commandButton value="#{sgr_translation.button_add}"
+					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
+					oncomplete="PF('addDialog').show()" />
+				<p:separator />
+
+				<p:dataTable id="table" var="admin"
+					value="#{adminPanel.entities}" editable="true">
+					<p:column width="40">
+						<p:commandButton update=":details:panel"
+							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
+							title="#{sgr_translation.button_details}">
+							<f:setPropertyActionListener value="#{admin}"
+								target="#{adminPanel.entity}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_person_firstName}"
+						filterBy="#{admin.person.firstName}"
+						filterMatchMode="contains">
+						<p:outputLabel value="#{admin.person.firstName}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_person_lastName}"
+						filterBy="#{admin.person.lastName}"
+						filterMatchMode="contains">
+						<p:outputLabel value="#{admin.person.lastName}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_account_userName}"
+						filterBy="#{admin.account.userName}"
+						filterMatchMode="contains">
+						<p:outputLabel value="#{admin.account.userName}" />
+					</p:column>
+					<p:column width="80">
+						<p:commandButton title="#{sgr_translation.button_update}"
+							update=":update:panel" oncomplete="PF('updateDialog').show()"
+							icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{admin}"
+								target="#{adminPanel.entity}" />
+						</p:commandButton>
+						<p:commandButton title="#{sgr_translation.button_remove}"
+							actionListener="#{adminPanel.remove(admin.id)}"
+							update=":root:panel" icon="ui-icon-trash">
+							<p:ajax event="dialogReturn"
+								listener="#{adminPanel.remove}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</h:form>
+
+		<!-- ADD FORM -->
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:firstName">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
+					<p:panel id="personal" header="#{sgr_translation.form_person}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
+							<p:inputText id="firstName"
+								label="#{sgr_translation.form_person_firstName}"
+								value="#{adminPanel.person.firstName}" required="true" />
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
+								value="#{adminPanel.person.lastName}" required="true" />
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
+								value="#{adminPanel.person.birthDate}"
+								pattern="yyyy-MM-dd" mask="true" required="true" />
+						</p:panelGrid>
+					</p:panel>
+					<p:panel id="account" header="#{sgr_translation.form_account}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="userName"
+								value="#{sgr_translation.form_account_userName}:" />
+							<p:inputText id="userName"
+								label="#{sgr_translation.form_account_userName}"
+								value="#{adminPanel.account.userName}" required="true">
+								<f:validator validatorId="uniqueLoginValidator" />
+							</p:inputText>
+							<p:outputLabel for="password"
+								value="#{sgr_translation.form_account_password}:" />
+							<p:inputText id="password"
+								label="#{sgr_translation.form_account_password}"
+								value="#{adminPanel.account.password}" required="true" />
+							<p:column />
+							<p:commandButton immediate="true"
+								value="#{sgr_translation.form_button_generatePassword}"
+								action="#{adminPanel.generatePassword('add', 'password')}"
+								update="password" icon="ui-icon-locked">
+							</p:commandButton>
+						</p:panelGrid>
+					</p:panel>
+					<p:panel id="buttons">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{adminPanel.create}"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- UPDATE FORM -->
+		<p:dialog widgetVar="updateDialog"
+			header="#{sgr_translation.form_window_caption_update}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" dynamic="true">
+			<h:form id="update">
+				<p:panelGrid id="panel" columns="1" columnClasses="grid">
+					<p:messages id="msgs" />
+
+					<p:panel id="personal" header="#{sgr_translation.form_person}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="firstName"
+								value="#{sgr_translation.form_person_firstName}:" />
+							<p:inputText id="firstName"
+								label="#{sgr_translation.form_person_firstName}"
+								value="#{adminPanel.entity.person.firstName}"
+								required="true" />
+							<p:outputLabel for="lastName"
+								value="#{sgr_translation.form_person_lastName}:" />
+							<p:inputText id="lastName"
+								label="#{sgr_translation.form_person_lastName}"
+								value="#{adminPanel.entity.person.lastName}"
+								required="true" />
+							<p:outputLabel for="birthDate"
+								value="#{sgr_translation.form_person_birthDate}:" />
+							<p:calendar id="birthDate"
+								label="#{sgr_translation.form_person_birthDate}"
+								value="#{adminPanel.entity.person.birthDate}"
+								pattern="yyyy-MM-dd" mask="true" required="true" />
+						</p:panelGrid>
+					</p:panel>
+					<p:panel id="buttons">
+						<p:commandButton value="#{sgr_translation.button_update}"
+							actionListener="#{adminPanel.update(adminPanel.entity)}"
+							update=":update:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
+							<p:ajax event="dialogReturn"
+								listener="#{adminPanel.update}" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_cancel}"
+							update=":update:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('updateDialog').hide()">
+							<p:resetInput target=":update:panel" />
+						</p:commandButton>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<!-- DETAILS FORM -->
+		<h:form id="details">
+			<p:dialog widgetVar="detailsDialog"
+				header="#{sgr_translation.form_window_caption_details}"
+				resizable="false" showEffect="clip" hideEffect="clip">
+				<p:panelGrid id="panel" columns="2" columnClasses="label, value">
+					<p:outputLabel for="firstName"
+						value="#{sgr_translation.form_person_firstName}:" />
+					<p:outputLabel id="firstName"
+						value="#{adminPanel.entity.person.firstName}" />
+					<p:outputLabel for="lastName"
+						value="#{sgr_translation.form_person_lastName}:" />
+					<p:outputLabel id="lastName"
+						value="#{adminPanel.entity.person.lastName}" />
+					<p:outputLabel for="birthDate"
+						value="#{sgr_translation.form_person_birthDate}:" />
+					<p:outputLabel id="birthDate"
+						value="#{adminPanel.entity.person.birthDate}"
+						converter="yearConverter" />
+					<p:outputLabel for="userName"
+						value="#{sgr_translation.form_account_userName}:" />
+					<p:outputLabel id="userName"
+						value="#{adminPanel.entity.account.userName}" />
+
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
