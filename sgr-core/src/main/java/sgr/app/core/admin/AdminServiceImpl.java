@@ -36,7 +36,7 @@ public class AdminServiceImpl extends DaoSupport implements AdminService
    {
       String password = admin.getAccount().getPassword();
       admin.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
-      admin.getAccount().setType(AccountType.TEACHER);
+      admin.getAccount().setType(AccountType.ADMIN);
       createEntity(admin);
    }
 
