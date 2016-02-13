@@ -41,4 +41,8 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
    
+   <bean id="assessmentService" class="sgr.app.core.assessment.AssessmentServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   
 </beans>
