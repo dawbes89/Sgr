@@ -134,14 +134,13 @@
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:selectOneMenu id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
-								filter="true" filterMatchMode="contains"
-								converter="schoolSubjectTranslationConverter">
+								filter="true" filterMatchMode="contains">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
 									noSelectionOption="true" />
 								<f:selectItems value="#{teachingStuffPanel.schoolSubjects}"
 									var="schoolSubject" itemValue="#{schoolSubject}"
-									itemLabel="#{schoolSubject.label}" />
+									itemLabel="#{schoolSubject}" />
 							</p:selectOneMenu>
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
