@@ -78,6 +78,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       try
       {
          sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
+         sessionService.setAttributeValue(ACCOUNT_TYPE, account.getType());
       }
       catch (IllegalStateException e)
       {}
@@ -97,9 +98,16 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    // TODO zabezpieczyæ metodê przed brakiem sesji
    @SuppressWarnings("unchecked")
    @Override
-   public <T> T getCurrentLoggedUser()
+   public <T> T getCurrentUser()
    {
       return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
+   }
+
+   @Override
+   public boolean checkUserAccountType(AccountType type)
+   {
+      final AccountType accountType = sessionService.getAttributeValue(ACCOUNT_TYPE);
+      return type.equals(accountType);
    }
 
    @Override

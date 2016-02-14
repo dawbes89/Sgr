@@ -17,13 +17,14 @@ import javax.persistence.Table;
 import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.person.Person;
+import sgr.app.api.person.PersonName;
 
 /**
  * @author leonzio
  */
 @Entity
 @Table(name = "student")
-public class Student implements Serializable
+public class Student implements PersonName, Serializable
 {
 
    private static final long serialVersionUID = -2795415011971757723L;
@@ -88,6 +89,7 @@ public class Student implements Serializable
       this.classGroup = classGroup;
    }
 
+   @Override
    public String getFullName()
    {
       if (person == null)

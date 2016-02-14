@@ -37,7 +37,7 @@ public class StudentCommentPanel extends AbstractPanel<Comment>
    @Override
    public void onLoad()
    {
-      final Student currentLoggedUser = authenticationService.getCurrentLoggedUser();
+      final Student currentLoggedUser = authenticationService.getCurrentUser();
       entities = commentService.findByStudentId(currentLoggedUser.getId());
    }
 
