@@ -73,7 +73,7 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       init();
 
       currentLoggedTeacher = new TeachingStuff();
-      final Optional<TeachingStuff> teacher = authenticationService.getCurrentLoggedUser();
+      final Optional<TeachingStuff> teacher = authenticationService.getCurrentUser();
       if (teacher.isPresent())
       {
          currentLoggedTeacher = teacher.get();
