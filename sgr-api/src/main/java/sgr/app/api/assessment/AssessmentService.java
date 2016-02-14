@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface AssessmentService
 {
-   public void create(Assessment assessment);
+   void create(Assessment assessment);
 
-   public List<Assessment> search(AssessmentQuery query);
+   List<Assessment> search(AssessmentQuery query);
 }

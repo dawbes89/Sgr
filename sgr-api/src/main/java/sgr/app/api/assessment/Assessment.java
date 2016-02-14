@@ -29,14 +29,14 @@ public class Assessment implements Serializable
 
    @Id
    @Column(name = "assessment_id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @Column(name = "date")
    private Date date;
 
    @Column(name = "assessment")
-   private String assessment;
+   private float assessment;
 
    @Enumerated(EnumType.STRING)
    @Column(name = "assessment_type")
@@ -70,12 +70,12 @@ public class Assessment implements Serializable
    }
 
 
-   public String getAssessment()
+   public float getAssessment()
    {
       return assessment;
    }
 
-   public void setAssessment(String assessment)
+   public void setAssessment(float assessment)
    {
       this.assessment = assessment;
    }
