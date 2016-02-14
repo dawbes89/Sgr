@@ -1,4 +1,4 @@
-package sgr.app.webapp.loginPanel;
+package sgr.admin.webapp.login;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,17 @@ public class LoginPanel extends AbstractLoginPanel
    private static final long serialVersionUID = -7242960918445825945L;
 
    @Override
+   public void init()
+   {
+      super.init();
+      authenticationService.createSuperAdmin();
+   }
+
+   @Override
    protected List<AccountType> supportedAccountTypes()
    {
       final List<AccountType> list = new ArrayList<>();
-      list.add(AccountType.STUDENT);
-      list.add(AccountType.TEACHER);
+      list.add(AccountType.ADMIN);
       return list;
    }
-
 }

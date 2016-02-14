@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Required;
 
+import sgr.app.api.account.Account;
+import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
@@ -19,9 +20,9 @@ import sgr.app.core.DaoSupport;
 class StudentServiceImpl extends DaoSupport implements StudentService
 {
 
-   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+   private static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
 
-   public static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
+   private AccountService accountService;
 
    @Override
    public List<Student> search(StudentQuery query)
@@ -39,9 +40,9 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    @Override
    public void create(Student student)
    {
-      String password = student.getAccount().getPassword();
-      student.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
-      student.getAccount().setType(AccountType.STUDENT);
+      final Account account = student.getAccount();
+      account.setType(AccountType.STUDENT);
+      student.setAccount(accountService.createAccount(account));
       createEntity(student);
    }
 
@@ -62,11 +63,17 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    {
       Criteria criteria = createCriteria(Student.class);
 
-      if(query.hasClassGroupId())
+      if (query.hasClassGroupId())
       {
          criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
       }
-         return criteria;
+      return criteria;
+   }
+
+   @Required
+   public void setAccountService(AccountService accountService)
+   {
+      this.accountService = accountService;
    }
 
 }

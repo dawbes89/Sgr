@@ -3,9 +3,10 @@ package sgr.app.core.teachingStuff;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Required;
 
+import sgr.app.api.account.Account;
+import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
@@ -17,7 +18,7 @@ import sgr.app.core.DaoSupport;
 class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
 {
 
-   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+   private AccountService accountService;
 
    @Override
    public List<TeachingStuff> search()
@@ -35,9 +36,9 @@ class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffServic
    @Override
    public void create(TeachingStuff teachingStuff)
    {
-      String password = teachingStuff.getAccount().getPassword();
-      teachingStuff.getAccount().setPassword(PASSWORD_ENCODER.encode(password));
-      teachingStuff.getAccount().setType(AccountType.TEACHER);
+      final Account account = teachingStuff.getAccount();
+      account.setType(AccountType.TEACHER);
+      teachingStuff.setAccount(accountService.createAccount(account));
       createEntity(teachingStuff);
    }
 
@@ -52,6 +53,12 @@ class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffServic
    public void update(TeachingStuff teachingStuff)
    {
       updateEntity(teachingStuff);
+   }
+
+   @Required
+   public void setAccountService(AccountService accountService)
+   {
+      this.accountService = accountService;
    }
 
 }

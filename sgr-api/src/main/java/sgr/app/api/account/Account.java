@@ -1,6 +1,7 @@
 package sgr.app.api.account;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Account implements Serializable
 
    @Id
    @Column(name = "account_id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @Column(name = "user_name", length = 20, unique = true, nullable = false, updatable = false)
@@ -38,6 +39,12 @@ public class Account implements Serializable
    @Enumerated(EnumType.STRING)
    @Column(name = "type", nullable = false)
    private AccountType type;
+
+   @Column(name = "created", nullable = false, updatable = false)
+   private Date created;
+
+   @Column(name = "valid_to", nullable = true, updatable = true)
+   private Date validTo;
 
    public AccountType getType()
    {
@@ -78,4 +85,25 @@ public class Account implements Serializable
    {
       this.password = password;
    }
+
+   public Date getCreated()
+   {
+      return created;
+   }
+
+   public void setCreated(Date created)
+   {
+      this.created = created;
+   }
+
+   public Date getValidTo()
+   {
+      return validTo;
+   }
+
+   public void setValidTo(Date validTo)
+   {
+      this.validTo = validTo;
+   }
+
 }

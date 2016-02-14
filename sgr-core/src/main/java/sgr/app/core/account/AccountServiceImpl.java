@@ -1,13 +1,17 @@
 package sgr.app.core.account;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
+import sgr.app.api.admin.Admin;
 import sgr.app.api.student.Student;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.core.DaoSupport;
@@ -18,7 +22,7 @@ import sgr.app.core.DaoSupport;
 class AccountServiceImpl extends DaoSupport implements AccountService
 {
 
-   private static final String ACCOUNT = "account";
+   private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
    @Override
    public Optional<Account> findAccountByLogin(String login)
@@ -33,27 +37,37 @@ class AccountServiceImpl extends DaoSupport implements AccountService
    @Override
    public <T> Optional<T> findUserByAccount(Account account)
    {
-      Optional<T> user = Optional.empty();
-
-      final SimpleExpression accountRestriction = Restrictions.eq(ACCOUNT, account);
-
+      Criteria criteria = null;
       switch (account.getType())
       {
          case TEACHER:
-            Criteria teachingStuffCriteria = createCriteria(TeachingStuff.class);
-            teachingStuffCriteria.add(accountRestriction);
-            user = Optional.of((T) teachingStuffCriteria.uniqueResult());
+            criteria = createCriteria(TeachingStuff.class);
             break;
          case STUDENT:
-            Criteria studentCriteria = createCriteria(Student.class);
-            studentCriteria.add(accountRestriction);
-            user = Optional.of((T) studentCriteria.uniqueResult());
+            criteria = createCriteria(Student.class);
+            break;
+         case ADMIN:
+            criteria = createCriteria(Admin.class);
             break;
          default:
-            break;
+            return Optional.empty();
       }
 
+      Optional<T> user = Optional.empty();
+      final SimpleExpression accountRestriction = Restrictions.eq("account", account);
+      criteria.add(accountRestriction);
+      user = Optional.of((T) criteria.uniqueResult());
       return user;
+   }
+
+   @Override
+   public Account createAccount(Account account)
+   {
+      final String accountPassword = account.getPassword();
+
+      account.setCreated(new Date());
+      account.setPassword(PASSWORD_ENCODER.encode(accountPassword));
+      return createEntity(account);
    }
 
 }
