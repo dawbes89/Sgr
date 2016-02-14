@@ -10,15 +10,16 @@
 		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
 			<h:form id="search">
 				<p:remoteCommand name="onload"
-					action="#{teacherCommentPanel.onLoad}" autoRun="true"
-					update=":root:table" />
+					action="#{studentAssessmentPanel.onLoad}" autoRun="true"
+					update=":root:table, :root:averageAssessment" />
 
-				<p:outputLabel value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
+				<p:outputLabel
+					value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
 				<p:selectOneMenu id="schoolSubject"
 					value="#{studentAssessmentPanel.schoolSubject}" effect="fade"
 					filter="true" filterMatchMode="contains">
 					<p:ajax listener="#{studentAssessmentPanel.searchAssessments}"
-						update=":root:table" />
+						update=":root:table, :root:averageAssessment" />
 					<f:selectItem itemValue="#{null}"
 						itemLabel="#{sgr_translation.selectOneMenu_select}"
 						noSelectionOption="true" />
@@ -36,11 +37,12 @@
 				cellSeparator="true">
 				<p:column headerText="#{sgr_translation.form_assessment_addingDate}"
 					width="110">
-					<p:outputLabel value="#{assessment.date}" converter="yearConverter" style="float:right" />
+					<p:outputLabel value="#{assessment.date}" converter="yearConverter"
+						style="float:right" />
 				</p:column>
 				<p:column headerText="#{sgr_translation.form_assessment}"
 					width="110">
-					<p:outputLabel value="#{assessment.assessment}" style="float:right" />
+					<p:outputLabel value="#{assessment.assessment}" style="float:right" converter="assessmentConverter"/>
 				</p:column>
 				<p:column headerText="#{sgr_translation.form_assessment_type}"
 					width="110">
@@ -48,6 +50,11 @@
 						converter="assessmentTypeTranslationConverter" style="float:right" />
 				</p:column>
 			</p:dataTable>
+			<p:separator />
+			<p:outputLabel
+				value="#{sgr_translation.form_assessment_averageAssessments}: " />
+			<p:outputLabel id="averageAssessment" value="#{studentAssessmentPanel.averageAssessments}"
+				style="color: red" />
 		</h:form>
 
 	</ui:define>

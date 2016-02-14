@@ -23,5 +23,9 @@
       <converter-id>schoolSubjectTranslationConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
    </converter>
+   <converter>
+      <converter-id>assessmentConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.AssessmentConverter</converter-class>
+   </converter>
 
 </faces-config>
