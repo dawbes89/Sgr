@@ -56,6 +56,8 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
 
    private List<ClassGroup> classes;
 
+   private List<Assessment> assessments;
+
    @Override
    public void init()
    {
@@ -63,6 +65,7 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       assessment = new Assessment();
       entity = new Student();
       entities = new ArrayList<>();
+      assessments = new ArrayList<>();
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
 
    }
@@ -165,9 +168,21 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       {
          return new ArrayList<>();
       }
-      return assessmentService.search(AssessmentQuery.all()
+      assessments = assessmentService.search(AssessmentQuery.all()
             .withSchoolSubject(currentLoggedTeacher.getSchoolSubject())
             .withStudentId(entity.getId()).build());
+      return assessments;
+   }
+
+   public String getAverageAssessments()
+   {
+      Float average = 0f;
+      for (Assessment assessment : assessments)
+      {
+        average = average + assessment.getAssessment();
+      }
+      average = average / assessments.size();
+      return String.format("%.1f", average);
    }
 
 }
