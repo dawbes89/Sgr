@@ -13,7 +13,7 @@ import sgr.app.core.DaoSupport;
 /**
  * @author dawbes89
  */
-public class AssessmentServiceImpl extends DaoSupport implements AssessmentService
+class AssessmentServiceImpl extends DaoSupport implements AssessmentService
 {
 
    @Override
