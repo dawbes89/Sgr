@@ -29,7 +29,7 @@ public class Assessment implements Serializable
 
    @Id
    @Column(name = "assessment_id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @Column(name = "date")
