@@ -17,8 +17,8 @@
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
-				<p:dataTable id="table" var="admin"
-					value="#{adminPanel.entities}" editable="true">
+				<p:dataTable id="table" var="admin" value="#{adminPanel.entities}"
+					editable="true">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
@@ -28,18 +28,15 @@
 						</p:commandButton>
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_firstName}"
-						filterBy="#{admin.person.firstName}"
-						filterMatchMode="contains">
+						filterBy="#{admin.person.firstName}" filterMatchMode="contains">
 						<p:outputLabel value="#{admin.person.firstName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_lastName}"
-						filterBy="#{admin.person.lastName}"
-						filterMatchMode="contains">
+						filterBy="#{admin.person.lastName}" filterMatchMode="contains">
 						<p:outputLabel value="#{admin.person.lastName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_account_userName}"
-						filterBy="#{admin.account.userName}"
-						filterMatchMode="contains">
+						filterBy="#{admin.account.userName}" filterMatchMode="contains">
 						<p:outputLabel value="#{admin.account.userName}" />
 					</p:column>
 					<p:column width="80">
@@ -52,8 +49,7 @@
 						<p:commandButton title="#{sgr_translation.button_remove}"
 							actionListener="#{adminPanel.remove(admin.id)}"
 							update=":root:panel" icon="ui-icon-trash">
-							<p:ajax event="dialogReturn"
-								listener="#{adminPanel.remove}" />
+							<p:ajax event="dialogReturn" listener="#{adminPanel.remove}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
@@ -86,12 +82,19 @@
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
-								value="#{adminPanel.person.birthDate}"
-								pattern="yyyy-MM-dd" mask="true" required="true" />
+								value="#{adminPanel.person.birthDate}" pattern="yyyy-MM-dd"
+								mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="validTo"
+								value="#{sgr_translation.form_account_validTo}:" />
+							<p:calendar id="validTo"
+								label="#{sgr_translation.form_account_validTo}:"
+								value="#{teachingStuffPanel.account.validTo}"
+								pattern="yyyy-MM-dd" mask="true" />
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
@@ -112,10 +115,11 @@
 							</p:commandButton>
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{adminPanel.create}"
-							update=":add:panel :root:panel" icon="ui-icon-disk"
+							action="#{adminPanel.create}" update=":add:panel :root:panel"
+							icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_clear}"
@@ -148,14 +152,12 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{adminPanel.entity.person.firstName}"
-								required="true" />
+								value="#{adminPanel.entity.person.firstName}" required="true" />
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{adminPanel.entity.person.lastName}"
-								required="true" />
+								value="#{adminPanel.entity.person.lastName}" required="true" />
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
@@ -164,13 +166,24 @@
 								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
+
+					<p:panel id="account" header="#{sgr_translation.form_account}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="validTo"
+								value="#{sgr_translation.form_account_validTo}:" />
+							<p:calendar id="validTo"
+								label="#{sgr_translation.form_account_validTo}:"
+								value="#{teachingStuffPanel.account.validTo}"
+								pattern="yyyy-MM-dd" mask="true" />
+						</p:panelGrid>
+					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.button_update}"
 							actionListener="#{adminPanel.update(adminPanel.entity)}"
 							update=":update:panel :root:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-							<p:ajax event="dialogReturn"
-								listener="#{adminPanel.update}" />
+							<p:ajax event="dialogReturn" listener="#{adminPanel.update}" />
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_cancel}"
 							update=":update:panel" process="@this" icon="ui-icon-cancel"

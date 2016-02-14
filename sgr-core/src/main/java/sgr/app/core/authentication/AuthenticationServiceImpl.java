@@ -1,6 +1,7 @@
 package sgr.app.core.authentication;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -32,7 +33,10 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    private AdminService adminService;
 
    @Override
-   public boolean authenticateUser(String userName, String password, boolean isAdmin)
+   // TODO zmieniæ typ zwracany na void, dodaæ odpowiednie exceptiony z
+   // wiadomoœciami
+   public boolean authenticateUser(String userName, String password,
+         List<AccountType> supportedAccounts)
    {
       final Optional<Account> account = accountService.findAccountByLogin(userName);
 
@@ -40,12 +44,9 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       {
          return false;
       }
-      if (isAdmin)
+      if (!supportedAccounts.contains(account.get().getType()))
       {
-         if (!account.get().getType().equals(AccountType.ADMIN))
-         {
-            return false;
-         }
+         return false;
       }
 
       if (!PASSWORD_ENCODER.matches(password, account.get().getPassword()))
@@ -70,6 +71,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    }
 
    @Override
+   // TODO zmieniæ typ zwracany na void, dodaæ exceptiony
    public boolean logoutUser()
    {
       try
@@ -107,6 +109,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       adminService.create(superAdmin);
    }
 
+   // TODO zabezpieczyæ metodê przed brakiem sesji
    @SuppressWarnings("unchecked")
    @Override
    public <T> T getCurrentLoggedUser()

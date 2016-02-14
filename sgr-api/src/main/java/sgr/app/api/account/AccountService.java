@@ -8,8 +8,10 @@ import java.util.Optional;
 public interface AccountService
 {
 
-   public Optional<Account> findAccountByLogin(String login);
+   Optional<Account> findAccountByLogin(String login);
 
-   public <T> Optional<T> findUserByAccount(Account account);
+   <T> Optional<T> findUserByAccount(Account account);
+
+   Account createAccount(Account account);
 
 }
