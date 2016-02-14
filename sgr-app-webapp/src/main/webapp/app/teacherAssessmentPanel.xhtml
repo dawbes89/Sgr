@@ -1,0 +1,164 @@
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<ui:define name="content">
+		<!-- SEARCH PANEL -->
+		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
+			<h:form id="search">
+				<p:remoteCommand name="onload"
+					action="#{teacherAssessmentPanel.onLoad}" autoRun="true"
+					update=":root:table, search:teacherSchoolSubject" />
+
+				<p:outputLabel value="#{sgr_translation.form_class}: " />
+				<p:selectOneMenu id="classGroup"
+					value="#{teacherAssessmentPanel.classGroup}" effect="fade"
+					filter="true" filterMatchMode="contains" converter="classConverter">
+					<p:ajax listener="#{teacherAssessmentPanel.handleClassChange}"
+						update=":root:table" />
+					<f:selectItem itemValue="#{null}"
+						itemLabel="#{sgr_translation.selectOneMenu_select}"
+						noSelectionOption="true" />
+					<f:selectItems value="#{teacherAssessmentPanel.classes}"
+						var="classGroup" itemLabel="#{classGroup.className}"
+						itemValue="#{classGroup}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="#{sgr_translation.school_subject}: " />
+				<p:outputLabel id="teacherSchoolSubject"
+					value="#{teacherAssessmentPanel.currentLoggedTeacher.schoolSubject}"
+					converter="schoolSubjectTranslationConverter" style="color: blue" />
+
+			</h:form>
+		</p:panel>
+
+		<!-- MAIN TABLE -->
+		<h:form id="root">
+			<p:panel id="assessmentsPanel"
+				header="#{sgr_translation.form_comment_studentList}">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:dataTable id="table" var="student"
+						value="#{teacherAssessmentPanel.entities}">
+						<p:column headerText="#{sgr_translation.form_person_firstName}"
+							filterBy="#{student.person.firstName}" filterMatchMode="contains">
+							<p:outputLabel value="#{student.person.firstName}" />
+						</p:column>
+						<p:column headerText="#{sgr_translation.form_person_lastName}"
+							filterBy="#{student.person.lastName}" filterMatchMode="contains">
+							<p:outputLabel value="#{student.person.lastName}" />
+						</p:column>
+						<p:column width="40">
+							<p:commandButton title="#{sgr_translation.button_assessments}"
+								update=":add:panel" oncomplete="PF('addDialog').show()"
+								icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{student}"
+									target="#{teacherAssessmentPanel.entity}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+
+		<!-- ADD FORM -->
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="750px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			focus=":add:student">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1">
+					<p:messages id="msgs" />
+
+					<p:panel id="assessmentPanel"
+						header="#{sgr_translation.form_assessment_new}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="student"
+								value="#{sgr_translation.form_comment_studentName}" />
+							<p:outputLabel id="student"
+								value="#{teacherAssessmentPanel.entity.fullName}" />
+
+							<p:outputLabel for="type"
+								value="#{sgr_translation.form_assessment_type}:" />
+							<p:selectOneMenu id="type"
+								value="#{teacherAssessmentPanel.assessment.assessmentType}"
+								var="assessmentType" required="true">
+								<f:selectItem itemValue="TEST"
+									itemLabel="#{sgr_translation.form_assessment_type_test}" />
+								<f:selectItem itemValue="EXAM"
+									itemLabel="#{sgr_translation.form_assessment_type_exam}" />
+								<f:selectItem itemValue="ORAL_ANSWER"
+									itemLabel="#{sgr_translation.form_assessment_type_oral_answer}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel for="assessment"
+								value="#{sgr_translation.form_assessment}:" />
+							<p:selectOneMenu id="assessment"
+								value="#{teacherAssessmentPanel.assessment.assessment}"
+								required="true">
+								<f:selectItem itemValue="1" itemLabel="1" />
+								<f:selectItem itemValue="-2" itemLabel="-2" />
+								<f:selectItem itemValue="2" itemLabel="2" />
+								<f:selectItem itemValue="+2" itemLabel="+2" />
+								<f:selectItem itemValue="-3" itemLabel="-3" />
+								<f:selectItem itemValue="3" itemLabel="3" />
+								<f:selectItem itemValue="+3" itemLabel="+3" />
+								<f:selectItem itemValue="-4" itemLabel="-4" />
+								<f:selectItem itemValue="4" itemLabel="4" />
+								<f:selectItem itemValue="+4" itemLabel="+4" />
+								<f:selectItem itemValue="-5" itemLabel="-5" />
+								<f:selectItem itemValue="5" itemLabel="5" />
+								<f:selectItem itemValue="+5" itemLabel="+5" />
+								<f:selectItem itemValue="6" itemLabel="6" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</p:panel>
+
+					<p:panel id="buttons">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{teacherAssessmentPanel.create}" update=":add:panel"
+							icon="ui-icon-disk">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_close}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panel>
+
+					<p:panel id="otherAssessemetsPanel"
+						header="#{sgr_translation.form_assessment_other}"
+						toggleable="true" collapsed="true">
+						<p:dataTable id="assessmentTable" var="assessment"
+							value="#{teacherAssessmentPanel.assessments}" editable="true"
+							cellSeparator="true">
+							<p:column
+								headerText="#{sgr_translation.form_assessment_addingDate}"
+								width="110">
+								<p:outputLabel value="#{assessment.date}"
+									converter="yearConverter" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_assessment}"
+								width="110">
+								<p:outputLabel value="#{assessment.assessment}" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_assessment_type}"
+								width="110">
+								<p:outputLabel value="#{assessment.assessmentType}"
+									converter="assessmentTypeTranslationConverter" />
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>

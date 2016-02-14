@@ -12,8 +12,16 @@
       <converter-class>sgr.app.frontend.converters.CommentTypeTranslationConverter</converter-class>
    </converter>
    <converter>
+      <converter-id>assessmentTypeTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.AssessmentTypeTranslationConverter</converter-class>
+   </converter>
+   <converter>
       <converter-id>classConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.ClassConverter</converter-class>
+   </converter>
+   <converter>
+      <converter-id>schoolSubjectTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
    </converter>
 
 </faces-config>
