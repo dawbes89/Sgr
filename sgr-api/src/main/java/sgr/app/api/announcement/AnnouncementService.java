@@ -7,12 +7,13 @@ import java.util.List;
  */
 public interface AnnouncementService
 {
-   public List<Announcement> search();
 
-   public void create(Announcement announcement);
+   List<Announcement> search();
 
-   public void update(Announcement announcement);
+   void create(Announcement announcement);
 
-   public void delete(Long id);
+   void update(Announcement announcement);
+
+   void delete(Long id);
 
 }

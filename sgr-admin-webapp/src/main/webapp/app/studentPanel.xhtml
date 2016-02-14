@@ -85,8 +85,15 @@
 								mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="validTo"
+								value="#{sgr_translation.form_account_validTo}:" />
+							<p:calendar id="validTo"
+								label="#{sgr_translation.form_account_validTo}:"
+								value="#{teachingStuffPanel.account.validTo}"
+								pattern="yyyy-MM-dd" mask="true" />
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
@@ -107,6 +114,7 @@
 							</p:commandButton>
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"
@@ -125,6 +133,7 @@
 							</p:selectOneMenu>
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{studentPanel.create}" update=":add:panel :root:panel"
@@ -175,6 +184,18 @@
 								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
+
+					<p:panel id="account" header="#{sgr_translation.form_account}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="validTo"
+								value="#{sgr_translation.form_account_validTo}:" />
+							<p:calendar id="validTo"
+								label="#{sgr_translation.form_account_validTo}:"
+								value="#{teachingStuffPanel.account.validTo}"
+								pattern="yyyy-MM-dd" mask="true" />
+						</p:panelGrid>
+					</p:panel>
+
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"

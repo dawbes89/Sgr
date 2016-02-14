@@ -31,7 +31,7 @@ public class TeachingStuff implements Serializable
 
    @Id
    @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

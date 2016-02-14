@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.person.Person;
+
 /**
  * @author dawbes89
  */
@@ -27,7 +28,7 @@ public class Admin implements Serializable
 
    @Id
    @Column(name = "admin_id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -67,6 +68,5 @@ public class Admin implements Serializable
    {
       this.account = account;
    }
-
 
 }

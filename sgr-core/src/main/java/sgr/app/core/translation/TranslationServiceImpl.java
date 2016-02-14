@@ -9,7 +9,7 @@ import sgr.app.api.translation.TranslationService;
 /**
  * @author leonzio
  */
-public class TranslationServiceImpl implements TranslationService
+class TranslationServiceImpl implements TranslationService
 {
 
    @Override

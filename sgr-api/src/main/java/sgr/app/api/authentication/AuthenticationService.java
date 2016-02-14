@@ -1,5 +1,9 @@
 package sgr.app.api.authentication;
 
+import java.util.List;
+
+import sgr.app.api.account.AccountType;
+
 /**
  * Service for authenticate users in application.
  *
@@ -12,7 +16,7 @@ public interface AuthenticationService
    String LOGIN_PAGE = "loginPanel";
    String MAIN_PAGE = "index";
 
-   boolean authenticateUser(String userName, String password, boolean isAdmin);
+   boolean authenticateUser(String userName, String password, List<AccountType> a);
 
    boolean logoutUser();
 

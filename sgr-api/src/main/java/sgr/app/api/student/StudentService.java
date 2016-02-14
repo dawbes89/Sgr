@@ -7,13 +7,15 @@ import java.util.List;
  */
 public interface StudentService
 {
-   public List<Student> search(StudentQuery query);
 
-   public Student get(Long id);
+   List<Student> search(StudentQuery query);
 
-   public void create(Student student);
+   Student get(Long id);
 
-   public void remove(Long id);
+   void create(Student student);
 
-   public void update(Student student);
+   void remove(Long id);
+
+   void update(Student student);
+
 }

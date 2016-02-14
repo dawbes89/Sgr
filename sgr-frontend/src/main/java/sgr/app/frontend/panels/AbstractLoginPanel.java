@@ -2,6 +2,7 @@ package sgr.app.frontend.panels;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,6 +12,7 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.translation.TranslationService;
 
@@ -46,10 +48,12 @@ public abstract class AbstractLoginPanel implements Serializable
       loginBean = new LoginBean();
    }
 
+   protected abstract List<AccountType> supportedAccountTypes();
+
    public void checkLogin() throws IOException
    {
-      final boolean isAuthenticated = authenticationService
-            .authenticateUser(loginBean.getUserName(), loginBean.getPassword(), false);
+      final boolean isAuthenticated = authenticationService.authenticateUser(
+            loginBean.getUserName(), loginBean.getPassword(), supportedAccountTypes());
       if (isAuthenticated)
       {
          final ExternalContext externalContext = FacesContext.getCurrentInstance()
@@ -82,4 +86,5 @@ public abstract class AbstractLoginPanel implements Serializable
    {
       this.loginBean = loginBean;
    }
+
 }

@@ -43,11 +43,10 @@ public abstract class DaoSupport
       return resultList;
    }
 
-   @SuppressWarnings("unchecked")
    protected <T> T createEntity(T entity)
    {
-      T object = (T) getSession().save(entity);
-      return object;
+      getSession().save(entity);
+      return entity;
    }
 
    protected <T> T updateEntity(T entity)
