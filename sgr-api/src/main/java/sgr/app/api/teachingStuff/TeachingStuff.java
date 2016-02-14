@@ -18,13 +18,14 @@ import javax.persistence.Table;
 import sgr.app.api.account.Account;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.person.Person;
+import sgr.app.api.person.PersonName;
 
 /**
  * @author dawbes
  */
 @Entity
 @Table(name = "teaching_stuff")
-public class TeachingStuff implements Serializable
+public class TeachingStuff implements PersonName, Serializable
 {
 
    private static final long serialVersionUID = 1452686849131351842L;
@@ -112,6 +113,16 @@ public class TeachingStuff implements Serializable
    public void setPreceptorClass(ClassGroup preceptorClass)
    {
       this.preceptorClass = preceptorClass;
+   }
+
+   @Override
+   public String getFullName()
+   {
+      if (person == null)
+      {
+         return null;
+      }
+      return String.format("%s %s", person.getFirstName(), person.getLastName());
    }
 
    public String getTeacherFullName()

@@ -14,6 +14,7 @@ public interface AuthenticationService
 {
 
    String USER_ATTRIBUTE = "user";
+   String ACCOUNT_TYPE = "accountType";
    String LOGIN_PAGE = "loginPanel";
    String MAIN_PAGE = "index";
 
@@ -22,7 +23,9 @@ public interface AuthenticationService
 
    void logoutUser();
 
-   <T> T getCurrentLoggedUser();
+   <T> T getCurrentUser();
+
+   boolean checkUserAccountType(AccountType type);
 
    void createSuperAdmin();
 

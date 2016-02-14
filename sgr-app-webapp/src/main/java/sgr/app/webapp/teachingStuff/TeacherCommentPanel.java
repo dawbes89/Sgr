@@ -70,7 +70,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    {
       init();
 
-      currentLoggedTeacher = authenticationService.getCurrentLoggedUser();
+      currentLoggedTeacher = authenticationService.getCurrentUser();
       if (currentLoggedTeacher != null)
       {
          final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();

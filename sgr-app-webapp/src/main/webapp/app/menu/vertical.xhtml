@@ -5,18 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:menu toggleable="true">
-		<p:submenu label="#{sgr_app_translation.menu_vertical_personal_title}">
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_presence}"
-				outcome="index" icon="ui-icon-calendar" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_assessment}"
-				outcome="index" icon="ui-icon-bookmark" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_comments}"
-				outcome="studentCommentPanel" icon="ui-icon-comment" />
-		</p:submenu>
+	<!-- TEACHER MENU -->
+	<p:menu toggleable="true" rendered="#{mainPanel.showMenuFor('TEACHER')}">
 		<p:submenu label="#{sgr_app_translation.menu_vertical_class_title}">
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_presence}"
@@ -28,18 +18,24 @@
 				value="#{sgr_app_translation.menu_vertical_class_comments}"
 				outcome="teacherCommentPanel" icon="ui-icon-comment" />
 		</p:submenu>
-		<p:submenu
-			label="#{sgr_app_translation.menu_vertical_management_title}">
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_management_myAccount}"
-				outcome="index" icon="ui-icon-person" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_management_siteSettings}"
-				outcome="siteSettings" icon="ui-icon-wrench" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_management_mailBox}"
-				outcome="index" icon="ui-icon-mail-closed" />
-		</p:submenu>
+
+		<ui:include src="common.xhtml" />
 	</p:menu>
 
+	<!-- STUDENT MENU -->
+	<p:menu toggleable="true" rendered="#{mainPanel.showMenuFor('STUDENT')}">
+		<p:submenu label="#{sgr_app_translation.menu_vertical_personal_title}">
+			<p:menuitem
+				value="#{sgr_app_translation.menu_vertical_personal_presence}"
+				outcome="index" icon="ui-icon-calendar" />
+			<p:menuitem
+				value="#{sgr_app_translation.menu_vertical_personal_assessment}"
+				outcome="index" icon="ui-icon-bookmark" />
+			<p:menuitem
+				value="#{sgr_app_translation.menu_vertical_personal_comments}"
+				outcome="studentCommentPanel" icon="ui-icon-comment" />
+		</p:submenu>
+
+		<ui:include src="common.xhtml" />
+	</p:menu>
 </ui:composition>
