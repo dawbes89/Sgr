@@ -1,6 +1,10 @@
 package sgr.app.core.authentication;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+
+import javax.faces.application.FacesMessage;
 
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,8 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
+import sgr.app.api.account.AccountType;
+import sgr.app.api.admin.Admin;
+import sgr.app.api.admin.AdminService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
+import sgr.app.api.exceptions.AuthenticationException;
+import sgr.app.api.person.Person;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -24,57 +33,97 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 
    private AccountService accountService;
    private SessionService sessionService;
+   private AdminService adminService;
 
    @Override
-   public boolean authenticateUser(String userName, String password)
+   public void authenticateUser(String userName, String password,
+         List<AccountType> supportedAccounts) throws AuthenticationException
    {
-      final Optional<Account> account = accountService.findAccountByLogin(userName);
+      final Optional<Account> foundAccount = accountService.findAccountByLogin(userName);
 
-      if (!account.isPresent())
+      if (!foundAccount.isPresent())
       {
-         return false;
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
       }
 
-      if (!PASSWORD_ENCODER.matches(password, account.get().getPassword()))
+      final Account account = foundAccount.get();
+
+      if (!supportedAccounts.contains(account.getType()))
       {
-         return false;
+         throw new AuthenticationException("authenticationException_lackOfPermission",
+               FacesMessage.SEVERITY_ERROR);
       }
 
-      Optional<Object> user = accountService.findUserByAccount(account.get());
+      if (!PASSWORD_ENCODER.matches(password, account.getPassword()))
+      {
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
+      }
+
+      final Date now = new Date();
+      final Date validTo = account.getValidTo();
+      if (validTo != null && now.after(validTo))
+      {
+         throw new AuthenticationException("authenticationException_accountIsBlocked",
+               FacesMessage.SEVERITY_ERROR);
+      }
+
+      Optional<Object> user = accountService.findUserByAccount(account);
       if (!user.isPresent())
       {
-         return false;
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
       }
       try
       {
-         sessionService.setAttributeValue(USER_ATTRIBUTE, user);
-         return true;
+         sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
       }
       catch (IllegalStateException e)
-      {
-         return false;
-      }
+      {}
    }
 
    @Override
-   public boolean logoutUser()
+   public void logoutUser()
    {
       try
       {
          sessionService.getSession().invalidate();
-         return true;
       }
       catch (IllegalStateException e)
-      {
-         return false;
-      }
+      {}
    }
 
+   // TODO zabezpieczyæ metodê przed brakiem sesji
    @SuppressWarnings("unchecked")
    @Override
    public <T> T getCurrentLoggedUser()
    {
       return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
+   }
+
+   @Override
+   public void createSuperAdmin()
+   {
+      Optional<Account> account = accountService.findAccountByLogin("root");
+      if (account.isPresent())
+      {
+         return;
+      }
+      Account superAccount = new Account();
+      superAccount.setPassword("kopytko");
+      superAccount.setType(AccountType.ADMIN);
+      superAccount.setUserName("root");
+
+      Person superPerson = new Person();
+      superPerson.setFirstName("root");
+      superPerson.setBirthDate(new Date());
+      superPerson.setLastName("root");
+
+      Admin superAdmin = new Admin();
+      superAdmin.setAccount(superAccount);
+      superAdmin.setPerson(superPerson);
+      adminService.create(superAdmin);
    }
 
    @Required
@@ -87,6 +136,12 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    public void setSessionService(SessionService sessionService)
    {
       this.sessionService = sessionService;
+   }
+
+   @Required
+   public void setAdminService(AdminService adminService)
+   {
+      this.adminService = adminService;
    }
 
 }

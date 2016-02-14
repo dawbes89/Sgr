@@ -11,14 +11,20 @@
 
    <bean id="sessionService" class="sgr.app.core.authentication.SessionServiceImpl" />
 
+   <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
    <bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
       <property name="accountService" ref="accountService" />
       <property name="sessionService" ref="sessionService" />
+      <property name="adminService" ref="adminService" />
    </bean>
 
    <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
    </bean>
 
    <bean id="announcementService" class="sgr.app.core.announcement.AnnouncementServiceImpl">
@@ -31,6 +37,7 @@
 
    <bean id="studentService" class="sgr.app.core.student.StudentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
    </bean>
 
    <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
@@ -40,7 +47,11 @@
    <bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
-   
+
+   <bean id="adminService" class="sgr.app.core.admin.AdminServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+      <property name="accountService" ref="accountService" />
+   </bean>
    <bean id="assessmentService" class="sgr.app.core.assessment.AssessmentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>

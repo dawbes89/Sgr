@@ -21,8 +21,8 @@ public class Person implements Serializable
    private static final long serialVersionUID = 1576074218152179038L;
 
    @Id
-   @Column(name = "person_id", nullable = false)
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "person_id")
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @Column(name = "first_name", nullable = false, length = 20)

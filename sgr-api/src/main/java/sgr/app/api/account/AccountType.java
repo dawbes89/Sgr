@@ -5,5 +5,7 @@ package sgr.app.api.account;
  */
 public enum AccountType
 {
-   TEACHER, STUDENT;
+   TEACHER,
+   STUDENT,
+   ADMIN;
 }

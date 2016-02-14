@@ -14,8 +14,8 @@ import sgr.app.api.person.Person;
 import sgr.app.api.teachingStuff.SchoolSubject;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
-import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.RandomPasswordGenerator;
+import sgr.app.frontend.helpers.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 

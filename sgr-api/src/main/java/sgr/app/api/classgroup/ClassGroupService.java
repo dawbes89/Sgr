@@ -17,4 +17,5 @@ public interface ClassGroupService
    List<String> getYears();
 
    ClassGroup getClass(Integer groupNumber, String groupName);
+
 }

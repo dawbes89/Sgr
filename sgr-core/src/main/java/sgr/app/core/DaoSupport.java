@@ -19,9 +19,9 @@ import org.springframework.beans.factory.annotation.Required;
 public abstract class DaoSupport
 {
 
-   public SessionFactory sessionFactory;
+   private SessionFactory sessionFactory;
 
-   private Session getSession()
+   protected final Session getSession()
    {
       return sessionFactory.getCurrentSession();
    }
@@ -43,11 +43,10 @@ public abstract class DaoSupport
       return resultList;
    }
 
-   @SuppressWarnings("unchecked")
    protected <T> T createEntity(T entity)
    {
-      T object = (T) getSession().save(entity);
-      return object;
+      getSession().save(entity);
+      return entity;
    }
 
    protected <T> T updateEntity(T entity)

@@ -10,7 +10,7 @@ public interface TranslationService
 
    /**
     * Translates value.
-    * 
+    *
     * @param key
     *           of value to translate
     * @return translated value
@@ -19,7 +19,7 @@ public interface TranslationService
 
    /**
     * Translates value.
-    * 
+    *
     * @param resourceFileName
     *           resource file name from faces-config.xml file
     * @param key
@@ -27,4 +27,5 @@ public interface TranslationService
     * @return translated value
     */
    String translate(String resourceFileName, String key);
+
 }

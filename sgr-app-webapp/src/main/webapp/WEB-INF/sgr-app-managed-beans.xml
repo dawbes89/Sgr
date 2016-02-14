@@ -5,7 +5,7 @@
 
    <managed-bean>
       <managed-bean-name>localeManager</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.LocaleManager</managed-bean-class>
+      <managed-bean-class>sgr.app.frontend.panels.LocaleManager</managed-bean-class>
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
    <managed-bean>

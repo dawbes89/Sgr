@@ -1,53 +1,42 @@
-package sgr.admin.webapp.student;
-
-import java.util.List;
+package sgr.admin.webapp.admin;
 
 import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import sgr.app.api.account.Account;
-import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.classgroup.ClassGroupQuery;
-import sgr.app.api.classgroup.ClassGroupService;
+import sgr.app.api.admin.Admin;
+import sgr.app.api.admin.AdminService;
 import sgr.app.api.person.Person;
-import sgr.app.api.student.Student;
-import sgr.app.api.student.StudentQuery;
-import sgr.app.api.student.StudentService;
 import sgr.app.frontend.RandomPasswordGenerator;
 import sgr.app.frontend.helpers.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
 /**
- * @author leonzio
+ * @author dawbes
  */
 @Controller
-public class StudentPanel extends AbstractPanel<Student>implements EditablePanel<Student>
+public class AdminPanel extends AbstractPanel<Admin>
+implements EditablePanel<Admin>
 {
 
-   private static final long serialVersionUID = 2553933126154263063L;
+   private static final long serialVersionUID = -2599849233906847054L;
 
    @Autowired
-   private StudentService studentService;
-
-   @Autowired
-   private ClassGroupService classGroupService;
+   private AdminService adminService;
 
    private Account account;
 
    private Person person;
 
-   private List<ClassGroup> availableClasses;
-
    @Override
    public void init()
    {
-      entity = new Student();
+      entity = new Admin();
       account = new Account();
       person = new Person();
-      entities = studentService.search(StudentQuery.EMPTY);
-      availableClasses = classGroupService.search(ClassGroupQuery.EMPTY);
+      entities = adminService.search();
    }
 
    @Override
@@ -59,23 +48,23 @@ public class StudentPanel extends AbstractPanel<Student>implements EditablePanel
    @Override
    public void create()
    {
-      entity.setAccount(account);
       entity.setPerson(person);
-      studentService.create(entity);
+      entity.setAccount(account);
+      adminService.create(entity);
       init();
    }
 
    @Override
-   public void update(Student object)
+   public void update(Admin object)
    {
-      studentService.update(object);
+      adminService.update(object);
       init();
    }
 
    @Override
    public void remove(Long id)
    {
-      studentService.remove(id);
+      adminService.remove(id);
       init();
    }
 
@@ -104,10 +93,5 @@ public class StudentPanel extends AbstractPanel<Student>implements EditablePanel
    public void setPerson(Person person)
    {
       this.person = person;
-   }
-
-   public List<ClassGroup> getAvailableClasses()
-   {
-      return availableClasses;
    }
 }

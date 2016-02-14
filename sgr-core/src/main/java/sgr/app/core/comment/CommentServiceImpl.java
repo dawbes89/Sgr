@@ -8,10 +8,11 @@ import org.hibernate.criterion.Restrictions;
 import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.core.DaoSupport;
+
 /**
  * @author dawbes89
  */
-public class CommentServiceImpl extends DaoSupport implements CommentService
+class CommentServiceImpl extends DaoSupport implements CommentService
 {
 
    @Override

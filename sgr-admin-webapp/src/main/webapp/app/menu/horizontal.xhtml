@@ -17,6 +17,9 @@
 		<p:menuitem
 			value="#{sgr_admin_translation.menu_horizontal_announcement}"
 			outcome="announcementPanel" icon="ui-icon-star" />
+		<p:menuitem
+			value="#{sgr_admin_translation.menu_horizontal_admin}"
+			outcome="adminPanel" icon="ui-icon-star" />
 
 		<f:facet name="options">
 			<p:panelGrid columns="2">
@@ -28,9 +31,10 @@
 						<f:selectItem itemValue="en"
 							itemLabel="#{sgr_translation.locale_english}" />
 					</p:selectOneMenu>
+					<p:commandButton value="#{sgr_translation.button_logout}"
+						immediate="true" icon="ui-icon-extlink"
+						action="#{loginPanel.logout}" />
 				</h:form>
-				<p:commandButton type="button"
-					value="#{sgr_translation.button_logout}" icon="ui-icon-extlink" />
 			</p:panelGrid>
 		</f:facet>
 	</p:menubar>
