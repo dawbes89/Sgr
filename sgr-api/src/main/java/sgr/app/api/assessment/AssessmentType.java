@@ -6,7 +6,7 @@ public enum AssessmentType
 {
    TEST("form_assessment_type_test"),
    EXAM("form_assessment_type_exam"),
-   ORAL_ANSWER("form_assessment_type_oral");
+   ORAL_ANSWER("form_assessment_type_oral_answer");
 
    private String label;
 

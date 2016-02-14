@@ -34,6 +34,11 @@
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
+      <managed-bean-name>studentAssessmentPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.student.StudentAssessmentPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   <managed-bean>
       <managed-bean-name>loginPanel</managed-bean-name>
       <managed-bean-class>sgr.app.webapp.loginPanel.LoginPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
