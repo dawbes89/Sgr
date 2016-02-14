@@ -14,6 +14,8 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
+import sgr.app.api.exceptions.AuthenticationException;
+import sgr.app.api.exceptions.CustomException;
 import sgr.app.api.translation.TranslationService;
 
 /**
@@ -30,10 +32,10 @@ public abstract class AbstractLoginPanel implements Serializable
          AuthenticationService.MAIN_PAGE);
 
    @Autowired
-   protected TranslationService translationService;
+   protected AuthenticationService authenticationService;
 
    @Autowired
-   protected AuthenticationService authenticationService;
+   private TranslationService translationService;
 
    private LoginBean loginBean;
 
@@ -50,31 +52,36 @@ public abstract class AbstractLoginPanel implements Serializable
 
    protected abstract List<AccountType> supportedAccountTypes();
 
-   public void checkLogin() throws IOException
+   public final void checkLogin() throws IOException
    {
-      final boolean isAuthenticated = authenticationService.authenticateUser(
-            loginBean.getUserName(), loginBean.getPassword(), supportedAccountTypes());
-      if (isAuthenticated)
+      try
       {
+         authenticationService.authenticateUser(loginBean.getUserName(), loginBean.getPassword(),
+               supportedAccountTypes());
          final ExternalContext externalContext = FacesContext.getCurrentInstance()
                .getExternalContext();
          externalContext.redirect(externalContext.getRequestContextPath() + MAIN_PAGE);
       }
-      else
+      catch (AuthenticationException e)
       {
-         final String validationMessage = translationService.translate("validation_loginUserError");
-         final FacesMessage message = new FacesMessage(validationMessage);
-         message.setSeverity(FacesMessage.SEVERITY_ERROR);
-         FacesContext.getCurrentInstance().addMessage("loginForm", message);
+         handleException("loginForm", e);
       }
    }
 
-   public void logout() throws IOException
+   public final void logout() throws IOException
    {
       authenticationService.logoutUser();
       final ExternalContext externalContext = FacesContext.getCurrentInstance()
             .getExternalContext();
       externalContext.redirect(externalContext.getRequestContextPath());
+   }
+
+   private void handleException(String formId, CustomException throwable)
+   {
+      final String validationMessage = translationService.translate(throwable.getMessage());
+      final FacesMessage message = new FacesMessage(validationMessage);
+      message.setSeverity(throwable.getSeverity());
+      FacesContext.getCurrentInstance().addMessage(formId, message);
    }
 
    public final LoginBean getLoginBean()

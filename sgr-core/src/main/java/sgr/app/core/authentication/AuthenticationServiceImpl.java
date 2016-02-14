@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.faces.application.FacesMessage;
+
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,7 @@ import sgr.app.api.admin.Admin;
 import sgr.app.api.admin.AdminService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
+import sgr.app.api.exceptions.AuthenticationException;
 import sgr.app.api.person.Person;
 import sgr.app.core.DaoSupport;
 
@@ -33,56 +36,70 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    private AdminService adminService;
 
    @Override
-   // TODO zmieniæ typ zwracany na void, dodaæ odpowiednie exceptiony z
-   // wiadomoœciami
-   public boolean authenticateUser(String userName, String password,
-         List<AccountType> supportedAccounts)
+   public void authenticateUser(String userName, String password,
+         List<AccountType> supportedAccounts) throws AuthenticationException
    {
-      final Optional<Account> account = accountService.findAccountByLogin(userName);
+      final Optional<Account> foundAccount = accountService.findAccountByLogin(userName);
 
-      if (!account.isPresent())
+      if (!foundAccount.isPresent())
       {
-         return false;
-      }
-      if (!supportedAccounts.contains(account.get().getType()))
-      {
-         return false;
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
       }
 
-      if (!PASSWORD_ENCODER.matches(password, account.get().getPassword()))
+      final Account account = foundAccount.get();
+
+      if (!supportedAccounts.contains(account.getType()))
       {
-         return false;
+         throw new AuthenticationException("authenticationException_lackOfPermission",
+               FacesMessage.SEVERITY_ERROR);
       }
 
-      Optional<Object> user = accountService.findUserByAccount(account.get());
+      if (!PASSWORD_ENCODER.matches(password, account.getPassword()))
+      {
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
+      }
+
+      final Date now = new Date();
+      final Date validTo = account.getValidTo();
+      if (validTo != null && now.after(validTo))
+      {
+         throw new AuthenticationException("authenticationException_accountIsBlocked",
+               FacesMessage.SEVERITY_ERROR);
+      }
+
+      Optional<Object> user = accountService.findUserByAccount(account);
       if (!user.isPresent())
       {
-         return false;
+         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+               FacesMessage.SEVERITY_ERROR);
       }
       try
       {
          sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
-         return true;
       }
       catch (IllegalStateException e)
-      {
-         return false;
-      }
+      {}
    }
 
    @Override
-   // TODO zmieniæ typ zwracany na void, dodaæ exceptiony
-   public boolean logoutUser()
+   public void logoutUser()
    {
       try
       {
          sessionService.getSession().invalidate();
-         return true;
       }
       catch (IllegalStateException e)
-      {
-         return false;
-      }
+      {}
+   }
+
+   // TODO zabezpieczyæ metodê przed brakiem sesji
+   @SuppressWarnings("unchecked")
+   @Override
+   public <T> T getCurrentLoggedUser()
+   {
+      return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
    }
 
    @Override
@@ -107,14 +124,6 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       superAdmin.setAccount(superAccount);
       superAdmin.setPerson(superPerson);
       adminService.create(superAdmin);
-   }
-
-   // TODO zabezpieczyæ metodê przed brakiem sesji
-   @SuppressWarnings("unchecked")
-   @Override
-   public <T> T getCurrentLoggedUser()
-   {
-      return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
    }
 
    @Required
