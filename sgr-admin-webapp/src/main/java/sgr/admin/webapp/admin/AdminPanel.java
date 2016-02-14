@@ -8,8 +8,8 @@ import sgr.app.api.account.Account;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.admin.AdminService;
 import sgr.app.api.person.Person;
-import sgr.app.frontend.BeanHelper;
 import sgr.app.frontend.RandomPasswordGenerator;
+import sgr.app.frontend.helpers.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 

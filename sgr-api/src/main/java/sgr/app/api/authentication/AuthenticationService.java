@@ -3,6 +3,7 @@ package sgr.app.api.authentication;
 import java.util.List;
 
 import sgr.app.api.account.AccountType;
+import sgr.app.api.exceptions.AuthenticationException;
 
 /**
  * Service for authenticate users in application.
@@ -16,11 +17,13 @@ public interface AuthenticationService
    String LOGIN_PAGE = "loginPanel";
    String MAIN_PAGE = "index";
 
-   boolean authenticateUser(String userName, String password, List<AccountType> a);
+   void authenticateUser(String userName, String password, List<AccountType> supportedAccounts)
+         throws AuthenticationException;
 
-   boolean logoutUser();
+   void logoutUser();
+
+   <T> T getCurrentLoggedUser();
 
    void createSuperAdmin();
 
-   <T> T getCurrentLoggedUser();
 }

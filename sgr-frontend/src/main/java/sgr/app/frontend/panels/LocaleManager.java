@@ -1,4 +1,4 @@
-package sgr.app.frontend;
+package sgr.app.frontend.panels;
 
 import java.io.Serializable;
 import java.util.Locale;
