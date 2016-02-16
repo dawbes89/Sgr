@@ -3,7 +3,6 @@ package sgr.app.webapp.teachingStuff;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -75,19 +74,19 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    {
       init();
 
-      currentLoggedTeacher = new TeachingStuff();
-      final Optional<TeachingStuff> teacher = authenticationService.getCurrentUser();
-      if (teacher.isPresent())
+      currentLoggedTeacher = authenticationService.getCurrentUser();
+      if (currentLoggedTeacher == null)
       {
-         currentLoggedTeacher = teacher.get();
-         final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
-         if (preceptorClass != null)
-         {
-            classGroup = preceptorClass;
-            searchStudents(preceptorClass.getId());
-         }
+         return;
       }
+      final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
 
+      if (preceptorClass == null)
+      {
+         return;
+      }
+      classGroup = preceptorClass;
+      searchStudents(preceptorClass.getId());
    }
 
    public void handleClassChange()
@@ -164,7 +163,7 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
 
    public List<Assessment> getAssessments()
    {
-      if(currentLoggedTeacher == null || entity.getId() == null)
+      if (currentLoggedTeacher == null || entity.getId() == null)
       {
          return new ArrayList<>();
       }
@@ -176,10 +175,14 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
 
    public String getAverageAssessments()
    {
-      Float average = 0f;
+      float average = 0f;
+      if(assessments.isEmpty())
+      {
+         return String.format("%.1f", average);
+      }
       for (Assessment assessment : assessments)
       {
-        average = average + assessment.getAssessment();
+         average = average + assessment.getAssessment();
       }
       average = average / assessments.size();
       return String.format("%.1f", average);
