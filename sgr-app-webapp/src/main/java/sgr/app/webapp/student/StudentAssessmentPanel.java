@@ -1,7 +1,6 @@
 package sgr.app.webapp.student;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,14 +43,13 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 
    public void searchAssessments()
    {
-      final Optional<Student> currentLoggedUser = authenticationService.getCurrentLoggedUser();
-      if (!currentLoggedUser.isPresent() || schoolSubject == null)
+      Student currentLoggedUser = authenticationService.getCurrentUser();
+      if (currentLoggedUser == null || schoolSubject == null)
       {
          return;
       }
-      final Student student = currentLoggedUser.get();
-      entities = assessmentService.search(AssessmentQuery.all().withStudentId(student.getId())
-            .withSchoolSubject(schoolSubject).build());
+      entities = assessmentService.search(AssessmentQuery.all()
+            .withStudentId(currentLoggedUser.getId()).withSchoolSubject(schoolSubject).build());
    }
 
    public SchoolSubject getSchoolSubject()
