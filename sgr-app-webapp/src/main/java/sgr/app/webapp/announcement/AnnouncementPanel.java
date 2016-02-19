@@ -1,7 +1,5 @@
 package sgr.app.webapp.announcement;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -13,7 +11,7 @@ import sgr.app.frontend.panels.AbstractPanel;
  * @author dawbes
  */
 @Controller
-public class AnnouncementPanel extends AbstractPanel<Announcement> implements Serializable
+public class AnnouncementPanel extends AbstractPanel<Announcement>
 {
 
    private static final long serialVersionUID = 3526253311725754381L;

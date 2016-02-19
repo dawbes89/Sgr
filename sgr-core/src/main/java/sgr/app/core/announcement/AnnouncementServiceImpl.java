@@ -3,6 +3,7 @@ package sgr.app.core.announcement;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 
 import sgr.app.api.announcement.Announcement;
 import sgr.app.api.announcement.AnnouncementService;
@@ -18,6 +19,7 @@ class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
    public List<Announcement> search()
    {
       Criteria crit = createCriteria(Announcement.class);
+      crit.addOrder(Order.desc(Announcement.PROPERTY_DATE));
       return search(crit);
    }
 

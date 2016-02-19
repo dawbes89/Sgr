@@ -1,5 +1,6 @@
 package sgr.app.api.announcement;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,6 +17,10 @@ import javax.persistence.Table;
 @Table(name = "announcement")
 public class Announcement
 {
+
+   private final static SimpleDateFormat MINUTE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+   public final static String PROPERTY_DATE = "date";
 
    @Id
    @Column(name = "id")
@@ -49,6 +54,11 @@ public class Announcement
    public void setTitle(String title)
    {
       this.title = title;
+   }
+
+   public String getFormattedDate()
+   {
+      return MINUTE_FORMAT.format(date);
    }
 
    public Date getDate()

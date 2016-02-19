@@ -29,7 +29,8 @@ public class Student implements PersonName, Serializable
 
    private static final long serialVersionUID = -2795415011971757723L;
 
-   public static String PROPERTY_CLASS_GROUP = "classGroup";
+   public static final String PROPERTY_ID = "id";
+   public static final String PROPERTY_CLASS_GROUP = "classGroup";
 
    @Id
    @Column(name = "student_id")

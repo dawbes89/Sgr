@@ -26,6 +26,8 @@ public class Admin implements Serializable
 
    private static final long serialVersionUID = -3977084256453665930L;
 
+   public static final String PROPERTY_ID = "id";
+
    @Id
    @Column(name = "admin_id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,6 +21,10 @@ public class ClassGroup implements Serializable
 
    private static final long serialVersionUID = -1359236624174757353L;
 
+   public static final String PROPERTY_GROUP_NUMBER = "groupNumber";
+   public static final String PROPERTY_GROUP_NAME = "groupName";
+   public static final String PROPERTY_YEAR = "year";
+
    @Id
    @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)

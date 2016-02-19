@@ -120,7 +120,6 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       }
       Account superAccount = new Account();
       superAccount.setPassword("kopytko");
-      superAccount.setType(AccountType.ADMIN);
       superAccount.setUserName("root");
 
       Person superPerson = new Person();

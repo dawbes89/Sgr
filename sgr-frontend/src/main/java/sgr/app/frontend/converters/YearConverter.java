@@ -2,8 +2,9 @@ package sgr.app.frontend.converters;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import sgr.app.frontend.StandardFormat;
 
 /**
  * Converter for year. Converts {@link String} value of year to {@link Date}.
@@ -13,16 +14,13 @@ import java.util.Date;
 public class YearConverter extends AbstractConverter<Date>
 {
 
-   private final static SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
-   private final static SimpleDateFormat YEAR_MONTH_DAY_FORMAT = new SimpleDateFormat("yyyy-mm-dd");
-
    @Override
    protected Date convertToObject(String value)
    {
       Date date = null;
       try
       {
-         date = YEAR_FORMAT.parse(value);
+         date = StandardFormat.YEAR_FORMAT.parse(value);
       }
       catch (ParseException e)
       {
@@ -46,14 +44,14 @@ public class YearConverter extends AbstractConverter<Date>
             return object.toString();
          }
          final String stringDate = ts.toString();
-         final Date date = YEAR_MONTH_DAY_FORMAT.parse(stringDate);
-         return YEAR_MONTH_DAY_FORMAT.format(date);
+         final Date date = StandardFormat.DAY_FORMAT.parse(stringDate);
+         return StandardFormat.DAY_FORMAT.format(date);
       }
       catch (ParseException e)
       {
          e.printStackTrace();
+         return object.toString();
       }
-      return object.toString();
    }
 
 }

@@ -3,6 +3,7 @@ package sgr.app.core.comment;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import sgr.app.api.comment.Comment;
@@ -26,6 +27,7 @@ class CommentServiceImpl extends DaoSupport implements CommentService
    {
       Criteria criteria = createCriteria(Comment.class);
       criteria.add(Restrictions.eq(Comment.PROPERTY_STUDENT_ID, studentId));
+      criteria.addOrder(Order.desc(Comment.PROPERTY_DATE));
       return search(criteria);
    }
 

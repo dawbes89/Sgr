@@ -3,6 +3,7 @@ package sgr.app.core.teachingStuff;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.account.Account;
@@ -24,6 +25,7 @@ class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffServic
    public List<TeachingStuff> search()
    {
       Criteria criteria = createCriteria(TeachingStuff.class);
+      criteria.addOrder(Order.desc(TeachingStuff.PROPERTY_ID));
       return search(criteria);
    }
 
