@@ -17,23 +17,12 @@
 					<p:outputLabel
 						value="#{sgr_app_translation.menu_horizontal_announcement}" />
 				</f:facet>
-				<p:outputPanel>
-					<p:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel
-							value="#{sgr_translation.form_announcement_added}: " />
-						<p:outputLabel value="#{announcement.date}" style="color: blue"
-							converter="yearConverter" />
-						<p:outputLabel
-							value="#{sgr_translation.form_announcement_title}: " />
-						<p:outputLabel value="#{announcement.title}"
-							style="font-weight: bold" />
-						<p:outputLabel
-							value="#{sgr_translation.form_announcement_content}: " />
-						<p:outputLabel value="#{announcement.content}"
-							style="font-margin: 3px" />
-					</p:panelGrid>
-					<p:separator />
-				</p:outputPanel>
+				<p:panel header="#{announcement.title}"
+					footer="#{announcement.formattedDate}">
+					<p:outputLabel value="#{announcement.content}"
+						style="font-margin: 3px" />
+				</p:panel>
+				<p:separator />
 			</p:dataScroller>
 		</h:form>
 	</ui:define>

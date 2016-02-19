@@ -3,6 +3,7 @@ package sgr.app.core.student;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -28,6 +29,7 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    public List<Student> search(StudentQuery query)
    {
       Criteria criteria = createCriteriaFromQuery(query);
+      criteria.addOrder(Order.desc(Student.PROPERTY_ID));
       return search(criteria);
    }
 

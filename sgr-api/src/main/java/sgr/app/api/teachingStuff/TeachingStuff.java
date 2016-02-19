@@ -30,6 +30,8 @@ public class TeachingStuff implements PersonName, Serializable
 
    private static final long serialVersionUID = 1452686849131351842L;
 
+   public final static String PROPERTY_ID = "id";
+
    @Id
    @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)

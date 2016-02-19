@@ -3,6 +3,7 @@ package sgr.app.core.admin;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.account.Account;
@@ -24,6 +25,7 @@ class AdminServiceImpl extends DaoSupport implements AdminService
    public List<Admin> search()
    {
       Criteria criteria = createCriteria(Admin.class);
+      criteria.addOrder(Order.desc(Admin.PROPERTY_ID));
       return search(criteria);
    }
 
