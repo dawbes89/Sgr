@@ -45,16 +45,19 @@
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">
-			<p:panel id="lessonsPanel" header="Lekcje">
+			<p:panel id="lessonsPanel"
+				header="#{sgr_translation.form_lesson_lessons}">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="lesson"
 						value="#{teacherLessonPanel.entities}">
-						<p:column headerText="data" filterBy="#{lesson.date}"
-							filterMatchMode="contains">
+						<p:column
+							headerText="#{sgr_translation.form_lesson_dateOfTheLesson}"
+							filterBy="#{lesson.date}" filterMatchMode="contains">
 							<p:outputLabel value="#{lesson.date}" converter="yearConverter" />
 						</p:column>
-						<p:column headerText="temat" filterBy="#{lesson.lessonSubject}"
-							filterMatchMode="contains">
+						<p:column
+							headerText="#{sgr_translation.form_lesson_lessonSubject}"
+							filterBy="#{lesson.lessonSubject}" filterMatchMode="contains">
 							<p:outputLabel value="#{lesson.lessonSubject}" />
 						</p:column>
 					</p:dataTable>
@@ -70,24 +73,27 @@
 				<p:panelGrid id="panel" columns="1">
 					<p:messages id="msgs" />
 
-					<p:panel id="lessonSubjectPanel"
-						header="#{sgr_translation.form_person}">
-						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="lessonSubject" value="temat lekcji:" />
-							<p:inputText id="lessonSubject" label="temat lekcji"
+					<p:panel id="lessonSubjectPanel">
+						<p:panelGrid columns="1" columnClasses="label, value">
+							<p:outputLabel for="lessonSubject"
+								value="#{sgr_translation.form_lesson_lessonSubject}:" />
+
+							<p:inputTextarea id="lessonSubject" rows="1" cols="60"
+								label="#{sgr_translation.form_lesson_lessonSubject}"
 								value="#{teacherLessonPanel.entity.lessonSubject}"
 								required="true" />
 						</p:panelGrid>
 					</p:panel>
 					<p:panel id="studentsPanel"
-						header="#{sgr_translation.form_assessment_other}"
+						header="#{sgr_translation.form_lesson_presences}"
 						toggleable="true">
 						<p:dataTable id="table" var="student"
 							value="#{teacherLessonPanel.students}"
 							selection="#{teacherLessonPanel.selectedStudent}"
 							rowKey="#{student.id}">
 							<p:column selectionMode="multiple"
-								style="width:16px;text-align:center" />
+								headerText="#{sgr_translation.form_lesson_presences_presence}"
+								style="text-align:center" />
 							<p:column headerText="id">
 								<p:outputLabel value="#{student.id}" />
 							</p:column>
@@ -102,11 +108,7 @@
 							</p:column>
 						</p:dataTable>
 						<p:separator />
-						<p:outputLabel
-							value="#{sgr_translation.form_assessment_averageAssessments}: " />
-						<p:outputLabel
-							value="#{teacherAssessmentPanel.averageAssessments}"
-							style="color: red" />
+
 					</p:panel>
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
