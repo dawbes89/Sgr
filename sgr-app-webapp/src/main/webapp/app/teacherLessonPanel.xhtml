@@ -1,0 +1,135 @@
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="onLoadForm">
+			<p:remoteCommand name="onload" action="#{teacherLessonPanel.onLoad}"
+				autoRun="true"
+				update=":root:table, :search:teacherSchoolSubject, :search:classGroup" />
+		</h:form>
+		<!-- SEARCH PANEL -->
+		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
+			<h:form id="search">
+
+				<p:outputLabel value="#{sgr_translation.form_class}: " />
+				<p:selectOneMenu id="classGroup"
+					value="#{teacherLessonPanel.classGroup}" effect="fade"
+					filter="true" filterMatchMode="contains" converter="classConverter"
+					required="true">
+					<p:ajax listener="#{teacherLessonPanel.handleClassChange}"
+						update=":root:table" />
+					<f:selectItem itemValue="#{null}"
+						itemLabel="#{sgr_translation.selectOneMenu_select}"
+						noSelectionOption="true" />
+					<f:selectItems value="#{teacherLessonPanel.classes}"
+						var="classGroup" itemLabel="#{classGroup.className}"
+						itemValue="#{classGroup}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="#{sgr_translation.school_subject}: " />
+				<p:outputLabel id="teacherSchoolSubject"
+					value="#{teacherLessonPanel.currentLoggedTeacher.schoolSubject}"
+					converter="schoolSubjectTranslationConverter" style="color: blue" />
+				<p:separator />
+
+				<p:commandButton value="#{sgr_translation.button_add}"
+					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
+					oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').show()"
+					action="#{teacherLessonPanel.searchStudents}"
+					update=":add:studentsPanel" />
+			</h:form>
+		</p:panel>
+
+		<!-- MAIN TABLE -->
+		<h:form id="root">
+			<p:panel id="lessonsPanel" header="Lekcje">
+				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+					<p:dataTable id="table" var="lesson"
+						value="#{teacherLessonPanel.entities}">
+						<p:column headerText="data" filterBy="#{lesson.date}"
+							filterMatchMode="contains">
+							<p:outputLabel value="#{lesson.date}" converter="yearConverter" />
+						</p:column>
+						<p:column headerText="temat" filterBy="#{lesson.lessonSubject}"
+							filterMatchMode="contains">
+							<p:outputLabel value="#{lesson.lessonSubject}" />
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+
+		<p:dialog widgetVar="addDialog"
+			header="#{sgr_translation.form_window_caption_add}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="750px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)">
+			<h:form id="add">
+				<p:panelGrid id="panel" columns="1">
+					<p:messages id="msgs" />
+
+					<p:panel id="lessonSubjectPanel"
+						header="#{sgr_translation.form_person}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="lessonSubject" value="temat lekcji:" />
+							<p:inputText id="lessonSubject" label="temat lekcji"
+								value="#{teacherLessonPanel.entity.lessonSubject}"
+								required="true" />
+						</p:panelGrid>
+					</p:panel>
+					<p:panel id="studentsPanel"
+						header="#{sgr_translation.form_assessment_other}"
+						toggleable="true">
+						<p:dataTable id="table" var="student"
+							value="#{teacherLessonPanel.students}"
+							selection="#{teacherLessonPanel.selectedStudent}"
+							rowKey="#{student.id}">
+							<p:column selectionMode="multiple"
+								style="width:16px;text-align:center" />
+							<p:column headerText="id">
+								<p:outputLabel value="#{student.id}" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_person_firstName}"
+								filterBy="#{student.person.firstName}"
+								filterMatchMode="contains">
+								<p:outputLabel value="#{student.person.firstName}" />
+							</p:column>
+							<p:column headerText="#{sgr_translation.form_person_lastName}"
+								filterBy="#{student.person.lastName}" filterMatchMode="contains">
+								<p:outputLabel value="#{student.person.lastName}" />
+							</p:column>
+						</p:dataTable>
+						<p:separator />
+						<p:outputLabel
+							value="#{sgr_translation.form_assessment_averageAssessments}: " />
+						<p:outputLabel
+							value="#{teacherAssessmentPanel.averageAssessments}"
+							style="color: red" />
+					</p:panel>
+					<p:panel id="buttons">
+						<p:commandButton value="#{sgr_translation.form_button_save}"
+							action="#{teacherLessonPanel.create}"
+							update=":add:panel :root:panel" icon="ui-icon-disk"
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":add:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_close}"
+							update=":add:panel" process="@this" icon="ui-icon-cancel"
+							oncomplete="PF('addDialog').hide()">
+							<p:resetInput target=":add:panel" />
+						</p:commandButton>
+					</p:panel>
+
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+	</ui:define>
+
+</ui:composition>
