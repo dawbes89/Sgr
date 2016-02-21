@@ -5,21 +5,21 @@ package sgr.app.api.teachingStuff;
  */
 public enum SchoolSubject
 {
-   POLISH_LANGUAGE("school_subject_polish_language"),
-   MATHS("school_subject_maths"),
-   HISTORY("school_subject_history"),
-   CIVIC_EDUCATION("school_subject_civic_education"),
-   BIOLOGY("school_subject_biology"),
-   CHEMISTRY("school_subject_chemistry"),
-   GEOGRAPHY("school_subject_geography"),
-   INFORMATICS("school_subject_informatics"),
-   TECHNIQUE("school_subject_technique"),
-   ART_MUSIC("school_subject_art_music"),
-   RELIGION("school_subject_religion"),
-   EUROPEAN_EDUCATION("school_subject_european_education"),
-   ENGLISH("school_subject_english_language"),
-   PHYSICS("school_subject_physics"),
-   GERMAN("school_subject_german_language");
+   POLISH_LANGUAGE("schoolSubject_language_polish"),
+   MATHS("schoolSubject_maths"),
+   HISTORY("schoolSubject_history"),
+   CIVIC_EDUCATION("schoolSubject_civicEducation"),
+   BIOLOGY("schoolSubject_biology"),
+   CHEMISTRY("schoolSubject_chemistry"),
+   GEOGRAPHY("schoolSubject_geography"),
+   INFORMATICS("schoolSubject_informatics"),
+   TECHNIQUE("schoolSubject_technique"),
+   ART_MUSIC("schoolSubject_artMusic"),
+   RELIGION("schoolSubject_religion"),
+   EUROPEAN_EDUCATION("schoolSubject_europeanEducation"),
+   ENGLISH("schoolSubject_language_english"),
+   PHYSICS("schoolSubject_physics"),
+   GERMAN("schoolSubject_language_german");
 
    private String label;
 
