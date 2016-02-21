@@ -1,18 +1,21 @@
 package sgr.app.api;
+
 /**
  * @author dawbes
- * @param <Q>
+ *
+ * @param <QUERY>
+ *           type of query to build
  */
-public abstract class QueryBuilder<Q>
+public abstract class QueryBuilder<QUERY>
 {
-   protected final Q query;
+   protected final QUERY query;
 
-   protected QueryBuilder(Q query)
+   protected QueryBuilder(QUERY query)
    {
       this.query = query;
    }
 
-   public Q build()
+   public QUERY build()
    {
       return query;
    }

@@ -43,13 +43,18 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 
    public void searchAssessments()
    {
-      Student currentLoggedUser = authenticationService.getCurrentUser();
-      if (currentLoggedUser == null || schoolSubject == null)
+      final Student currentLoggedUser = authenticationService.getCurrentUser();
+      if (currentLoggedUser == null)
       {
          return;
       }
-      entities = assessmentService.search(AssessmentQuery.all()
-            .withStudentId(currentLoggedUser.getId()).withSchoolSubject(schoolSubject).build());
+      AssessmentQuery query = AssessmentQuery.all().withStudentId(currentLoggedUser.getId())
+            .build();
+      if (schoolSubject != null)
+      {
+         query.setSchoolSubject(schoolSubject);
+      }
+      entities = assessmentService.search(query);
    }
 
    public SchoolSubject getSchoolSubject()
@@ -70,15 +75,11 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
    public String getAverageAssessments()
    {
       float average = 0;
-      if (entities.isEmpty())
-      {
-         return String.format("%.1f", average);
-      }
       for (Assessment assessment : entities)
       {
-         average = average + assessment.getAssessment();
+         average += assessment.getAssessment();
       }
-      average = average / entities.size();
+      average = entities.isEmpty() ? average : average / entities.size();
       return String.format("%.1f", average);
    }
 

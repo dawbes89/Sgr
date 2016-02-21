@@ -27,9 +27,9 @@ class AccountServiceImpl extends DaoSupport implements AccountService
    @Override
    public Optional<Account> findAccountByLogin(String login)
    {
-      Criteria criteria = createCriteria(Account.class);
+      final Criteria criteria = createCriteria(Account.class);
       criteria.add(Restrictions.eq(Account.PROPERTY_USER_NAME, login));
-      Account result = (Account) criteria.uniqueResult();
+      final Account result = (Account) criteria.uniqueResult();
       return Optional.ofNullable(result);
    }
 
@@ -68,6 +68,15 @@ class AccountServiceImpl extends DaoSupport implements AccountService
       account.setCreated(new Date());
       account.setPassword(PASSWORD_ENCODER.encode(accountPassword));
       return createEntity(account);
+   }
+
+   @Override
+   public void updateAccountPassword(String login, String password)
+   {
+      final Optional<Account> foundAccount = findAccountByLogin(login);
+      final Account account = foundAccount.get();
+      account.setPassword(PASSWORD_ENCODER.encode(password));
+      updateEntity(account);
    }
 
 }

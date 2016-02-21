@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.account.Account;
+import sgr.app.api.account.AccountEntity;
 import sgr.app.api.person.Person;
 
 /**
@@ -21,7 +22,7 @@ import sgr.app.api.person.Person;
  */
 @Entity
 @Table(name = "admin")
-public class Admin implements Serializable
+public class Admin implements AccountEntity, Serializable
 {
 
    private static final long serialVersionUID = -3977084256453665930L;
@@ -61,6 +62,7 @@ public class Admin implements Serializable
       this.person = person;
    }
 
+   @Override
    public Account getAccount()
    {
       return account;
