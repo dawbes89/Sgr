@@ -48,5 +48,10 @@
       <managed-bean-class>sgr.app.webapp.student.StudentCommentPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
+      <managed-bean>
+      <managed-bean-name>changePasswordPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.ChangePasswordPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
 
 </faces-config>
