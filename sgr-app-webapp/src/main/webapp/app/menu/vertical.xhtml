@@ -9,7 +9,7 @@
 	<p:menu toggleable="true" rendered="#{mainPanel.showMenuFor('TEACHER')}">
 		<p:submenu label="#{sgr_app_translation.menu_vertical_class_title}">
 			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_class_presence}"
+				value="#{sgr_app_translation.menu_vertical_personal_lessons}"
 				outcome="teacherLessonPanel" icon="ui-icon-calendar" />
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_assessment}"
@@ -17,6 +17,9 @@
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_comments}"
 				outcome="teacherCommentPanel" icon="ui-icon-comment" />
+			<p:menuitem
+				value="#{sgr_app_translation.menu_vertical_personal_presence}"
+				outcome="preceptorPresencePanel" icon="ui-icon-comment" rendered="#{mainPanel.showPresenceForPreceptor()}"/>
 		</p:submenu>
 
 		<ui:include src="common.xhtml" />
