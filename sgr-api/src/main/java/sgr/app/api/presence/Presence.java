@@ -1,7 +1,11 @@
 package sgr.app.api.presence;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -9,17 +13,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.lesson.Lesson;
+import sgr.app.api.student.Student;
 
 /**
  * @author dawbes
  */
 @Entity
 @Table(name = "presence")
-public class Presence
+public class Presence implements Serializable
 {
+
+   private static final long serialVersionUID = -1089351333165210891L;
+
+   public static final String PROPERTY_LESSON = "lesson";
+
    @Id
    @Column(name = "presence_id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +40,16 @@ public class Presence
    private boolean presence;
 
    @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name = "lesson_id",  foreignKey = @ForeignKey(name = "presence_lesson_id_fk") )
+   @JoinColumn(name = "lesson_id", foreignKey = @ForeignKey(name = "presence_lesson_id_fk"))
    private Lesson lesson;
 
-   @Column(name = "student_id")
-   private Long studentId;
+   @OneToOne()
+   @JoinColumn(name = "student_id", nullable = false)
+   private Student student;
+
+   @Enumerated(EnumType.STRING)
+   @Column(name = "status")
+   private PresenceStatus status;
 
    public Long getId()
    {
@@ -55,16 +71,6 @@ public class Presence
       this.presence = presence;
    }
 
-   public Long getStudentId()
-   {
-      return studentId;
-   }
-
-   public void setStudentId(Long studentId)
-   {
-      this.studentId = studentId;
-   }
-
    public Lesson getLesson()
    {
       return lesson;
@@ -75,6 +81,24 @@ public class Presence
       this.lesson = lesson;
    }
 
+   public Student getStudent()
+   {
+      return student;
+   }
 
+   public void setStudent(Student student)
+   {
+      this.student = student;
+   }
+
+   public PresenceStatus getStatus()
+   {
+      return status;
+   }
+
+   public void setStatus(PresenceStatus status)
+   {
+      this.status = status;
+   }
 
 }

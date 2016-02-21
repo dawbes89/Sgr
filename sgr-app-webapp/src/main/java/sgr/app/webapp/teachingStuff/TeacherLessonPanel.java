@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
@@ -16,11 +15,11 @@ import sgr.app.api.lesson.Lesson;
 import sgr.app.api.lesson.LessonQuery;
 import sgr.app.api.lesson.LessonService;
 import sgr.app.api.presence.Presence;
+import sgr.app.api.presence.PresenceStatus;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -31,12 +30,6 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 {
 
    private static final long serialVersionUID = 6551034627669299579L;
-
-   @Autowired
-   private TranslationService translationService;
-
-   @Autowired
-   private AssessmentService assessmentService;
 
    @Autowired
    private StudentService studentService;
@@ -73,35 +66,6 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
-   public void handleClassChange()
-   {
-      searchLessons();
-   }
-
-   private void searchLessons()
-   {
-      LessonQuery query = new LessonQuery();
-      if(classGroup.getId() != null)
-      {
-         query.setClassGroupId(classGroup.getId());
-      }
-      if(currentLoggedTeacher.getSchoolSubject() != null)
-      {
-         query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
-      }
-      entities = lessonService.search(query);
-   }
-
-   public void searchStudents()
-   {
-      StudentQuery query = new StudentQuery();
-      if (classGroup != null)
-      {
-         query.setClassGroupId(classGroup.getId());
-      }
-      students = studentService.search(query);
-   }
-
    @Override
    public void onLoad()
    {
@@ -120,41 +84,43 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       }
       classGroup = preceptorClass;
       searchLessons();
+   }
 
+   public void searchLessons()
+   {
+      LessonQuery query = new LessonQuery();
+      if (classGroup.getId() != null)
+      {
+         query.setClassGroupId(classGroup.getId());
+      }
+      if (currentLoggedTeacher.getSchoolSubject() != null)
+      {
+         query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
+      }
+      entities = lessonService.search(query);
+   }
 
+   public void searchStudents()
+   {
+      StudentQuery query = new StudentQuery();
+      if (classGroup != null)
+      {
+         query.setClassGroupId(classGroup.getId());
+      }
+      students = studentService.search(query);
    }
 
    public void create()
    {
-      List<Presence> presences = new ArrayList<>();
-      for (Student student : students)
-      {
-         Presence presence = new Presence();
-         for (Student selectedStudent : selectedStudent)
-         {
-            if (student.getId().equals(selectedStudent.getId()))
-            {
-               presence.setPresence(true);
-               presence.setStudentId(student.getId());
-               presences.add(presence);
+      List<Presence> presences = createPressences();
 
-            }
-            else
-            {
-               presence.setPresence(false);
-               presence.setStudentId(student.getId());
-               presences.add(presence);
-
-            }
-            break;
-         }
-      }
       presences.size();
       entity.setClassGroup(classGroup);
       entity.setDate(new Date());
       entity.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       entity.setIssuerName(currentLoggedTeacher.getFullName());
       entity = lessonService.create(entity, presences);
+      searchStudents();
       searchLessons();
    }
 
@@ -216,6 +182,34 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    public void setSelectedStudent(List<Student> selectedStudent)
    {
       this.selectedStudent = selectedStudent;
+   }
+
+   private List<Presence> createPressences()
+   {
+      List<Presence> presences = new ArrayList<>();
+      for (Student student : students)
+      {
+         presences.add(createPresence(student));
+      }
+      for (Student student : selectedStudent)
+      {
+         for (Presence presence : presences)
+         {
+            if (presence.getStudent().getId().equals(student.getId()))
+            {
+               presence.setStatus(PresenceStatus.PRESENT);
+            }
+         }
+      }
+      return presences;
+   }
+
+   private static Presence createPresence(Student student)
+   {
+      Presence presence = new Presence();
+      presence.setStudent(student);
+      presence.setStatus(PresenceStatus.ABSENT);
+      return presence;
    }
 
 }

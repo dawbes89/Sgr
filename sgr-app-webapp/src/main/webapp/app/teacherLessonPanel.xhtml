@@ -20,7 +20,7 @@
 					value="#{teacherLessonPanel.classGroup}" effect="fade"
 					filter="true" filterMatchMode="contains" converter="classConverter"
 					required="true">
-					<p:ajax listener="#{teacherLessonPanel.handleClassChange}"
+					<p:ajax listener="#{teacherLessonPanel.searchLessons}"
 						update=":root:table" />
 					<f:selectItem itemValue="#{null}"
 						itemLabel="#{sgr_translation.selectOneMenu_select}"
@@ -94,9 +94,7 @@
 							<p:column selectionMode="multiple"
 								headerText="#{sgr_translation.form_lesson_presences_presence}"
 								style="text-align:center" />
-							<p:column headerText="id">
-								<p:outputLabel value="#{student.id}" />
-							</p:column>
+
 							<p:column headerText="#{sgr_translation.form_person_firstName}"
 								filterBy="#{student.person.firstName}"
 								filterMatchMode="contains">
@@ -130,7 +128,6 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-
 
 	</ui:define>
 
