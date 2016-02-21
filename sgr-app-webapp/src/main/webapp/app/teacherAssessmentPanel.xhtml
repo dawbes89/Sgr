@@ -11,7 +11,7 @@
 			<h:form id="search">
 				<p:remoteCommand name="onload"
 					action="#{teacherAssessmentPanel.onLoad}" autoRun="true"
-					update=":root:table, search:teacherSchoolSubject" />
+					update=":root:table search:teacherSchoolSubject" />
 
 				<p:outputLabel value="#{sgr_translation.form_class}: " />
 				<p:selectOneMenu id="classGroup"
@@ -90,7 +90,7 @@
 								<f:selectItem itemValue="EXAM"
 									itemLabel="#{sgr_translation.form_assessment_type_exam}" />
 								<f:selectItem itemValue="ORAL_ANSWER"
-									itemLabel="#{sgr_translation.form_assessment_type_oral_answer}" />
+									itemLabel="#{sgr_translation.form_assessment_type_oralAnswer}" />
 								<f:selectItem itemValue="ACTIVITY"
 									itemLabel="#{sgr_translation.form_assessment_type_activity}" />
 							</p:selectOneMenu>
@@ -137,6 +137,13 @@
 					<p:panel id="otherAssessemetsPanel"
 						header="#{sgr_translation.form_assessment_other}"
 						toggleable="true" collapsed="true">
+						<p:outputLabel
+							value="#{sgr_translation.form_assessment_averageAssessments}: " />
+						<p:outputLabel
+							value="#{teacherAssessmentPanel.averageAssessments}"
+							style="color: red" />
+						<p:separator />
+
 						<p:dataTable id="assessmentTable" var="assessment"
 							value="#{teacherAssessmentPanel.assessments}" editable="true"
 							cellSeparator="true">
@@ -144,23 +151,20 @@
 								headerText="#{sgr_translation.form_assessment_addingDate}"
 								width="110">
 								<p:outputLabel value="#{assessment.date}"
-									converter="yearConverter" style="float:right"/>
+									converter="yearConverter" style="float:right" />
 							</p:column>
 							<p:column headerText="#{sgr_translation.form_assessment}"
 								width="110">
-								<p:outputLabel value="#{assessment.assessment}" converter="assessmentConverter" style="float:right"/>
+								<p:outputLabel value="#{assessment.assessment}"
+									converter="assessmentConverter" style="float:right" />
 							</p:column>
 							<p:column headerText="#{sgr_translation.form_assessment_type}"
 								width="110">
 								<p:outputLabel value="#{assessment.assessmentType}"
-									converter="assessmentTypeTranslationConverter" style="float:right"/>
+									converter="assessmentTypeTranslationConverter"
+									style="float:right" />
 							</p:column>
 						</p:dataTable>
-						<p:separator />
-						<p:outputLabel
-							value="#{sgr_translation.form_assessment_averageAssessments}: " />
-						<p:outputLabel
-							value="#{teacherAssessmentPanel.averageAssessments}" style="color: red" />
 					</p:panel>
 
 				</p:panelGrid>

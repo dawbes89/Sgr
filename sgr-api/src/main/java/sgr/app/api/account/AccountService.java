@@ -14,4 +14,6 @@ public interface AccountService
 
    Account createAccount(Account account);
 
+   void updateAccountPassword(String login, String password);
+
 }
