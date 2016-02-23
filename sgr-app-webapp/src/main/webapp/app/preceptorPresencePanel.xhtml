@@ -22,7 +22,7 @@
 							value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
 						<p:selectOneMenu id="schoolSubject"
 							value="#{preceptorPresencePanel.schoolSubject}" effect="fade"
-							filter="true" filterMatchMode="contains">
+							filter="true" filterMatchMode="contains" style="width:300">
 							<f:selectItem itemValue="#{null}"
 								itemLabel="#{sgr_translation.selectOneMenu_select}"
 								noSelectionOption="true" />
@@ -34,10 +34,12 @@
 							value="#{sgr_translation.form_presence_status}:" />
 						<p:selectOneMenu id="status"
 							value="#{preceptorPresencePanel.status}" var="status"
-							style="width:250">
+							filter="true" filterMatchMode="contains" style="width:300">
 							<f:selectItem itemValue="#{null}"
 								itemLabel="#{sgr_translation.selectOneMenu_select}"
 								noSelectionOption="true" />
+							<f:selectItem itemValue="PRESENT"
+								itemLabel="#{sgr_translation.form_presence_status_present}" />
 							<f:selectItem itemValue="ABSENT_EXCUSED"
 								itemLabel="#{sgr_translation.form_presence_status_absentExcused}" />
 							<f:selectItem itemValue="ABSENT"

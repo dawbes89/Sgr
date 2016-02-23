@@ -50,14 +50,16 @@
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="lesson"
 						value="#{teacherLessonPanel.entities}">
+						<p:column width="100"
+							headerText="#{sgr_translation.form_lesson_numberOfLessons}">
+							<p:outputLabel value="#{lesson.lessonNumber}" />
+						</p:column>
 						<p:column
-							headerText="#{sgr_translation.form_lesson_dateOfTheLesson}"
-							filterBy="#{lesson.date}" filterMatchMode="contains">
+							headerText="#{sgr_translation.form_lesson_dateOfTheLesson}">
 							<p:outputLabel value="#{lesson.date}" converter="yearConverter" />
 						</p:column>
 						<p:column
-							headerText="#{sgr_translation.form_lesson_lessonSubject}"
-							filterBy="#{lesson.lessonSubject}" filterMatchMode="contains">
+							headerText="#{sgr_translation.form_lesson_lessonSubject}">
 							<p:outputLabel value="#{lesson.lessonSubject}" />
 						</p:column>
 					</p:dataTable>
