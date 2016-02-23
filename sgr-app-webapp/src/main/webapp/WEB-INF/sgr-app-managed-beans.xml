@@ -3,6 +3,7 @@
    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
    version="2.2">
 
+   <!-- COMMON -->
    <managed-bean>
       <managed-bean-name>localeManager</managed-bean-name>
       <managed-bean-class>sgr.app.frontend.panels.LocaleManager</managed-bean-class>
@@ -13,6 +14,18 @@
       <managed-bean-class>sgr.app.frontend.panels.MainPanel</managed-bean-class>
       <managed-bean-scope>request</managed-bean-scope>
    </managed-bean>
+   <managed-bean>
+      <managed-bean-name>loginPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.loginPanel.LoginPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   <managed-bean>
+      <managed-bean-name>changePasswordPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.frontend.panels.ChangePasswordPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+
+
    <managed-bean>
       <managed-bean-name>teachingStuffPanel</managed-bean-name>
       <managed-bean-class>sgr.app.webapp.teachingStuff.TeachingStuffPanel</managed-bean-class>
@@ -39,18 +52,8 @@
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
-      <managed-bean-name>loginPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.loginPanel.LoginPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
       <managed-bean-name>studentCommentPanel</managed-bean-name>
       <managed-bean-class>sgr.app.webapp.student.StudentCommentPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-      <managed-bean>
-      <managed-bean-name>changePasswordPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.ChangePasswordPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
 
