@@ -13,7 +13,7 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
+					title="#{sgr_translation.button_add_admin}" icon="ui-icon-plus"
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
@@ -93,8 +93,8 @@
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
-								value="#{adminPanel.account.validTo}"
-								pattern="yyyy-MM-dd" mask="true" />
+								value="#{adminPanel.account.validTo}" pattern="yyyy-MM-dd"
+								mask="true" />
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
@@ -109,7 +109,7 @@
 								value="#{adminPanel.account.password}" required="true" />
 							<p:column />
 							<p:commandButton immediate="true"
-								value="#{sgr_translation.form_button_generatePassword}"
+								value="#{sgr_translation.form_form_button_generatePassword}"
 								action="#{adminPanel.generatePassword('add', 'password')}"
 								update="password" icon="ui-icon-locked">
 							</p:commandButton>
@@ -173,8 +173,8 @@
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
-								value="#{adminPanel.account.validTo}"
-								pattern="yyyy-MM-dd" mask="true" />
+								value="#{adminPanel.account.validTo}" pattern="yyyy-MM-dd"
+								mask="true" />
 						</p:panelGrid>
 					</p:panel>
 
