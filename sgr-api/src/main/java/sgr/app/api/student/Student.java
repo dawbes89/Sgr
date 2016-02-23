@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.account.Account;
+import sgr.app.api.account.AccountEntity;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.person.Person;
 import sgr.app.api.person.PersonName;
@@ -24,7 +25,7 @@ import sgr.app.api.person.PersonName;
  */
 @Entity
 @Table(name = "student")
-public class Student implements PersonName, Serializable
+public class Student implements PersonName, AccountEntity, Serializable
 {
 
    private static final long serialVersionUID = -2795415011971757723L;
@@ -70,6 +71,7 @@ public class Student implements PersonName, Serializable
       this.person = person;
    }
 
+   @Override
    public Account getAccount()
    {
       return account;

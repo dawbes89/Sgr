@@ -11,7 +11,7 @@
 			<h:form id="search">
 				<p:remoteCommand name="onload"
 					action="#{studentAssessmentPanel.onLoad}" autoRun="true"
-					update=":root:table, :root:averageAssessment" />
+					update=":root" />
 
 				<p:outputLabel
 					value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
@@ -19,7 +19,7 @@
 					value="#{studentAssessmentPanel.schoolSubject}" effect="fade"
 					filter="true" filterMatchMode="contains">
 					<p:ajax listener="#{studentAssessmentPanel.searchAssessments}"
-						update=":root:table, :root:averageAssessment" />
+						update=":root" />
 					<f:selectItem itemValue="#{null}"
 						itemLabel="#{sgr_translation.selectOneMenu_select}"
 						noSelectionOption="true" />
@@ -32,29 +32,34 @@
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">
-			<p:dataTable id="table" var="assessment"
-				value="#{studentAssessmentPanel.entities}" editable="true"
-				cellSeparator="true">
-				<p:column headerText="#{sgr_translation.form_assessment_addingDate}"
-					width="110">
-					<p:outputLabel value="#{assessment.date}" converter="yearConverter"
-						style="float:right" />
-				</p:column>
-				<p:column headerText="#{sgr_translation.form_assessment}"
-					width="110">
-					<p:outputLabel value="#{assessment.assessment}" style="float:right" converter="assessmentConverter"/>
-				</p:column>
-				<p:column headerText="#{sgr_translation.form_assessment_type}"
-					width="110">
-					<p:outputLabel value="#{assessment.assessmentType}"
-						converter="assessmentTypeTranslationConverter" style="float:right" />
-				</p:column>
-			</p:dataTable>
-			<p:separator />
-			<p:outputLabel
-				value="#{sgr_translation.form_assessment_averageAssessments}: " />
-			<p:outputLabel id="averageAssessment" value="#{studentAssessmentPanel.averageAssessments}"
-				style="color: red" />
+			<p:panel header="Oceny">
+				<p:outputLabel
+					value="#{sgr_translation.form_assessment_averageAssessments}: " />
+				<p:outputLabel id="averageAssessment"
+					value="#{studentAssessmentPanel.averageAssessments}"
+					style="color: red" />
+				<p:dataTable id="table" var="assessment"
+					value="#{studentAssessmentPanel.entities}" editable="true"
+					cellSeparator="true">
+					<p:column
+						headerText="#{sgr_translation.form_assessment_addingDate}"
+						width="110">
+						<p:outputLabel value="#{assessment.date}"
+							converter="yearConverter" style="float:right" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_assessment}"
+						width="110">
+						<p:outputLabel value="#{assessment.assessment}"
+							style="float:right" converter="assessmentConverter" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_assessment_type}"
+						width="110">
+						<p:outputLabel value="#{assessment.assessmentType}"
+							converter="assessmentTypeTranslationConverter"
+							style="float:right" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
 		</h:form>
 
 	</ui:define>
