@@ -32,6 +32,7 @@ public class Student implements PersonName, AccountEntity, Serializable
 
    public static final String PROPERTY_ID = "id";
    public static final String PROPERTY_CLASS_GROUP = "classGroup";
+   public static final String PROPERTY_PERSON = "person";
 
    @Id
    @Column(name = "student_id")
