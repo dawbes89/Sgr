@@ -25,7 +25,8 @@ public class Assessment implements Serializable
    private static final long serialVersionUID = 1707760863896363695L;
 
    public static final String PROPERTY_STUDENT_ID = "studentId";
-   public static final String PROPERTY_SCHOOLSUBJECT = "schoolSubject";
+   public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
+   public static final String PROPERTY_DATE = "date";
 
    @Id
    @Column(name = "assessment_id")
@@ -68,7 +69,6 @@ public class Assessment implements Serializable
    {
       this.date = date;
    }
-
 
    public float getAssessment()
    {
