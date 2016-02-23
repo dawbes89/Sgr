@@ -1,6 +1,7 @@
 package sgr.app.webapp.teachingStuff;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    private ClassGroup classGroup;
 
    private SchoolSubject schoolSubject;
+
+   private String studentFullName;
+
+   private Date date;
+
+   private PresenceStatus status;
 
    @Override
    public void init()
@@ -92,6 +99,18 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
       if (schoolSubject != null)
       {
          query.setSchoolSubject(schoolSubject);
+      }
+      if (studentFullName != null)
+      {
+         query.setStudentFullName(studentFullName);
+      }
+      if (date != null)
+      {
+         query.setDate(date);
+      }
+      if (status != null)
+      {
+         query.setStatus(status);
       }
       entities = presenceService.search(query);
    }
@@ -154,6 +173,36 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    public void setSchoolSubject(SchoolSubject schoolSubject)
    {
       this.schoolSubject = schoolSubject;
+   }
+
+   public String getStudentFullName()
+   {
+      return studentFullName;
+   }
+
+   public void setStudentFullName(String studentFullName)
+   {
+      this.studentFullName = studentFullName;
+   }
+
+   public Date getDate()
+   {
+      return date;
+   }
+
+   public void setDate(Date date)
+   {
+      this.date = date;
+   }
+
+   public PresenceStatus getStatus()
+   {
+      return status;
+   }
+
+   public void setStatus(PresenceStatus status)
+   {
+      this.status = status;
    }
 
 }

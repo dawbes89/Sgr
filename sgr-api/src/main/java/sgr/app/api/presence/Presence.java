@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.lesson.Lesson;
@@ -30,21 +29,20 @@ public class Presence implements Serializable
    private static final long serialVersionUID = -1089351333165210891L;
 
    public static final String PROPERTY_LESSON = "lesson";
+   public static final String PROPERTY_STUDENT = "student";
+   public static final String PROPERTY_STATUS = "status";
 
    @Id
    @Column(name = "presence_id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "presence")
-   private boolean presence;
-
    @ManyToOne(fetch = FetchType.EAGER)
    @JoinColumn(name = "lesson_id", foreignKey = @ForeignKey(name = "presence_lesson_id_fk"))
    private Lesson lesson;
 
-   @OneToOne()
-   @JoinColumn(name = "student_id", nullable = false)
+   @ManyToOne(fetch = FetchType.EAGER)
+   @JoinColumn(name = "student_id", nullable = false, foreignKey = @ForeignKey(name = "presence_student_id_fk"))
    private Student student;
 
    @Enumerated(EnumType.STRING)
@@ -59,16 +57,6 @@ public class Presence implements Serializable
    public void setId(Long id)
    {
       this.id = id;
-   }
-
-   public boolean isPresence()
-   {
-      return presence;
-   }
-
-   public void setPresence(boolean presence)
-   {
-      this.presence = presence;
    }
 
    public Lesson getLesson()

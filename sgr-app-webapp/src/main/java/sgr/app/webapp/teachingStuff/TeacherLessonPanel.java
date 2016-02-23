@@ -1,5 +1,8 @@
 package sgr.app.webapp.teachingStuff;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -110,13 +113,17 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       students = studentService.search(query);
    }
 
-   public void create()
+   public void create() throws ParseException
    {
       List<Presence> presences = createPressences();
+      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      List<Lesson> lessonsForClass = lessonService.search(LessonQuery.all()
+            .withClassGroupId(classGroup.getId())
+            .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build());
 
-      presences.size();
+      entity.setLessonNumber(lessonsForClass.size() + 1);
       entity.setClassGroup(classGroup);
-      entity.setDate(new Date());
+      entity.setDate(dateFormat.parse(dateFormat.format(new Date())));
       entity.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       entity.setIssuerName(currentLoggedTeacher.getFullName());
       entity = lessonService.create(entity, presences);

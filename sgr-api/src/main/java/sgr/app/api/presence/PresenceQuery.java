@@ -1,10 +1,12 @@
 package sgr.app.api.presence;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Optional;
 
 import sgr.app.api.QueryBuilder;
 import sgr.app.api.teachingStuff.SchoolSubject;
+
 /**
  * @author dawbes
  */
@@ -18,6 +20,14 @@ public class PresenceQuery implements Serializable
    private Optional<Long> lessonId = Optional.empty();
    private Optional<Long> classGroupId = Optional.empty();
    private Optional<SchoolSubject> schoolSubject = Optional.empty();
+   private Optional<PresenceStatus> status = Optional.empty();
+   private Optional<String> studentFullName = Optional.empty();
+   private Optional<Date> date = Optional.empty();
+
+   public boolean hasLessonId()
+   {
+      return lessonId.isPresent();
+   }
 
    public Long getLessonId()
    {
@@ -29,9 +39,9 @@ public class PresenceQuery implements Serializable
       this.lessonId = Optional.of(lessonId);
    }
 
-   public boolean hasLessonId()
+   public boolean hasClassGroupId()
    {
-      return lessonId.isPresent();
+      return classGroupId.isPresent();
    }
 
    public Long getClassGroupId()
@@ -44,9 +54,9 @@ public class PresenceQuery implements Serializable
       this.classGroupId = Optional.of(classGroupId);
    }
 
-   public boolean hasClassGroupId()
+   public boolean hasSchoolSubject()
    {
-      return classGroupId.isPresent();
+      return schoolSubject.isPresent();
    }
 
    public SchoolSubject getSchoolSubject()
@@ -59,9 +69,49 @@ public class PresenceQuery implements Serializable
       this.schoolSubject = Optional.of(schoolSubject);
    }
 
-   public boolean hasSchoolSubject()
+   public boolean hasStatus()
    {
-      return schoolSubject.isPresent();
+      return status.isPresent();
+   }
+
+   public PresenceStatus getStatus()
+   {
+      return status.get();
+   }
+
+   public void setStatus(PresenceStatus status)
+   {
+      this.status = Optional.of(status);
+   }
+
+   public boolean hasStudentFullName()
+   {
+      return studentFullName.isPresent();
+   }
+
+   public String getStudentFullName()
+   {
+      return studentFullName.get();
+   }
+
+   public void setStudentFullName(String studentFullName)
+   {
+      this.studentFullName = Optional.of(studentFullName);
+   }
+
+   public boolean hasDate()
+   {
+      return date.isPresent();
+   }
+
+   public Date getDate()
+   {
+      return date.get();
+   }
+
+   public void setDate(Date date)
+   {
+      this.date = Optional.of(date);
    }
 
    public static Builder all()
@@ -89,6 +139,24 @@ public class PresenceQuery implements Serializable
       public Builder withClassGroupId(Long classGroupId)
       {
          query.setClassGroupId(classGroupId);
+         return this;
+      }
+
+      public Builder withStatus(PresenceStatus status)
+      {
+         query.setStatus(status);
+         return this;
+      }
+
+      public Builder withStudentFullName(String studentFullName)
+      {
+         query.setStudentFullName(studentFullName);
+         return this;
+      }
+
+      public Builder withDate(Date date)
+      {
+         query.setDate(date);
          return this;
       }
 

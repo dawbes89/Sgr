@@ -33,11 +33,15 @@ public class Lesson implements Serializable
    public static final String PROPERTY_STUDENT_ID = "studentId";
    public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
    public static final String PROPERTY_CLASS_GROUP = "classGroup";
+   public static final String PROPERTY_DATE = "date";
 
    @Id
    @Column(name = "lesson_id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+
+   @Column(name = "lesson_number")
+   private int lessonNumber;
 
    @Column(name = "date")
    private Date date;
@@ -45,8 +49,7 @@ public class Lesson implements Serializable
    @Column(name = "lesson_subject")
    private String lessonSubject;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
-         CascadeType.REFRESH }, fetch = FetchType.EAGER)
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 
@@ -115,6 +118,16 @@ public class Lesson implements Serializable
    public void setIssuerName(String issuerName)
    {
       this.issuerName = issuerName;
+   }
+
+   public int getLessonNumber()
+   {
+      return lessonNumber;
+   }
+
+   public void setLessonNumber(int lessonNumber)
+   {
+      this.lessonNumber = lessonNumber;
    }
 
 }
