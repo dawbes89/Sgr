@@ -1,4 +1,4 @@
-package sgr.app.webapp;
+package sgr.app.frontend.panels;
 
 import java.io.Serializable;
 
@@ -14,6 +14,11 @@ import sgr.app.api.account.AccountService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.translation.TranslationService;
 
+/**
+ * Panel used for changing password.
+ *
+ * @author leonzio
+ */
 public class ChangePasswordPanel implements Serializable
 {
 
