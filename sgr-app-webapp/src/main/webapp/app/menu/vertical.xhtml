@@ -10,14 +10,17 @@
 		<p:submenu label="#{sgr_app_translation.menu_vertical_class_title}"
 			rendered="#{mainPanel.showMenuFor('TEACHER')}">
 			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_class_presence}"
-				outcome="index" icon="ui-icon-calendar" />
+				value="#{sgr_app_translation.menu_vertical_personal_lessons}"
+				outcome="teacherLessonPanel" icon="ui-icon-calendar" />
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_assessment}"
 				outcome="teacherAssessmentPanel" icon="ui-icon-bookmark" />
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_comments}"
 				outcome="teacherCommentPanel" icon="ui-icon-comment" />
+			<p:menuitem
+				value="#{sgr_app_translation.menu_vertical_personal_presence}"
+				outcome="preceptorPresencePanel" icon="ui-icon-comment" rendered="#{mainPanel.showPresenceForPreceptor()}"/>
 		</p:submenu>
 
 		<!-- STUDENT SUBMENU -->
