@@ -70,7 +70,7 @@
 					<p:panel id="comment" header="#{sgr_translation.form_comment_new}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="student"
-								value="#{sgr_translation.form_comment_studentName}" />
+								value="#{sgr_translation.form_studentName}" />
 							<p:outputLabel id="student"
 								value="#{teacherCommentPanel.entity.fullName}" />
 
@@ -80,11 +80,11 @@
 								value="#{teacherCommentPanel.comment.commentType}"
 								var="commentType" required="true">
 								<f:selectItem itemValue="POSITIVE"
-									itemLabel="#{sgr_translation.comment_type_positive}" />
+									itemLabel="#{sgr_translation.commentType_positive}" />
 								<f:selectItem itemValue="NEGATIVE"
-									itemLabel="#{sgr_translation.comment_type_negative}" />
+									itemLabel="#{sgr_translation.commentType_negative}" />
 								<f:selectItem itemValue="REPREHENSIBLE"
-									itemLabel="#{sgr_translation.comment_type_reprehensible}" />
+									itemLabel="#{sgr_translation.commentType_reprehensible}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel for="content"
