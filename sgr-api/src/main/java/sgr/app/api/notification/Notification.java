@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import sgr.app.api.student.Student;
-
 @Entity
 @Table(name = "notification")
 public class Notification implements Serializable
@@ -33,8 +31,17 @@ public class Notification implements Serializable
    @Column(name = "content", length = 255, nullable = false, updatable = false)
    private String content;
 
-   @Column(name = "student_id")
-   private Student student;
+   @Column(name = "student_id", nullable = false, updatable = false)
+   private Long studentId;
+
+   public static Notification create(String title, String content, Long studentId)
+   {
+      final Notification notif = new Notification();
+      notif.setTitle(title);
+      notif.setContent(content);
+      notif.setStudentId(studentId);
+      return notif;
+   }
 
    public Long getId()
    {
@@ -76,14 +83,14 @@ public class Notification implements Serializable
       this.content = content;
    }
 
-   public Student getStudent()
+   public Long getStudentId()
    {
-      return student;
+      return studentId;
    }
 
-   public void setStudent(Student student)
+   public void setStudentId(Long studentId)
    {
-      this.student = student;
+      this.studentId = studentId;
    }
 
 }
