@@ -18,10 +18,15 @@
 			<p:menuitem
 				value="#{sgr_app_translation.menu_vertical_class_comments}"
 				outcome="teacherCommentPanel" icon="ui-icon-comment" />
+		</p:submenu>
+
+		<!-- PRECEPTOR MENU -->
+		<p:submenu
+			label="#{sgr_app_translation.menu_vertical_preceptor_title}"
+			rendered="#{mainPanel.currentUserIsPreceptor()}">
 			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_presence}"
-				outcome="preceptorPresencePanel" icon="ui-icon-calendar"
-				rendered="#{mainPanel.currentUserIsPreceptor()}" />
+				value="#{sgr_app_translation.menu_vertical_preceptor_presence}"
+				outcome="preceptorPresencePanel" icon="ui-icon-calendar" />
 		</p:submenu>
 
 		<!-- STUDENT SUBMENU -->

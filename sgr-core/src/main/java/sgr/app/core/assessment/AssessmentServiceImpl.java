@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Required;
 import sgr.app.api.assessment.Assessment;
 import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
+import sgr.app.api.notification.Notification;
 import sgr.app.api.notification.NotificationService;
 import sgr.app.core.DaoSupport;
 
@@ -25,6 +26,8 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
    @Override
    public void create(Assessment assessment)
    {
+      notificationService
+            .create(Notification.create("Oceny", "Otrzyma³eœ ocenê", assessment.getStudentId()));
       assessment.setDate(new Date());
       createEntity(assessment);
    }

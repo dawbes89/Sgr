@@ -2,7 +2,6 @@ package sgr.app.webapp.teachingStuff;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +22,11 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.frontend.StandardFormat;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 @Controller
 public class TeacherLessonPanel extends AbstractPanel<Lesson>
@@ -93,7 +93,7 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
    public void searchStudents()
    {
-      StudentQuery query = new StudentQuery();
+      final StudentQuery query = new StudentQuery();
       if (classGroup != null)
       {
          query.setClassGroupId(classGroup.getId());
@@ -103,11 +103,11 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
    public void create() throws ParseException
    {
-      List<Presence> presences = createPressences();
-      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-      List<Lesson> lessonsForClass = lessonService
-            .search(LessonQuery.all().withClassGroupId(classGroup.getId())
-                  .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build());
+      final List<Presence> presences = createPressences();
+      final DateFormat dateFormat = StandardFormat.DAY_FORMAT;
+      final LessonQuery query = LessonQuery.all().withClassGroupId(classGroup.getId())
+            .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build();
+      final List<Lesson> lessonsForClass = lessonService.search(query);
 
       entity.setLessonNumber(lessonsForClass.size() + 1);
       entity.setClassGroup(classGroup);

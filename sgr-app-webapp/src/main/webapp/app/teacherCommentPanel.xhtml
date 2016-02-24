@@ -9,15 +9,15 @@
 		<!-- SEARCH PANEL -->
 		<h:form id="search">
 			<p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
-				autoRun="true" update=":root:table :search:panel" />
+				autoRun="true" update=":search:panel :root:table" />
+
 			<p:panel id="panel" header="#{sgr_translation.form_search}"
 				toggleable="true">
-
 				<p:outputLabel value="#{sgr_translation.form_class}: " />
 				<p:selectOneMenu id="classGroup"
 					value="#{teacherCommentPanel.classGroup}" effect="fade"
 					filter="true" filterMatchMode="contains" converter="classConverter">
-					<p:ajax listener="#{teacherCommentPanel.handleClassChange}"
+					<p:ajax listener="#{teacherCommentPanel.searchStudents}"
 						update=":root:table" />
 					<f:selectItem itemValue="#{null}"
 						itemLabel="#{sgr_translation.selectOneMenu_select}"
