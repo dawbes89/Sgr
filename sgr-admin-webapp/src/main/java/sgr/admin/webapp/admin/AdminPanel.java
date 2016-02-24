@@ -70,8 +70,8 @@ implements EditablePanel<Admin>
 
    public void generatePassword(String formId, String componentId)
    {
-      InputText passwordField = BeanHelper.getComponent(formId, componentId);
-      String password = RandomPasswordGenerator.generate();
+      final InputText passwordField = BeanHelper.getComponent(formId, componentId);
+      final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }
 

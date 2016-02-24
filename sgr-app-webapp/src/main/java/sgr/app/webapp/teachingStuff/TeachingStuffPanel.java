@@ -8,7 +8,7 @@ import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 @Controller
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
@@ -23,13 +23,12 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    public void init()
    {
       entity = new TeachingStuff();
-      entities = teachingStuffService.search();
    }
 
    @Override
    public void onLoad()
    {
-      init();
+      entities = teachingStuffService.search();
    }
 
 }

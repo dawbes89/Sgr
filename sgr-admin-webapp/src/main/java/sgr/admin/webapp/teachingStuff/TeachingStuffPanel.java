@@ -20,7 +20,7 @@ import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 @Controller
 public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>

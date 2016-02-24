@@ -1,7 +1,5 @@
 package sgr.admin.webapp.announcement;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -33,9 +31,14 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    }
 
    @Override
+   public void onLoad()
+   {
+      init();
+   }
+
+   @Override
    public void create()
    {
-      entity.setDate(new Date());
       announcementService.create(entity);
       init();
    }
@@ -51,12 +54,6 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    public void remove(Long id)
    {
       announcementService.delete(id);
-      init();
-   }
-
-   @Override
-   public void onLoad()
-   {
       init();
    }
 

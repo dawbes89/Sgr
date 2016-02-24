@@ -13,7 +13,7 @@ import sgr.app.api.teachingStuff.SchoolSubject;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 {
@@ -25,6 +25,8 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 
    @Autowired
    private AssessmentService assessmentService;
+
+   private Student currentLoggedUser;
 
    private SchoolSubject schoolSubject;
 
@@ -43,18 +45,32 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 
    public void searchAssessments()
    {
-      final Student currentLoggedUser = authenticationService.getCurrentUser();
-      if (currentLoggedUser == null)
+      currentLoggedUser = authenticationService.getCurrentUser();
+      entities = assessmentService.search(createQuery());
+   }
+
+   public String getAverageAssessments()
+   {
+      double average = 0;
+      if (currentLoggedUser != null && entity != null)
       {
-         return;
+         average = assessmentService.getAverageAssesment(createQuery());
       }
-      AssessmentQuery query = AssessmentQuery.all().withStudentId(currentLoggedUser.getId())
-            .build();
+      return String.format("%1$,.2f", average);
+   }
+
+   private AssessmentQuery createQuery()
+   {
+      final AssessmentQuery query = new AssessmentQuery();
+      if (currentLoggedUser != null)
+      {
+         query.setStudentId(currentLoggedUser.getId());
+      }
       if (schoolSubject != null)
       {
          query.setSchoolSubject(schoolSubject);
       }
-      entities = assessmentService.search(query);
+      return query;
    }
 
    public SchoolSubject getSchoolSubject()
@@ -70,17 +86,6 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
    public SchoolSubject[] getSchoolSubjects()
    {
       return SchoolSubject.values();
-   }
-
-   public String getAverageAssessments()
-   {
-      float average = 0;
-      for (Assessment assessment : entities)
-      {
-         average += assessment.getAssessment();
-      }
-      average = entities.isEmpty() ? average : average / entities.size();
-      return String.format("%.1f", average);
    }
 
 }

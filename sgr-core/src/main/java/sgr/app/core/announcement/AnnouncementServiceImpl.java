@@ -1,5 +1,6 @@
 package sgr.app.core.announcement;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -26,6 +27,7 @@ class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
    @Override
    public void create(Announcement announcement)
    {
+      announcement.setDate(new Date());
       createEntity(announcement);
    }
 
