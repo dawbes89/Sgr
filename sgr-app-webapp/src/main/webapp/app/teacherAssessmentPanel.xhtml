@@ -14,23 +14,27 @@
 
 			<p:panel id="panel" header="#{sgr_translation.form_search}"
 				toggleable="true">
-				<p:outputLabel value="#{sgr_translation.form_class}: " />
-				<p:selectOneMenu id="classGroup"
-					value="#{teacherAssessmentPanel.classGroup}" effect="fade"
-					filter="true" filterMatchMode="contains" converter="classConverter">
-					<p:ajax listener="#{teacherAssessmentPanel.handleClassChange}"
-						update=":root:table" />
-					<f:selectItem itemValue="#{null}"
-						itemLabel="#{sgr_translation.selectOneMenu_select}"
-						noSelectionOption="true" />
-					<f:selectItems value="#{teacherAssessmentPanel.classes}"
-						var="classGroup" itemLabel="#{classGroup.className}"
-						itemValue="#{classGroup}" />
-				</p:selectOneMenu>
-				<p:outputLabel value="#{sgr_translation.schoolSubject}: " />
-				<p:outputLabel id="teacherSchoolSubject"
-					value="#{teacherAssessmentPanel.currentLoggedTeacher.schoolSubject}"
-					converter="schoolSubjectTranslationConverter" style="color: blue" />
+				<p:panelGrid columns="4">
+					<p:outputLabel value="#{sgr_translation.schoolSubject}: " />
+					<p:outputLabel id="teacherSchoolSubject"
+						value="#{teacherAssessmentPanel.currentLoggedTeacher.schoolSubject}"
+						converter="schoolSubjectTranslationConverter" style="color: blue" />
+
+					<p:outputLabel value="#{sgr_translation.form_class}: " />
+					<p:selectOneMenu id="classGroup"
+						value="#{teacherAssessmentPanel.classGroup}" effect="fade"
+						filter="true" filterMatchMode="contains"
+						converter="classConverter">
+						<p:ajax listener="#{teacherAssessmentPanel.handleClassChange}"
+							update=":root:table" />
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{sgr_translation.selectOneMenu_select}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{teacherAssessmentPanel.classes}"
+							var="classGroup" itemLabel="#{classGroup.className}"
+							itemValue="#{classGroup}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
 			</p:panel>
 		</h:form>
 

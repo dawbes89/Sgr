@@ -27,6 +27,7 @@
 							var="schoolSubject" itemValue="#{schoolSubject}"
 							itemLabel="#{schoolSubject}" />
 					</p:selectOneMenu>
+
 					<p:outputLabel for="status"
 						value="#{sgr_translation.form_presence_status}:" />
 					<p:selectOneMenu id="status"
@@ -43,11 +44,13 @@
 						<f:selectItem itemValue="LATENESS"
 							itemLabel="#{sgr_translation.presenceStatus_latencess}" />
 					</p:selectOneMenu>
+
 					<p:outputLabel for="fullName"
 						value="#{sgr_translation.form_person_fullName}:" />
 					<p:inputText id="fullName"
 						label="#{sgr_translation.form_person_fullName}"
 						value="#{preceptorPresencePanel.studentFullName}" />
+
 					<p:outputLabel for="date"
 						value="#{sgr_translation.form_presence_date}:" />
 					<p:calendar id="date" label="#{sgr_translation.form_presence_date}"
@@ -63,34 +66,32 @@
 		<!-- MAIN TABLE -->
 		<h:form id="root">
 			<p:panel id="panel"
-				header="Obecności klasy #{preceptorPresencePanel.classGroup.className}">
+				header="#{sgr_app_translation.form_classPresences} #{preceptorPresencePanel.classGroup.className}">
 				<p:dataTable id="table" var="presence"
 					value="#{preceptorPresencePanel.entities}" editable="true"
 					cellSeparator="true">
 
 					<p:ajax event="rowEdit"
-						listener="#{preceptorPresencePanel.update(presence)}"
-						update=":root" />
+						listener="#{preceptorPresencePanel.update(presence)}" />
 
 					<p:column headerText="#{sgr_translation.form_presence_date}"
 						width="110">
 						<p:outputLabel value="#{presence.lesson.date}"
 							converter="yearConverter" />
 					</p:column>
-					<p:column headerText="#{sgr_translation.form_lesson_lessonSubject}"
-						width="110">
-						<p:outputLabel value="#{presence.lesson.lessonSubject}" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.schoolSubject}" width="110">
+					<p:column headerText="#{sgr_translation.schoolSubject}" width="130">
 						<p:outputLabel value="#{presence.lesson.schoolSubject}"
 							converter="schoolSubjectTranslationConverter" />
 					</p:column>
+					<p:column headerText="#{sgr_translation.form_lesson_lessonSubject}">
+						<p:outputLabel value="#{presence.lesson.lessonSubject}" />
+					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_fullName}"
-						width="110">
+						width="250">
 						<p:outputLabel value="#{presence.student.fullName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_presence_status}"
-						width="200">
+						width="250">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{presence.status}"
@@ -98,7 +99,7 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:selectOneMenu id="type" value="#{presence.status}"
-									var="status" required="true" style="width:250">
+									style="width: 100%;" var="status" required="true">
 									<f:selectItem itemValue="ABSENT_EXCUSED"
 										itemLabel="#{sgr_translation.presenceStatus_absentExcused}" />
 									<f:selectItem itemValue="ABSENT"
@@ -109,14 +110,13 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column width="20">
+					<p:column width="15">
 						<p:rowEditor
 							rendered="#{preceptorPresencePanel.checkStatus(presence)}" />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
 		</h:form>
-
 	</ui:define>
 
 </ui:composition>

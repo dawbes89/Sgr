@@ -61,7 +61,6 @@
 
    <bean id="presenceService" class="sgr.app.core.presence.PresenceServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
-      <property name="notificationService" ref="notificationService" />
    </bean>
 
    <bean id="lessonService" class="sgr.app.core.lesson.LessonServiceImpl">

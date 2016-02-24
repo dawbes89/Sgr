@@ -67,30 +67,9 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Override
    public void onLoad()
    {
-      init();
-
       currentLoggedTeacher = authenticationService.getCurrentUser();
-      if (currentLoggedTeacher != null)
-      {
-         final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
-         if (preceptorClass != null)
-         {
-            classGroup = preceptorClass;
-            searchStudents(preceptorClass.getId());
-         }
-      }
-   }
-
-   public void handleClassChange()
-   {
-      if (classGroup.getId() != null)
-      {
-         searchStudents(classGroup.getId());
-      }
-      else
-      {
-         entities = new ArrayList<>();
-      }
+      classGroup = currentLoggedTeacher.getPreceptorClass();
+      searchStudents();
    }
 
    public void create()
@@ -106,10 +85,17 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
       FacesContext.getCurrentInstance().addMessage("add", message);
    }
 
-   private void searchStudents(Long classId)
+   public void searchStudents()
    {
-      final StudentQuery query = StudentQuery.withClassGroupId(classId);
-      entities = studentService.search(query);
+      if (classGroup != null)
+      {
+         final StudentQuery query = StudentQuery.withClassGroupId(classGroup.getId());
+         entities = studentService.search(query);
+      }
+      else
+      {
+         entities = new ArrayList<>();
+      }
    }
 
    public Comment getComment()

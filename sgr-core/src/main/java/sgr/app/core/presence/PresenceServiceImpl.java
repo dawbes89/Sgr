@@ -7,10 +7,8 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
-import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.lesson.Lesson;
-import sgr.app.api.notification.NotificationService;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
@@ -29,8 +27,6 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
          + Lesson.PROPERTY_CLASS_GROUP;
    private static final String PROPERTY_PERSON = Presence.PROPERTY_STUDENT + "."
          + Student.PROPERTY_PERSON;
-
-   private NotificationService notificationService;
 
    @Override
    public void create(Presence presence)
@@ -87,12 +83,6 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
          criteria.add(Restrictions.eq(Presence.PROPERTY_STATUS, query.getStatus()));
       }
       return criteria;
-   }
-
-   @Required
-   public void setNotificationService(NotificationService notificationService)
-   {
-      this.notificationService = notificationService;
    }
 
 }
