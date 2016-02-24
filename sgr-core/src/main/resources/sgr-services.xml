@@ -15,6 +15,10 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
+   <bean id="notificationService" class="sgr.app.core.notification.NotificationServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
    <bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
       <property name="accountService" ref="accountService" />
@@ -42,15 +46,16 @@
 
    <bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
+      <property name="notificationService" ref="notificationService" />
    </bean>
 
    <bean id="adminService" class="sgr.app.core.admin.AdminServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
       <property name="accountService" ref="accountService" />
    </bean>
-   
+
    <bean id="assessmentService" class="sgr.app.core.assessment.AssessmentServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
-   
+
 </beans>

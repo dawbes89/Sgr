@@ -1,7 +1,6 @@
 package sgr.app.webapp.teachingStuff;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -98,7 +97,6 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    {
       comment.setStudentId(entity.getId());
       comment.setIssuerName(currentLoggedTeacher.getTeacherFullName());
-      comment.setDate(new Date());
       commentService.create(comment);
       comment = new Comment();
 
