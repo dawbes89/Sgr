@@ -8,6 +8,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.person.PersonName;
+import sgr.app.api.teachingStuff.TeachingStuff;
 
 /**
  * Main application panel.
@@ -31,6 +32,16 @@ public class MainPanel implements Serializable
    public boolean showMenuFor(AccountType type)
    {
       return authenticationService.checkUserAccountType(type);
+   }
+
+   public boolean showPresenceForPreceptor()
+   {
+      final TeachingStuff preceptor = authenticationService.getCurrentUser();
+      if(preceptor.getPreceptorClass() != null)
+      {
+         return true;
+      }
+      return false;
    }
 
    public String getUserName()

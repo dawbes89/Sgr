@@ -61,5 +61,15 @@
       <managed-bean-class>sgr.app.webapp.student.StudentNotificationPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
+   <managed-bean>
+      <managed-bean-name>teacherLessonPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.teachingStuff.TeacherLessonPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
+   <managed-bean>
+      <managed-bean-name>preceptorPresencePanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.teachingStuff.PreceptorPresencePanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
 
 </faces-config>
