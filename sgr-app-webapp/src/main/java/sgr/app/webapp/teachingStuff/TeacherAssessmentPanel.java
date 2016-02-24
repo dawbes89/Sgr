@@ -1,7 +1,6 @@
 package sgr.app.webapp.teachingStuff;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -60,13 +59,11 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    @Override
    public void init()
    {
-      classGroup = new ClassGroup();
       assessment = new Assessment();
       entity = new Student();
       entities = new ArrayList<>();
       assessments = new ArrayList<>();
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
-
    }
 
    @Override
@@ -75,29 +72,19 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       init();
 
       currentLoggedTeacher = authenticationService.getCurrentUser();
-      if (currentLoggedTeacher == null)
-      {
-         return;
-      }
-      final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
-
-      if (preceptorClass == null)
-      {
-         return;
-      }
-      classGroup = preceptorClass;
-      searchStudents(preceptorClass.getId());
+      classGroup = currentLoggedTeacher.getPreceptorClass();
+      handleClassChange();
    }
 
    public void handleClassChange()
    {
-      if (classGroup.getId() != null)
+      if (classGroup == null || classGroup.getId() == null)
       {
-         searchStudents(classGroup.getId());
+         entities = new ArrayList<>();
       }
       else
       {
-         entities = new ArrayList<>();
+         searchStudents(classGroup.getId());
       }
    }
 
@@ -105,7 +92,6 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    {
       assessment.setStudentId(entity.getId());
       assessment.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
-      assessment.setDate(new Date());
       assessmentService.create(assessment);
       assessment = new Assessment();
 
@@ -167,16 +153,16 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       {
          return new ArrayList<>();
       }
-      assessments = assessmentService.search(AssessmentQuery.all()
-            .withSchoolSubject(currentLoggedTeacher.getSchoolSubject())
-            .withStudentId(entity.getId()).build());
+      assessments = assessmentService
+            .search(AssessmentQuery.all().withSchoolSubject(currentLoggedTeacher.getSchoolSubject())
+                  .withStudentId(entity.getId()).build());
       return assessments;
    }
 
    public String getAverageAssessments()
    {
       float average = 0f;
-      if(assessments.isEmpty())
+      if (assessments.isEmpty())
       {
          return String.format("%.1f", average);
       }

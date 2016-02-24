@@ -61,7 +61,6 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    @Override
    public void init()
    {
-      classGroup = new ClassGroup();
       entity = new Lesson();
       entities = new ArrayList<>();
       students = new ArrayList<>();
@@ -72,27 +71,16 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    @Override
    public void onLoad()
    {
-      init();
       currentLoggedTeacher = authenticationService.getCurrentUser();
-      if (currentLoggedTeacher == null)
-      {
-         return;
-      }
-      final ClassGroup preceptorClass = currentLoggedTeacher.getPreceptorClass();
+      classGroup = currentLoggedTeacher.getPreceptorClass();
 
-      if (preceptorClass == null)
-      {
-         searchLessons();
-         return;
-      }
-      classGroup = preceptorClass;
       searchLessons();
    }
 
    public void searchLessons()
    {
-      LessonQuery query = new LessonQuery();
-      if (classGroup.getId() != null)
+      final LessonQuery query = new LessonQuery();
+      if (classGroup != null && classGroup.getId() != null)
       {
          query.setClassGroupId(classGroup.getId());
       }
@@ -117,9 +105,9 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    {
       List<Presence> presences = createPressences();
       DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-      List<Lesson> lessonsForClass = lessonService.search(LessonQuery.all()
-            .withClassGroupId(classGroup.getId())
-            .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build());
+      List<Lesson> lessonsForClass = lessonService
+            .search(LessonQuery.all().withClassGroupId(classGroup.getId())
+                  .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build());
 
       entity.setLessonNumber(lessonsForClass.size() + 1);
       entity.setClassGroup(classGroup);

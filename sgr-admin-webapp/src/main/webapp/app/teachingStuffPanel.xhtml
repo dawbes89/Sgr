@@ -230,7 +230,7 @@
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
-								value="#{teachingStuffPanel.account.validTo}"
+								value="#{teachingStuffPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true" />
 						</p:panelGrid>
 					</p:panel>
@@ -241,8 +241,7 @@
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:selectOneMenu id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
-								filter="true" filterMatchMode="contains"
-								converter="schoolSubjectTranslationConverter">
+								filter="true" filterMatchMode="contains">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
 									noSelectionOption="true" />

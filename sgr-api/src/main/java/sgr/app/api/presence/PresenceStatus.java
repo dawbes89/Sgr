@@ -4,10 +4,10 @@ package sgr.app.api.presence;
  */
 public enum PresenceStatus
 {
-   PRESENT("form_presence_status_present"),
-   ABSENT_EXCUSED("form_presence_status_absentExcused"),
-   ABSENT("form_presence_status_absent"),
-   LATENESS("form_presence_status_latencess");
+   PRESENT("presenceStatus_present"),
+   ABSENT_EXCUSED("presenceStatus_absentExcused"),
+   ABSENT("presenceStatus_absent"),
+   LATENESS("presenceStatus_latencess");
 
    private String label;
 
