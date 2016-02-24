@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
@@ -26,9 +25,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
 {
 
    private static final long serialVersionUID = -5877371993225024163L;
-
-   @Autowired
-   private ClassGroupService classGroupService;
 
    @Autowired
    private AuthenticationService authenticationService;
@@ -55,7 +51,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    @Override
    public void init()
    {
-      classGroup = new ClassGroup();
       entity = new Presence();
       entities = new ArrayList<>();
    }
@@ -63,7 +58,8 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    @Override
    public void onLoad()
    {
-      init();
+      currentLoggedTeacher = authenticationService.getCurrentUser();
+      classGroup = currentLoggedTeacher.getPreceptorClass();
       searchPresences();
    }
 
@@ -75,23 +71,12 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
 
    public boolean checkStatus(Presence presence)
    {
-      PresenceStatus status = presence.getStatus();
-      if (status.equals(PresenceStatus.PRESENT))
-      {
-         return false;
-      }
-      return true;
+      return !PresenceStatus.PRESENT.equals(presence.getStatus());
    }
 
    public void searchPresences()
    {
-      PresenceQuery query = new PresenceQuery();
-      TeachingStuff currentLoggedUser = authenticationService.getCurrentUser();
-      if (currentLoggedUser == null)
-      {
-         return;
-      }
-      classGroup = currentLoggedUser.getPreceptorClass();
+      final PresenceQuery query = new PresenceQuery();
       if (classGroup != null)
       {
          query.setClassGroupId(classGroup.getId());
@@ -100,7 +85,7 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
       {
          query.setSchoolSubject(schoolSubject);
       }
-      if (studentFullName != null)
+      if (studentFullName != null && !"".equals(studentFullName))
       {
          query.setStudentFullName(studentFullName);
       }
@@ -123,16 +108,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    public PresenceStatus[] getStatuses()
    {
       return PresenceStatus.values();
-   }
-
-   public TeachingStuff getCurrentLoggedTeacher()
-   {
-      return currentLoggedTeacher;
-   }
-
-   public void setCurrentLoggedTeacher(TeachingStuff currentLoggedTeacher)
-   {
-      this.currentLoggedTeacher = currentLoggedTeacher;
    }
 
    public List<Presence> getPresences()
@@ -158,11 +133,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    public ClassGroup getClassGroup()
    {
       return classGroup;
-   }
-
-   public void setClassGroup(ClassGroup classGroup)
-   {
-      this.classGroup = classGroup;
    }
 
    public SchoolSubject getSchoolSubject()

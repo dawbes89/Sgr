@@ -7,12 +7,13 @@
 
 	<ui:define name="content">
 		<!-- SEARCH PANEL -->
-		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
-			<h:form id="search">
-				<p:remoteCommand name="onload"
-					action="#{teacherAssessmentPanel.onLoad}" autoRun="true"
-					update=":root:table search:teacherSchoolSubject" />
+		<h:form id="search">
+			<p:remoteCommand name="onload"
+				action="#{teacherAssessmentPanel.onLoad}" autoRun="true"
+				update=":root:table :search:panel" />
 
+			<p:panel id="panel" header="#{sgr_translation.form_search}"
+				toggleable="true">
 				<p:outputLabel value="#{sgr_translation.form_class}: " />
 				<p:selectOneMenu id="classGroup"
 					value="#{teacherAssessmentPanel.classGroup}" effect="fade"
@@ -30,9 +31,8 @@
 				<p:outputLabel id="teacherSchoolSubject"
 					value="#{teacherAssessmentPanel.currentLoggedTeacher.schoolSubject}"
 					converter="schoolSubjectTranslationConverter" style="color: blue" />
-
-			</h:form>
-		</p:panel>
+			</p:panel>
+		</h:form>
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">

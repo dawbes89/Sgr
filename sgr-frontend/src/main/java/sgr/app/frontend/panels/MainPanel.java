@@ -34,14 +34,10 @@ public class MainPanel implements Serializable
       return authenticationService.checkUserAccountType(type);
    }
 
-   public boolean showPresenceForPreceptor()
+   public boolean currentUserIsPreceptor()
    {
       final TeachingStuff preceptor = authenticationService.getCurrentUser();
-      if(preceptor.getPreceptorClass() != null)
-      {
-         return true;
-      }
-      return false;
+      return preceptor.getPreceptorClass() != null;
    }
 
    public String getUserName()

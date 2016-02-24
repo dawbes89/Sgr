@@ -1,14 +1,17 @@
 package sgr.app.core.assessment;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.assessment.Assessment;
 import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
+import sgr.app.api.notification.NotificationService;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -17,9 +20,12 @@ import sgr.app.core.DaoSupport;
 class AssessmentServiceImpl extends DaoSupport implements AssessmentService
 {
 
+   private NotificationService notificationService;
+
    @Override
    public void create(Assessment assessment)
    {
+      assessment.setDate(new Date());
       createEntity(assessment);
    }
 
@@ -44,6 +50,12 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
          criteria.add(Restrictions.eq(Assessment.PROPERTY_STUDENT_ID, query.getStudentId()));
       }
       return criteria;
+   }
+
+   @Required
+   public void setNotificationService(NotificationService notificationService)
+   {
+      this.notificationService = notificationService;
    }
 
 }

@@ -6,105 +6,88 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="onLoadForm">
+		<!-- SEARCH PANEL -->
+		<h:form id="search">
 			<p:remoteCommand name="onload"
 				action="#{preceptorPresencePanel.onLoad}" autoRun="true"
-				update=":root:table :search:" />
-		</h:form>
-		<!-- SEARCH PANEL -->
-		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
-			<h:form id="search">
+				update=":root:panel :search:panel" />
 
-				<p:panelGrid columns="3" columnClasses="label, value"
-					style="width:750">
-					<p:panelGrid columns="1" columnClasses="label, value">
-						<p:outputLabel
-							value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
-						<p:selectOneMenu id="schoolSubject"
-							value="#{preceptorPresencePanel.schoolSubject}" effect="fade"
-							filter="true" filterMatchMode="contains" style="width:300">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{sgr_translation.selectOneMenu_select}"
-								noSelectionOption="true" />
-							<f:selectItems value="#{preceptorPresencePanel.schoolSubjects}"
-								var="schoolSubject" itemValue="#{schoolSubject}"
-								itemLabel="#{schoolSubject}" />
-						</p:selectOneMenu>
-						<p:outputLabel for="status"
-							value="#{sgr_translation.form_presence_status}:" />
-						<p:selectOneMenu id="status"
-							value="#{preceptorPresencePanel.status}" var="status"
-							style="width:300" >
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{sgr_translation.selectOneMenu_select}"
-								noSelectionOption="true" />
-							<f:selectItem itemValue="PRESENT"
-								itemLabel="#{sgr_translation.form_presence_status_present}" />
-							<f:selectItem itemValue="ABSENT_EXCUSED"
-								itemLabel="#{sgr_translation.form_presence_status_absentExcused}" />
-							<f:selectItem itemValue="ABSENT"
-								itemLabel="#{sgr_translation.form_presence_status_absent}" />
-							<f:selectItem itemValue="LATENESS"
-								itemLabel="#{sgr_translation.form_presence_status_latencess}" />
-						</p:selectOneMenu>
-					</p:panelGrid>
-					<p:panelGrid columns="1" columnClasses="label, value">
-						<p:outputLabel for="fullName"
-							value="#{sgr_translation.form_person_fullName}:" />
-						<p:inputText id="fullName"
-							label="#{sgr_translation.form_person_fullName}"
-							value="#{preceptorPresencePanel.studentFullName}" />
-						<p:outputLabel for="date"
-							value="#{sgr_translation.form_presence_date}:" />
-						<p:calendar id="date"
-							label="#{sgr_translation.form_presence_date}"
-							value="#{preceptorPresencePanel.date}" pattern="yyyy-MM-dd" />
-					</p:panelGrid>
-					<p:panelGrid>
-
-						<p:outputLabel value="#{sgr_translation.form_class}: " />
-						<p:outputLabel id="preceptorClass"
-							value="#{preceptorPresencePanel.classGroup}"
-							converter="classConverter" style="color: blue" />
-					</p:panelGrid>
+			<p:panel id="panel" header="#{sgr_translation.form_search}"
+				toggleable="true">
+				<p:panelGrid columns="4">
+					<p:outputLabel
+						value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
+					<p:selectOneMenu id="schoolSubject"
+						value="#{preceptorPresencePanel.schoolSubject}" effect="fade"
+						filter="true" filterMatchMode="contains">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{sgr_translation.selectOneMenu_select}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{preceptorPresencePanel.schoolSubjects}"
+							var="schoolSubject" itemValue="#{schoolSubject}"
+							itemLabel="#{schoolSubject}" />
+					</p:selectOneMenu>
+					<p:outputLabel for="status"
+						value="#{sgr_translation.form_presence_status}:" />
+					<p:selectOneMenu id="status"
+						value="#{preceptorPresencePanel.status}" var="status">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{sgr_translation.selectOneMenu_select}"
+							noSelectionOption="true" />
+						<f:selectItem itemValue="PRESENT"
+							itemLabel="#{sgr_translation.presenceStatus_present}" />
+						<f:selectItem itemValue="ABSENT_EXCUSED"
+							itemLabel="#{sgr_translation.presenceStatus_absentExcused}" />
+						<f:selectItem itemValue="ABSENT"
+							itemLabel="#{sgr_translation.presenceStatus_absent}" />
+						<f:selectItem itemValue="LATENESS"
+							itemLabel="#{sgr_translation.presenceStatus_latencess}" />
+					</p:selectOneMenu>
+					<p:outputLabel for="fullName"
+						value="#{sgr_translation.form_person_fullName}:" />
+					<p:inputText id="fullName"
+						label="#{sgr_translation.form_person_fullName}"
+						value="#{preceptorPresencePanel.studentFullName}" />
+					<p:outputLabel for="date"
+						value="#{sgr_translation.form_presence_date}:" />
+					<p:calendar id="date" label="#{sgr_translation.form_presence_date}"
+						value="#{preceptorPresencePanel.date}" pattern="yyyy-MM-dd" />
 				</p:panelGrid>
-				<p:separator />
 				<p:commandButton value="#{sgr_translation.button_search}"
 					action="#{preceptorPresencePanel.searchPresences}"
 					update=":root:table">
 				</p:commandButton>
-			</h:form>
-		</p:panel>
-
+			</p:panel>
+		</h:form>
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">
-			<p:panel id="lessonsPanel" header="#{sgr_translation.form_presence}">
+			<p:panel id="panel"
+				header="Obecności klasy #{preceptorPresencePanel.classGroup.className}">
 				<p:dataTable id="table" var="presence"
 					value="#{preceptorPresencePanel.entities}" editable="true"
 					cellSeparator="true">
 
 					<p:ajax event="rowEdit"
 						listener="#{preceptorPresencePanel.update(presence)}"
-						update=":root:table" />
+						update=":root" />
 
 					<p:column headerText="#{sgr_translation.form_presence_date}"
 						width="110">
 						<p:outputLabel value="#{presence.lesson.date}"
 							converter="yearConverter" />
 					</p:column>
-					<p:column headerText="#{sgr_translation.form_person_fullName}"
-						width="110">
-						<p:outputLabel value="#{presence.student.fullName}" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.school_subject}"
-						width="110">
-						<p:outputLabel value="#{presence.lesson.schoolSubject}"
-							converter="schoolSubjectTranslationConverter" />
-					</p:column>
 					<p:column headerText="#{sgr_translation.form_lesson_lessonSubject}"
 						width="110">
 						<p:outputLabel value="#{presence.lesson.lessonSubject}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.schoolSubject}" width="110">
+						<p:outputLabel value="#{presence.lesson.schoolSubject}"
+							converter="schoolSubjectTranslationConverter" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_person_fullName}"
+						width="110">
+						<p:outputLabel value="#{presence.student.fullName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_presence_status}"
 						width="200">
@@ -117,11 +100,11 @@
 								<p:selectOneMenu id="type" value="#{presence.status}"
 									var="status" required="true" style="width:250">
 									<f:selectItem itemValue="ABSENT_EXCUSED"
-										itemLabel="#{sgr_translation.form_presence_status_absentExcused}" />
+										itemLabel="#{sgr_translation.presenceStatus_absentExcused}" />
 									<f:selectItem itemValue="ABSENT"
-										itemLabel="#{sgr_translation.form_presence_status_absent}" />
+										itemLabel="#{sgr_translation.presenceStatus_absent}" />
 									<f:selectItem itemValue="LATENESS"
-										itemLabel="#{sgr_translation.form_presence_status_latencess}" />
+										itemLabel="#{sgr_translation.presenceStatus_latencess}" />
 								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>

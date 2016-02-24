@@ -6,22 +6,20 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="onLoadForm">
-			<p:remoteCommand name="onload" action="#{teacherLessonPanel.onLoad}"
-				autoRun="true"
-				update=":root:table :search:" />
-		</h:form>
 		<!-- SEARCH PANEL -->
-		<p:panel header="#{sgr_translation.form_search}" toggleable="true">
-			<h:form id="search">
+		<h:form id="search">
+			<p:remoteCommand name="onload" action="#{teacherLessonPanel.onLoad}"
+				autoRun="true" update=":root:panel :search:panel" />
 
+			<p:panel id="panel" header="#{sgr_translation.form_search}"
+				toggleable="true">
 				<p:outputLabel value="#{sgr_translation.form_class}: " />
 				<p:selectOneMenu id="classGroup"
 					value="#{teacherLessonPanel.classGroup}" effect="fade"
 					filter="true" filterMatchMode="contains" converter="classConverter"
 					required="true">
 					<p:ajax listener="#{teacherLessonPanel.searchLessons}"
-						update=":root:table" />
+						update=":root" />
 					<f:selectItem itemValue="#{null}"
 						itemLabel="#{sgr_translation.selectOneMenu_select}"
 						noSelectionOption="true" />
@@ -29,7 +27,7 @@
 						var="classGroup" itemLabel="#{classGroup.className}"
 						itemValue="#{classGroup}" />
 				</p:selectOneMenu>
-				<p:outputLabel value="#{sgr_translation.school_subject}: " />
+				<p:outputLabel value="#{sgr_translation.schoolSubject}: " />
 				<p:outputLabel id="teacherSchoolSubject"
 					value="#{teacherLessonPanel.currentLoggedTeacher.schoolSubject}"
 					converter="schoolSubjectTranslationConverter" style="color: blue" />
@@ -40,8 +38,8 @@
 					oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').show()"
 					action="#{teacherLessonPanel.searchStudents}"
 					update=":add:studentsPanel" />
-			</h:form>
-		</p:panel>
+			</p:panel>
+		</h:form>
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">
@@ -50,7 +48,7 @@
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="lesson"
 						value="#{teacherLessonPanel.entities}">
-						<p:column width="100"
+						<p:column width="120"
 							headerText="#{sgr_translation.form_lesson_numberOfLessons}">
 							<p:outputLabel value="#{lesson.lessonNumber}" />
 						</p:column>
