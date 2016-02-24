@@ -58,4 +58,13 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
+   <bean id="presenceService" class="sgr.app.core.presence.PresenceServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
+   <bean id="lessonService" class="sgr.app.core.lesson.LessonServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+      <property name="presenceService" ref="presenceService" />
+   </bean>
+
 </beans>

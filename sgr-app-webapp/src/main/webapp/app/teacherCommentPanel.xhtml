@@ -13,7 +13,7 @@
 					action="#{teacherCommentPanel.onLoad}" autoRun="true"
 					update=":root:table" />
 
-				<p:outputLabel value="#{sgr_translation.form_class}:" />
+				<p:outputLabel value="#{sgr_translation.form_class}: " />
 				<p:selectOneMenu id="classGroup"
 					value="#{teacherCommentPanel.classGroup}" effect="fade"
 					filter="true" filterMatchMode="contains" converter="classConverter">
