@@ -5,8 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import sgr.app.api.translation.TranslationService;
 
 /**
  * Panel extender for all panels in application.<br>
@@ -22,6 +28,9 @@ public abstract class AbstractPanel<T> implements Serializable
 {
 
    private static final long serialVersionUID = 6754605828742536669L;
+
+   @Autowired
+   protected TranslationService translationService;
 
    protected List<T> entities = new ArrayList<T>();
 
@@ -42,6 +51,15 @@ public abstract class AbstractPanel<T> implements Serializable
     * On load panel action.
     */
    public abstract void onLoad();
+
+   protected final void showValidationMessage(String formName, String messageKey,
+         Severity severity)
+   {
+      final String messageContent = translationService.translate(messageKey);
+      final FacesMessage message = new FacesMessage(messageContent);
+      message.setSeverity(severity);
+      FacesContext.getCurrentInstance().addMessage(formName, message);
+   }
 
    public List<T> getEntities()
    {

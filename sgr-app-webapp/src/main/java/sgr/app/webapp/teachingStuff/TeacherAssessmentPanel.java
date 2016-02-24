@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,6 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -30,9 +28,6 @@ import sgr.app.frontend.panels.AbstractPanel;
 public class TeacherAssessmentPanel extends AbstractPanel<Student>
 {
    private static final long serialVersionUID = 8302392304292102639L;
-
-   @Autowired
-   private TranslationService translationService;
 
    @Autowired
    private AssessmentService assessmentService;
@@ -69,8 +64,6 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    @Override
    public void onLoad()
    {
-      init();
-
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
       handleClassChange();
@@ -84,7 +77,8 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       }
       else
       {
-         searchStudents(classGroup.getId());
+         final StudentQuery query = StudentQuery.withClassGroupId(classGroup.getId());
+         entities = studentService.search(query);
       }
    }
 
@@ -95,16 +89,41 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       assessmentService.create(assessment);
       assessment = new Assessment();
 
-      final String messageContent = translationService.translate("form_comment_savedMessage");
-      final FacesMessage message = new FacesMessage(messageContent);
-      message.setSeverity(FacesMessage.SEVERITY_INFO);
-      FacesContext.getCurrentInstance().addMessage("add", message);
+      showValidationMessage("add", "form_comment_savedMessage", FacesMessage.SEVERITY_INFO);
    }
 
-   private void searchStudents(Long classId)
+   public List<Assessment> getAssessments()
    {
-      final StudentQuery query = StudentQuery.withClassGroupId(classId);
-      entities = studentService.search(query);
+      if (currentLoggedTeacher == null || entity.getId() == null)
+      {
+         return new ArrayList<>();
+      }
+      assessments = assessmentService.search(createQuery());
+      return assessments;
+   }
+
+   public String getAverageAssessments()
+   {
+      double average = 0;
+      if (currentLoggedTeacher != null && entity != null)
+      {
+         average = assessmentService.getAverageAssesment(createQuery());
+      }
+      return String.format("%1$,.2f", average);
+   }
+
+   private AssessmentQuery createQuery()
+   {
+      final AssessmentQuery query = new AssessmentQuery();
+      if (currentLoggedTeacher != null)
+      {
+         query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
+      }
+      if (entity != null)
+      {
+         query.setStudentId(entity.getId());
+      }
+      return query;
    }
 
    public TeachingStuff getCurrentLoggedTeacher()
@@ -145,33 +164,6 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    public void setClasses(List<ClassGroup> classes)
    {
       this.classes = classes;
-   }
-
-   public List<Assessment> getAssessments()
-   {
-      if (currentLoggedTeacher == null || entity.getId() == null)
-      {
-         return new ArrayList<>();
-      }
-      assessments = assessmentService
-            .search(AssessmentQuery.all().withSchoolSubject(currentLoggedTeacher.getSchoolSubject())
-                  .withStudentId(entity.getId()).build());
-      return assessments;
-   }
-
-   public String getAverageAssessments()
-   {
-      float average = 0f;
-      if (assessments.isEmpty())
-      {
-         return String.format("%.1f", average);
-      }
-      for (Assessment assessment : assessments)
-      {
-         average = average + assessment.getAssessment();
-      }
-      average = average / assessments.size();
-      return String.format("%.1f", average);
    }
 
 }

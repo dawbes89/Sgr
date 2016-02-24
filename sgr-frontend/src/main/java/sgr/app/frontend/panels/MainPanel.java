@@ -36,6 +36,10 @@ public class MainPanel implements Serializable
 
    public boolean currentUserIsPreceptor()
    {
+      if (!authenticationService.checkUserAccountType(AccountType.TEACHER))
+      {
+         return false;
+      }
       final TeachingStuff preceptor = authenticationService.getCurrentUser();
       return preceptor.getPreceptorClass() != null;
    }

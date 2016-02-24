@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -35,14 +37,14 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
    @Override
    public List<Assessment> search(AssessmentQuery query)
    {
-      Criteria criteria = createAssessmentCriteria(query);
+      final Criteria criteria = createAssessmentCriteria(query);
       criteria.addOrder(Order.desc(Assessment.PROPERTY_DATE));
       return search(criteria);
    }
 
    private Criteria createAssessmentCriteria(AssessmentQuery query)
    {
-      Criteria criteria = createCriteria(Assessment.class);
+      final Criteria criteria = createCriteria(Assessment.class);
       if (query.hasSchoolSubject())
       {
          criteria
@@ -53,6 +55,18 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
          criteria.add(Restrictions.eq(Assessment.PROPERTY_STUDENT_ID, query.getStudentId()));
       }
       return criteria;
+   }
+
+   @Override
+   public double getAverageAssesment(AssessmentQuery query)
+   {
+      final ProjectionList projList = Projections.projectionList();
+      projList.add(Projections.avg("assessment"));
+
+      final Criteria criteria = createAssessmentCriteria(query);
+      criteria.setProjection(projList);
+      final List<Object> search = search(criteria);
+      return search.isEmpty() ? 0.0 : (double) search.stream().findFirst().get();
    }
 
    @Required
