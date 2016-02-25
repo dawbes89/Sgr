@@ -39,7 +39,7 @@ public class Lesson implements Serializable
    public static final String PROPERTY_DATE = "date";
 
    @Id
-   @Column(name = "lesson_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 

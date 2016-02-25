@@ -12,6 +12,7 @@ import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.notification.Notification;
 import sgr.app.api.notification.NotificationService;
+import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -35,7 +36,7 @@ class CommentServiceImpl extends DaoSupport implements CommentService
    public List<Comment> findByStudentId(Long studentId)
    {
       Criteria criteria = createCriteria(Comment.class);
-      criteria.add(Restrictions.eq(Comment.PROPERTY_STUDENT_ID, studentId));
+      criteria.add(Restrictions.eq(nest(Comment.PROPERTY_STUDENT, Student.PROPERTY_ID), studentId));
       criteria.addOrder(Order.desc(Comment.PROPERTY_DATE));
       return search(criteria);
    }

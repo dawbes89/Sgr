@@ -32,7 +32,7 @@ public class Comment implements Serializable
    private static final long serialVersionUID = -5937580296121716355L;
 
    public static final String PROPERTY_DATE = "date";
-   public static final String PROPERTY_STUDENT_ID = "studentId";
+   public static final String PROPERTY_STUDENT = "student";
 
    @Id
    @Column(name = "id")

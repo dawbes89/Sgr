@@ -33,7 +33,7 @@ public class Admin implements AccountEntity, Serializable
    public static final String PROPERTY_ID = "id";
 
    @Id
-   @Column(name = "admin_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 

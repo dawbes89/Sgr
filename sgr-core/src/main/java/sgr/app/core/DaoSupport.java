@@ -87,6 +87,11 @@ public abstract class DaoSupport
       return sessionFactory.isClosed();
    }
 
+   protected final static String nest(String property, String secondProperty)
+   {
+      return String.format("%s.%s", property, secondProperty);
+   }
+
    @Required
    public final void setSessionFactory(SessionFactory sessionFactory)
    {

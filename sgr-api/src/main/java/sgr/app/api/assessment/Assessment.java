@@ -37,7 +37,7 @@ public class Assessment implements Serializable
    public static final String PROPERTY_DATE = "date";
 
    @Id
-   @Column(name = "assessment_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
@@ -54,7 +54,7 @@ public class Assessment implements Serializable
    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "student_id", nullable = false, updatable = false,
          referencedColumnName = "id", foreignKey = @ForeignKey(name = "assessment_student_id_fk") )
-   private Student student;
+   private Student student = new Student();
 
    @Enumerated(EnumType.STRING)
    @Column(name = "school_subject")
