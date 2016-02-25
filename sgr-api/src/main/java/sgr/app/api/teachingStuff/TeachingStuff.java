@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,17 +40,17 @@ public class TeachingStuff implements PersonName, AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true)
-   private Person person;
+   @JoinColumn(name = "person_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "teaching_stuff_person_id") )
+   private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true)
-   private Account account;
+   @JoinColumn(name = "account_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "teaching_stuff_account_id") )
+   private Account account = new Account();
 
    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
          CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "preceptor_class_id", nullable = true, unique = true)
-   private ClassGroup preceptorClass;
+   @JoinColumn(name = "preceptor_class_id", nullable = true, unique = true, foreignKey = @ForeignKey(name = "teaching_stuff_preceptor_class_id") )
+   private ClassGroup preceptorClass = new ClassGroup();
 
    @Enumerated(EnumType.STRING)
    @Column(name = "school_subject", nullable = false)

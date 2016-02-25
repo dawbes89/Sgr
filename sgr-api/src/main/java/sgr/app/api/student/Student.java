@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,16 +41,16 @@ public class Student implements PersonName, AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true)
+   @JoinColumn(name = "person_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "student_person_id") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true)
+   @JoinColumn(name = "account_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "student_account_id") )
    private Account account = new Account();
 
    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
          CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "class_group_id", nullable = false)
+   @JoinColumn(name = "class_group_id", nullable = false, foreignKey = @ForeignKey(name = "student_class_group_id") )
    private ClassGroup classGroup;
 
    public Long getId()

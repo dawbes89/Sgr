@@ -14,10 +14,10 @@ import sgr.app.frontend.panels.EditablePanel;
 /**
  * Panel for handling admin users.
  *
- * @author dawbes
+ * @author dawbes89
  */
 @Controller
-public class AdminPanel extends AbstractPanel<Admin> implements EditablePanel<Admin>
+public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Admin>
 {
 
    private static final long serialVersionUID = -2599849233906847054L;

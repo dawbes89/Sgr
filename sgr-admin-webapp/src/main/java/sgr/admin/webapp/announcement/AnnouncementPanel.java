@@ -11,7 +11,7 @@ import sgr.app.frontend.panels.EditablePanel;
 /**
  * Panel for handling annoucements.
  *
- * @author dawbes
+ * @author dawbes89
  */
 @Controller
 public class AnnouncementPanel extends AbstractPanel<Announcement>
