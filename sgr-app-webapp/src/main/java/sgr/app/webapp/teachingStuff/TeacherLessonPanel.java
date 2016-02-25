@@ -66,14 +66,13 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       students = new ArrayList<>();
       student = new Student();
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
-      currentLoggedTeacher = authenticationService.getCurrentUser();
-      classGroup = currentLoggedTeacher.getPreceptorClass();
    }
 
    @Override
    public void onLoad()
    {
-      init();
+      currentLoggedTeacher = authenticationService.getCurrentUser();
+      classGroup = currentLoggedTeacher.getPreceptorClass();
       searchLessons();
    }
 

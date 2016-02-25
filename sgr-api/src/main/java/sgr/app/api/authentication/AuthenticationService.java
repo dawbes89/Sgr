@@ -23,7 +23,7 @@ public interface AuthenticationService
 
    void logoutUser();
 
-   <T> T getCurrentUser();
+   <T> T getCurrentUser() throws NullPointerException;
 
    boolean checkUserAccountType(AccountType type);
 

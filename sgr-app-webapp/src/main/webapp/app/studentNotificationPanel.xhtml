@@ -12,7 +12,7 @@
 			<h:form id="root">
 				<p:remoteCommand name="onload"
 					action="#{studentNotificationPanel.onLoad}" autoRun="true"
-					update=":root" />
+					update=":root:table" />
 
 				<p:dataTable id="table" var="notification"
 					value="#{studentNotificationPanel.entities}" editable="false"

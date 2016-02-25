@@ -98,7 +98,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    // TODO zabezpieczyæ metodê przed brakiem sesji
    @SuppressWarnings("unchecked")
    @Override
-   public <T> T getCurrentUser()
+   public <T> T getCurrentUser() throws NullPointerException
    {
       return (T) sessionService.getAttributeValue(USER_ATTRIBUTE);
    }

@@ -15,7 +15,7 @@ public interface SessionService
 
    HttpServletRequest getRequest();
 
-   <T> T getAttributeValue(String attributeKey);
+   <T> T getAttributeValue(String attributeKey) throws NullPointerException;
 
    <T> void setAttributeValue(String attributeKey, T attributeValue);
 }
