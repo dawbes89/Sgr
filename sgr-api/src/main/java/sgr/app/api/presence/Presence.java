@@ -30,17 +30,19 @@ public class Presence implements Serializable
 
    private static final long serialVersionUID = -1089351333165210891L;
 
+   public static final String PROPERTY_ID = "id";
    public static final String PROPERTY_LESSON = "lesson";
    public static final String PROPERTY_STUDENT = "student";
    public static final String PROPERTY_STATUS = "status";
 
    @Id
-   @Column(name = "presence_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name = "lesson_id", foreignKey = @ForeignKey(name = "presence_lesson_id_fk") )
+   @JoinColumn(name = "lesson_id", nullable = false, updatable = false, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "presence_lesson_id_fk") )
    private Lesson lesson;
 
    @ManyToOne(fetch = FetchType.EAGER)

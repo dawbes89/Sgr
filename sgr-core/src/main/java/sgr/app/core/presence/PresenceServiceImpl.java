@@ -8,6 +8,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
 
+import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.lesson.Lesson;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceQuery;
@@ -21,12 +22,8 @@ import sgr.app.core.DaoSupport;
 class PresenceServiceImpl extends DaoSupport implements PresenceService
 {
 
-   private static final String PROPERTY_LESSON_ID = Presence.PROPERTY_LESSON + "."
-         + Lesson.PROPERTY_ID;
-   private static final String PROPERTY_CLASS_GROUP = Presence.PROPERTY_LESSON + "."
-         + Lesson.PROPERTY_CLASS_GROUP;
-   private static final String PROPERTY_PERSON = Presence.PROPERTY_STUDENT + "."
-         + Student.PROPERTY_PERSON;
+   private static final String PROPERTY_PERSON = nest(Presence.PROPERTY_STUDENT,
+         Student.PROPERTY_PERSON);
 
    @Override
    public void create(Presence presence)
@@ -38,7 +35,7 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
    public List<Presence> search(PresenceQuery query)
    {
       final Criteria criteria = createCriteria(query);
-      criteria.addOrder(Order.desc("id"));
+      criteria.addOrder(Order.desc(Presence.PROPERTY_ID));
       return search(criteria);
    }
 
@@ -50,21 +47,7 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
 
    private Criteria createCriteria(PresenceQuery query)
    {
-      Criteria criteria = createCriteria(Presence.class);
-      criteria.createAlias(Presence.PROPERTY_LESSON, "l");
-      if (query.hasLessonId())
-      {
-         criteria.add(Restrictions.eq(PROPERTY_LESSON_ID, query.getLessonId()));
-      }
-      if (query.hasClassGroupId())
-      {
-         criteria.createAlias(PROPERTY_CLASS_GROUP, "cg");
-         criteria.add(Restrictions.eq("cg.id", query.getClassGroupId()));
-      }
-      if (query.hasSchoolSubject())
-      {
-         criteria.add(Restrictions.eq("l.schoolSubject", query.getSchoolSubject()));
-      }
+      final Criteria criteria = createCriteria(Presence.class);
       if (query.hasStudentFullName())
       {
          final Criteria personCriteria = criteria.createCriteria(PROPERTY_PERSON);
@@ -74,14 +57,31 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
          personCriteria
                .add(Restrictions.sqlRestriction(rawQuery, matchString, StandardBasicTypes.STRING));
       }
-      if (query.hasDate())
-      {
-         criteria.add(Restrictions.eq("l.date", query.getDate()));
-      }
       if (query.hasStatus())
       {
          criteria.add(Restrictions.eq(Presence.PROPERTY_STATUS, query.getStatus()));
       }
+
+      final Criteria lessonCriteria = criteria.createCriteria(Presence.PROPERTY_LESSON);
+      if (query.hasLessonId())
+      {
+         lessonCriteria.add(Restrictions.eq(Lesson.PROPERTY_ID, query.getLessonId()));
+      }
+      if (query.hasClassGroupId())
+      {
+         lessonCriteria.add(Restrictions.eq(
+               nest(Lesson.PROPERTY_CLASS_GROUP, ClassGroup.PROPERTY_ID), query.getClassGroupId()));
+      }
+      if (query.hasSchoolSubject())
+      {
+         lessonCriteria
+               .add(Restrictions.eq(Lesson.PROPERTY_SCHOOL_SUBJECT, query.getSchoolSubject()));
+      }
+      if (query.hasDate())
+      {
+         lessonCriteria.add(Restrictions.eq(Lesson.PROPERTY_DATE, query.getDate()));
+      }
+
       return criteria;
    }
 

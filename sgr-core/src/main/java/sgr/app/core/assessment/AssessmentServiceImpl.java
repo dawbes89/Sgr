@@ -15,6 +15,7 @@ import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.notification.Notification;
 import sgr.app.api.notification.NotificationService;
+import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -52,7 +53,8 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
       }
       if (query.hasStudentId())
       {
-         criteria.add(Restrictions.eq(Assessment.PROPERTY_STUDENT, query.getStudentId()));
+         criteria.add(Restrictions.eq(nest(Assessment.PROPERTY_STUDENT, Student.PROPERTY_ID),
+               query.getStudentId()));
       }
       return criteria;
    }
@@ -66,7 +68,12 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
       final Criteria criteria = createAssessmentCriteria(query);
       criteria.setProjection(projList);
       final List<Object> search = search(criteria);
-      return search.isEmpty() ? 0.0 : (double) search.stream().findFirst().get();
+      if (search == null || search.isEmpty())
+      {
+         return 0.0;
+      }
+      final Object result = search.get(0);
+      return result == null ? 0.0 : (double) result;
    }
 
    @Required
