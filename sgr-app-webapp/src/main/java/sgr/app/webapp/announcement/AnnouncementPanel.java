@@ -8,7 +8,9 @@ import sgr.app.api.announcement.AnnouncementService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
- * @author dawbes
+ * Panel for displaying annoucements.
+ *
+ * @author dawbes89
  */
 @Controller
 public class AnnouncementPanel extends AbstractPanel<Announcement>
@@ -23,13 +25,12 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    public void init()
    {
       entity = new Announcement();
-      entities = announcementService.search();
    }
 
    @Override
    public void onLoad()
    {
-      init();
+      entities = announcementService.search();
    }
 
 }

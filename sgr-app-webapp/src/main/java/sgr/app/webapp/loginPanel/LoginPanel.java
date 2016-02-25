@@ -9,7 +9,9 @@ import sgr.app.api.account.AccountType;
 import sgr.app.frontend.panels.AbstractLoginPanel;
 
 /**
- * @author dawbes
+ * Panel for login into basic application.
+ *
+ * @author dawbes89
  */
 @Controller
 public class LoginPanel extends AbstractLoginPanel
