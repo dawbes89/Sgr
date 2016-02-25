@@ -1,7 +1,5 @@
 package sgr.app.webapp.student;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.assessment.Assessment;
@@ -13,6 +11,8 @@ import sgr.app.api.teachingStuff.SchoolSubject;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
+ * Panel used for displaying assesments for student.
+ *
  * @author dawbes89
  */
 public class StudentAssessmentPanel extends AbstractPanel<Assessment>
@@ -33,7 +33,6 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
    @Override
    public void init()
    {
-      entities = new ArrayList<>();
       entity = new Assessment();
    }
 

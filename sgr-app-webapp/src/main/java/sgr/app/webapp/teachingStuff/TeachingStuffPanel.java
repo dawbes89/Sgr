@@ -8,6 +8,8 @@ import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
+ * Panel for displaying teaching stuff personel.
+ *
  * @author dawbes89
  */
 @Controller

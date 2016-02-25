@@ -1,7 +1,5 @@
 package sgr.app.webapp.student;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.authentication.AuthenticationService;
@@ -14,7 +12,6 @@ import sgr.app.frontend.panels.AbstractPanel;
  * Panel for displaying comments for student.
  *
  * @author leonzio
- *
  */
 public class StudentCommentPanel extends AbstractPanel<Comment>
 {
@@ -30,7 +27,6 @@ public class StudentCommentPanel extends AbstractPanel<Comment>
    @Override
    public void init()
    {
-      entities = new ArrayList<>();
       entity = new Comment();
    }
 
