@@ -16,7 +16,7 @@ import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 class PresenceServiceImpl extends DaoSupport implements PresenceService
 {

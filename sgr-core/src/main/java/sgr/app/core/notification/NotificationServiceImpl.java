@@ -12,6 +12,9 @@ import sgr.app.api.notification.NotificationQuery;
 import sgr.app.api.notification.NotificationService;
 import sgr.app.core.DaoSupport;
 
+/**
+ * @author leonzio
+ */
 class NotificationServiceImpl extends DaoSupport implements NotificationService
 {
 
@@ -19,14 +22,14 @@ class NotificationServiceImpl extends DaoSupport implements NotificationService
    public List<Notification> search(NotificationQuery query)
    {
       Criteria criteria = createCriteria(query);
-      criteria.addOrder(Order.desc("received"));
+      criteria.addOrder(Order.desc(Notification.PROPERTY_RECEIVED));
       return search(criteria);
    }
 
    private Criteria createCriteria(NotificationQuery query)
    {
       Criteria criteria = createCriteria(Notification.class);
-      criteria.add(Restrictions.eq("student", query.getStudentId()));
+      criteria.add(Restrictions.eq(Notification.PROPERTY_STUDENT, query.getStudentId()));
       return criteria;
    }
 

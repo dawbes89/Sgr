@@ -14,7 +14,7 @@ import sgr.app.api.admin.AdminService;
 import sgr.app.core.DaoSupport;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 class AdminServiceImpl extends DaoSupport implements AdminService
 {
