@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,12 +36,12 @@ public class Admin implements AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true)
-   private Person person;
+   @JoinColumn(name = "person_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "admin_person_id") )
+   private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true)
-   private Account account;
+   @JoinColumn(name = "account_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "admin_account_id") )
+   private Account account = new Account();
 
    public Long getId()
    {
