@@ -71,18 +71,20 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{studentPanel.person.firstName}" required="true" />
+								value="#{studentPanel.entity.person.firstName}" required="true" />
+
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{studentPanel.person.lastName}" required="true" />
+								value="#{studentPanel.entity.person.lastName}" required="true" />
+
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
-								value="#{studentPanel.person.birthDate}" pattern="yyyy-MM-dd"
-								mask="true" required="true" />
+								value="#{studentPanel.entity.person.birthDate}"
+								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
 
@@ -92,25 +94,28 @@
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
-								value="#{studentPanel.account.validTo}"
+								value="#{studentPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true" />
+
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
-								value="#{studentPanel.account.userName}" required="true">
+								value="#{studentPanel.entity.account.userName}" required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
 							</p:inputText>
+
 							<p:outputLabel for="password"
 								value="#{sgr_translation.form_account_password}:" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
-								value="#{studentPanel.account.password}" required="true" />
+								value="#{studentPanel.entity.account.password}" required="true" />
 							<p:column />
+
 							<p:commandButton id="generatePassword" immediate="true"
-								value="#{sgr_translation.form_form_button_generatePassword}"
-								action="#{studentPanel.generatePassword('add', 'password')}"
-								update="password" icon="ui-icon-locked">
+								value="#{sgr_translation.form_button_generatePassword}"
+								action="#{studentPanel.generatePassword()}" update=":add:password"
+								icon="ui-icon-locked">
 							</p:commandButton>
 						</p:panelGrid>
 					</p:panel>
