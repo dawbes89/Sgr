@@ -18,7 +18,7 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="student"
-					value="#{studentPanel.entities}" editable="true">
+					value="#{studentPanel.entities}" editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"

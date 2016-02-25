@@ -2,6 +2,7 @@ package sgr.admin.webapp.student;
 
 import java.util.List;
 
+import org.primefaces.component.inputtext.InputText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -12,6 +13,7 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.frontend.RandomPasswordGenerator;
+import sgr.app.frontend.helpers.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
@@ -69,7 +71,9 @@ public class StudentPanel extends AbstractPanel<Student>implements EditablePanel
 
    public void generatePassword()
    {
-      entity.getAccount().setPassword(RandomPasswordGenerator.generate());
+      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final String password = RandomPasswordGenerator.generate();
+      passwordField.setSubmittedValue(password);
    }
 
    public List<ClassGroup> getAvailableClasses()
