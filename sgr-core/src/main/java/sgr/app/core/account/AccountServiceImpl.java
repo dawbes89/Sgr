@@ -17,7 +17,7 @@ import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.core.DaoSupport;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 class AccountServiceImpl extends DaoSupport implements AccountService
 {

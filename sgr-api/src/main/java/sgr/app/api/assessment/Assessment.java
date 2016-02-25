@@ -32,7 +32,7 @@ public class Assessment implements Serializable
 
    private static final long serialVersionUID = 1707760863896363695L;
 
-   public static final String PROPERTY_STUDENT_ID = "student";
+   public static final String PROPERTY_STUDENT = "student";
    public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
    public static final String PROPERTY_DATE = "date";
 

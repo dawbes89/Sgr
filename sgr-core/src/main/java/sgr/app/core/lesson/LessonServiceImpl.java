@@ -13,12 +13,14 @@ import sgr.app.api.lesson.LessonService;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.core.DaoSupport;
+
 /**
- * @author dawbes
+ * @author dawbes89
  */
 class LessonServiceImpl extends DaoSupport implements LessonService
 {
-   private static final String PROPERTY_CLASS_GROUP_ID = Lesson.PROPERTY_CLASS_GROUP + "." + ClassGroup.PROPERTY_ID;
+   private static final String PROPERTY_CLASS_GROUP_ID = Lesson.PROPERTY_CLASS_GROUP + "."
+         + ClassGroup.PROPERTY_ID;
 
    private PresenceService presenceService;
 
@@ -26,7 +28,8 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    public Lesson create(Lesson lesson, List<Presence> presences)
    {
       Lesson created = createEntity(lesson);
-      presences.stream().peek(presence -> presence.setLesson(created)).forEach(presence -> presenceService.create(presence));
+      presences.stream().peek(presence -> presence.setLesson(created))
+            .forEach(presence -> presenceService.create(presence));
       return created;
    }
 
@@ -40,15 +43,15 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    private Criteria createAssessmentCriteria(LessonQuery query)
    {
       Criteria criteria = createCriteria(Lesson.class);
-      if(query.hasSchoolSubject())
+      if (query.hasSchoolSubject())
       {
          criteria.add(Restrictions.eq(Lesson.PROPERTY_SCHOOL_SUBJECT, query.getSchoolSubject()));
       }
-      if(query.hasStudentId())
+      if (query.hasStudentId())
       {
-         criteria.add(Restrictions.eq(Lesson.PROPERTY_STUDENT_ID, query.getStudentId()));
+         criteria.add(Restrictions.eq(Lesson.PROPERTY_STUDENT, query.getStudentId()));
       }
-      if(query.hasClassGroupId())
+      if (query.hasClassGroupId())
       {
          criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
       }

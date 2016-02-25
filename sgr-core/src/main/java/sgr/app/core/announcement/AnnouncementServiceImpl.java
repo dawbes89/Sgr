@@ -11,7 +11,7 @@ import sgr.app.api.announcement.AnnouncementService;
 import sgr.app.core.DaoSupport;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
 {

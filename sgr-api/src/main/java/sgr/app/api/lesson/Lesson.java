@@ -33,7 +33,7 @@ public class Lesson implements Serializable
    private static final long serialVersionUID = -5117496622690659878L;
 
    public static final String PROPERTY_ID = "id";
-   public static final String PROPERTY_STUDENT_ID = "studentId";
+   public static final String PROPERTY_STUDENT = "student";
    public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
    public static final String PROPERTY_CLASS_GROUP = "classGroup";
    public static final String PROPERTY_DATE = "date";

@@ -52,7 +52,7 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
       }
       if (query.hasStudentId())
       {
-         criteria.add(Restrictions.eq(Assessment.PROPERTY_STUDENT_ID, query.getStudentId()));
+         criteria.add(Restrictions.eq(Assessment.PROPERTY_STUDENT, query.getStudentId()));
       }
       return criteria;
    }

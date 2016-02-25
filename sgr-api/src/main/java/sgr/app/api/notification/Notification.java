@@ -29,6 +29,9 @@ public class Notification implements Serializable
 
    private static final long serialVersionUID = 7334663727763287504L;
 
+   public static final String PROPERTY_STUDENT = "student";
+   public static final String PROPERTY_RECEIVED = "received";
+
    @Id
    @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
