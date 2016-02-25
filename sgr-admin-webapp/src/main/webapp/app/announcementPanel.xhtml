@@ -11,8 +11,7 @@
 			<p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
 				autoRun="true" update=":root:table" />
 
-			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-
+			<p:outputPanel id="panel" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
 					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
 				<p:separator />
@@ -62,16 +61,19 @@
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
+
 					<p:outputLabel for="title"
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						label="#{sgr_translation.form_announcement_title}" required="true" />
+
 					<p:outputLabel for="content"
 						value="#{sgr_translation.form_announcement_content}:" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}"
 						label="#{sgr_translation.form_announcement_content}"
 						required="true" rows="10" cols="50" />
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{announcementPanel.create}"
@@ -101,15 +103,18 @@
 			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
+
 					<h:outputLabel for="title"
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						required="true" />
+
 					<h:outputLabel for="content"
 						value="#{sgr_translation.form_announcement_content}:" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}" required="true"
 						rows="10" cols="50" />
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_update}"
 							actionListener="#{announcementPanel.update(studentPanel.entity)}"
