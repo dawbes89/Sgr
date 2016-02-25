@@ -17,7 +17,7 @@ import sgr.app.api.translation.TranslationService;
 /**
  * Panel extender for all panels in application.<br>
  * For using entites list in xhtml part use {@link #entities} and for single use
- * {@link #entity}. Somethimes with panel name eq.
+ * {@link #entity}. Sometimes with panel name eq.
  * <code>panelName.entity.entityProperty</code>.
  *
  * @author leonzio
@@ -52,8 +52,7 @@ public abstract class AbstractPanel<T> implements Serializable
     */
    public abstract void onLoad();
 
-   protected final void showValidationMessage(String formName, String messageKey,
-         Severity severity)
+   protected final void showValidationMessage(String formName, String messageKey, Severity severity)
    {
       final String messageContent = translationService.translate(messageKey);
       final FacesMessage message = new FacesMessage(messageContent);
