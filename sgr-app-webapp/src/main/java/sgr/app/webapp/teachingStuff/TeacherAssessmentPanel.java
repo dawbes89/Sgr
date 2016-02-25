@@ -59,13 +59,14 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       entities = new ArrayList<>();
       assessments = new ArrayList<>();
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
+      classGroup = currentLoggedTeacher.getPreceptorClass();
+      currentLoggedTeacher = authenticationService.getCurrentUser();
    }
 
    @Override
    public void onLoad()
    {
-      currentLoggedTeacher = authenticationService.getCurrentUser();
-      classGroup = currentLoggedTeacher.getPreceptorClass();
+      init();
       handleClassChange();
    }
 
@@ -119,7 +120,7 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       {
          query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       }
-      if (entity != null)
+      if (entity != null && entity.getId() != null)
       {
          query.setStudentId(entity.getId());
       }
