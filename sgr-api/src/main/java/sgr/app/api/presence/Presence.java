@@ -44,7 +44,8 @@ public class Presence implements Serializable
    private Lesson lesson;
 
    @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name = "student_id", nullable = false, foreignKey = @ForeignKey(name = "presence_student_id_fk") )
+   @JoinColumn(name = "student_id", nullable = false, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "presence_student_id_fk") )
    private Student student;
 
    @Enumerated(EnumType.STRING)

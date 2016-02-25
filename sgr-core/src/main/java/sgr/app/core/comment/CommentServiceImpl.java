@@ -26,7 +26,7 @@ class CommentServiceImpl extends DaoSupport implements CommentService
    public void create(Comment comment)
    {
       notificationService
-            .create(Notification.create("Uwagi", "Otrzyma³eœ uwagê", comment.getStudentId()));
+            .create(Notification.create("Uwagi", "Otrzyma³eœ uwagê", comment.getStudent()));
       comment.setDate(new Date());
       createEntity(comment);
    }

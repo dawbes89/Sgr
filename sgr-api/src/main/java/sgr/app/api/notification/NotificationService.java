@@ -2,6 +2,11 @@ package sgr.app.api.notification;
 
 import java.util.List;
 
+/**
+ * Notification service.
+ *
+ * @author leonzio
+ */
 public interface NotificationService
 {
 

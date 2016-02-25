@@ -26,7 +26,7 @@ class NotificationServiceImpl extends DaoSupport implements NotificationService
    private Criteria createCriteria(NotificationQuery query)
    {
       Criteria criteria = createCriteria(Notification.class);
-      criteria.add(Restrictions.eq("studentId", query.getStudentId()));
+      criteria.add(Restrictions.eq("student", query.getStudentId()));
       return criteria;
    }
 
