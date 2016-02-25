@@ -41,13 +41,14 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    public void init()
    {
       entity = new TeachingStuff();
+      entities = teachingStuffService.search();
+      availableClasses = classGroupService.search(ClassGroupQuery.setAvailableForTeachers(true));
    }
 
    @Override
    public void onLoad()
    {
-      entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.setAvailableForTeachers(true));
+      init();
    }
 
    @Override

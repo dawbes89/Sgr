@@ -1,6 +1,5 @@
 package sgr.app.webapp.teachingStuff;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +51,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    public void init()
    {
       entity = new Presence();
-      entities = new ArrayList<>();
    }
 
    @Override

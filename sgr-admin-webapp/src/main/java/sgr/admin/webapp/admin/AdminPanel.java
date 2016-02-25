@@ -29,12 +29,13 @@ public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Adm
    public void init()
    {
       entity = new Admin();
+      entities = adminService.search();
    }
 
    @Override
    public void onLoad()
    {
-      entities = adminService.search();
+      init();
    }
 
    @Override

@@ -27,12 +27,13 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    public void init()
    {
       entity = new Announcement();
+      entities = announcementService.search();
    }
 
    @Override
    public void onLoad()
    {
-      entities = announcementService.search();
+      init();
    }
 
    @Override

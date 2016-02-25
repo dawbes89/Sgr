@@ -15,7 +15,9 @@ import javax.persistence.Table;
 import sgr.app.api.teachingStuff.SchoolSubject;
 
 /**
- * @author dawbes
+ * Entity for student assessments.
+ *
+ * @author dawbes89
  */
 @Entity
 @Table(name = "assessment")

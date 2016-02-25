@@ -23,7 +23,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author leonzio
  */
 @Controller
-public class StudentPanel extends AbstractPanel<Student> implements EditablePanel<Student>
+public class StudentPanel extends AbstractPanel<Student>implements EditablePanel<Student>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -40,13 +40,14 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
    public void init()
    {
       entity = new Student();
+      entities = studentService.search(StudentQuery.EMPTY);
+      availableClasses = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
    public void onLoad()
    {
-      entities = studentService.search(StudentQuery.EMPTY);
-      availableClasses = classGroupService.search(ClassGroupQuery.EMPTY);
+      init();
    }
 
    @Override

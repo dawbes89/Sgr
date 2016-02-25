@@ -22,6 +22,8 @@ import sgr.app.api.person.Person;
 import sgr.app.api.person.PersonName;
 
 /**
+ * Entity represents student.
+ *
  * @author leonzio
  */
 @Entity
@@ -41,16 +43,16 @@ public class Student implements PersonName, AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "student_person_id") )
+   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_person_id") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true, foreignKey = @ForeignKey(name = "student_account_id") )
+   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_account_id") )
    private Account account = new Account();
 
    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
          CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "class_group_id", nullable = false, foreignKey = @ForeignKey(name = "student_class_group_id") )
+   @JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_class_group_id") )
    private ClassGroup classGroup;
 
    public Long getId()

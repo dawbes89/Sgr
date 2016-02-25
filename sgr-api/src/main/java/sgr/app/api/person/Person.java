@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Entity representing personal data.
+ *
  * @author leonzio
  */
 @Entity
@@ -21,7 +23,7 @@ public class Person implements Serializable
    private static final long serialVersionUID = 1576074218152179038L;
 
    @Id
-   @Column(name = "person_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
