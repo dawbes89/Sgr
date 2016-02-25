@@ -11,7 +11,7 @@
 			<p:remoteCommand name="onload" action="#{adminPanel.onLoad}"
 				autoRun="true" update=":root:table" />
 
-			<p:outputPanel id="panel" layout="block">
+			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
 					title="#{sgr_translation.button_add_admin}" icon="ui-icon-plus"
 					oncomplete="PF('addDialog').show()" />
