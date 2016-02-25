@@ -59,14 +59,13 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       entities = new ArrayList<>();
       assessments = new ArrayList<>();
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
-      classGroup = currentLoggedTeacher.getPreceptorClass();
-      currentLoggedTeacher = authenticationService.getCurrentUser();
    }
 
    @Override
    public void onLoad()
    {
-      init();
+      currentLoggedTeacher = authenticationService.getCurrentUser();
+      classGroup = currentLoggedTeacher.getPreceptorClass();
       handleClassChange();
    }
 

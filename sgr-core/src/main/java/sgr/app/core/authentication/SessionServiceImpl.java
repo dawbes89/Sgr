@@ -27,8 +27,12 @@ class SessionServiceImpl implements SessionService
 
    @SuppressWarnings("unchecked")
    @Override
-   public <T> T getAttributeValue(String attributeKey)
+   public <T> T getAttributeValue(String attributeKey) throws NullPointerException
    {
+      if (getSession() == null)
+      {
+         throw new NullPointerException("Session is null");
+      }
       return (T) getSession().getAttribute(attributeKey);
    }
 
