@@ -11,7 +11,7 @@
 			<p:remoteCommand name="onload" action="#{teachingStuffPanel.onLoad}"
 				autoRun="true" update=":root:table" />
 
-			<p:outputPanel id="panel" style="text-align:center;" layout="block">
+			<p:outputPanel id="panel" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
 					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
 					oncomplete="PF('addDialog').show()" />
@@ -92,17 +92,21 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{teachingStuffPanel.person.firstName}" required="true" />
+								value="#{teachingStuffPanel.entity.person.firstName}"
+								required="true" />
+
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{teachingStuffPanel.person.lastName}" required="true" />
+								value="#{teachingStuffPanel.entity.person.lastName}"
+								required="true" />
+
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
-								value="#{teachingStuffPanel.person.birthDate}"
+								value="#{teachingStuffPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true" />
 						</p:panelGrid>
 					</p:panel>
@@ -112,24 +116,29 @@
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
-								value="#{teachingStuffPanel.account.validTo}"
+								value="#{teachingStuffPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true" />
+
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
-								value="#{teachingStuffPanel.account.userName}" required="true">
+								value="#{teachingStuffPanel.entity.account.userName}"
+								required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
 							</p:inputText>
+
 							<p:outputLabel for="password"
 								value="#{sgr_translation.form_account_password}:" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
-								value="#{teachingStuffPanel.account.password}" required="true" />
+								value="#{teachingStuffPanel.entity.account.password}"
+								required="true" />
 							<p:column />
+
 							<p:commandButton immediate="true"
 								value="#{sgr_translation.form_form_button_generatePassword}"
-								action="#{teachingStuffPanel.generatePassword('add', 'password')}"
+								action="#{teachingStuffPanel.generatePassword()}"
 								update="password" icon="ui-icon-locked">
 							</p:commandButton>
 						</p:panelGrid>
@@ -149,12 +158,14 @@
 									var="schoolSubject" itemValue="#{schoolSubject}"
 									itemLabel="#{schoolSubject}" />
 							</p:selectOneMenu>
+
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStuff_academicTitle}"
 								required="true" />
+
 							<p:outputLabel for="preceptorClass"
 								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 							<p:selectOneMenu id="preceptorClass"

@@ -18,10 +18,12 @@ import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
 /**
+ * Panel used for handling students.
+ *
  * @author leonzio
  */
 @Controller
-public class StudentPanel extends AbstractPanel<Student>implements EditablePanel<Student>
+public class StudentPanel extends AbstractPanel<Student> implements EditablePanel<Student>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
