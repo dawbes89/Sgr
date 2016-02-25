@@ -20,7 +20,9 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.teachingStuff.SchoolSubject;
 
 /**
- * @author dawbes
+ * Entity for lessons.
+ *
+ * @author dawbes89
  */
 @Entity
 @Table(name = "lesson")
@@ -49,7 +51,8 @@ public class Lesson implements Serializable
    @Column(name = "lesson_subject")
    private String lessonSubject;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
+         CascadeType.REFRESH }, fetch = FetchType.EAGER)
    @JoinColumn(name = "class_group_id", nullable = false)
    private ClassGroup classGroup;
 

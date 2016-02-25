@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author dawbes
+ * Account entity.
+ *
+ * @author dawbes89
  */
 @Entity
 @Table(name = "account")
@@ -26,7 +28,7 @@ public class Account implements Serializable
    public static final String PROPERTY_PASSWORD = "password";
 
    @Id
-   @Column(name = "account_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 

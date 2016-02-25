@@ -10,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity for notifications for student.
+ *
+ * @author leonzio
+ */
 @Entity
 @Table(name = "notification")
 public class Notification implements Serializable

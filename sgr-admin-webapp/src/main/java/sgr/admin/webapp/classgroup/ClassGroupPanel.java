@@ -29,12 +29,13 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
    public void init()
    {
       entity = new ClassGroup();
+      entities = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
    public void onLoad()
    {
-      entities = classGroupService.search(ClassGroupQuery.EMPTY);
+      init();
    }
 
    @Override

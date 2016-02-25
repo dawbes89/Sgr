@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author dawbes
+ * Entity for student comments.
+ *
+ * @author dawbes89
  */
 @Entity
 @Table(name = "comment")
