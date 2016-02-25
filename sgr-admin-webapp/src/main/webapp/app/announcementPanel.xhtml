@@ -138,20 +138,19 @@
 			<p:dialog header="#{sgr_translation.form_window_caption_details}"
 				resizable="false" showEffect="explode" widgetVar="detailsDialog">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<p:outputLabel
-							value="#{sgr_translation.form_announcement_title} : *"
+					<p:panelGrid id="output" columns="2">
+						<p:outputLabel value="#{sgr_translation.form_announcement_title}"
 							for="title" />
 						<p:outputLabel id="title"
 							value="#{announcementPanel.entity.title}" />
 
-						<p:outputLabel
-							value="#{sgr_translation.form_announcement_added} : *" for="date" />
+						<p:outputLabel value="#{sgr_translation.form_announcement_added}"
+							for="date" />
 						<p:outputLabel id="date" value="#{announcementPanel.entity.date}"
 							converter="yearConverter" />
 
 						<p:outputLabel
-							value="#{sgr_translation.form_announcement_content} : *"
+							value="#{sgr_translation.form_announcement_content}"
 							for="content" />
 						<p:outputLabel id="content"
 							value="#{announcementPanel.entity.content}" />
