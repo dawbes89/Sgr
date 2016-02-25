@@ -41,11 +41,11 @@ public class Student implements PersonName, AccountEntity, Serializable
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "person_id", nullable = false, unique = true)
-   private Person person;
+   private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "account_id", nullable = false, unique = true)
-   private Account account;
+   private Account account = new Account();
 
    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
          CascadeType.REFRESH }, fetch = FetchType.EAGER)
