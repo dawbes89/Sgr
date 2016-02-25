@@ -29,15 +29,16 @@ public class StudentNotificationPanel extends AbstractPanel<Notification>
    public void init()
    {
       entity = new Notification();
+      final NotificationQuery query = new NotificationQuery();
+      final Student student = authenticationService.getCurrentUser();
+      query.setStudentId(student.getId());
+      entities = notificationService.search(query);
    }
 
    @Override
    public void onLoad()
    {
-      final NotificationQuery query = new NotificationQuery();
-      final Student student = authenticationService.getCurrentUser();
-      query.setStudentId(student.getId());
-      entities = notificationService.search(query);
+      init();
    }
 
 }
