@@ -3,12 +3,19 @@ package sgr.app.api.notification;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import sgr.app.api.student.Student;
 
 /**
  * Entity for notifications for student.
@@ -23,7 +30,7 @@ public class Notification implements Serializable
    private static final long serialVersionUID = 7334663727763287504L;
 
    @Id
-   @Column(name = "notification_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
@@ -36,15 +43,18 @@ public class Notification implements Serializable
    @Column(name = "content", length = 255, nullable = false, updatable = false)
    private String content;
 
-   @Column(name = "student_id", nullable = false, updatable = false)
-   private Long studentId;
+   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   @JoinColumn(name = "student_id", nullable = false, updatable = false,
+         referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "notification_student_id_fk") )
+   private Student student;
 
-   public static Notification create(String title, String content, Long studentId)
+   public static Notification create(String title, String content, Student student)
    {
       final Notification notif = new Notification();
       notif.setTitle(title);
       notif.setContent(content);
-      notif.setStudentId(studentId);
+      notif.setStudent(student);
       return notif;
    }
 
@@ -88,14 +98,14 @@ public class Notification implements Serializable
       this.content = content;
    }
 
-   public Long getStudentId()
+   public Student getStudent()
    {
-      return studentId;
+      return student;
    }
 
-   public void setStudentId(Long studentId)
+   public void setStudent(Student student)
    {
-      this.studentId = studentId;
+      this.student = student;
    }
 
 }

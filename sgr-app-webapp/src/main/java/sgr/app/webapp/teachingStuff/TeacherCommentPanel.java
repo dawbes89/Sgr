@@ -74,7 +74,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 
    public void create()
    {
-      comment.setStudentId(entity.getId());
+      comment.setStudent(entity);
       comment.setIssuerName(currentLoggedTeacher.getTeacherFullName());
       commentService.create(comment);
       comment = new Comment();

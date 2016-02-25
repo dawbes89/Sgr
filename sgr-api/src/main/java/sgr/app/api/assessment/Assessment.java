@@ -3,15 +3,21 @@ package sgr.app.api.assessment;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import sgr.app.api.student.Student;
 import sgr.app.api.teachingStuff.SchoolSubject;
 
 /**
@@ -26,7 +32,7 @@ public class Assessment implements Serializable
 
    private static final long serialVersionUID = 1707760863896363695L;
 
-   public static final String PROPERTY_STUDENT_ID = "studentId";
+   public static final String PROPERTY_STUDENT_ID = "student";
    public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
    public static final String PROPERTY_DATE = "date";
 
@@ -45,8 +51,10 @@ public class Assessment implements Serializable
    @Column(name = "assessment_type")
    private AssessmentType assessmentType;
 
-   @Column(name = "student_id")
-   private Long studentId;
+   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   @JoinColumn(name = "student_id", nullable = false, updatable = false,
+         referencedColumnName = "id", foreignKey = @ForeignKey(name = "assessment_student_id_fk") )
+   private Student student;
 
    @Enumerated(EnumType.STRING)
    @Column(name = "school_subject")
@@ -92,14 +100,14 @@ public class Assessment implements Serializable
       this.assessmentType = assessmentType;
    }
 
-   public Long getStudentId()
+   public Student getStudent()
    {
-      return studentId;
+      return student;
    }
 
-   public void setStudentId(Long studentId)
+   public void setStudent(Student student)
    {
-      this.studentId = studentId;
+      this.student = student;
    }
 
    public SchoolSubject getSchoolSubject()

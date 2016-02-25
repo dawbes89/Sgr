@@ -29,7 +29,7 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
    public void create(Assessment assessment)
    {
       notificationService
-            .create(Notification.create("Oceny", "Otrzyma³eœ ocenê", assessment.getStudentId()));
+            .create(Notification.create("Oceny", "Otrzyma³eœ ocenê", assessment.getStudent()));
       assessment.setDate(new Date());
       createEntity(assessment);
    }

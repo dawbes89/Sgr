@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,9 +52,10 @@ public class Lesson implements Serializable
    @Column(name = "lesson_subject")
    private String lessonSubject;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
-         CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "class_group_id", nullable = false)
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
+         fetch = FetchType.EAGER)
+   @JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "lesson_class_group_id_fk") )
    private ClassGroup classGroup;
 
    @Enumerated(EnumType.STRING)

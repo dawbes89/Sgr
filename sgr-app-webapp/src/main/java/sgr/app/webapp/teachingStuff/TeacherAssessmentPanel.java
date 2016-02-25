@@ -84,7 +84,7 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
 
    public void create()
    {
-      assessment.setStudentId(entity.getId());
+      assessment.setStudent(entity);
       assessment.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       assessmentService.create(assessment);
       assessment = new Assessment();

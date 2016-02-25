@@ -38,21 +38,24 @@ public class Student implements PersonName, AccountEntity, Serializable
    public static final String PROPERTY_PERSON = "person";
 
    @Id
-   @Column(name = "student_id")
+   @Column(name = "id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_person_id") )
+   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "student_person_id_fk") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_account_id") )
+   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "student_account_id_fk") )
    private Account account = new Account();
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST,
-         CascadeType.REFRESH }, fetch = FetchType.EAGER)
-   @JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "student_class_group_id") )
+   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
+         fetch = FetchType.EAGER)
+   @JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "student_class_group_id_fk") )
    private ClassGroup classGroup;
 
    public Long getId()
