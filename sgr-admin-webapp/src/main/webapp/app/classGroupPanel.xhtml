@@ -10,6 +10,7 @@
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{classGroupPanel.onLoad}"
 				autoRun="true" update=":root:table" />
+			<p:messages id="msgs" />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
@@ -34,7 +35,7 @@
 					<p:column width="40">
 						<p:commandButton title="#{sgr_translation.button_remove}"
 							actionListener="#{classGroupPanel.remove(classGroup.id)}"
-							update=":root:panel" icon="ui-icon-trash">
+							update=":root" icon="ui-icon-trash">
 							<p:ajax event="dialogReturn" listener="#{classGroupPanel.remove}" />
 						</p:commandButton>
 					</p:column>
@@ -91,8 +92,7 @@
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{classGroupPanel.create}"
-							update=":root:panel :add:panel" icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+							update=":root:panel :add:panel" icon="ui-icon-disk">
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_cancel}"
 							update=":add:panel" process="@this" icon="ui-icon-cancel"
