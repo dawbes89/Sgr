@@ -2,9 +2,6 @@ package sgr.admin.webapp.classgroup;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +10,6 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.ClassGroupException;
-import sgr.app.api.exceptions.CustomException;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
@@ -21,7 +17,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author leonzio
  */
 @Controller
-public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements EditablePanel<ClassGroup>
+public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements EditablePanel<ClassGroup>
 {
 
    private static final long serialVersionUID = 1665393811406612606L;
@@ -50,12 +46,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
          classGroupService.create(entity);
          RequestContext context = RequestContext.getCurrentInstance();
          context.execute("PF('addDialog').hide();");
+         onLoad();
       }
       catch (ClassGroupException e)
       {
-         handleException("add", e);
+         showValidationMessage("add", e.getMessage(), e.getSeverity());
       }
-      init();
    }
 
    @Override
@@ -70,12 +66,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
       try
       {
          classGroupService.remove(id);
+         onLoad();
       }
       catch (ClassGroupException e)
       {
-         handleException("root", e);
+         showValidationMessage("root", e.getMessage(), e.getSeverity());
       }
-      init();
    }
 
    public List<String> getYears()
@@ -83,11 +79,4 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
       return classGroupService.getYears();
    }
 
-   private void handleException(String formId, CustomException throwable)
-   {
-      final String validationMessage = translationService.translate(throwable.getMessage());
-      final FacesMessage message = new FacesMessage(validationMessage);
-      message.setSeverity(throwable.getSeverity());
-      FacesContext.getCurrentInstance().addMessage(formId, message);
-   }
 }
