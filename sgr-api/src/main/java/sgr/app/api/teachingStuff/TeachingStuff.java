@@ -35,6 +35,7 @@ public class TeachingStuff implements PersonName, AccountEntity, Serializable
    private static final long serialVersionUID = 1452686849131351842L;
 
    public final static String PROPERTY_ID = "id";
+   public final static String PROPERTY_PRECEPTOR_CLASS = "preceptorClass";
 
    @Id
    @Column(name = "id")
