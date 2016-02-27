@@ -39,7 +39,7 @@ public class Account implements Serializable
    private String password;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "type", nullable = false)
+   @Column(name = "type", length = 15, nullable = false, updatable = false)
    private AccountType type;
 
    @Column(name = "created", nullable = false, updatable = false)

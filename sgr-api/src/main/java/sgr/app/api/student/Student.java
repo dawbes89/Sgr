@@ -109,4 +109,15 @@ public class Student implements PersonName, AccountEntity, Serializable
       return String.format("%s %s", person.getFirstName(), person.getLastName());
    }
 
+   @Override
+   public boolean equals(Object obj)
+   {
+      if (obj == null)
+      {
+         return false;
+      }
+      final Student object = (Student) obj;
+      return object.id.equals(this.id);
+   }
+
 }

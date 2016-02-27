@@ -39,14 +39,14 @@ public class Comment implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "date")
+   @Column(name = "date", nullable = false, updatable = false)
    private Date date;
 
-   @Column(name = "content")
+   @Column(name = "content", nullable = false, updatable = false)
    private String content;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "comment_type")
+   @Column(name = "comment_type", length = 25, nullable = false, updatable = false)
    private CommentType commentType;
 
    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -54,7 +54,7 @@ public class Comment implements Serializable
          referencedColumnName = "id", foreignKey = @ForeignKey(name = "comment_student_id_fk") )
    private Student student;
 
-   @Column(name = "issuer_name")
+   @Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
    private String issuerName;
 
    public Long getId()

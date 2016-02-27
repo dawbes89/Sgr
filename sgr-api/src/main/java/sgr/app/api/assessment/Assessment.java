@@ -41,14 +41,14 @@ public class Assessment implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "date")
+   @Column(name = "date", nullable = false, updatable = false)
    private Date date;
 
-   @Column(name = "assessment")
+   @Column(name = "assessment", nullable = false, updatable = false)
    private float assessment;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "assessment_type")
+   @Column(name = "assessment_type", length = 25, nullable = false, updatable = false)
    private AssessmentType assessmentType;
 
    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -57,7 +57,7 @@ public class Assessment implements Serializable
    private Student student = new Student();
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject")
+   @Column(name = "school_subject", nullable = false, updatable = false)
    private SchoolSubject schoolSubject;
 
    public Long getId()
