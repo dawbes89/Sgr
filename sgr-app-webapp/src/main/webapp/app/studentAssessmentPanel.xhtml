@@ -39,7 +39,8 @@
 					value="#{studentAssessmentPanel.averageAssessments}"
 					style="color: red" />
 				<p:dataTable id="table" var="assessment"
-					value="#{studentAssessmentPanel.entities}" editable="true"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					value="#{studentAssessmentPanel.entities}" editable="false"
 					cellSeparator="true">
 					<p:column
 						headerText="#{sgr_translation.form_assessment_addingDate}"

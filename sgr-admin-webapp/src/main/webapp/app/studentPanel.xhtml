@@ -19,6 +19,7 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="student"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 					value="#{studentPanel.entities}" editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"

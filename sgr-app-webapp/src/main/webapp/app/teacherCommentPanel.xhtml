@@ -35,6 +35,7 @@
 				header="#{sgr_translation.form_comment_studentList}">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="student"
+						emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 						value="#{teacherCommentPanel.entities}">
 						<p:column headerText="#{sgr_translation.form_person_firstName}"
 							filterBy="#{student.person.firstName}" filterMatchMode="contains">
@@ -117,7 +118,8 @@
 						header="#{sgr_translation.form_comment_other}" toggleable="true"
 						collapsed="true">
 						<p:dataTable id="commentTable" var="comment"
-							value="#{teacherCommentPanel.comments}" editable="true"
+							emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+							value="#{teacherCommentPanel.comments}" editable="false"
 							cellSeparator="true">
 							<p:column width="16">
 								<p:rowToggler />

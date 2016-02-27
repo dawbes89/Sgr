@@ -68,6 +68,7 @@
 			<p:panel id="panel"
 				header="#{sgr_app_translation.form_classPresences} #{preceptorPresencePanel.classGroup.className}">
 				<p:dataTable id="table" var="presence"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 					value="#{preceptorPresencePanel.entities}" editable="true"
 					cellSeparator="true">
 

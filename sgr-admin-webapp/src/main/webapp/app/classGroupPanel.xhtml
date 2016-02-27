@@ -19,7 +19,8 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="classGroup"
-					value="#{classGroupPanel.entities}" editable="true">
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					value="#{classGroupPanel.entities}" editable="false">
 					<p:column headerText="#{sgr_translation.form_class_name}"
 						filterBy="#{classGroup.groupNumber}">
 						<p:outputLabel value="#{classGroup.groupNumber}" />
