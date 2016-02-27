@@ -29,13 +29,13 @@ public class Announcement
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "title", length = 100)
+   @Column(name = "title", length = 100, nullable = false)
    private String title;
 
-   @Column(name = "date")
+   @Column(name = "date", nullable = false)
    private Date date;
 
-   @Column(name = "content")
+   @Column(name = "content", nullable = false)
    private String content;
 
    public Long getId()

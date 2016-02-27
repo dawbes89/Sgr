@@ -31,13 +31,13 @@ public class ClassGroup implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "group_number", precision = 1)
+   @Column(name = "group_number", precision = 1, nullable = true, updatable = true)
    private Integer groupNumber;
 
-   @Column(name = "group_name", length = 1, nullable = false)
+   @Column(name = "group_name", length = 1, nullable = false, updatable = false)
    private String groupName;
 
-   @Column(name = "year", nullable = false)
+   @Column(name = "year", nullable = false, updatable = false)
    private Date year;
 
    public Long getId()
