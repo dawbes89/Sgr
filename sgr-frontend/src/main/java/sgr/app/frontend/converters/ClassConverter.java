@@ -26,11 +26,7 @@ public class ClassConverter extends AbstractConverter<ClassGroup>
       final String groupName = String.valueOf(value.charAt(1));
       final Optional<ClassGroup> classGroup = classGroupService.find(ClassGroupQuery.all()
             .withGroupName(groupName).withGroupNumber(groupNumber).build());
-      if (!classGroup.isPresent())
-      {
-         return null;
-      }
-      return classGroup.get();
+      return classGroup.isPresent() ? classGroup.get() : null;
 
    }
 
