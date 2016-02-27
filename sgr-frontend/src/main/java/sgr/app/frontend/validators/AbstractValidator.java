@@ -26,15 +26,20 @@ public abstract class AbstractValidator<T> implements Validator
    @Autowired
    protected TranslationService translationService;
 
-   private final FacesMessage validationMessage;
-
+   private String translatedValidationMessage;
+   private Severity severity;
    private boolean nullAllowed = false;
 
    protected AbstractValidator(Severity severity, String key)
    {
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-      String translated = translationService.translate(key);
-      validationMessage = new FacesMessage(severity, translated, translated);
+      this.severity = severity;
+      setErrorMessage(key, new Object[] {});
+   }
+
+   protected void setErrorMessage(String key, Object[] values)
+   {
+      translatedValidationMessage = translationService.translate(key, values);
    }
 
    @SuppressWarnings("unchecked")
@@ -46,9 +51,10 @@ public abstract class AbstractValidator<T> implements Validator
       {
          return;
       }
-      if (!isValidValue((T) value))
+      if (!isValidValue((T) value, component))
       {
-         throw new ValidatorException(validationMessage);
+         throw new ValidatorException(new FacesMessage(severity, translatedValidationMessage,
+               translatedValidationMessage));
       }
    }
 
@@ -59,7 +65,7 @@ public abstract class AbstractValidator<T> implements Validator
     *           to validate
     * @return true if value is valid, otherwise false
     */
-   protected abstract boolean isValidValue(T value);
+   protected abstract boolean isValidValue(T value, final UIComponent component);
 
    /**
     * Allows to pass null to {@link #isValidValue(Object)}.<br>

@@ -85,7 +85,9 @@
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
-								pattern="yyyy-MM-dd" mask="true" required="true" />
+								pattern="yyyy-MM-dd" mask="true" required="true">
+								<f:validator validatorId="dateValidator" />
+							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
 
@@ -96,7 +98,10 @@
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
 								value="#{adminPanel.entity.account.validTo}"
-								pattern="yyyy-MM-dd" mask="true" />
+								pattern="yyyy-MM-dd" mask="true">
+								<f:validator validatorId="dateValidator" />
+								<f:attribute name="validationMode" value="AFTER" />
+							</p:calendar>
 
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
@@ -177,7 +182,9 @@
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
-								pattern="yyyy-MM-dd" mask="true" required="true" />
+								pattern="yyyy-MM-dd" mask="true" required="true">
+								<f:validator validatorId="dateValidator" />
+							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
 
@@ -188,7 +195,10 @@
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}:"
 								value="#{adminPanel.entity.account.validTo}"
-								pattern="yyyy-MM-dd" mask="true" />
+								pattern="yyyy-MM-dd" mask="true">
+								<f:validator validatorId="dateValidator" />
+								<f:attribute name="validationMode" value="AFTER" />
+							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
 
