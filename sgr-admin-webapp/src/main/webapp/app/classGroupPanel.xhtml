@@ -7,6 +7,10 @@
 
 	<ui:define name="content">
 
+		<ui:include src="removeConfirmDialog.xhtml">
+			<ui:param name="panel" value="#{classGroupPanel}" />
+		</ui:include>
+
 		<!-- MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{classGroupPanel.onLoad}"
@@ -35,8 +39,8 @@
 					</p:column>
 					<p:column width="40">
 						<p:commandButton title="#{sgr_translation.button_remove}"
-							update=":remove" oncomplete="PF('removeDialog').show()"
-							icon="ui-icon-pencil">
+							update=":remove" onclick="PF('removeDialog').show()"
+							icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{classGroup}"
 								target="#{classGroupPanel.entity}" />
 						</p:commandButton>
@@ -44,11 +48,6 @@
 				</p:dataTable>
 			</p:outputPanel>
 		</h:form>
-
-		<ui:include src="removeConfirmDialog.xhtml">
-			<ui:param name="panel" value="#{classGroupPanel}" />
-		</ui:include>
-
 
 		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
