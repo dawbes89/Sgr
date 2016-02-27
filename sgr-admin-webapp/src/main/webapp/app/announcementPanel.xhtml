@@ -13,7 +13,8 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					icon="ui-icon-check" oncomplete="PF('addDialog').show()" />
+					action="#{announcementPanel.onLoad}" icon="ui-icon-check"
+					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
 				<p:dataTable value="#{announcementPanel.entities}"
@@ -144,8 +145,11 @@
 		<!-- DETAILS FORM -->
 		<h:form id="details">
 			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				resizable="false" showEffect="explode" widgetVar="detailsDialog">
-				<p:outputPanel id="panel" style="text-align:center;" layout="block">
+				widgetVar="detailsDialog" resizable="false" showEffect="clip"
+				hideEffect="clip" width="600px" closable="true" draggable="false"
+				modal="true" appendTo="@(body)" dynamic="true">
+				<p:fieldset id="panel" legend="#{sgr_translation.form_announcement}"
+					layout="block">
 					<p:panelGrid id="output" columns="2">
 						<p:outputLabel value="#{sgr_translation.form_announcement_title}"
 							for="title" />
@@ -163,7 +167,7 @@
 						<p:outputLabel id="content"
 							value="#{announcementPanel.entity.content}" />
 					</p:panelGrid>
-				</p:outputPanel>
+				</p:fieldset>
 			</p:dialog>
 		</h:form>
 	</ui:define>
