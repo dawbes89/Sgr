@@ -46,7 +46,7 @@
 		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
 			header="#{sgr_translation.form_window_caption_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="380px" height="380px"
+			showEffect="fold" hideEffect="fold" width="430px" height="300px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
@@ -77,14 +77,6 @@
 								<f:selectItem itemValue="F" itemLabel="F" />
 								<f:selectItem itemValue="G" itemLabel="G" />
 								<f:selectItem itemValue="H" itemLabel="H" />
-							</p:selectOneMenu>
-							<p:outputLabel for="year"
-								value="#{sgr_translation.form_class_year}:" />
-							<p:selectOneMenu id="year" value="#{classGroupPanel.entity.year}"
-								required="true" converter="yearConverter" effect="fade"
-								filter="true" filterMatchMode="startsWith">
-								<f:selectItems value="#{classGroupPanel.years}" var="date"
-									itemLabel="#{year}" itemValue="#{year}" />
 							</p:selectOneMenu>
 						</p:panelGrid>
 					</p:panel>

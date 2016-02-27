@@ -17,8 +17,6 @@ public interface ClassGroupService
 
    void remove(Long id) throws ClassGroupException;
 
-   List<String> getYears();
-
    Optional<ClassGroup> find(ClassGroupQuery query);
 
 }
