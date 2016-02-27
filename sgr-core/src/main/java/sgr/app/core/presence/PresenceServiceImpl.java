@@ -9,6 +9,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
 
+import sgr.app.api.DateHelper;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.lesson.Lesson;
 import sgr.app.api.presence.Presence;
@@ -16,7 +17,6 @@ import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
-import sgr.app.core.DateHelper;
 
 /**
  * @author dawbes89

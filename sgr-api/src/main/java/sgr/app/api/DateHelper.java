@@ -1,4 +1,4 @@
-package sgr.app.core;
+package sgr.app.api;
 
 import java.util.Calendar;
 import java.util.Date;
