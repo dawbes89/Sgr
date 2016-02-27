@@ -91,7 +91,9 @@
 								value="#{sgr_translation.form_comment_content}:" />
 							<p:inputTextarea id="content" rows="6" cols="50"
 								label="#{sgr_translation.form_comment_content}"
-								value="#{teacherCommentPanel.comment.content}" required="true" />
+								value="#{teacherCommentPanel.comment.content}" required="true">
+								<f:validateLength minimum="10" maximum="255" />
+							</p:inputTextarea>
 						</p:panelGrid>
 					</p:panel>
 
