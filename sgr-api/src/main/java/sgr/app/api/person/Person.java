@@ -1,6 +1,7 @@
 package sgr.app.api.person;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -78,4 +80,20 @@ public class Person implements Serializable
    {
       this.birthDate = birthDate;
    }
+
+   @Transient
+   public int getAge()
+   {
+      final Calendar now = Calendar.getInstance();
+      now.setTimeInMillis(System.currentTimeMillis());
+
+      final Calendar birthDay = Calendar.getInstance();
+      birthDay.setTimeInMillis(birthDate.getTime());
+      int years = now.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+      int currMonth = now.get(Calendar.MONTH) + 1;
+      int birthMonth = birthDay.get(Calendar.MONTH) + 1;
+      int months = currMonth - birthMonth;
+      return months < 0 ? --years : years;
+   }
+
 }

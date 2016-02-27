@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
@@ -127,6 +128,7 @@ public class TeachingStuff implements PersonName, AccountEntity, Serializable
       this.preceptorClass = preceptorClass;
    }
 
+   @Transient
    @Override
    public String getFullName()
    {
@@ -137,6 +139,7 @@ public class TeachingStuff implements PersonName, AccountEntity, Serializable
       return String.format("%s %s", person.getFirstName(), person.getLastName());
    }
 
+   @Transient
    public String getTeacherFullName()
    {
       return String.format("%s %s %s", academicTitle, person.getFirstName(), person.getLastName());
