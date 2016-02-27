@@ -1,6 +1,7 @@
 package sgr.app.api.person;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -83,8 +84,16 @@ public class Person implements Serializable
    @Transient
    public int getAge()
    {
-      final Date currentDate = new Date();
-      return 0;
+      final Calendar now = Calendar.getInstance();
+      now.setTimeInMillis(System.currentTimeMillis());
+
+      final Calendar birthDay = Calendar.getInstance();
+      birthDay.setTimeInMillis(birthDate.getTime());
+      int years = now.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+      int currMonth = now.get(Calendar.MONTH) + 1;
+      int birthMonth = birthDay.get(Calendar.MONTH) + 1;
+      int months = currMonth - birthMonth;
+      return months < 0 ? --years : years;
    }
 
 }
