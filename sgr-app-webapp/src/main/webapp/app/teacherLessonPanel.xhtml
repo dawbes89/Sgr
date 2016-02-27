@@ -100,15 +100,17 @@
 							<p:inputTextarea id="lessonSubject" rows="1" cols="60"
 								label="#{sgr_translation.form_lesson_lessonSubject}"
 								value="#{teacherLessonPanel.entity.lessonSubject}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="4" maximum="100" />
+							</p:inputTextarea>
 						</p:panelGrid>
 					</p:panel>
+
 					<p:panel id="studentsPanel"
-						header="#{sgr_translation.form_presences}"
-						toggleable="true">
+						header="#{sgr_translation.form_presences}" toggleable="true">
 						<p:dataTable id="table" var="student"
 							value="#{teacherLessonPanel.students}"
-							selection="#{teacherLessonPanel.selectedStudent}"
+							selection="#{teacherLessonPanel.selectedStudents}"
 							rowKey="#{student.id}">
 							<p:column selectionMode="multiple"
 								headerText="#{sgr_translation.form_lesson_presences_presence}"

@@ -65,14 +65,18 @@
 					<p:outputLabel for="title"
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
-						label="#{sgr_translation.form_announcement_title}" required="true" />
+						label="#{sgr_translation.form_announcement_title}" required="true">
+						<f:validateLength minimum="5" maximum="100" />
+					</p:inputText>
 
 					<p:outputLabel for="content"
 						value="#{sgr_translation.form_announcement_content}:" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}"
 						label="#{sgr_translation.form_announcement_content}"
-						required="true" rows="10" cols="50" />
+						required="true" rows="10" cols="50">
+						<f:validateLength minimum="5" maximum="255" />
+					</p:inputTextarea>
 
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
@@ -107,13 +111,17 @@
 					<h:outputLabel for="title"
 						value="#{sgr_translation.form_announcement_title}:" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
-						required="true" />
+						required="true">
+						<f:validateLength minimum="5" maximum="100" />
+					</p:inputText>
 
 					<h:outputLabel for="content"
 						value="#{sgr_translation.form_announcement_content}:" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}" required="true"
-						rows="10" cols="50" />
+						rows="10" cols="50">
+						<f:validateLength minimum="5" maximum="255" />
+					</p:inputTextarea>
 
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_update}"

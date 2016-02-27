@@ -3,6 +3,8 @@ package sgr.app.api.classgroup;
 import java.io.Serializable;
 import java.util.Optional;
 
+import sgr.app.api.QueryBuilder;
+
 /**
  * Query for classes.
  *
@@ -20,20 +22,8 @@ public class ClassGroupQuery implements Serializable
 
    private boolean availableForTeachers;
    private Optional<Long> classId = Optional.empty();
-
-   public static ClassGroupQuery setAvailableForCurrentTeacher(Long classId)
-   {
-      ClassGroupQuery query = new ClassGroupQuery();
-      query.setClassId(classId);
-      return query;
-   }
-
-   public static ClassGroupQuery setAvailableForTeachers(boolean availableForTeachers)
-   {
-      ClassGroupQuery query = new ClassGroupQuery();
-      query.availableForTeachers = availableForTeachers;
-      return query;
-   }
+   private Optional<Integer> groupNumber = Optional.empty();
+   private Optional<String> groupName = Optional.empty();
 
    public boolean isAvailableForTeachers()
    {
@@ -53,6 +43,85 @@ public class ClassGroupQuery implements Serializable
    public void setClassId(Long classId)
    {
       this.classId = Optional.of(classId);
+   }
+
+   public boolean hasGroupNumber()
+   {
+      return groupNumber.isPresent();
+   }
+
+   public Integer getGroupNumber()
+   {
+      return groupNumber.get();
+   }
+
+   public void setGroupNumber(Integer groupNumber)
+   {
+      this.groupNumber = Optional.of(groupNumber);
+   }
+
+   public boolean hasGroupName()
+   {
+      return groupName.isPresent();
+   }
+
+   public String getGroupName()
+   {
+      return groupName.get();
+   }
+
+   public void setGroupName(String groupName)
+   {
+      this.groupName = Optional.of(groupName);
+   }
+
+   public void setAvailableForTeachers(boolean availableForTeachers)
+   {
+      this.availableForTeachers = availableForTeachers;
+   }
+
+
+
+   public static Builder all()
+   {
+      return new Builder();
+   }
+
+   /**
+    * @author dawbes
+    */
+   public static class Builder extends QueryBuilder<ClassGroupQuery>
+   {
+
+      public Builder()
+      {
+         super(new ClassGroupQuery());
+      }
+
+      public Builder withAvailableForTeachers(boolean availableForTeachers)
+      {
+         query.setAvailableForTeachers(availableForTeachers);
+         return this;
+      }
+
+      public Builder withClassGroupId(Long classId)
+      {
+         query.setClassId(classId);
+         return this;
+      }
+
+      public Builder withGroupName(String groupName)
+      {
+         query.setGroupName(groupName);
+         return this;
+      }
+
+      public Builder withGroupNumber(Integer groupNumber)
+      {
+         query.setGroupNumber(groupNumber);
+         return this;
+      }
+
    }
 
 }

@@ -53,16 +53,16 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
    private List<ClassGroup> classes;
 
-   private List<Student> selectedStudent = new ArrayList<>();
+   private List<Student> selectedStudents;
 
    @Override
    public void init()
    {
+      selectedStudents = new ArrayList<>();
       entity = new Lesson();
       entities = new ArrayList<>();
       students = new ArrayList<>();
       student = new Student();
-      classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
@@ -70,6 +70,7 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    {
       classes = classGroupService.search(ClassGroupQuery.EMPTY);
       entity = new Lesson();
+      classes = classGroupService.search(ClassGroupQuery.EMPTY);
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
       searchLessons();
@@ -113,14 +114,14 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       entity.setIssuerName(currentLoggedTeacher.getFullName());
       entity = lessonService.create(entity, createPressences());
       onLoad();
-      searchStudents();
+      selectedStudents = new ArrayList<>();
    }
 
    private List<Presence> createPressences()
    {
       final List<Presence> presences = students.stream()
             .map(student -> Presence.createAbsent(student)).collect(Collectors.toList());
-      presences.stream().filter(presence -> selectedStudent.contains(presence.getStudent()))
+      presences.stream().filter(presence -> selectedStudents.contains(presence.getStudent()))
             .forEach(presence -> presence.setStatus(PresenceStatus.PRESENT));
       return presences;
    }
@@ -175,14 +176,14 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       this.currentLoggedTeacher = currentLoggedTeacher;
    }
 
-   public List<Student> getSelectedStudent()
+   public List<Student> getSelectedStudents()
    {
-      return selectedStudent;
+      return selectedStudents;
    }
 
-   public void setSelectedStudent(List<Student> selectedStudent)
+   public void setSelectedStudents(List<Student> selectedStudents)
    {
-      this.selectedStudent = selectedStudent;
+      this.selectedStudents = selectedStudents;
    }
 
 }
