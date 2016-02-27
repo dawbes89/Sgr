@@ -54,6 +54,10 @@
       <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
       <param-value>true</param-value>
    </context-param>
+   <context-param>
+      <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+      <param-value>true</param-value>
+   </context-param>
 
    <!-- CONVERTERS/MANAGED_BEANS/VALIDATORS -->
    <context-param>
@@ -70,7 +74,7 @@
    <listener>
       <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
    </listener>
-   
+
    <filter>
       <filter-name>authorizationFilter</filter-name>
       <filter-class>sgr.app.frontend.authorization.AuthorizationFilter</filter-class>
