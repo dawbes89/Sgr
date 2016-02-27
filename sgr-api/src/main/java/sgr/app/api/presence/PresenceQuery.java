@@ -23,6 +23,7 @@ public class PresenceQuery implements Serializable
    private Optional<PresenceStatus> status = Optional.empty();
    private Optional<String> studentFullName = Optional.empty();
    private Optional<Date> date = Optional.empty();
+   private Optional<Long> studentId = Optional.empty();
 
    public boolean hasLessonId()
    {
@@ -114,6 +115,21 @@ public class PresenceQuery implements Serializable
       this.date = Optional.of(date);
    }
 
+   public boolean hasStudentId()
+   {
+      return studentId.isPresent();
+   }
+
+   public Long getStudentId()
+   {
+      return studentId.get();
+   }
+
+   public void setStudentId(Long studentId)
+   {
+      this.studentId = Optional.of(studentId);
+   }
+
    public static Builder all()
    {
       return new Builder();
@@ -160,11 +176,12 @@ public class PresenceQuery implements Serializable
          return this;
       }
 
-      @Override
-      public PresenceQuery build()
+      public Builder withStudentId(Long id)
       {
-         return query;
+         query.setStudentId(id);
+         return this;
       }
 
    }
+
 }
