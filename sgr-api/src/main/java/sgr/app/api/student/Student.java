@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
@@ -99,6 +100,7 @@ public class Student implements PersonName, AccountEntity, Serializable
       this.classGroup = classGroup;
    }
 
+   @Transient
    @Override
    public String getFullName()
    {
