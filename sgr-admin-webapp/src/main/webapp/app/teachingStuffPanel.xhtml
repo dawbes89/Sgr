@@ -49,11 +49,6 @@
 						<p:outputLabel value="#{teachingStuff.schoolSubject}"
 							converter="schoolSubjectTranslationConverter" />
 					</p:column>
-					<p:column headerText="#{sgr_translation.form_account_userName}"
-						filterBy="#{teachingStuff.account.userName}"
-						filterMatchMode="contains">
-						<p:outputLabel value="#{teachingStuff.account.userName}" />
-					</p:column>
 					<p:column
 						headerText="#{sgr_translation.form_teachingStuff_preceptor}">
 						<p:outputLabel value="#{teachingStuff.preceptorClass.className}" />
@@ -93,14 +88,18 @@
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStuffPanel.entity.person.firstName}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
 
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.entity.person.lastName}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
@@ -126,6 +125,7 @@
 								value="#{teachingStuffPanel.entity.account.userName}"
 								required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
+								<f:validateLength minimum="3" maximum="20" />
 							</p:inputText>
 
 							<p:outputLabel for="password"
@@ -133,7 +133,9 @@
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{teachingStuffPanel.entity.account.password}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="4" maximum="20" />
+							</p:inputText>
 							<p:column />
 
 							<p:commandButton immediate="true"
@@ -164,7 +166,9 @@
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStuff_academicTitle}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="2" maximum="30" />
+							</p:inputText>
 
 							<p:outputLabel for="preceptorClass"
 								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
@@ -219,13 +223,19 @@
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStuffPanel.entity.person.firstName}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
+
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStuffPanel.entity.person.lastName}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
+
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
@@ -260,12 +270,16 @@
 									var="schoolSubject" itemValue="#{schoolSubject}"
 									itemLabel="#{schoolSubject.label}" />
 							</p:selectOneMenu>
+
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStuffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStuff_academicTitle}"
-								required="true" />
+								required="true">
+								<f:validateLength minimum="2" maximum="30" />
+							</p:inputText>
+
 							<p:outputLabel for="preceptorClass"
 								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
 							<p:selectOneMenu id="preceptorClass"

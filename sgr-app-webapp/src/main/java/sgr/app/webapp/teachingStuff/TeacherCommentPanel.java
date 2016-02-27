@@ -61,12 +61,12 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
       comment = new Comment();
       entity = new Student();
       entities = new ArrayList<>();
-      classes = classGroupService.search(ClassGroupQuery.EMPTY);
    }
 
    @Override
    public void onLoad()
    {
+      classes = classGroupService.search(ClassGroupQuery.EMPTY);
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
       searchStudents();

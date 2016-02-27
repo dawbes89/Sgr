@@ -42,7 +42,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    {
       entity = new TeachingStuff();
       entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.setAvailableForTeachers(true));
+      availableClasses = classGroupService.search(ClassGroupQuery.all().withAvailableForTeachers(true).build());
    }
 
    @Override
@@ -78,11 +78,11 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    {
       super.setEntity(entity);
 
-      ClassGroupQuery query = ClassGroupQuery.setAvailableForTeachers(true);
+      ClassGroupQuery query = ClassGroupQuery.all().withAvailableForTeachers(true).build();
       final ClassGroup preceptorClass = entity.getPreceptorClass();
       if (preceptorClass != null)
       {
-         query = ClassGroupQuery.setAvailableForCurrentTeacher(preceptorClass.getId());
+         query.setClassId(preceptorClass.getId());
       }
       availableClasses = classGroupService.search(query);
    }
