@@ -3,6 +3,7 @@ package sgr.app.frontend.validators;
 import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +27,7 @@ public class UniqueLoginValidator extends AbstractValidator<String>
    }
 
    @Override
-   protected boolean isValidValue(String value)
+   protected boolean isValidValue(String value, final UIComponent component)
    {
       final Optional<Account> findAccountByLogin = accountService.findAccountByLogin(value);
       return !findAccountByLogin.isPresent();
