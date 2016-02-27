@@ -59,7 +59,7 @@ public class TeachingStuff implements PersonName, AccountEntity, Serializable
    private ClassGroup preceptorClass = new ClassGroup();
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject", nullable = false)
+   @Column(name = "school_subject", length = 25, nullable = false, updatable = false)
    private SchoolSubject schoolSubject;
 
    @Column(name = "academic_title", length = 25, nullable = false)

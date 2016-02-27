@@ -43,13 +43,13 @@ public class Lesson implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "lesson_number")
+   @Column(name = "lesson_number", nullable = false, updatable = false)
    private int lessonNumber;
 
    @Column(name = "date", nullable = false, updatable = false)
    private Date date;
 
-   @Column(name = "lesson_subject")
+   @Column(name = "lesson_subject", length = 100, nullable = false, updatable = false)
    private String lessonSubject;
 
    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
@@ -59,10 +59,10 @@ public class Lesson implements Serializable
    private ClassGroup classGroup;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject")
+   @Column(name = "school_subject", length = 25, nullable = false, updatable = false)
    private SchoolSubject schoolSubject;
 
-   @Column(name = "issuer_name")
+   @Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
    private String issuerName;
 
    public Long getId()
