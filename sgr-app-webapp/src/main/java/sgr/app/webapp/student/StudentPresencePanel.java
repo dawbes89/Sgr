@@ -47,7 +47,6 @@ public class StudentPresencePanel extends AbstractPanel<Presence>
    public void onLoad()
    {
       currentLoggedStudent = authenticationService.getCurrentUser();
-      searchPresences();
    }
 
    public void searchPresences()
