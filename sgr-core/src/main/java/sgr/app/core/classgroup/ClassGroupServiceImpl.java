@@ -3,6 +3,7 @@ package sgr.app.core.classgroup;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 
@@ -44,8 +45,8 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public void create(ClassGroup classGroup) throws ClassGroupException
    {
-      ClassGroup optionalClass = getClass(classGroup.getGroupNumber(), classGroup.getGroupName());
-      if (optionalClass != null)
+      Optional<ClassGroup> optionalClass = getClass(classGroup.getGroupNumber(), classGroup.getGroupName());
+      if (optionalClass.isPresent())
       {
          throw new ClassGroupException("classGroupException_classExists",
                FacesMessage.SEVERITY_ERROR);
@@ -57,10 +58,10 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    public void remove(Long id) throws ClassGroupException
    {
       Criteria criteria =  findIndelibleClasses(id);
-      List<Object> search = search(criteria);
-      if(!search.isEmpty())
+      List<Object> indelibleClasses = search(criteria);
+      if(!indelibleClasses.isEmpty())
       {
-         throw new ClassGroupException("classGroupException_classIsUse",
+         throw new ClassGroupException("classGroupException_canNotDelete",
                FacesMessage.SEVERITY_ERROR);
       }
       removeEntity(getEntity(ClassGroup.class, id));
@@ -73,7 +74,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    }
 
    @Override
-   public ClassGroup getClass(Integer groupNumber, String groupName)
+   public Optional<ClassGroup> getClass(Integer groupNumber, String groupName)
    {
       Criteria criteria = createCriteria(ClassGroup.class);
       criteria.add(Restrictions.eq("groupNumber", groupNumber));
@@ -81,9 +82,9 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       List<ClassGroup> result = search(criteria);
       if (result.size() > 0)
       {
-         return result.get(0);
+         return Optional.of(result.get(0));
       }
-      return null;
+      return Optional.empty();
    }
 
    private Criteria findIndelibleClasses(Long classGroupId)

@@ -1,5 +1,7 @@
 package sgr.app.frontend.converters;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.classgroup.ClassGroup;
@@ -21,8 +23,13 @@ public class ClassConverter extends AbstractConverter<ClassGroup>
    {
       final int groupNumber = Integer.valueOf(value.charAt(0)) - 48;
       final String groupName = String.valueOf(value.charAt(1));
-      final ClassGroup classGroup = classGroupService.getClass(groupNumber, groupName);
-      return classGroup;
+      final Optional<ClassGroup> classGroup = classGroupService.getClass(groupNumber, groupName);
+      if (!classGroup.isPresent())
+      {
+         return null;
+      }
+      return classGroup.get();
+
    }
 
    @Override

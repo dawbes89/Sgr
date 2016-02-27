@@ -1,6 +1,7 @@
 package sgr.app.api.classgroup;
 
 import java.util.List;
+import java.util.Optional;
 
 import sgr.app.api.exceptions.ClassGroupException;
 
@@ -18,6 +19,8 @@ public interface ClassGroupService
 
    List<String> getYears();
 
-   ClassGroup getClass(Integer groupNumber, String groupName);
+   Optional<ClassGroup> getClass(Integer groupNumber, String groupName);
+
+   Optional<ClassGroup> find(ClassGroupQuery query);
 
 }
