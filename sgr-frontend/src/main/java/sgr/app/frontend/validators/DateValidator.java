@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 
+/**
+ * @author dawbes89
+ */
 public class DateValidator extends AbstractValidator<Date>
 {
 
@@ -12,7 +15,7 @@ public class DateValidator extends AbstractValidator<Date>
 
    public DateValidator()
    {
-      super(FacesMessage.SEVERITY_ERROR, defaultMode.getLabel());
+      super(FacesMessage.SEVERITY_ERROR, defaultMode.getTranslationKey());
    }
 
    @Override
@@ -24,7 +27,8 @@ public class DateValidator extends AbstractValidator<Date>
       {
          mode = DateValidationMode.valueOf(findMode);
       }
-      setErrorMessage(mode.getLabel(), new Object[] { component.getAttributes().get("label") });
+      setErrorMessage(mode.getTranslationKey(),
+            new Object[] { component.getAttributes().get("label") });
       return mode.isValid(new Date(), value);
    }
 

@@ -2,6 +2,9 @@ package sgr.app.frontend.validators;
 
 import java.util.Date;
 
+/**
+ * @author dawbes89
+ */
 public enum DateValidationMode
 {
 
@@ -54,6 +57,7 @@ public enum DateValidationMode
    };
 
    private String translationKey;
+
    private DateValidationMode(String translationKey)
    {
       this.translationKey = translationKey;
@@ -65,4 +69,5 @@ public enum DateValidationMode
    }
 
    abstract boolean isValid(Date referenceDate, Date value);
+
 }
