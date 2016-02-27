@@ -71,13 +71,17 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{studentPanel.entity.person.firstName}" required="true" />
+								value="#{studentPanel.entity.person.firstName}" required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
 
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{studentPanel.entity.person.lastName}" required="true" />
+								value="#{studentPanel.entity.person.lastName}" required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
@@ -103,19 +107,22 @@
 								label="#{sgr_translation.form_account_userName}"
 								value="#{studentPanel.entity.account.userName}" required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
+								<f:validateLength minimum="3" maximum="20" />
 							</p:inputText>
 
 							<p:outputLabel for="password"
 								value="#{sgr_translation.form_account_password}:" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
-								value="#{studentPanel.entity.account.password}" required="true" />
+								value="#{studentPanel.entity.account.password}" required="true">
+								<f:validateLength minimum="4" maximum="20" />
+							</p:inputText>
 							<p:column />
 
 							<p:commandButton id="generatePassword" immediate="true"
 								value="#{sgr_translation.form_button_generatePassword}"
-								action="#{studentPanel.generatePassword()}" update=":add:password"
-								icon="ui-icon-locked">
+								action="#{studentPanel.generatePassword()}"
+								update=":add:password" icon="ui-icon-locked">
 							</p:commandButton>
 						</p:panelGrid>
 					</p:panel>
@@ -175,12 +182,18 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{studentPanel.entity.person.firstName}" required="true" />
+								value="#{studentPanel.entity.person.firstName}" required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
+
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{studentPanel.entity.person.lastName}" required="true" />
+								value="#{studentPanel.entity.person.lastName}" required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
+
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
