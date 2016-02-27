@@ -1,5 +1,6 @@
 package sgr.app.core.presence;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -15,6 +16,7 @@ import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
+import sgr.app.core.DateHelper;
 
 /**
  * @author dawbes89
@@ -28,6 +30,7 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
    @Override
    public void create(Presence presence)
    {
+      presence.setDate(new Date());
       createEntity(presence);
    }
 
@@ -61,6 +64,13 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
       {
          criteria.add(Restrictions.eq(Presence.PROPERTY_STATUS, query.getStatus()));
       }
+      if (query.hasDate())
+      {
+         final Date date = query.getDate();
+         final Date from = DateHelper.getDateWithTime(date, 0, 0, 0, 1);
+         final Date to = DateHelper.getDateWithTime(date, 23, 59, 59, 999);
+         criteria.add(Restrictions.between(Presence.PROPERTY_DATE, from, to));
+      }
       if (query.hasStudentId())
       {
          criteria.add(Restrictions.eq(nest(Presence.PROPERTY_STUDENT, Student.PROPERTY_ID),
@@ -81,10 +91,6 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
       {
          lessonCriteria
                .add(Restrictions.eq(Lesson.PROPERTY_SCHOOL_SUBJECT, query.getSchoolSubject()));
-      }
-      if (query.hasDate())
-      {
-         lessonCriteria.add(Restrictions.eq(Lesson.PROPERTY_DATE, query.getDate()));
       }
 
       return criteria;

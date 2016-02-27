@@ -46,7 +46,7 @@ public class Lesson implements Serializable
    @Column(name = "lesson_number")
    private int lessonNumber;
 
-   @Column(name = "date")
+   @Column(name = "date", nullable = false, updatable = false)
    private Date date;
 
    @Column(name = "lesson_subject")

@@ -1,5 +1,6 @@
 package sgr.app.core.lesson;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -27,7 +28,8 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    @Override
    public Lesson create(Lesson lesson, List<Presence> presences)
    {
-      Lesson created = createEntity(lesson);
+      lesson.setDate(new Date());
+      final Lesson created = createEntity(lesson);
       presences.stream().peek(presence -> presence.setLesson(created))
             .forEach(presence -> presenceService.create(presence));
       return created;
@@ -36,13 +38,13 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    @Override
    public List<Lesson> search(LessonQuery query)
    {
-      Criteria criteria = createAssessmentCriteria(query);
+      final Criteria criteria = createAssessmentCriteria(query);
       return search(criteria);
    }
 
    private Criteria createAssessmentCriteria(LessonQuery query)
    {
-      Criteria criteria = createCriteria(Lesson.class);
+      final Criteria criteria = createCriteria(Lesson.class);
       if (query.hasSchoolSubject())
       {
          criteria.add(Restrictions.eq(Lesson.PROPERTY_SCHOOL_SUBJECT, query.getSchoolSubject()));

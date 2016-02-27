@@ -1,9 +1,6 @@
 package sgr.app.webapp.teachingStuff;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +19,6 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.frontend.StandardFormat;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -100,22 +96,40 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       students = studentService.search(query);
    }
 
-   public void create() throws ParseException
+   public void create()
    {
       final List<Presence> presences = createPressences();
-      final DateFormat dateFormat = StandardFormat.DAY_FORMAT;
       final LessonQuery query = LessonQuery.all().withClassGroupId(classGroup.getId())
             .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build();
       final List<Lesson> lessonsForClass = lessonService.search(query);
 
       entity.setLessonNumber(lessonsForClass.size() + 1);
       entity.setClassGroup(classGroup);
-      entity.setDate(dateFormat.parse(dateFormat.format(new Date())));
       entity.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       entity.setIssuerName(currentLoggedTeacher.getFullName());
       entity = lessonService.create(entity, presences);
       searchStudents();
       searchLessons();
+   }
+
+   private List<Presence> createPressences()
+   {
+      final List<Presence> presences = new ArrayList<>();
+      for (Student student : students)
+      {
+         presences.add(Presence.createAbsent(student));
+      }
+      for (Student student : selectedStudent)
+      {
+         for (Presence presence : presences)
+         {
+            if (presence.getStudent().getId().equals(student.getId()))
+            {
+               presence.setStatus(PresenceStatus.PRESENT);
+            }
+         }
+      }
+      return presences;
    }
 
    public List<Student> getStudents()
@@ -176,34 +190,6 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    public void setSelectedStudent(List<Student> selectedStudent)
    {
       this.selectedStudent = selectedStudent;
-   }
-
-   private List<Presence> createPressences()
-   {
-      List<Presence> presences = new ArrayList<>();
-      for (Student student : students)
-      {
-         presences.add(createPresence(student));
-      }
-      for (Student student : selectedStudent)
-      {
-         for (Presence presence : presences)
-         {
-            if (presence.getStudent().getId().equals(student.getId()))
-            {
-               presence.setStatus(PresenceStatus.PRESENT);
-            }
-         }
-      }
-      return presences;
-   }
-
-   private static Presence createPresence(Student student)
-   {
-      Presence presence = new Presence();
-      presence.setStudent(student);
-      presence.setStatus(PresenceStatus.ABSENT);
-      return presence;
    }
 
 }

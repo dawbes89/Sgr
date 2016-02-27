@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 /**
  * Entity representing personal data.
  *
@@ -34,6 +36,7 @@ public class Person implements Serializable
    private String lastName;
 
    @Column(name = "birth_date", nullable = false)
+   @Type(type = "date")
    private Date birthDate;
 
    public Long getId()
