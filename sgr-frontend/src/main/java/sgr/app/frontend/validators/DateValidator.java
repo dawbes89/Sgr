@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 
 import sgr.app.api.DateHelper;
+import sgr.app.frontend.StandardFormat;
 
 /**
  * @author dawbes89
@@ -29,9 +30,11 @@ public class DateValidator extends AbstractValidator<Date>
       {
          mode = DateValidationMode.valueOf(findMode);
       }
+      final Date currentDate = DateHelper.getDateWithoutTime(new Date());
       setErrorMessage(mode.getTranslationKey(),
-            new Object[] { component.getAttributes().get("label") });
-      return mode.isValid(DateHelper.getDateWithoutTime(new Date()), value);
+            new Object[] { component.getAttributes().get("label"),
+                  StandardFormat.DAY_FORMAT.format(currentDate) });
+      return mode.isValid(currentDate, value);
    }
 
 }
