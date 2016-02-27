@@ -1,6 +1,7 @@
 package sgr.app.api.presence;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +35,7 @@ public class Presence implements Serializable
    public static final String PROPERTY_LESSON = "lesson";
    public static final String PROPERTY_STUDENT = "student";
    public static final String PROPERTY_STATUS = "status";
+   public static final String PROPERTY_DATE = "date";
 
    @Id
    @Column(name = "id")
@@ -46,13 +48,24 @@ public class Presence implements Serializable
    private Lesson lesson;
 
    @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name = "student_id", nullable = false, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "presence_student_id_fk") )
+   @JoinColumn(name = "student_id", nullable = false, updatable = false,
+         referencedColumnName = "id", foreignKey = @ForeignKey(name = "presence_student_id_fk") )
    private Student student;
 
    @Enumerated(EnumType.STRING)
-   @Column(name = "status")
+   @Column(name = "status", length = 25, nullable = false, updatable = true)
    private PresenceStatus status;
+
+   @Column(name = "date", nullable = false, updatable = false)
+   private Date date;
+
+   public static Presence createAbsent(Student student)
+   {
+      Presence presence = new Presence();
+      presence.setStudent(student);
+      presence.setStatus(PresenceStatus.ABSENT);
+      return presence;
+   }
 
    public Long getId()
    {
@@ -92,6 +105,16 @@ public class Presence implements Serializable
    public void setStatus(PresenceStatus status)
    {
       this.status = status;
+   }
+
+   public Date getDate()
+   {
+      return date;
+   }
+
+   public void setDate(Date date)
+   {
+      this.date = date;
    }
 
 }
