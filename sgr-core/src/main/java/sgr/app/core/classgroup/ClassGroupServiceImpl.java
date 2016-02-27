@@ -1,7 +1,6 @@
 package sgr.app.core.classgroup;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +22,6 @@ import sgr.app.core.DaoSupport;
 class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
 {
 
-   private final static Long START_YEAR = 2000L;
-   private final static List<String> YEARS = new ArrayList<String>();
-
-   static
-   {
-      int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-      for (int i = START_YEAR.intValue(); i <= currentYear; i++)
-      {
-         YEARS.add(String.valueOf(i));
-      }
-   }
-
    @Override
    public List<ClassGroup> search(ClassGroupQuery query)
    {
@@ -45,14 +32,15 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public void create(ClassGroup classGroup) throws ClassGroupException
    {
-      Optional<ClassGroup> optionalClass = find(ClassGroupQuery.all()
-            .withGroupName(classGroup.getGroupName()).withGroupNumber(classGroup.getGroupNumber())
-            .build());
+      Optional<ClassGroup> optionalClass = find(
+            ClassGroupQuery.all().withGroupName(classGroup.getGroupName())
+                  .withGroupNumber(classGroup.getGroupNumber()).build());
       if (optionalClass.isPresent())
       {
          throw new ClassGroupException("classGroupException_classExists",
                FacesMessage.SEVERITY_ERROR);
       }
+      classGroup.setYear(new Date());
       createEntity(classGroup);
    }
 
@@ -67,12 +55,6 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
                FacesMessage.SEVERITY_ERROR);
       }
       removeEntity(getEntity(ClassGroup.class, id));
-   }
-
-   @Override
-   public List<String> getYears()
-   {
-      return YEARS;
    }
 
    @Override
@@ -101,16 +83,13 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
 
       Criteria criteria = createCriteria(ClassGroup.class);
       criteria.add(Restrictions.eq(ClassGroup.PROPERTY_ID, classGroupId));
-      criteria
-            .add(Restrictions
-                  .sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = "
-                        + classGroupId
-                        + ") OR this_.id IN "
-                        + "(SELECT class_group_id FROM student WHERE class_group_id = "
-                        + classGroupId
-                        + ")"
-                        + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = "
-                        + classGroupId + ")"));
+      criteria.add(Restrictions
+            .sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = "
+                  + classGroupId + ") OR this_.id IN "
+                  + "(SELECT class_group_id FROM student WHERE class_group_id = " + classGroupId
+                  + ")"
+                  + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = "
+                  + classGroupId + ")"));
 
       return criteria;
    }
@@ -122,16 +101,14 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
             .addOrder(Order.asc("year"));
       if (query.hasClassId())
       {
-         criteria
-               .add(Restrictions
-                     .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
-                           + query.getClassId() + ")"));
+         criteria.add(Restrictions.sqlRestriction(
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
+                     + query.getClassId() + ")"));
       }
       if (query.isAvailableForTeachers())
       {
-         criteria
-               .add(Restrictions
-                     .sqlRestriction("this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
+         criteria.add(Restrictions.sqlRestriction(
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
       }
       return criteria;
    }
