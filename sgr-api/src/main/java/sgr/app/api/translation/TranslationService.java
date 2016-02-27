@@ -28,4 +28,6 @@ public interface TranslationService
     */
    String translate(String resourceFileName, String key);
 
+   String translate(String key, Object params[]);
+
 }

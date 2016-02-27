@@ -8,7 +8,7 @@ public enum DateValidationMode
    /**
     * Validated date must be strictly before reference date
     */
-   BEFORE("validation_date_before")
+   BEFORE("validation_dateMode_before")
    {
       @Override
       boolean isValid(Date referenceDate, Date value)
@@ -20,7 +20,7 @@ public enum DateValidationMode
    /**
     * Validated date must be strictly after reference date
     */
-   AFTER("validation_date_after")
+   AFTER("validation_dateMode_after")
    {
       @Override
       boolean isValid(Date referenceDate, Date value)
@@ -32,7 +32,7 @@ public enum DateValidationMode
    /**
     * Validated date must be after or the same as reference date
     */
-   NOT_BEFORE("validation_date_notBefore")
+   NOT_BEFORE("validation_dateMode_notBefore")
    {
       @Override
       boolean isValid(Date referenceDate, Date value)
@@ -44,7 +44,7 @@ public enum DateValidationMode
    /**
     * Validated date must be before or the same as reference date
     */
-   NOT_AFTER("validation_date_notAfter")
+   NOT_AFTER("validation_dateMode_notAfter")
    {
       @Override
       boolean isValid(Date referenceDate, Date value)

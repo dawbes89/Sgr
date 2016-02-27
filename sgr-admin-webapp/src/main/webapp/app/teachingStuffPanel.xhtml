@@ -106,7 +106,9 @@
 							<p:calendar id="birthDate"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStuffPanel.entity.person.birthDate}"
-								pattern="yyyy-MM-dd" mask="true" required="true" />
+								pattern="yyyy-MM-dd" mask="true" required="true">
+								<f:validator validatorId="dateValidator" />
+							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
 					<p:panel id="account" header="#{sgr_translation.form_account}">
@@ -114,9 +116,12 @@
 							<p:outputLabel for="validTo"
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
-								label="#{sgr_translation.form_account_validTo}:"
+								label="#{sgr_translation.form_account_validTo}"
 								value="#{teachingStuffPanel.entity.account.validTo}"
-								pattern="yyyy-MM-dd" mask="true" />
+								pattern="yyyy-MM-dd" mask="true">
+								<f:validator validatorId="dateValidator" />
+								<f:attribute name="validationMode" value="AFTER" />
+							</p:calendar>
 
 							<p:outputLabel for="userName"
 								value="#{sgr_translation.form_account_userName}:" />
@@ -152,6 +157,7 @@
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:selectOneMenu id="schoolSubject"
 								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
+								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
 								filter="true" filterMatchMode="contains" required="true">
 								<f:selectItem itemValue="#{null}"
 									itemLabel="#{sgr_translation.selectOneMenu_select}"
