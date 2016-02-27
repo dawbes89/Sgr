@@ -69,9 +69,9 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    public void onLoad()
    {
       entity = new Lesson();
-      searchLessons();
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
+      searchLessons();
    }
 
    public void searchLessons()
