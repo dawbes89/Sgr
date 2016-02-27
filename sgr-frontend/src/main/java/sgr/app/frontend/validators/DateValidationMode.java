@@ -53,15 +53,15 @@ public enum DateValidationMode
       }
    };
 
-   private String label;
-   private DateValidationMode(String label)
+   private String translationKey;
+   private DateValidationMode(String translationKey)
    {
-      this.label = label;
+      this.translationKey = translationKey;
    }
 
-   public String getLabel()
+   public String getTranslationKey()
    {
-      return label;
+      return translationKey;
    }
 
    abstract boolean isValid(Date referenceDate, Date value);
