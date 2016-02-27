@@ -35,10 +35,6 @@
 						filterBy="#{admin.person.lastName}" filterMatchMode="contains">
 						<p:outputLabel value="#{admin.person.lastName}" />
 					</p:column>
-					<p:column headerText="#{sgr_translation.form_account_userName}"
-						filterBy="#{admin.account.userName}" filterMatchMode="contains">
-						<p:outputLabel value="#{admin.account.userName}" />
-					</p:column>
 					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
@@ -72,13 +68,17 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{adminPanel.entity.person.firstName}" required="true" />
+								value="#{adminPanel.entity.person.firstName}" required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
 
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{adminPanel.entity.person.lastName}" required="true" />
+								value="#{adminPanel.entity.person.lastName}" required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
@@ -104,13 +104,16 @@
 								label="#{sgr_translation.form_account_userName}"
 								value="#{adminPanel.entity.account.userName}" required="true">
 								<f:validator validatorId="uniqueLoginValidator" />
+								<f:validateLength minimum="3" maximum="20" />
 							</p:inputText>
 
 							<p:outputLabel for="password"
 								value="#{sgr_translation.form_account_password}:" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
-								value="#{adminPanel.entity.account.password}" required="true" />
+								value="#{adminPanel.entity.account.password}" required="true">
+								<f:validateLength minimum="4" maximum="20" />
+							</p:inputText>
 							<p:column />
 
 							<p:commandButton immediate="true"
@@ -157,12 +160,18 @@
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
-								value="#{adminPanel.entity.person.firstName}" required="true" />
+								value="#{adminPanel.entity.person.firstName}" required="true">
+								<f:validateLength minimum="3" maximum="20" />
+							</p:inputText>
+
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
-								value="#{adminPanel.entity.person.lastName}" required="true" />
+								value="#{adminPanel.entity.person.lastName}" required="true">
+								<f:validateLength minimum="3" maximum="30" />
+							</p:inputText>
+
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:calendar id="birthDate"
