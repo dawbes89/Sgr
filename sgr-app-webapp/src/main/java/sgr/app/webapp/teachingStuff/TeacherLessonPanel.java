@@ -53,12 +53,12 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
    private List<ClassGroup> classes;
 
-   private List<Student> selectedStudent;
+   private List<Student> selectedStudents;
 
    @Override
    public void init()
    {
-      selectedStudent = new ArrayList<>();
+      selectedStudents = new ArrayList<>();
       entity = new Lesson();
       entities = new ArrayList<>();
       students = new ArrayList<>();
@@ -113,14 +113,14 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       entity.setIssuerName(currentLoggedTeacher.getFullName());
       entity = lessonService.create(entity, createPressences());
       onLoad();
-      selectedStudent = new ArrayList<>();
+      selectedStudents = new ArrayList<>();
    }
 
    private List<Presence> createPressences()
    {
       final List<Presence> presences = students.stream()
             .map(student -> Presence.createAbsent(student)).collect(Collectors.toList());
-      presences.stream().filter(presence -> selectedStudent.contains(presence.getStudent()))
+      presences.stream().filter(presence -> selectedStudents.contains(presence.getStudent()))
             .forEach(presence -> presence.setStatus(PresenceStatus.PRESENT));
       return presences;
    }
@@ -175,14 +175,14 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       this.currentLoggedTeacher = currentLoggedTeacher;
    }
 
-   public List<Student> getSelectedStudent()
+   public List<Student> getSelectedStudents()
    {
-      return selectedStudent;
+      return selectedStudents;
    }
 
-   public void setSelectedStudent(List<Student> selectedStudent)
+   public void setSelectedStudents(List<Student> selectedStudents)
    {
-      this.selectedStudent = selectedStudent;
+      this.selectedStudents = selectedStudents;
    }
 
 }
