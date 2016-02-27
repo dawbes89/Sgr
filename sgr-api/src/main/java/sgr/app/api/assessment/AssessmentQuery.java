@@ -80,12 +80,6 @@ public class AssessmentQuery implements Serializable
          return this;
       }
 
-      @Override
-      public AssessmentQuery build()
-      {
-         return query;
-      }
-
    }
 
 }

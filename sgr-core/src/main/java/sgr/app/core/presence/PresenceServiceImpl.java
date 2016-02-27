@@ -61,6 +61,11 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
       {
          criteria.add(Restrictions.eq(Presence.PROPERTY_STATUS, query.getStatus()));
       }
+      if (query.hasStudentId())
+      {
+         criteria.add(Restrictions.eq(nest(Presence.PROPERTY_STUDENT, Student.PROPERTY_ID),
+               query.getStudentId()));
+      }
 
       final Criteria lessonCriteria = criteria.createCriteria(Presence.PROPERTY_LESSON);
       if (query.hasLessonId())

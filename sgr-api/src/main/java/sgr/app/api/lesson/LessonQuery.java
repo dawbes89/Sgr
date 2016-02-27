@@ -110,11 +110,5 @@ public class LessonQuery implements Serializable
          return this;
       }
 
-      @Override
-      public LessonQuery build()
-      {
-         return query;
-      }
-
    }
 }
