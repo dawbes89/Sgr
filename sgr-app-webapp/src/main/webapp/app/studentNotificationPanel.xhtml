@@ -15,6 +15,7 @@
 					update=":root:table" />
 
 				<p:dataTable id="table" var="notification"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 					value="#{studentNotificationPanel.entities}" editable="false"
 					lazy="true">
 					<p:column headerText="#{sgr_translation.common_receivedDate}"

@@ -17,8 +17,9 @@
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
-				<p:dataTable value="#{announcementPanel.entities}"
-					var="announcement" id="table" editable="true">
+				<p:dataTable id="table" value="#{announcementPanel.entities}"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					var="announcement" editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"

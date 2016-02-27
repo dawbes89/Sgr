@@ -62,6 +62,7 @@
 		<h:form id="root">
 			<p:panel id="panel" header="#{sgr_translation.form_presences}">
 				<p:dataTable id="table" var="presence"
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 					value="#{studentPresencePanel.entities}" editable="false"
 					cellSeparator="true">
 

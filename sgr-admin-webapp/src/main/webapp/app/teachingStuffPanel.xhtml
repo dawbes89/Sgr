@@ -19,7 +19,8 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="teachingStuff"
-					value="#{teachingStuffPanel.entities}" editable="true">
+					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					value="#{teachingStuffPanel.entities}" editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
