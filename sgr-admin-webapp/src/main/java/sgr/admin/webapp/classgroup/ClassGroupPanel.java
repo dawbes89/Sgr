@@ -72,7 +72,7 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       }
       catch (ClassGroupException e)
       {
-         showValidationMessage("root", e.getMessage(), e.getSeverity());
+         showValidationMessage("remove", e.getMessage(), e.getSeverity());
       }
    }
 
