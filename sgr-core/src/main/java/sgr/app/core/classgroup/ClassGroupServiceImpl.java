@@ -45,7 +45,9 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public void create(ClassGroup classGroup) throws ClassGroupException
    {
-      Optional<ClassGroup> optionalClass = getClass(classGroup.getGroupNumber(), classGroup.getGroupName());
+      Optional<ClassGroup> optionalClass = find(ClassGroupQuery.all()
+            .withGroupName(classGroup.getGroupName()).withGroupNumber(classGroup.getGroupNumber())
+            .build());
       if (optionalClass.isPresent())
       {
          throw new ClassGroupException("classGroupException_classExists",
@@ -57,9 +59,9 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public void remove(Long id) throws ClassGroupException
    {
-      Criteria criteria =  findIndelibleClasses(id);
+      Criteria criteria = findIndelibleClasses(id);
       List<Object> indelibleClasses = search(criteria);
-      if(!indelibleClasses.isEmpty())
+      if (!indelibleClasses.isEmpty())
       {
          throw new ClassGroupException("classGroupException_canNotDelete",
                FacesMessage.SEVERITY_ERROR);
@@ -74,17 +76,24 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    }
 
    @Override
-   public Optional<ClassGroup> getClass(Integer groupNumber, String groupName)
+   public Optional<ClassGroup> find(ClassGroupQuery query)
    {
       Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.add(Restrictions.eq("groupNumber", groupNumber));
-      criteria.add(Restrictions.eq("groupName", groupName));
+      if (query.hasGroupNumber())
+      {
+         criteria.add(Restrictions.eq(ClassGroup.PROPERTY_GROUP_NUMBER, query.getGroupNumber()));
+      }
+      if (query.hasGroupName())
+      {
+         criteria.add(Restrictions.eq(ClassGroup.PROPERTY_GROUP_NAME, query.getGroupName()));
+      }
       List<ClassGroup> result = search(criteria);
       if (result.size() > 0)
       {
          return Optional.of(result.get(0));
       }
       return Optional.empty();
+
    }
 
    private Criteria findIndelibleClasses(Long classGroupId)
@@ -92,9 +101,16 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
 
       Criteria criteria = createCriteria(ClassGroup.class);
       criteria.add(Restrictions.eq(ClassGroup.PROPERTY_ID, classGroupId));
-      criteria.add(Restrictions.sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = " + classGroupId + ") OR this_.id IN "
-            + "(SELECT class_group_id FROM student WHERE class_group_id = " + classGroupId + ")"
-                  + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = " + classGroupId + ")"));
+      criteria
+            .add(Restrictions
+                  .sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = "
+                        + classGroupId
+                        + ") OR this_.id IN "
+                        + "(SELECT class_group_id FROM student WHERE class_group_id = "
+                        + classGroupId
+                        + ")"
+                        + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = "
+                        + classGroupId + ")"));
 
       return criteria;
    }
@@ -119,4 +135,5 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       }
       return criteria;
    }
+
 }

@@ -25,21 +25,6 @@ public class ClassGroupQuery implements Serializable
    private Optional<Integer> groupNumber = Optional.empty();
    private Optional<String> groupName = Optional.empty();
 
-//   public static ClassGroupQuery setAvailableForCurrentTeacher(Long classId)
-//   {
-//      ClassGroupQuery query = new ClassGroupQuery();
-//      query.setClassId(classId);
-//      return query;
-//   }
-
-   // public static ClassGroupQuery setAvailableForTeachers(boolean
-   // availableForTeachers)
-   // {
-   // ClassGroupQuery query = new ClassGroupQuery();
-   // query.availableForTeachers = availableForTeachers;
-   // return query;
-   // }
-
    public boolean isAvailableForTeachers()
    {
       return availableForTeachers;
@@ -95,6 +80,8 @@ public class ClassGroupQuery implements Serializable
       this.availableForTeachers = availableForTeachers;
    }
 
+
+
    public static Builder all()
    {
       return new Builder();
@@ -129,17 +116,12 @@ public class ClassGroupQuery implements Serializable
          return this;
       }
 
-      public Builder withGroupNnumber(Integer groupNumber)
+      public Builder withGroupNumber(Integer groupNumber)
       {
          query.setGroupNumber(groupNumber);
          return this;
       }
 
-      @Override
-      public ClassGroupQuery build()
-      {
-         return query;
-      }
    }
 
 }
