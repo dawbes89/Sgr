@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -78,4 +79,12 @@ public class Person implements Serializable
    {
       this.birthDate = birthDate;
    }
+
+   @Transient
+   public int getAge()
+   {
+      final Date currentDate = new Date();
+      return 0;
+   }
+
 }

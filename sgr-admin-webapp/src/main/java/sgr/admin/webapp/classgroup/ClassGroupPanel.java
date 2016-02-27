@@ -1,7 +1,5 @@
 package sgr.admin.webapp.classgroup;
 
-import java.util.List;
-
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,11 +72,6 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       {
          showValidationMessage("root", e.getMessage(), e.getSeverity());
       }
-   }
-
-   public List<String> getYears()
-   {
-      return classGroupService.getYears();
    }
 
 }
