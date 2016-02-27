@@ -51,8 +51,8 @@
 				<p:dataTable id="table" var="lesson"
 					value="#{teacherLessonPanel.entities}">
 					<p:column width="120"
-						headerText="#{sgr_translation.form_lesson_numberOfLessons}">
-						<p:outputLabel value="#{lesson.lessonNumber}" />
+						headerText="#{sgr_translation.form_lesson_numberOfSubject}">
+						<p:outputLabel value="#{lesson.subjectNumber}" />
 					</p:column>
 					<p:column
 						headerText="#{sgr_translation.form_lesson_dateOfTheLesson}">
@@ -74,6 +74,24 @@
 				<p:panelGrid id="panel" columns="1">
 					<p:messages id="msgs" />
 
+					<p:panel id="numberLessonPanel">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="numberLesson"
+								value="#{sgr_translation.form_lesson_numberOfLessons}" />
+							<p:selectOneMenu id="numberLesson"
+								value="#{teacherLessonPanel.entity.lessonNumber}" required="true">
+								<f:selectItem itemValue="1" itemLabel="1" />
+								<f:selectItem itemValue="2" itemLabel="2" />
+								<f:selectItem itemValue="3" itemLabel="3" />
+								<f:selectItem itemValue="4" itemLabel="4" />
+								<f:selectItem itemValue="5" itemLabel="5" />
+								<f:selectItem itemValue="6" itemLabel="6" />
+								<f:selectItem itemValue="7" itemLabel="7" />
+								<f:selectItem itemValue="8" itemLabel="8" />
+							</p:selectOneMenu>
+							
+						</p:panelGrid>
+					</p:panel>
 					<p:panel id="lessonSubjectPanel">
 						<p:panelGrid columns="1" columnClasses="label, value">
 							<p:outputLabel for="lessonSubject"

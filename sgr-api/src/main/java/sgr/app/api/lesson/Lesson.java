@@ -43,8 +43,11 @@ public class Lesson implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "lesson_number", nullable = false, updatable = false)
+   @Column(name = "lesson_number", nullable = false, updatable = false , precision = 1)
    private int lessonNumber;
+
+   @Column(name = "subject_number", nullable = false, updatable = false)
+   private int subjectNumber;
 
    @Column(name = "date", nullable = false, updatable = false)
    private Date date;
@@ -133,6 +136,16 @@ public class Lesson implements Serializable
    public void setLessonNumber(int lessonNumber)
    {
       this.lessonNumber = lessonNumber;
+   }
+
+   public int getSubjectNumber()
+   {
+      return subjectNumber;
+   }
+
+   public void setSubjectNumber(int subjectNumber)
+   {
+      this.subjectNumber = subjectNumber;
    }
 
 }
