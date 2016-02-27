@@ -10,17 +10,13 @@ public class DateValidator extends AbstractValidator<Date>
 
    public DateValidator(DateValidationMode mode)
    {
-      super(FacesMessage.SEVERITY_ERROR, mode.getLabel());
+      super(FacesMessage.SEVERITY_ERROR, mode.getTranslationKey());
       this.mode = mode;
    }
 
    @Override
    protected boolean isValidValue(Date value)
    {
-      if (value == null)
-      {
-         return true;
-      }
       return mode.isValid(new Date(), value);
    }
 
