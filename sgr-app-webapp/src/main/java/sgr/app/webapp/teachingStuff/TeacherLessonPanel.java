@@ -2,6 +2,7 @@ package sgr.app.webapp.teachingStuff;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,12 +68,18 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    @Override
    public void onLoad()
    {
+      entity = new Lesson();
+      searchLessons();
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
-      searchLessons();
    }
 
    public void searchLessons()
+   {
+      entities = lessonService.search(createQuery());
+   }
+
+   private LessonQuery createQuery()
    {
       final LessonQuery query = new LessonQuery();
       if (classGroup != null && classGroup.getId() != null)
@@ -83,7 +90,7 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       {
          query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       }
-      entities = lessonService.search(query);
+      return query;
    }
 
    public void searchStudents()
@@ -98,37 +105,22 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
    public void create()
    {
-      final List<Presence> presences = createPressences();
-      final LessonQuery query = LessonQuery.all().withClassGroupId(classGroup.getId())
-            .withSchoolSubject(currentLoggedTeacher.getSchoolSubject()).build();
-      final List<Lesson> lessonsForClass = lessonService.search(query);
-
-      entity.setLessonNumber(lessonsForClass.size() + 1);
+      searchLessons();
+      entity.setLessonNumber(entities.size() + 1);
       entity.setClassGroup(classGroup);
       entity.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
       entity.setIssuerName(currentLoggedTeacher.getFullName());
-      entity = lessonService.create(entity, presences);
+      entity = lessonService.create(entity, createPressences());
+      onLoad();
       searchStudents();
-      searchLessons();
    }
 
    private List<Presence> createPressences()
    {
-      final List<Presence> presences = new ArrayList<>();
-      for (Student student : students)
-      {
-         presences.add(Presence.createAbsent(student));
-      }
-      for (Student student : selectedStudent)
-      {
-         for (Presence presence : presences)
-         {
-            if (presence.getStudent().getId().equals(student.getId()))
-            {
-               presence.setStatus(PresenceStatus.PRESENT);
-            }
-         }
-      }
+      final List<Presence> presences = students.stream()
+            .map(student -> Presence.createAbsent(student)).collect(Collectors.toList());
+      presences.stream().filter(presence -> selectedStudent.contains(presence.getStudent()))
+            .forEach(presence -> presence.setStatus(PresenceStatus.PRESENT));
       return presences;
    }
 
