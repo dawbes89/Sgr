@@ -53,7 +53,7 @@ class TranslationServiceImpl implements TranslationService
          return text;
       }
 
-      MessageFormat mf = new MessageFormat(text);
+      final MessageFormat mf = new MessageFormat(text);
       text = mf.format(params, new StringBuffer(), null).toString();
 
       return text;
