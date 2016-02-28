@@ -6,6 +6,11 @@
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
 	<ui:define name="content">
+
+		<ui:include src="removeConfirmDialog.xhtml">
+			<ui:param name="panel" value="#{announcementPanel}" />
+		</ui:include>
+
 		<!-- MAIN TABLE -->
 		<h:form id="root">
 			<p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
@@ -43,11 +48,11 @@
 							<f:setPropertyActionListener value="#{announcement}"
 								target="#{announcementPanel.entity}" />
 						</p:commandButton>
-						<p:commandButton id="deleteAnnouncement"
-							actionListener="#{announcementPanel.remove(announcement.id)}"
-							update=":root:panel" icon="ui-icon-trash">
-							<p:ajax event="dialogReturn"
-								listener="#{announcementPanel.remove}" />
+						<p:commandButton title="#{sgr_translation.button_remove}"
+							update=":remove" onclick="PF('removeDialog').show()"
+							icon="ui-icon-trash">
+							<f:setPropertyActionListener value="#{announcement}"
+								target="#{announcementPanel.entity}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

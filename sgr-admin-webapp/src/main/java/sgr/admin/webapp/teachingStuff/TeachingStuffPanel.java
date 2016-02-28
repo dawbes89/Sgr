@@ -3,6 +3,7 @@ package sgr.admin.webapp.teachingStuff;
 import java.util.List;
 
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -70,6 +71,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    public void remove(Long id)
    {
       teachingStuffService.remove(id);
+      RequestContext context = RequestContext.getCurrentInstance();
+      context.execute("PF('removeDialog').hide();");
       onLoad();
    }
 

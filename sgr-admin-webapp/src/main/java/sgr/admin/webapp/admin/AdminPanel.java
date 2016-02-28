@@ -1,6 +1,7 @@
 package sgr.admin.webapp.admin;
 
 import org.primefaces.component.inputtext.InputText;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -57,6 +58,8 @@ public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Adm
    public void remove(Long id)
    {
       adminService.remove(id);
+      RequestContext context = RequestContext.getCurrentInstance();
+      context.execute("PF('removeDialog').hide();");
       onLoad();
    }
 
