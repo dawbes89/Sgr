@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -58,6 +59,12 @@ public abstract class AbstractPanel<T> implements Serializable
       final FacesMessage message = new FacesMessage(messageContent);
       message.setSeverity(severity);
       FacesContext.getCurrentInstance().addMessage(formName, message);
+   }
+
+   protected final void requestContextExecute(String pfAction)
+   {
+      RequestContext context = RequestContext.getCurrentInstance();
+      context.execute(pfAction);
    }
 
    public List<T> getEntities()
