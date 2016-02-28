@@ -37,6 +37,11 @@
 						filterBy="#{admin.person.lastName}" filterMatchMode="contains">
 						<p:outputLabel value="#{admin.person.lastName}" />
 					</p:column>
+					<p:column headerText="#{sgr_translation.form_admin_superUser}"
+						width="200">
+						<p:outputLabel value="#{admin.superuser}"
+							converter="booleanTranslationConverter" />
+					</p:column>
 					<p:column width="80">
 						<p:commandButton title="#{sgr_translation.button_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
@@ -131,6 +136,16 @@
 						</p:panelGrid>
 					</p:panel>
 
+					<p:panel id="other" header="#{sgr_translation.form_other}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="isSuperUser"
+								value="#{sgr_translation.form_admin_superUser}:" />
+							<p:selectBooleanCheckbox id="isSuperUser"
+								label="#{sgr_translation.form_admin_superUser}"
+								value="#{adminPanel.entity.superuser}" />
+						</p:panelGrid>
+					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{adminPanel.create}" update=":add:panel :root:panel"
@@ -204,6 +219,16 @@
 						</p:panelGrid>
 					</p:panel>
 
+					<p:panel id="other" header="#{sgr_translation.form_other}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="isSuperUser"
+								value="#{sgr_translation.form_admin_superUser}:" />
+							<p:selectBooleanCheckbox id="isSuperUser"
+								label="#{sgr_translation.form_admin_superUser}"
+								value="#{adminPanel.entity.superuser}" />
+						</p:panelGrid>
+					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.button_update}"
 							actionListener="#{adminPanel.update(adminPanel.entity)}"
@@ -267,6 +292,16 @@
 								value="#{adminPanel.entity.account.validTo}">
 								<f:convertDateTime pattern="yyyy-MM-dd" />
 							</p:outputLabel>
+						</p:panelGrid>
+					</p:fieldset>
+
+					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="isSuperuser"
+								value="#{sgr_translation.form_admin_superUser}:" />
+							<p:outputLabel id="isSuperuser"
+								value="#{adminPanel.entity.superuser}"
+								converter="booleanTranslationConverter" />
 						</p:panelGrid>
 					</p:fieldset>
 				</p:panelGrid>

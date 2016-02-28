@@ -18,7 +18,8 @@
 			value="#{sgr_admin_translation.menu_horizontal_teachingStuff}"
 			outcome="teachingStuffPanel" icon="ui-icon-person" />
 		<p:menuitem value="#{sgr_admin_translation.menu_horizontal_admin}"
-			outcome="adminPanel" icon="ui-icon-person" />
+			outcome="adminPanel" icon="ui-icon-person"
+			rendered="#{mainPanel.superuser}" />
 		<p:menuitem value="#{sgr_admin_translation.menu_horizontal_myData}"
 			outcome="changePasswordPanel" icon="ui-icon-wrench" />
 
