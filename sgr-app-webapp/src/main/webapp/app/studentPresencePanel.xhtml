@@ -15,23 +15,14 @@
 			<p:panel id="panel" header="#{sgr_translation.form_search}"
 				toggleable="true">
 				<p:panelGrid columns="4">
-					<p:outputLabel
-						value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
-					<p:selectOneMenu id="schoolSubject"
-						value="#{studentPresencePanel.schoolSubject}" effect="fade"
-						filter="true" filterMatchMode="contains">
-						<f:selectItem itemValue="#{null}"
-							itemLabel="#{sgr_translation.selectOneMenu_select}"
-							noSelectionOption="true" />
-						<f:selectItems value="#{studentPresencePanel.schoolSubjects}"
-							var="schoolSubject" itemValue="#{schoolSubject}"
-							itemLabel="#{schoolSubject}" />
-					</p:selectOneMenu>
+					<ui:include src="schoolSubjectField.xhtml">
+						<ui:param name="panel" value="#{studentPresencePanel}" />
+					</ui:include>
 
 					<p:outputLabel for="status"
 						value="#{sgr_translation.form_presence_status}:" />
 					<p:selectOneMenu id="status" value="#{studentPresencePanel.status}"
-						var="status">
+						effect="fade" filter="true" filterMatchMode="contains">
 						<f:selectItem itemValue="#{null}"
 							itemLabel="#{sgr_translation.selectOneMenu_select}"
 							noSelectionOption="true" />
