@@ -47,6 +47,9 @@ public class Admin implements AccountEntity, Serializable
          foreignKey = @ForeignKey(name = "admin_account_id_fk") )
    private Account account = new Account();
 
+   @Column(name = "is_superuser", nullable = false)
+   private boolean superuser = false;
+
    public Long getId()
    {
       return id;
@@ -76,6 +79,16 @@ public class Admin implements AccountEntity, Serializable
    public void setAccount(Account account)
    {
       this.account = account;
+   }
+
+   public boolean isSuperuser()
+   {
+      return superuser;
+   }
+
+   public void setSuperuser(boolean superuser)
+   {
+      this.superuser = superuser;
    }
 
 }

@@ -11,7 +11,7 @@
    </managed-bean>
    <managed-bean>
       <managed-bean-name>mainPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.panels.MainPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.MainPanel</managed-bean-class>
       <managed-bean-scope>request</managed-bean-scope>
    </managed-bean>
    <managed-bean>

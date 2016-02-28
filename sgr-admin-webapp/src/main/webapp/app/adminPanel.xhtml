@@ -131,6 +131,16 @@
 						</p:panelGrid>
 					</p:panel>
 
+					<p:panel id="other" header="#{sgr_translation.form_other}">
+						<p:panelGrid columns="2" columnClasses="label, value">
+							<p:outputLabel for="isSuperUser"
+								value="#{sgr_translation.form_admin_superUser}:" />
+							<p:selectBooleanCheckbox id="isSuperUser"
+								label="#{sgr_translation.form_admin_superUser}"
+								value="#{adminPanel.entity.superuser}" />
+						</p:panelGrid>
+					</p:panel>
+
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{adminPanel.create}" update=":add:panel :root:panel"
