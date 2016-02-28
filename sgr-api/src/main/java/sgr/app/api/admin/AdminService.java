@@ -3,11 +3,12 @@ package sgr.app.api.admin;
 import java.util.List;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 public interface AdminService
 {
-   List<Admin> search();
+
+   List<Admin> search(AdminQuery query);
 
    Admin get(Long id);
 
