@@ -7,7 +7,6 @@ import sgr.app.frontend.converters.MainApplicationPanel;
  * Main application panel.
  *
  * @author leonzio
- *
  */
 public class MainPanel extends MainApplicationPanel
 {
