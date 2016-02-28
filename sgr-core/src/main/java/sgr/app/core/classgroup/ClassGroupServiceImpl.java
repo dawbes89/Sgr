@@ -14,6 +14,7 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.RemoveException;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -45,13 +46,13 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    }
 
    @Override
-   public void remove(Long id) throws ClassGroupException
+   public void remove(Long id) throws RemoveException
    {
       Criteria criteria = findIndelibleClasses(id);
       List<Object> indelibleClasses = search(criteria);
       if (!indelibleClasses.isEmpty())
       {
-         throw new ClassGroupException("classGroupException_canNotDelete",
+         throw new RemoveException("removeException_canNotDelete",
                FacesMessage.SEVERITY_ERROR);
       }
       removeEntity(getEntity(ClassGroup.class, id));

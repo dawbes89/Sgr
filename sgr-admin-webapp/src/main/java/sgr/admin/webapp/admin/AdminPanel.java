@@ -59,13 +59,13 @@ public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Adm
    {
       adminService.remove(id);
       RequestContext context = RequestContext.getCurrentInstance();
-      context.execute("PF('removeDialog').hide();");
+      context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
       onLoad();
    }
 
    public void generatePassword()
    {
-      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

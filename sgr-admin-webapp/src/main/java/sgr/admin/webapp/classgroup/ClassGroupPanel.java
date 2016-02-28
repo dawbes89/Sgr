@@ -8,6 +8,7 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.RemoveException;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
@@ -45,12 +46,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       {
          classGroupService.create(entity);
          RequestContext context = RequestContext.getCurrentInstance();
-         context.execute("PF('addDialog').hide();");
+         context.execute(PROPERTY_HIDE_ADD_DIALOG);
          onLoad();
       }
       catch (ClassGroupException e)
       {
-         showValidationMessage("add", e.getMessage(), e.getSeverity());
+         showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
       }
    }
 
@@ -67,12 +68,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       {
          classGroupService.remove(id);
          RequestContext context = RequestContext.getCurrentInstance();
-         context.execute("PF('removeDialog').hide();");
+         context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
          onLoad();
       }
-      catch (ClassGroupException e)
+      catch (RemoveException e)
       {
-         showValidationMessage("remove", e.getMessage(), e.getSeverity());
+         showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
       }
    }
 

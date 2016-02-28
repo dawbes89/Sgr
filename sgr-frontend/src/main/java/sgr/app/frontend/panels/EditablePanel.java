@@ -9,6 +9,10 @@ package sgr.app.frontend.panels;
  */
 public interface EditablePanel<T>
 {
+   public static final String PROPERTY_HIDE_REMOVE_DIALOG = "PF('removeDialog').hide();";
+   public static final String PROPERTY_HIDE_ADD_DIALOG = "PF('addDialog').hide();";
+   public static final String PROPERTY_REMOVE_FORM = "remove";
+   public static final String PROPERTY_ADD_FORM = "add";
    /**
     * Creates entity.
     */
