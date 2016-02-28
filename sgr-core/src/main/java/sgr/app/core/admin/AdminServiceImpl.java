@@ -24,7 +24,7 @@ class AdminServiceImpl extends DaoSupport implements AdminService
    @Override
    public List<Admin> search()
    {
-      Criteria criteria = createCriteria(Admin.class);
+      final Criteria criteria = createCriteria(Admin.class);
       criteria.addOrder(Order.desc(Admin.PROPERTY_ID));
       return search(criteria);
    }

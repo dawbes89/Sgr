@@ -1,14 +1,12 @@
-package sgr.app.frontend.panels;
+package sgr.admin.webapp;
 
 import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.person.PersonName;
-import sgr.app.api.teachingStuff.TeachingStuff;
 
 /**
  * Main application panel.
@@ -29,24 +27,10 @@ public class MainPanel implements Serializable
       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
    }
 
-   public boolean showMenuFor(AccountType type)
-   {
-      return authenticationService.checkUserAccountType(type);
-   }
-
-   public boolean currentUserIsPreceptor()
-   {
-      if (!authenticationService.checkUserAccountType(AccountType.TEACHER))
-      {
-         return false;
-      }
-      final TeachingStuff preceptor = authenticationService.getCurrentUser();
-      return preceptor.getPreceptorClass() != null;
-   }
-
    public String getUserName()
    {
       final Object currentUser = authenticationService.getCurrentUser();
       return ((PersonName) currentUser).getFullName();
    }
+
 }

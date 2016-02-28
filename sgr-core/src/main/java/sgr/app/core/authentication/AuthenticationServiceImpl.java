@@ -113,23 +113,25 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
    @Override
    public void createSuperAdmin()
    {
-      Optional<Account> account = accountService.findAccountByLogin("root");
+      final Optional<Account> account = accountService.findAccountByLogin("root");
       if (account.isPresent())
       {
          return;
       }
-      Account superAccount = new Account();
+
+      final Account superAccount = new Account();
       superAccount.setPassword("kopytko");
       superAccount.setUserName("root");
 
-      Person superPerson = new Person();
+      final Person superPerson = new Person();
       superPerson.setFirstName("root");
-      superPerson.setBirthDate(new Date());
       superPerson.setLastName("root");
+      superPerson.setBirthDate(new Date());
 
-      Admin superAdmin = new Admin();
+      final Admin superAdmin = new Admin();
       superAdmin.setAccount(superAccount);
       superAdmin.setPerson(superPerson);
+      superAdmin.setSuperuser(true);
       adminService.create(superAdmin);
    }
 
