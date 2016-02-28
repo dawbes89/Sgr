@@ -1,13 +1,7 @@
 package sgr.admin.webapp;
 
-import java.io.Serializable;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 import sgr.app.api.admin.Admin;
-import sgr.app.api.authentication.AuthenticationService;
-import sgr.app.api.person.PersonName;
+import sgr.app.frontend.converters.MainApplicationPanel;
 
 /**
  * Main application panel.
@@ -15,29 +9,15 @@ import sgr.app.api.person.PersonName;
  * @author leonzio
  *
  */
-public class MainPanel implements Serializable
+public class MainPanel extends MainApplicationPanel
 {
 
    private static final long serialVersionUID = -7214848698811381282L;
-
-   @Autowired
-   private AuthenticationService authenticationService;
-
-   public MainPanel()
-   {
-      SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-   }
 
    public boolean isSuperuser()
    {
       final Admin currentUser = authenticationService.getCurrentUser();
       return currentUser.isSuperuser();
-   }
-
-   public String getUserName()
-   {
-      final Object currentUser = authenticationService.getCurrentUser();
-      return ((PersonName) currentUser).getFullName();
    }
 
 }
