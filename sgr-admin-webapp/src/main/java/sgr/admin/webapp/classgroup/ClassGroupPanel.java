@@ -1,6 +1,5 @@
 package sgr.admin.webapp.classgroup;
 
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -45,8 +44,7 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       try
       {
          classGroupService.create(entity);
-         RequestContext context = RequestContext.getCurrentInstance();
-         context.execute(PROPERTY_HIDE_ADD_DIALOG);
+         requestContextExecute(HIDE_ADD_DIALOG_ACTION);
          onLoad();
       }
       catch (ClassGroupException e)
@@ -67,8 +65,7 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       try
       {
          classGroupService.remove(id);
-         RequestContext context = RequestContext.getCurrentInstance();
-         context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
+         requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
          onLoad();
       }
       catch (RemoveException e)

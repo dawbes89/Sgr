@@ -3,7 +3,6 @@ package sgr.admin.webapp.student;
 import java.util.List;
 
 import org.primefaces.component.inputtext.InputText;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -73,15 +72,13 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
       try
       {
          studentService.remove(id);
-         RequestContext context = RequestContext.getCurrentInstance();
-         context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
+         requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
          onLoad();
       }
       catch (RemoveException e)
       {
          showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
       }
-      onLoad();
    }
 
    public void generatePassword()
