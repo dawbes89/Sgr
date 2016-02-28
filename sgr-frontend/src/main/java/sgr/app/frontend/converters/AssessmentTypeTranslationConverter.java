@@ -7,7 +7,7 @@ import sgr.app.api.assessment.AssessmentType;
  *
  * @author dawbes89
  */
-public class AssessmentTypeTranslationConverter extends AbstractConverter<AssessmentType>
+public class AssessmentTypeTranslationConverter extends AbstractTranslationConverter<AssessmentType>
 {
    @Override
    protected AssessmentType convertToObject(String value)
@@ -19,7 +19,7 @@ public class AssessmentTypeTranslationConverter extends AbstractConverter<Assess
    protected String convertToString(Object object)
    {
       final AssessmentType assessmentType = (AssessmentType) object;
-      String translate = translationService.translate(assessmentType.getLabel());
+      final String translate = translationService.translate(assessmentType.getLabel());
       return translate;
    }
 }

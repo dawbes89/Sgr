@@ -10,6 +10,7 @@ import sgr.app.frontend.StandardFormat;
 
 /**
  * @author dawbes89
+ * @author leonzio
  */
 public class DateValidator extends AbstractValidator<Date>
 {

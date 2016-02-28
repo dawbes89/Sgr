@@ -2,10 +2,11 @@ package sgr.app.frontend.converters;
 
 import java.util.HashMap;
 import java.util.Map;
+
 /**
- * @author dawbes
+ * @author dawbes89
  */
-public class BooleanTranslationConverter extends AbstractConverter<Boolean>
+public class BooleanTranslationConverter extends AbstractTranslationConverter<Boolean>
 {
 
    private Map<Boolean, String> booleanMap = new HashMap<>();
@@ -25,8 +26,7 @@ public class BooleanTranslationConverter extends AbstractConverter<Boolean>
    @Override
    protected String convertToString(Object object)
    {
-      String translate = translationService.translate(booleanMap.get(object));
-      return translate;
+      return translationService.translate(booleanMap.get(object));
    }
 
 }

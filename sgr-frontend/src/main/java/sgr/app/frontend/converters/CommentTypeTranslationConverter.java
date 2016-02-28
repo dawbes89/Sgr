@@ -7,7 +7,7 @@ import sgr.app.api.comment.CommentType;
  *
  * @author dawbes89
  */
-public class CommentTypeTranslationConverter extends AbstractConverter<CommentType>
+public class CommentTypeTranslationConverter extends AbstractTranslationConverter<CommentType>
 {
 
    @Override
@@ -20,7 +20,7 @@ public class CommentTypeTranslationConverter extends AbstractConverter<CommentTy
    protected String convertToString(Object object)
    {
       final CommentType commentType = (CommentType) object;
-      String translate = translationService.translate(commentType.getLabel());
+      final String translate = translationService.translate(commentType.getLabel());
       return translate;
    }
 
