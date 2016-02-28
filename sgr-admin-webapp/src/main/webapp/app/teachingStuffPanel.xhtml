@@ -155,19 +155,9 @@
 
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="schoolSubject"
-								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
-							<p:selectOneMenu id="schoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
-								label="#{sgr_translation.form_teachingStuff_schoolSubject}"
-								filter="true" filterMatchMode="contains" required="true">
-								<f:selectItem itemValue="#{null}"
-									itemLabel="#{sgr_translation.selectOneMenu_select}"
-									noSelectionOption="true" />
-								<f:selectItems value="#{teachingStuffPanel.schoolSubjects}"
-									var="schoolSubject" itemValue="#{schoolSubject}"
-									itemLabel="#{schoolSubject}" />
-							</p:selectOneMenu>
+							<ui:include src="schoolSubjectField.xhtml">
+								<ui:param name="panel" value="#{teachingStuffPanel}" />
+							</ui:include>
 
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
@@ -271,18 +261,9 @@
 
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="schoolSubject"
-								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
-							<p:selectOneMenu id="schoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}" effect="fade"
-								filter="true" filterMatchMode="contains">
-								<f:selectItem itemValue="#{null}"
-									itemLabel="#{sgr_translation.selectOneMenu_select}"
-									noSelectionOption="true" />
-								<f:selectItems value="#{teachingStuffPanel.schoolSubjects}"
-									var="schoolSubject" itemValue="#{schoolSubject}"
-									itemLabel="#{schoolSubject}" />
-							</p:selectOneMenu>
+							<ui:include src="schoolSubjectField.xhtml">
+								<ui:param name="panel" value="#{teachingStuffPanel}" />
+							</ui:include>
 
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
