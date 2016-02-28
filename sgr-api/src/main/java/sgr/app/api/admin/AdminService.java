@@ -8,7 +8,7 @@ import java.util.List;
 public interface AdminService
 {
 
-   List<Admin> search();
+   List<Admin> search(AdminQuery query);
 
    Admin get(Long id);
 
