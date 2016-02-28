@@ -22,8 +22,8 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
-      EditablePanel<TeachingStuff>
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
+      implements EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -41,8 +41,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    {
       entity = new TeachingStuff();
       entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.all()
-            .withAvailableForTeachers(true).build());
+      availableClasses = classGroupService
+            .search(ClassGroupQuery.all().withAvailableForTeachers(true).build());
    }
 
    @Override
@@ -62,7 +62,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
    @Override
    public void update(TeachingStuff object)
    {
-      teachingStuffService.update(object);
+      teachingStuffService.update(entity);
       onLoad();
    }
 

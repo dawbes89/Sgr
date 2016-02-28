@@ -16,13 +16,15 @@
 				toggleable="true">
 				<p:panelGrid columns="4">
 					<ui:include src="schoolSubjectField.xhtml">
-						<ui:param name="panel" value="#{preceptorPresencePanel}" />
+						<ui:param name="schoolSubject"
+							value="#{preceptorPresencePanel.schoolSubject}" />
 					</ui:include>
 
 					<p:outputLabel for="status"
 						value="#{sgr_translation.form_presence_status}:" />
-					<p:selectOneMenu id="status" value="#{preceptorPresencePanel.status}"
-						effect="fade" filter="true" filterMatchMode="contains">
+					<p:selectOneMenu id="status"
+						value="#{preceptorPresencePanel.status}" effect="fade"
+						filter="true" filterMatchMode="contains">
 						<f:selectItem itemValue="#{null}"
 							itemLabel="#{sgr_translation.selectOneMenu_select}"
 							noSelectionOption="true" />

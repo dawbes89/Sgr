@@ -16,7 +16,8 @@
 				toggleable="true">
 				<p:panelGrid columns="4">
 					<ui:include src="schoolSubjectField.xhtml">
-						<ui:param name="panel" value="#{studentPresencePanel}" />
+						<ui:param name="schoolSubject"
+							value="#{studentPresencePanel.schoolSubject}" />
 					</ui:include>
 
 					<p:outputLabel for="status"

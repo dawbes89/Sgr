@@ -5,10 +5,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:outputLabel
+	<p:outputLabel for="schoolSubject"
 		value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
-	<p:selectOneMenu id="schoolSubject" value="#{panel.schoolSubject}"
-		effect="fade" filter="true" filterMatchMode="contains">
+	<p:selectOneMenu id="schoolSubject" value="#{schoolSubject}"
+		effect="fade" filter="true" filterMatchMode="contains"
+		label="#{sgr_translation.form_teachingStuff_schoolSubject}"
+		required="#{required}">
 		<f:selectItem itemValue="#{null}"
 			itemLabel="#{sgr_translation.selectOneMenu_select}"
 			noSelectionOption="true" />
