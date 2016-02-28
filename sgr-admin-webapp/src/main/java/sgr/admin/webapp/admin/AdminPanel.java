@@ -19,7 +19,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Admin>
+public class AdminPanel extends AbstractPanel<Admin> implements EditablePanel<Admin>
 {
 
    private static final long serialVersionUID = -2599849233906847054L;
@@ -64,12 +64,13 @@ public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Adm
    public void remove(Long id)
    {
       adminService.remove(id);
+      requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
       onLoad();
    }
 
    public void generatePassword()
    {
-      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

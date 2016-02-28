@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
+import sgr.app.api.exceptions.RemoveException;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
@@ -23,7 +24,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author leonzio
  */
 @Controller
-public class StudentPanel extends AbstractPanel<Student>implements EditablePanel<Student>
+public class StudentPanel extends AbstractPanel<Student> implements EditablePanel<Student>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -68,13 +69,21 @@ public class StudentPanel extends AbstractPanel<Student>implements EditablePanel
    @Override
    public void remove(Long id)
    {
-      studentService.remove(id);
-      onLoad();
+      try
+      {
+         studentService.remove(id);
+         requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
+         onLoad();
+      }
+      catch (RemoveException e)
+      {
+         showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
+      }
    }
 
    public void generatePassword()
    {
-      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

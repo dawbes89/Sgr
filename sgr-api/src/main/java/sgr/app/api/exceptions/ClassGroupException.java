@@ -5,7 +5,7 @@ import javax.faces.application.FacesMessage.Severity;
 /**
  * Exception throws when actions carried out on classGroup don't go well.
  *
- * @author dawbes
+ * @author dawbes89
  */
 public class ClassGroupException extends CustomException
 {
