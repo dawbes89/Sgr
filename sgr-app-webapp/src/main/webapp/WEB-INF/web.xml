@@ -70,6 +70,7 @@
       <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
    </listener>
 
+   <!-- AUTHORIZATION FILTER -->
    <filter>
       <filter-name>authorizationFilter</filter-name>
       <filter-class>sgr.app.frontend.authorization.AuthorizationFilter</filter-class>
