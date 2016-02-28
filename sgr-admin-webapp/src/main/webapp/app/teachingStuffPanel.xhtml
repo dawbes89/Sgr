@@ -161,7 +161,9 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<ui:include src="schoolSubjectField.xhtml">
-								<ui:param name="panel" value="#{teachingStuffPanel}" />
+								<ui:param name="schoolSubject"
+									value="#{teachingStuffPanel.entity.schoolSubject}" />
+								<ui:param name="required" value="true" />
 							</ui:include>
 
 							<p:outputLabel for="academicTitle"
@@ -267,7 +269,9 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<ui:include src="schoolSubjectField.xhtml">
-								<ui:param name="panel" value="#{teachingStuffPanel}" />
+								<ui:param name="schoolSubject"
+									value="#{teachingStuffPanel.entity.schoolSubject}" />
+								<ui:param name="required" value="true" />
 							</ui:include>
 
 							<p:outputLabel for="academicTitle"
@@ -367,7 +371,8 @@
 							<p:outputLabel for="shoolSubject"
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:outputLabel id="shoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}" />
+								value="#{teachingStuffPanel.entity.schoolSubject}"
+								converter="schoolSubjectTranslationConverter" />
 
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />

@@ -14,13 +14,14 @@
 					update=":root" />
 				<p:panelGrid columns="1">
 					<ui:include src="schoolSubjectField.xhtml">
-						<ui:param name="panel" value="#{studentAssessmentPanel}" />
+						<ui:param name="schoolSubject"
+							value="#{studentAssessmentPanel.schoolSubject}" />
 					</ui:include>
 					<p:separator />
-				<p:commandButton value="#{sgr_translation.button_search}"
-					action="#{studentAssessmentPanel.searchAssessments}"
-					update=":root:table">
-				</p:commandButton>
+					<p:commandButton value="#{sgr_translation.button_search}"
+						action="#{studentAssessmentPanel.searchAssessments}"
+						update=":root:table">
+					</p:commandButton>
 				</p:panelGrid>
 			</h:form>
 		</p:panel>

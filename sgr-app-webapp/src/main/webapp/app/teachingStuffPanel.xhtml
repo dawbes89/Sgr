@@ -81,7 +81,8 @@
 							<p:outputLabel for="shoolSubject"
 								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
 							<p:outputLabel id="shoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}" />
+								value="#{teachingStuffPanel.entity.schoolSubject}"
+								converter="schoolSubjectTranslationConverter" />
 
 							<p:outputLabel for="academicTitle"
 								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
