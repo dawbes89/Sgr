@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.api.teachingStuff.SchoolSubject;
 import sgr.app.api.teachingStuff.TeachingStuff;
 import sgr.app.api.teachingStuff.TeachingStuffService;
 import sgr.app.frontend.RandomPasswordGenerator;
@@ -95,11 +94,6 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
       final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
-   }
-
-   public SchoolSubject[] getSchoolSubjects()
-   {
-      return SchoolSubject.values();
    }
 
    public List<ClassGroup> getAvailableClasses()

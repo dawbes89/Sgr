@@ -82,9 +82,4 @@ public class StudentAssessmentPanel extends AbstractPanel<Assessment>
       this.schoolSubject = schoolSubject;
    }
 
-   public SchoolSubject[] getSchoolSubjects()
-   {
-      return SchoolSubject.values();
-   }
-
 }

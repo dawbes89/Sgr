@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.admin.Admin;
+import sgr.app.api.admin.AdminQuery;
 import sgr.app.api.admin.AdminService;
 import sgr.app.core.DaoSupport;
 
@@ -22,9 +24,9 @@ class AdminServiceImpl extends DaoSupport implements AdminService
    private AccountService accountService;
 
    @Override
-   public List<Admin> search()
+   public List<Admin> search(AdminQuery query)
    {
-      Criteria criteria = createCriteria(Admin.class);
+      final Criteria criteria = createCriteria(query);
       criteria.addOrder(Order.desc(Admin.PROPERTY_ID));
       return search(criteria);
    }
@@ -55,6 +57,14 @@ class AdminServiceImpl extends DaoSupport implements AdminService
    public void update(Admin admin)
    {
       updateEntity(admin);
+   }
+
+   private Criteria createCriteria(AdminQuery query)
+   {
+      final Criteria criteria = createCriteria(Admin.class);
+      criteria.add(Restrictions.ne(Admin.PROPERTY_ID, 1L));
+      criteria.add(Restrictions.ne(Admin.PROPERTY_ID, query.getExcludedId()));
+      return criteria;
    }
 
    @Required
