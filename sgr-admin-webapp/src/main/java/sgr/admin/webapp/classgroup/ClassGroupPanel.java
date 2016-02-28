@@ -1,6 +1,5 @@
 package sgr.admin.webapp.classgroup;
 
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -8,6 +7,7 @@ import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.RemoveException;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
@@ -44,13 +44,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       try
       {
          classGroupService.create(entity);
-         RequestContext context = RequestContext.getCurrentInstance();
-         context.execute("PF('addDialog').hide();");
+         requestContextExecute(HIDE_ADD_DIALOG_ACTION);
          onLoad();
       }
       catch (ClassGroupException e)
       {
-         showValidationMessage("add", e.getMessage(), e.getSeverity());
+         showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
       }
    }
 
@@ -66,11 +65,12 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       try
       {
          classGroupService.remove(id);
+         requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
          onLoad();
       }
-      catch (ClassGroupException e)
+      catch (RemoveException e)
       {
-         showValidationMessage("root", e.getMessage(), e.getSeverity());
+         showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
       }
    }
 

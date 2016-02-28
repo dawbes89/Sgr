@@ -22,8 +22,8 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
-      implements EditablePanel<TeachingStuff>
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
+      EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -41,7 +41,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    {
       entity = new TeachingStuff();
       entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.all().withAvailableForTeachers(true).build());
+      availableClasses = classGroupService.search(ClassGroupQuery.all()
+            .withAvailableForTeachers(true).build());
    }
 
    @Override
@@ -69,6 +70,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    public void remove(Long id)
    {
       teachingStuffService.remove(id);
+      requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
       onLoad();
    }
 
@@ -88,7 +90,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 
    public void generatePassword()
    {
-      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

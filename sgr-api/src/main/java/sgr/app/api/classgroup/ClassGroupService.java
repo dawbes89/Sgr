@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.RemoveException;
 
 /**
  * @author leonzio
@@ -15,7 +16,7 @@ public interface ClassGroupService
 
    void create(ClassGroup classGroup) throws ClassGroupException;
 
-   void remove(Long id) throws ClassGroupException;
+   void remove(Long id) throws RemoveException;
 
    Optional<ClassGroup> find(ClassGroupQuery query);
 
