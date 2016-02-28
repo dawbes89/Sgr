@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 public class RandomPasswordGenerator implements Serializable
 {
