@@ -12,21 +12,16 @@
 				<p:remoteCommand name="onload"
 					action="#{studentAssessmentPanel.onLoad}" autoRun="true"
 					update=":root" />
-
-				<p:outputLabel
-					value="#{sgr_translation.form_teachingStuff_schoolSubject}: " />
-				<p:selectOneMenu id="schoolSubject"
-					value="#{studentAssessmentPanel.schoolSubject}" effect="fade"
-					filter="true" filterMatchMode="contains">
-					<p:ajax listener="#{studentAssessmentPanel.searchAssessments}"
-						update=":root" />
-					<f:selectItem itemValue="#{null}"
-						itemLabel="#{sgr_translation.selectOneMenu_select}"
-						noSelectionOption="true" />
-					<f:selectItems value="#{studentAssessmentPanel.schoolSubjects}"
-						var="schoolSubject" itemValue="#{schoolSubject}"
-						itemLabel="#{schoolSubject}" />
-				</p:selectOneMenu>
+				<p:panelGrid columns="1">
+					<ui:include src="schoolSubjectField.xhtml">
+						<ui:param name="panel" value="#{studentAssessmentPanel}" />
+					</ui:include>
+					<p:separator />
+				<p:commandButton value="#{sgr_translation.button_search}"
+					action="#{studentAssessmentPanel.searchAssessments}"
+					update=":root:table">
+				</p:commandButton>
+				</p:panelGrid>
 			</h:form>
 		</p:panel>
 

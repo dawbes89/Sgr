@@ -98,16 +98,6 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
       entities = presenceService.search(query);
    }
 
-   public SchoolSubject[] getSchoolSubjects()
-   {
-      return SchoolSubject.values();
-   }
-
-   public PresenceStatus[] getStatuses()
-   {
-      return PresenceStatus.values();
-   }
-
    public List<Presence> getPresences()
    {
       return presences;
