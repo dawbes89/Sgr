@@ -7,7 +7,7 @@ import sgr.app.api.presence.PresenceStatus;
  *
  * @author dawbes89
  */
-public class PresenceStatusTranslationConverter extends AbstractConverter<PresenceStatus>
+public class PresenceStatusTranslationConverter extends AbstractTranslationConverter<PresenceStatus>
 {
    @Override
    protected PresenceStatus convertToObject(String value)
@@ -19,7 +19,7 @@ public class PresenceStatusTranslationConverter extends AbstractConverter<Presen
    protected String convertToString(Object object)
    {
       final PresenceStatus presenceStatus = (PresenceStatus) object;
-      String translate = translationService.translate(presenceStatus.getLabel());
+      final String translate = translationService.translate(presenceStatus.getLabel());
       return translate;
    }
 }

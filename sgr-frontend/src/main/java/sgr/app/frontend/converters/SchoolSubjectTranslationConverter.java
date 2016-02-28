@@ -7,7 +7,7 @@ import sgr.app.api.teachingStuff.SchoolSubject;
  *
  * @author dawbes89
  */
-public class SchoolSubjectTranslationConverter extends AbstractConverter<SchoolSubject>
+public class SchoolSubjectTranslationConverter extends AbstractTranslationConverter<SchoolSubject>
 {
 
    @Override
@@ -20,7 +20,7 @@ public class SchoolSubjectTranslationConverter extends AbstractConverter<SchoolS
    protected String convertToString(Object object)
    {
       final SchoolSubject schoolSubject = (SchoolSubject) object;
-      String translate = translationService.translate(schoolSubject.getLabel());
+      final String translate = translationService.translate(schoolSubject.getLabel());
       return translate;
    }
 }
