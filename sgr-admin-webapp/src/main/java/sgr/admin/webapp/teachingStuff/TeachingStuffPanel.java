@@ -72,7 +72,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    {
       teachingStuffService.remove(id);
       RequestContext context = RequestContext.getCurrentInstance();
-      context.execute("PF('removeDialog').hide();");
+      context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
       onLoad();
    }
 
@@ -92,7 +92,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
 
    public void generatePassword()
    {
-      final InputText passwordField = BeanHelper.getComponent("add", "password");
+      final InputText passwordField = BeanHelper.getComponent(PROPERTY_ADD_FORM, "password");
       final String password = RandomPasswordGenerator.generate();
       passwordField.setSubmittedValue(password);
    }

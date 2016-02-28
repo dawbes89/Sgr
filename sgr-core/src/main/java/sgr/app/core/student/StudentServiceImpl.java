@@ -2,6 +2,8 @@ package sgr.app.core.student;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Required;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
+import sgr.app.api.exceptions.RemoveException;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
@@ -49,16 +52,38 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    }
 
    @Override
-   public void remove(Long id)
+   public void remove(Long id) throws RemoveException
    {
-      Student student = get(id);
-      removeEntity(student);
+      Criteria criteria = findIndelibleStudents(id);
+      List<Object> indelibleStudents = search(criteria);
+      if (!indelibleStudents.isEmpty())
+      {
+         throw new RemoveException("removeException_canNotDelete", FacesMessage.SEVERITY_ERROR);
+      }
+      removeEntity(getEntity(Student.class, id));
    }
 
    @Override
    public void update(Student student)
    {
       updateEntity(student);
+   }
+
+   private Criteria findIndelibleStudents(Long studentId)
+   {
+
+      Criteria criteria = createCriteria(Student.class);
+      criteria.add(Restrictions.eq(Student.PROPERTY_ID, studentId));
+      criteria.add(Restrictions
+            .sqlRestriction("this_.id IN (SELECT student_id FROM assessment WHERE student_id = "
+                  + studentId + ") OR this_.id IN "
+                  + "(SELECT student_id FROM comment WHERE student_id = " + studentId + ")"
+                  + " OR this_.id IN (select student_id FROM notification WHERE student_id = "
+                  + studentId + ")"
+                  + " OR this_.id IN (select student_id FROM presence WHERE student_id = "
+                  + studentId + ")"));
+
+      return criteria;
    }
 
    private Criteria createCriteriaFromQuery(StudentQuery query)
