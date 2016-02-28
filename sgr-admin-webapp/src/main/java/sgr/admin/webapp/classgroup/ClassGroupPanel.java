@@ -66,11 +66,13 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
       try
       {
          classGroupService.remove(id);
+         RequestContext context = RequestContext.getCurrentInstance();
+         context.execute("PF('removeDialog').hide();");
          onLoad();
       }
       catch (ClassGroupException e)
       {
-         showValidationMessage("root", e.getMessage(), e.getSeverity());
+         showValidationMessage("remove", e.getMessage(), e.getSeverity());
       }
    }
 
