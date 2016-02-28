@@ -1,4 +1,4 @@
-package sgr.app.frontend.converters;
+package sgr.app.frontend.panels;
 
 import java.io.Serializable;
 

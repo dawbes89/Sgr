@@ -1,7 +1,7 @@
 package sgr.admin.webapp;
 
 import sgr.app.api.admin.Admin;
-import sgr.app.frontend.converters.MainApplicationPanel;
+import sgr.app.frontend.panels.MainApplicationPanel;
 
 /**
  * Main application panel.

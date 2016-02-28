@@ -2,7 +2,7 @@ package sgr.app.webapp;
 
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.frontend.converters.MainApplicationPanel;
+import sgr.app.frontend.panels.MainApplicationPanel;
 
 /**
  * Main application panel.
