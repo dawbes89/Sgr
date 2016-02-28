@@ -15,5 +15,9 @@
       <converter-id>schoolSubjectTranslationConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
    </converter>
+   <converter>
+      <converter-id>booleanTranslationConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.BooleanTranslationConverter</converter-class>
+   </converter>
 
 </faces-config>

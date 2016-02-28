@@ -13,8 +13,8 @@ public class BooleanTranslationConverter extends AbstractTranslationConverter<Bo
 
    public BooleanTranslationConverter()
    {
-      booleanMap.put(true, "form_yes");
-      booleanMap.put(false, "form_no");
+      booleanMap.put(true, "common_yes");
+      booleanMap.put(false, "common_no");
    }
 
    @Override
