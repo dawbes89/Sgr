@@ -1,7 +1,6 @@
 package sgr.admin.webapp.admin;
 
 import org.primefaces.component.inputtext.InputText;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -20,7 +19,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Admin>
+public class AdminPanel extends AbstractPanel<Admin> implements EditablePanel<Admin>
 {
 
    private static final long serialVersionUID = -2599849233906847054L;
@@ -65,8 +64,7 @@ public class AdminPanel extends AbstractPanel<Admin>implements EditablePanel<Adm
    public void remove(Long id)
    {
       adminService.remove(id);
-      RequestContext context = RequestContext.getCurrentInstance();
-      context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
+      requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
       onLoad();
    }
 

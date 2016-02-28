@@ -3,7 +3,6 @@ package sgr.admin.webapp.teachingStuff;
 import java.util.List;
 
 import org.primefaces.component.inputtext.InputText;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,8 +22,8 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
-      implements EditablePanel<TeachingStuff>
+public class TeachingStuffPanel extends AbstractPanel<TeachingStuff> implements
+      EditablePanel<TeachingStuff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
@@ -42,7 +41,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    {
       entity = new TeachingStuff();
       entities = teachingStuffService.search();
-      availableClasses = classGroupService.search(ClassGroupQuery.all().withAvailableForTeachers(true).build());
+      availableClasses = classGroupService.search(ClassGroupQuery.all()
+            .withAvailableForTeachers(true).build());
    }
 
    @Override
@@ -70,8 +70,7 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    public void remove(Long id)
    {
       teachingStuffService.remove(id);
-      RequestContext context = RequestContext.getCurrentInstance();
-      context.execute(PROPERTY_HIDE_REMOVE_DIALOG);
+      requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
       onLoad();
    }
 
