@@ -9,6 +9,12 @@ import sgr.app.api.DateHelper;
 import sgr.app.frontend.helpers.StandardFormat;
 
 /**
+ * Date validator with {@link DateValidationMode} used when value is
+ * validated.</br>
+ * Default is {@link DateValidationMode#BEFORE}, for custom validation mode use
+ * <code>f:attribute name="validationMode" value="{@link DateValidationMode}"</code>
+ * .
+ *
  * @author dawbes89
  * @author leonzio
  */
