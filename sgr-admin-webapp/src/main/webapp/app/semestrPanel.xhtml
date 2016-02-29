@@ -20,8 +20,17 @@
 				<p:dataTable id="table" var="semestr"
 					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
 					value="#{semestrPanel.entities}" editable="false">
-					<p:column headerText="#{sgr_translation.form_person_firstName}">
+					<p:column headerText="#{sgr_translation.form_semestr_number}">
 						<p:outputLabel value="#{semestr.semestrNumber}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_semestr_from}">
+						<p:outputLabel value="#{semestr.from}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_semestr_to}">
+						<p:outputLabel value="#{semestr.to}" />
+					</p:column>
+					<p:column headerText="#{sgr_translation.form_semestr_year}">
+						<p:outputLabel value="#{semestr.schoolYear}" />
 					</p:column>
 					<!-- 					<p:column width="80"> -->
 					<!-- 						<p:commandButton title="#{sgr_translation.button_update}" -->
@@ -44,7 +53,7 @@
 		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
 			header="#{sgr_translation.form_window_caption_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="600px" height="300px"
+			showEffect="fold" hideEffect="fold" width="500px" height="300px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
@@ -52,24 +61,30 @@
 
 					<p:panel>
 						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="semestrNumber" value="SEMESTR NUMBER" />
+							<p:outputLabel for="semestrNumber"
+								value="#{sgr_translation.form_semestr_number}: " />
 							<p:selectOneMenu id="semestrNumber"
+								label="#{sgr_translation.form_semestr_number}"
 								value="#{semestrPanel.entity.semestrNumber}" required="true">
 								<f:selectItem itemValue="1" itemLabel="1" />
 								<f:selectItem itemValue="2" itemLabel="2" />
 							</p:selectOneMenu>
 
-							<p:outputLabel for="from" value="FROM: " />
-							<p:calendar id="from" label="FROM"
+							<p:outputLabel for="from"
+								value="#{sgr_translation.form_semestr_from}: " />
+							<p:calendar id="from"
+								label="#{sgr_translation.form_semestr_from}"
 								value="#{semestrPanel.entity.from}" pattern="yyyy-MM-dd"
 								mask="true" required="true">
 								<f:validator validatorId="dateValidator" />
 								<f:attribute name="validationMode" value="AFTER" />
 							</p:calendar>
 
-							<p:outputLabel for="to" value="TO: " />
-							<p:calendar id="to" label="TO" value="#{semestrPanel.entity.to}"
-								pattern="yyyy-MM-dd" mask="true" required="true">
+							<p:outputLabel for="to"
+								value="#{sgr_translation.form_semestr_to}: " />
+							<p:calendar id="to" label="#{sgr_translation.form_semestr_to}"
+								value="#{semestrPanel.entity.to}" pattern="yyyy-MM-dd"
+								mask="true" required="true">
 								<f:validator validatorId="dateValidator" />
 								<f:attribute name="validationMode" value="AFTER" />
 							</p:calendar>
