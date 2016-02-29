@@ -6,6 +6,10 @@
    <validator>
       <validator-id>lessonNumberValidator</validator-id>
       <validator-class>sgr.app.frontend.validators.LessonNumberValidator</validator-class>
+       <attribute>
+         <attribute-name>classGroupId</attribute-name>
+         <attribute-class>java.lang.Long</attribute-class>
+      </attribute>
    </validator>
    
 </faces-config>

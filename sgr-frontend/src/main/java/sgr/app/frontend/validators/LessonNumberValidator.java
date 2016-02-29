@@ -32,8 +32,14 @@ public class LessonNumberValidator extends AbstractValidator<Integer>
    @Override
    protected boolean isValidValue(Integer value, final UIComponent component)
    {
-      final Optional<Lesson> lesson = lessonService.find(LessonQuery.all().withLessonNumber(value)
-            .withDate(new Date()).build());
+      final Long findClassGroupId = (Long) component.getAttributes().get("classGroupId");
+      LessonQuery query = LessonQuery.all().withLessonNumber(value)
+            .withDate(new Date()).build();
+      if(findClassGroupId != null)
+      {
+          query.setClassGroupId(findClassGroupId);
+      }
+      final Optional<Lesson> lesson = lessonService.find(query);
       return !lesson.isPresent();
    }
 
