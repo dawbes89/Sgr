@@ -1,6 +1,7 @@
 package sgr.app.api.lesson;
 
 import java.util.List;
+import java.util.Optional;
 
 import sgr.app.api.presence.Presence;
 
@@ -14,4 +15,6 @@ public interface LessonService
    Presence createPresence(Presence presence);
 
    List<Lesson> search(LessonQuery query);
+
+   Optional<Lesson> find(LessonQuery query);
 }
