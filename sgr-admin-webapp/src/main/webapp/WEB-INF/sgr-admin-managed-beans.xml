@@ -51,5 +51,10 @@
       <managed-bean-class>sgr.admin.webapp.admin.AdminPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
+   <managed-bean>
+      <managed-bean-name>semestrPanel</managed-bean-name>
+      <managed-bean-class>sgr.admin.webapp.semestr.SemestrPanel</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+   </managed-bean>
 
 </faces-config>
