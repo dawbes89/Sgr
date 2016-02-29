@@ -1,6 +1,7 @@
 package sgr.app.api.lesson;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Optional;
 
 import sgr.app.api.QueryBuilder;
@@ -23,12 +24,19 @@ public class LessonQuery implements Serializable
    private Optional<Long> studentId = Optional.empty();
    private Optional<SchoolSubject> schoolSubject = Optional.empty();
    private Optional<Long> classGroupId = Optional.empty();
+   private Optional<Integer> lessonNumber = Optional.empty();
+   private Optional<Date> date = Optional.empty();
 
    public static StudentQuery withClassGroupId(Long classGroupId)
    {
       StudentQuery query = new StudentQuery();
       query.setClassGroupId(classGroupId);
       return query;
+   }
+
+   public boolean hasStudentId()
+   {
+      return studentId.isPresent();
    }
 
    public Long getStudentId()
@@ -41,9 +49,9 @@ public class LessonQuery implements Serializable
       this.studentId = Optional.of(studentId);
    }
 
-   public boolean hasStudentId()
+   public boolean hasSchoolSubject()
    {
-      return studentId.isPresent();
+      return schoolSubject.isPresent();
    }
 
    public SchoolSubject getSchoolSubject()
@@ -56,9 +64,9 @@ public class LessonQuery implements Serializable
       this.schoolSubject = Optional.of(schoolSubject);
    }
 
-   public boolean hasSchoolSubject()
+   public boolean hasClassGroupId()
    {
-      return schoolSubject.isPresent();
+      return classGroupId.isPresent();
    }
 
    public Long getClassGroupId()
@@ -71,9 +79,34 @@ public class LessonQuery implements Serializable
       this.classGroupId = Optional.of(classGroupId);
    }
 
-   public boolean hasClassGroupId()
+   public boolean hasLessonNumber()
    {
-      return classGroupId.isPresent();
+      return lessonNumber.isPresent();
+   }
+
+   public Integer getLessonNumber()
+   {
+      return lessonNumber.get();
+   }
+
+   public void setLessonNumber(Integer lessonNumber)
+   {
+      this.lessonNumber = Optional.of(lessonNumber);
+   }
+
+   public boolean hasDate()
+   {
+      return date.isPresent();
+   }
+
+   public Date getDate()
+   {
+      return date.get();
+   }
+
+   public void setDate(Date date)
+   {
+      this.date = Optional.of(date);
    }
 
    public static Builder all()
@@ -107,6 +140,18 @@ public class LessonQuery implements Serializable
       public Builder withClassGroupId(Long classGroupId)
       {
          query.setClassGroupId(classGroupId);
+         return this;
+      }
+
+      public Builder withLessonNumber(Integer lessonNumber)
+      {
+         query.setLessonNumber(lessonNumber);
+         return this;
+      }
+
+      public Builder withDate(Date date)
+      {
+         query.setDate(date);
          return this;
       }
 

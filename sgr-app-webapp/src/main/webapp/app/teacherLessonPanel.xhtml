@@ -90,6 +90,7 @@
 							<p:selectOneMenu id="numberLesson"
 								value="#{teacherLessonPanel.entity.lessonNumber}"
 								required="true">
+								<f:validator validatorId="lessonNumberValidator" />
 								<f:selectItem itemValue="1" itemLabel="1" />
 								<f:selectItem itemValue="2" itemLabel="2" />
 								<f:selectItem itemValue="3" itemLabel="3" />
