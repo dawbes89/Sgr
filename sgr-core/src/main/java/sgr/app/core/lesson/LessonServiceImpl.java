@@ -49,11 +49,7 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    {
       Criteria criteria = createLessonCriteria(query);
       List<Lesson> result = search(criteria);
-      if (result.size() > 0)
-      {
-         return result.stream().findFirst();
-      }
-      return Optional.empty();
+      return result.stream().findFirst();
 
    }
 
@@ -72,7 +68,7 @@ class LessonServiceImpl extends DaoSupport implements LessonService
       {
          criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
       }
-      if(query.hasDate())
+      if (query.hasDate())
       {
          final Date date = query.getDate();
          final Date from = DateHelper.getDateWithTime(date, 0, 0, 0, 1);
