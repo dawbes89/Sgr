@@ -37,6 +37,7 @@ public class Lesson implements Serializable
    public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
    public static final String PROPERTY_CLASS_GROUP = "classGroup";
    public static final String PROPERTY_DATE = "date";
+   public static final String PROPERTY_LESSON_NUMBER = "lessonNumber";
 
    @Id
    @Column(name = "id")

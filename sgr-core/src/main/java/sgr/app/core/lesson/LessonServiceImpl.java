@@ -2,11 +2,13 @@ package sgr.app.core.lesson;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
+import sgr.app.api.DateHelper;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.lesson.Lesson;
 import sgr.app.api.lesson.LessonQuery;
@@ -38,11 +40,24 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    @Override
    public List<Lesson> search(LessonQuery query)
    {
-      final Criteria criteria = createAssessmentCriteria(query);
+      final Criteria criteria = createLessonCriteria(query);
       return search(criteria);
    }
 
-   private Criteria createAssessmentCriteria(LessonQuery query)
+   @Override
+   public Optional<Lesson> find(LessonQuery query)
+   {
+      Criteria criteria = createLessonCriteria(query);
+      List<Lesson> result = search(criteria);
+      if (result.size() > 0)
+      {
+         return Optional.of(result.get(0));
+      }
+      return Optional.empty();
+
+   }
+
+   private Criteria createLessonCriteria(LessonQuery query)
    {
       final Criteria criteria = createCriteria(Lesson.class);
       if (query.hasSchoolSubject())
@@ -57,6 +72,15 @@ class LessonServiceImpl extends DaoSupport implements LessonService
       {
          criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
       }
+      if (query.hasDate() && query.hasLessonNumber())
+      {
+         final Date date = query.getDate();
+         final Date from = DateHelper.getDateWithTime(date, 0, 0, 0, 1);
+         final Date to = DateHelper.getDateWithTime(date, 23, 59, 59, 999);
+         criteria.add(Restrictions.eq(Lesson.PROPERTY_LESSON_NUMBER, query.getLessonNumber()));
+         criteria.add(Restrictions.between(Presence.PROPERTY_DATE, from, to));
+      }
+
       return criteria;
    }
 
@@ -71,4 +95,5 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    {
       this.presenceService = presenceService;
    }
+
 }
