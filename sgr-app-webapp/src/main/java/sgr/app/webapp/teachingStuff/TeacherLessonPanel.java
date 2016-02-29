@@ -59,8 +59,6 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    public void init()
    {
       selectedStudents = new ArrayList<>();
-      entity = new Lesson();
-      entities = new ArrayList<>();
       students = new ArrayList<>();
       student = new Student();
    }

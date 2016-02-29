@@ -16,12 +16,13 @@
 
 <h:body>
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north"
-			header="#{mainPanel.displayCurrentPanelName()}" size="140">
+		<p:layoutUnit position="north" collapsible="true" effect="drop"
+			header="#{sgr_admin_translation.application_title}" size="140">
 			<ui:include src="menu/horizontal.xhtml" />
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center"
+			header="#{mainPanel.displayCurrentPanelName()}">
 			<ui:insert name="content" />
 		</p:layoutUnit>
 	</p:layout>
