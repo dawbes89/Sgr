@@ -15,6 +15,10 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
+   <bean id="semestrService" class="sgr.app.core.semestr.SemestrServiceImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+
    <bean id="notificationService" class="sgr.app.core.notification.NotificationServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
