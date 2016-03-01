@@ -58,6 +58,7 @@ public abstract class MainApplicationPanel implements Serializable
       panels.put("studentCommentPanel", "panel_commentPanel");
       panels.put("studentNotificationPanel", "panel_student_notificationPanel");
       panels.put("siteSettings", "panel_siteSettings");
+      panels.put("preceptorStudentPanel", "panel_preceptorStudentPanel");
    }
 
    public final String getUserName()
