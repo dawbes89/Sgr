@@ -34,31 +34,9 @@
 				<p:outputLabel id="averageAssessment"
 					value="#{studentAssessmentPanel.averageAssessments}"
 					style="color: red" />
-				<p:dataTable id="table" var="assessment"
-					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
-					value="#{studentAssessmentPanel.entities}" editable="false"
-					cellSeparator="true">
-					<p:column
-						headerText="#{sgr_translation.form_assessment_addingDate}"
-						width="110">
-						<p:outputLabel value="#{assessment.date}"
-							converter="yearConverter" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.schoolSubject}">
-						<p:outputLabel value="#{assesment.schoolSubject}"
-							converter="schoolSubjectTranslationConverter" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.form_assessment}"
-						width="100">
-						<p:outputLabel value="#{assessment.assessment}"
-							style="float:right" converter="assessmentConverter" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.form_assessment_type}">
-						<p:outputLabel value="#{assessment.assessmentType}"
-							converter="assessmentTypeTranslationConverter"
-							style="float:right" />
-					</p:column>
-				</p:dataTable>
+				<ui:include src="studentAssessmentTable.xhtml">
+					<ui:param name="entities" value="#{studentAssessmentPanel.entities}" />
+				</ui:include>
 			</p:panel>
 		</h:form>
 
