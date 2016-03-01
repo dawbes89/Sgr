@@ -16,7 +16,7 @@
 					update=":root:table" />
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="student"
-						emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 						value="#{preceptorStudentPanel.entities}">
 						<p:column headerText="#{sgr_translation.form_person_firstName}"
 							filterBy="#{student.person.firstName}" filterMatchMode="contains">

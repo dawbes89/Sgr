@@ -15,7 +15,9 @@
 </h:head>
 
 <h:body>
-	<p:layout fullPage="true">
+	<p:layout fullPage="true"
+		collapseTitle="#{sgr_translation.p_layout_collapse}"
+		expandTitle="#{sgr_translation.p_layout_expand}">
 		<p:layoutUnit position="north" collapsible="true" effect="drop"
 			header="#{sgr_admin_translation.application_title}" size="140">
 			<ui:include src="menu/horizontal.xhtml" />
