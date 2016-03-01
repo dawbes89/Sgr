@@ -12,7 +12,7 @@
 				<p:remoteCommand name="onload" action="#{studentCommentPanel.onLoad}"
 					autoRun="true" update=":root:table" />
 				<ui:include src="studentCommentTable.xhtml">
-					<ui:param name="entities" value="#{studentCommentPanel.entities}" />
+					<ui:param name="comments" value="#{studentCommentPanel.entities}" />
 				</ui:include>
 			</h:form>
 		</p:panel>

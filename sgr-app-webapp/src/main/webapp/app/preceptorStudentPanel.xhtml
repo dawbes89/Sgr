@@ -65,7 +65,7 @@
 
 					<p:panel header="#{sgr_translation.form_comments}">
 						<ui:include src="studentCommentTable.xhtml">
-							<ui:param name="entities"
+							<ui:param name="comments"
 								value="#{preceptorStudentPanel.comments}" />
 						</ui:include>
 					</p:panel>
@@ -112,7 +112,7 @@
 						<p:separator />
 
 						<ui:include src="studentAssessmentTable.xhtml">
-							<ui:param name="entities"
+							<ui:param name="assessments"
 								value="#{preceptorStudentPanel.assessments}" />
 						</ui:include>
 					</p:panel>
