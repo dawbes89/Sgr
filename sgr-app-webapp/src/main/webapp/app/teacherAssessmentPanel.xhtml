@@ -44,7 +44,7 @@
 				header="#{sgr_translation.form_comment_studentList}">
 				<p:outputPanel id="panel" style="text-align:center;" layout="block">
 					<p:dataTable id="table" var="student"
-						emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 						value="#{teacherAssessmentPanel.entities}">
 						<p:column headerText="#{sgr_translation.form_person_firstName}"
 							filterBy="#{student.person.firstName}" filterMatchMode="contains">
@@ -150,7 +150,7 @@
 						<p:separator />
 
 						<p:dataTable id="assessmentTable" var="assessment"
-							emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+							emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 							value="#{teacherAssessmentPanel.assessments}" editable="false"
 							cellSeparator="true">
 							<p:column

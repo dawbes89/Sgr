@@ -53,7 +53,7 @@
 		<h:form id="root">
 			<p:panel id="panel" header="#{sgr_translation.form_lesson_lessons}">
 				<p:dataTable id="table" var="lesson"
-					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 					value="#{teacherLessonPanel.entities}">
 					<p:column width="120"
 						headerText="#{sgr_translation.form_lesson_subjectNumber}">
@@ -116,7 +116,7 @@
 					<p:panel id="studentsPanel"
 						header="#{sgr_translation.form_presences}" toggleable="true">
 						<p:dataTable id="table" var="student"
-							emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+							emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 							value="#{teacherLessonPanel.students}"
 							selection="#{teacherLessonPanel.selectedStudents}"
 							rowKey="#{student.id}">
