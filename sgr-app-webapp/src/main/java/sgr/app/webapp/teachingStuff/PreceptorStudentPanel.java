@@ -11,7 +11,6 @@ import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
@@ -32,9 +31,6 @@ public class PreceptorStudentPanel extends AbstractPanel<Student>
 
    @Autowired
    private StudentService studentService;
-
-   @Autowired
-   private ClassGroupService classGroupService;
 
    @Autowired
    private AuthenticationService authenticationService;
