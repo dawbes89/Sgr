@@ -7,7 +7,7 @@
 
 	<p:dataTable id="table" var="comment"
 		emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
-		value="#{entities}" editable="false" lazy="true">
+		value="#{comments}" editable="false" lazy="true">
 		<p:column headerText="#{sgr_translation.form_comment_addingDate}"
 			width="100">
 			<p:outputLabel value="#{comment.date}" converter="yearConverter" />
