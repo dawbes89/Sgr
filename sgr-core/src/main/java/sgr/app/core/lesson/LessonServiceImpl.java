@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -41,16 +42,15 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    public List<Lesson> search(LessonQuery query)
    {
       final Criteria criteria = createLessonCriteria(query);
+      criteria.addOrder(Order.desc("id"));
       return search(criteria);
    }
 
    @Override
    public Optional<Lesson> find(LessonQuery query)
    {
-      Criteria criteria = createLessonCriteria(query);
-      List<Lesson> result = search(criteria);
-      return result.stream().findFirst();
-
+      final Criteria criteria = createLessonCriteria(query);
+      return find(criteria);
    }
 
    private Criteria createLessonCriteria(LessonQuery query)

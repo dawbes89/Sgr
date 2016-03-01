@@ -54,13 +54,13 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    @Override
    public void remove(Long id) throws RemoveException
    {
-      Criteria criteria = findIndelibleStudents(id);
-      List<Object> indelibleStudents = search(criteria);
+      final Criteria criteria = findIndelibleStudents(id);
+      final List<Object> indelibleStudents = search(criteria);
       if (!indelibleStudents.isEmpty())
       {
          throw new RemoveException("removeException_canNotDelete", FacesMessage.SEVERITY_ERROR);
       }
-      removeEntity(getEntity(Student.class, id));
+      removeEntity(Student.class, id);
    }
 
    @Override
