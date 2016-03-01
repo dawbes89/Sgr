@@ -1,0 +1,29 @@
+<!DOCTYPE composition>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:dataTable id="table" var="comment"
+		emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+		value="#{entities}" editable="false" lazy="true">
+		<p:column headerText="#{sgr_translation.form_comment_addingDate}"
+			width="100">
+			<p:outputLabel value="#{comment.date}" converter="yearConverter" />
+		</p:column>
+		<p:column headerText="#{sgr_translation.form_comment_type}"
+			width="120">
+			<p:outputLabel value="#{comment.commentType}"
+				converter="commentTypeTranslationConverter" />
+		</p:column>
+		<p:column headerText="#{sgr_translation.form_comment_issuer}"
+			width="350">
+			<p:outputLabel value="#{comment.issuerName}" />
+		</p:column>
+		<p:column headerText="#{sgr_translation.form_comment_content}">
+			<p:outputLabel value="#{comment.content}" />
+		</p:column>
+	</p:dataTable>
+
+</ui:composition>
