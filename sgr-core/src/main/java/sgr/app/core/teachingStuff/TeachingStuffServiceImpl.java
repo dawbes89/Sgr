@@ -47,8 +47,7 @@ class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffServic
    @Override
    public void remove(Long id)
    {
-      TeachingStuff teacher = get(id);
-      removeEntity(teacher);
+      removeEntity(TeachingStuff.class, id);
    }
 
    @Override
