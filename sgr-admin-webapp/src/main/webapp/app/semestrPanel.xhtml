@@ -53,7 +53,7 @@
 		<!-- ADD FORM -->
 		<p:dialog widgetVar="addDialog"
 			header="#{sgr_translation.form_window_caption_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="500px" height="300px"
+			showEffect="fold" hideEffect="fold" width="600px" height="300px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
@@ -77,7 +77,7 @@
 								value="#{semestrPanel.entity.from}" pattern="yyyy-MM-dd"
 								mask="true" required="true">
 								<f:validator validatorId="dateValidator" />
-								<f:attribute name="validationMode" value="AFTER" />
+								<f:attribute name="validationMode" value="NOT_BEFORE" />
 							</p:calendar>
 
 							<p:outputLabel for="to"
