@@ -7,7 +7,7 @@ import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.student.Student;
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**

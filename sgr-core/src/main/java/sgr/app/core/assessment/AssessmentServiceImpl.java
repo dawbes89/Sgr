@@ -2,6 +2,7 @@ package sgr.app.core.assessment;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -15,6 +16,8 @@ import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.notification.Notification;
 import sgr.app.api.notification.NotificationService;
+import sgr.app.api.semestr.Semestr;
+import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
@@ -25,12 +28,13 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
 {
 
    private NotificationService notificationService;
+   private SemestrService semestrService;
 
    @Override
    public void create(Assessment assessment)
    {
       notificationService
-            .create(Notification.create("Oceny", "Otrzyma³eœ ocenê", assessment.getStudent()));
+            .create(Notification.create("Oceny", "Otrzymaï¿½eï¿½ ocenï¿½", assessment.getStudent()));
       assessment.setDate(new Date());
       createEntity(assessment);
    }
@@ -56,6 +60,13 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
          criteria.add(Restrictions.eq(nest(Assessment.PROPERTY_STUDENT, Student.PROPERTY_ID),
                query.getStudentId()));
       }
+      final Optional<Semestr> foundCurrentSemestr = semestrService.findCurrentSemestr();
+      if (foundCurrentSemestr.isPresent())
+      {
+         final Semestr current = foundCurrentSemestr.get();
+         criteria.add(
+               Restrictions.between(Assessment.PROPERTY_DATE, current.getFrom(), current.getTo()));
+      }
       return criteria;
    }
 
@@ -80,6 +91,12 @@ class AssessmentServiceImpl extends DaoSupport implements AssessmentService
    public void setNotificationService(NotificationService notificationService)
    {
       this.notificationService = notificationService;
+   }
+
+   @Required
+   public void setSemestrService(SemestrService semestrService)
+   {
+      this.semestrService = semestrService;
    }
 
 }

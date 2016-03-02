@@ -14,6 +14,6 @@ public interface AnnouncementService
 
    void update(Announcement announcement);
 
-   void delete(Long id);
+   void remove(Long id);
 
 }

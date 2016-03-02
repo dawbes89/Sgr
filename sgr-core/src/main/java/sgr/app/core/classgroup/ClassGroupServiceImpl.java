@@ -13,7 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.exceptions.RemoveException;
 import sgr.app.core.DaoSupport;
 
@@ -26,20 +26,19 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public List<ClassGroup> search(ClassGroupQuery query)
    {
-      Criteria criteria = createCriteriaFromQuery(query);
+      Criteria criteria = createCriteria(query);
       return search(criteria);
    }
 
    @Override
-   public void create(ClassGroup classGroup) throws ClassGroupException
+   public void create(ClassGroup classGroup) throws CreateException
    {
-      Optional<ClassGroup> optionalClass = find(
+      final Optional<ClassGroup> optionalClass = find(
             ClassGroupQuery.all().withGroupName(classGroup.getGroupName())
                   .withGroupNumber(classGroup.getGroupNumber()).build());
       if (optionalClass.isPresent())
       {
-         throw new ClassGroupException("classGroupException_classExists",
-               FacesMessage.SEVERITY_ERROR);
+         throw new CreateException("classGroupException_classExists", FacesMessage.SEVERITY_ERROR);
       }
       classGroup.setYear(new Date());
       createEntity(classGroup);
@@ -48,20 +47,52 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public void remove(Long id) throws RemoveException
    {
-      Criteria criteria = findIndelibleClasses(id);
-      List<Object> indelibleClasses = search(criteria);
+      final Criteria criteria = findIndelibleClasses(id);
+      final List<Object> indelibleClasses = search(criteria);
       if (!indelibleClasses.isEmpty())
       {
-         throw new RemoveException("removeException_canNotDelete",
-               FacesMessage.SEVERITY_ERROR);
+         throw new RemoveException("removeException_canNotDelete", FacesMessage.SEVERITY_ERROR);
       }
-      removeEntity(getEntity(ClassGroup.class, id));
+      removeEntity(ClassGroup.class, id);
    }
 
    @Override
    public Optional<ClassGroup> find(ClassGroupQuery query)
    {
-      Criteria criteria = createCriteria(ClassGroup.class);
+      final Criteria criteria = createCriteria(query);
+      return find(criteria);
+   }
+
+   private Criteria findIndelibleClasses(Long classGroupId)
+   {
+      final Criteria criteria = createCriteria(ClassGroup.class);
+      criteria.add(Restrictions.eq(ClassGroup.PROPERTY_ID, classGroupId));
+      criteria.add(Restrictions
+            .sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = "
+                  + classGroupId + ") OR this_.id IN "
+                  + "(SELECT class_group_id FROM student WHERE class_group_id = " + classGroupId
+                  + ")"
+                  + " OR this_.id IN (select preceptor_class_id FROM teaching_staff WHERE preceptor_class_id = "
+                  + classGroupId + ")"));
+      return criteria;
+   }
+
+   private Criteria createCriteria(ClassGroupQuery query)
+   {
+      final Criteria criteria = createCriteria(ClassGroup.class);
+      criteria.addOrder(Order.asc("groupNumber")).addOrder(Order.asc("groupName"))
+            .addOrder(Order.asc("year"));
+      if (query.hasClassId())
+      {
+         criteria.add(Restrictions.sqlRestriction(
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_staff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
+                     + query.getClassId() + ")"));
+      }
+      if (query.isAvailableForTeachers())
+      {
+         criteria.add(Restrictions.sqlRestriction(
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_staff WHERE preceptor_class_id IS NOT NULL)"));
+      }
       if (query.hasGroupNumber())
       {
          criteria.add(Restrictions.eq(ClassGroup.PROPERTY_GROUP_NUMBER, query.getGroupNumber()));
@@ -69,47 +100,6 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       if (query.hasGroupName())
       {
          criteria.add(Restrictions.eq(ClassGroup.PROPERTY_GROUP_NAME, query.getGroupName()));
-      }
-      List<ClassGroup> result = search(criteria);
-      if (result.size() > 0)
-      {
-         return Optional.of(result.get(0));
-      }
-      return Optional.empty();
-
-   }
-
-   private Criteria findIndelibleClasses(Long classGroupId)
-   {
-
-      Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.add(Restrictions.eq(ClassGroup.PROPERTY_ID, classGroupId));
-      criteria.add(Restrictions
-            .sqlRestriction("this_.id IN (SELECT class_group_id FROM lesson WHERE class_group_id = "
-                  + classGroupId + ") OR this_.id IN "
-                  + "(SELECT class_group_id FROM student WHERE class_group_id = " + classGroupId
-                  + ")"
-                  + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = "
-                  + classGroupId + ")"));
-
-      return criteria;
-   }
-
-   private Criteria createCriteriaFromQuery(ClassGroupQuery query)
-   {
-      Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.addOrder(Order.asc("groupNumber")).addOrder(Order.asc("groupName"))
-            .addOrder(Order.asc("year"));
-      if (query.hasClassId())
-      {
-         criteria.add(Restrictions.sqlRestriction(
-               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
-                     + query.getClassId() + ")"));
-      }
-      if (query.isAvailableForTeachers())
-      {
-         criteria.add(Restrictions.sqlRestriction(
-               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
       }
       return criteria;
    }

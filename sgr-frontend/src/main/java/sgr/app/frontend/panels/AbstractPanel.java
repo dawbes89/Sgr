@@ -63,7 +63,7 @@ public abstract class AbstractPanel<T> implements Serializable
 
    protected final void requestContextExecute(String pfAction)
    {
-      RequestContext context = RequestContext.getCurrentInstance();
+      final RequestContext context = RequestContext.getCurrentInstance();
       context.execute(pfAction);
    }
 

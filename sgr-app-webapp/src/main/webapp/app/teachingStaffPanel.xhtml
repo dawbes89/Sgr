@@ -8,35 +8,35 @@
 	<ui:define name="content">
 		<!-- 	MAIN TABLE -->
 		<h:form id="root">
-			<p:remoteCommand name="onload" action="#{teachingStuffPanel.onLoad}"
+			<p:remoteCommand name="onload" action="#{teachingStaffPanel.onLoad}"
 				autoRun="true" update=":root:table" />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:dataTable id="table" value="#{teachingStuffPanel.entities}"
-					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
-					var="teachingStuff" editable="false">
+				<p:dataTable id="table" value="#{teachingStaffPanel.entities}"
+					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
+					var="teachingStaff" editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
 							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
 							title="#{sgr_translation.button_details}">
-							<f:setPropertyActionListener value="#{teachingStuff}"
-								target="#{teachingStuffPanel.entity}" />
+							<f:setPropertyActionListener value="#{teachingStaff}"
+								target="#{teachingStaffPanel.entity}" />
 						</p:commandButton>
 					</p:column>
 					<p:column
-						headerText="#{sgr_translation.form_teachingStuff_academicTitle}"
-						filterBy="#{teachingStuff.academicTitle}">
-						<p:outputLabel value="#{teachingStuff.academicTitle}" />
+						headerText="#{sgr_translation.form_teachingStaff_academicTitle}"
+						filterBy="#{teachingStaff.academicTitle}">
+						<p:outputLabel value="#{teachingStaff.academicTitle}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_firstName}"
-						filterBy="#{teachingStuff.person.firstName}"
+						filterBy="#{teachingStaff.person.firstName}"
 						filterMatchMode="contains">
-						<p:outputLabel value="#{teachingStuff.person.firstName}" />
+						<p:outputLabel value="#{teachingStaff.person.firstName}" />
 					</p:column>
 					<p:column headerText="#{sgr_translation.form_person_lastName}"
-						filterBy="#{teachingStuff.person.lastName}"
+						filterBy="#{teachingStaff.person.lastName}"
 						filterMatchMode="contains">
-						<p:outputLabel value="#{teachingStuff.person.lastName}" />
+						<p:outputLabel value="#{teachingStaff.person.lastName}" />
 					</p:column>
 				</p:dataTable>
 			</p:outputPanel>
@@ -56,22 +56,22 @@
 							<p:outputLabel for="firstName"
 								value="#{sgr_translation.form_person_firstName}:" />
 							<p:outputLabel id="firstName"
-								value="#{teachingStuffPanel.entity.person.firstName}" />
+								value="#{teachingStaffPanel.entity.person.firstName}" />
 
 							<p:outputLabel for="lastName"
 								value="#{sgr_translation.form_person_lastName}:" />
 							<p:outputLabel id="lastName"
-								value="#{teachingStuffPanel.entity.person.lastName}" />
+								value="#{teachingStaffPanel.entity.person.lastName}" />
 
 							<p:outputLabel for="age"
 								value="#{sgr_translation.form_person_age}:" />
 							<p:outputLabel id="age"
-								value="#{teachingStuffPanel.entity.person.age}" />
+								value="#{teachingStaffPanel.entity.person.age}" />
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
 							<p:outputLabel id="birthDate"
-								value="#{teachingStuffPanel.entity.person.birthDate}"
+								value="#{teachingStaffPanel.entity.person.birthDate}"
 								converter="yearConverter" />
 						</p:panelGrid>
 					</p:fieldset>
@@ -79,20 +79,20 @@
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="shoolSubject"
-								value="#{sgr_translation.form_teachingStuff_schoolSubject}:" />
+								value="#{sgr_translation.form_teachingStaff_schoolSubject}:" />
 							<p:outputLabel id="shoolSubject"
-								value="#{teachingStuffPanel.entity.schoolSubject}"
+								value="#{teachingStaffPanel.entity.schoolSubject}"
 								converter="schoolSubjectTranslationConverter" />
 
 							<p:outputLabel for="academicTitle"
-								value="#{sgr_translation.form_teachingStuff_academicTitle}:" />
+								value="#{sgr_translation.form_teachingStaff_academicTitle}:" />
 							<p:outputLabel id="academicTitle"
-								value="#{teachingStuffPanel.entity.academicTitle}" />
+								value="#{teachingStaffPanel.entity.academicTitle}" />
 
 							<p:outputLabel for="class"
-								value="#{sgr_translation.form_teachingStuff_preceptor}:" />
+								value="#{sgr_translation.form_teachingStaff_preceptor}:" />
 							<p:outputLabel id="class"
-								value="#{teachingStuffPanel.entity.preceptorClass.className}" />
+								value="#{teachingStaffPanel.entity.preceptorClass.className}" />
 						</p:panelGrid>
 					</p:fieldset>
 				</p:panelGrid>

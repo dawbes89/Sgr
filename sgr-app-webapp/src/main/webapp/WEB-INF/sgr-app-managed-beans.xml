@@ -27,8 +27,8 @@
 
 
    <managed-bean>
-      <managed-bean-name>teachingStuffPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.TeachingStuffPanel</managed-bean-class>
+      <managed-bean-name>teachingStaffPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.TeachingStaffPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
@@ -38,12 +38,12 @@
    </managed-bean>
    <managed-bean>
       <managed-bean-name>teacherCommentPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.TeacherCommentPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.TeacherCommentPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>teacherAssessmentPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.TeacherAssessmentPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.TeacherAssessmentPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
@@ -63,12 +63,12 @@
    </managed-bean>
    <managed-bean>
       <managed-bean-name>teacherLessonPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.TeacherLessonPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.TeacherLessonPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
       <managed-bean-name>preceptorPresencePanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.PreceptorPresencePanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.PreceptorPresencePanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
@@ -78,7 +78,7 @@
    </managed-bean>
    <managed-bean>
       <managed-bean-name>preceptorStudentPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.PreceptorStudentPanel</managed-bean-class>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.PreceptorStudentPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
 

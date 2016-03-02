@@ -3,6 +3,7 @@ package sgr.app.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -55,8 +56,19 @@ public abstract class DaoSupport
       return entity;
    }
 
+   /**
+    * @param entity
+    * @deprecated use {@link #removeEntity(Class, Long)} instead
+    */
+   @Deprecated
    protected <T> void removeEntity(T entity)
    {
+      getSession().delete(entity);
+   }
+
+   protected <T> void removeEntity(Class<T> clazz, Long id)
+   {
+      final T entity = getEntity(clazz, id);
       getSession().delete(entity);
    }
 
@@ -65,6 +77,20 @@ public abstract class DaoSupport
    {
       Object entity = getSession().get(clazz, id);
       return (T) entity;
+   }
+
+   @SuppressWarnings({ "unchecked", "finally" })
+   protected <T> Optional<T> find(Criteria criteria)
+   {
+      Object uniqueResult = null;
+      try
+      {
+         uniqueResult = criteria.uniqueResult();
+      }
+      finally
+      {
+         return Optional.ofNullable((T) uniqueResult);
+      }
    }
 
    protected <T> LockMode getCurrentLockMode(T entity)
@@ -82,7 +108,7 @@ public abstract class DaoSupport
       sessionFactory.close();
    }
 
-   public boolean isSession()
+   protected boolean isSession()
    {
       return sessionFactory.isClosed();
    }

@@ -1,9 +1,7 @@
-package sgr.app.webapp.teachingStuff;
+package sgr.app.webapp.teachingstaff;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.application.FacesMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,63 +11,63 @@ import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.classgroup.ClassGroupQuery;
-import sgr.app.api.classgroup.ClassGroupService;
+import sgr.app.api.comment.Comment;
+import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingstaff.SchoolSubject;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
  * @author dawbes89
  */
 @Controller
-public class TeacherAssessmentPanel extends AbstractPanel<Student>
+public class PreceptorStudentPanel extends AbstractPanel<Student>
 {
-   private static final long serialVersionUID = 8302392304292102639L;
 
-   @Autowired
-   private AssessmentService assessmentService;
+   private static final long serialVersionUID = 8358711395309154466L;
 
    @Autowired
    private StudentService studentService;
 
    @Autowired
-   private ClassGroupService classGroupService;
-
-   @Autowired
    private AuthenticationService authenticationService;
 
-   private TeachingStuff currentLoggedTeacher;
+   @Autowired
+   private CommentService commentService;
 
-   private Assessment assessment;
+   @Autowired
+   private AssessmentService assessmentService;
+
+   private TeachingStaff currentLoggedTeacher;
 
    private ClassGroup classGroup;
 
-   private List<ClassGroup> classes;
-
-   private List<Assessment> assessments;
+   private SchoolSubject schoolSubject;
 
    @Override
    public void init()
    {
-      assessment = new Assessment();
       entity = new Student();
       entities = new ArrayList<>();
-      assessments = new ArrayList<>();
    }
 
    @Override
    public void onLoad()
    {
-      classes = classGroupService.search(ClassGroupQuery.EMPTY);
       currentLoggedTeacher = authenticationService.getCurrentUser();
       classGroup = currentLoggedTeacher.getPreceptorClass();
-      handleClassChange();
+      searchStudents();
    }
 
-   public void handleClassChange()
+   public List<Comment> getComments()
+   {
+      return commentService.findByStudentId(entity.getId());
+   }
+
+   public void searchStudents()
    {
       if (classGroup == null || classGroup.getId() == null)
       {
@@ -82,24 +80,13 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       }
    }
 
-   public void create()
-   {
-      assessment.setStudent(entity);
-      assessment.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
-      assessmentService.create(assessment);
-      assessment = new Assessment();
-
-      showValidationMessage("add", "form_comment_savedMessage", FacesMessage.SEVERITY_INFO);
-   }
-
    public List<Assessment> getAssessments()
    {
       if (currentLoggedTeacher == null || entity.getId() == null)
       {
          return new ArrayList<>();
       }
-      assessments = assessmentService.search(createQuery());
-      return assessments;
+      return assessmentService.search(createQuery());
    }
 
    public String getAverageAssessments()
@@ -115,35 +102,15 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
    private AssessmentQuery createQuery()
    {
       final AssessmentQuery query = new AssessmentQuery();
-      if (currentLoggedTeacher != null)
+      if (schoolSubject != null)
       {
-         query.setSchoolSubject(currentLoggedTeacher.getSchoolSubject());
+         query.setSchoolSubject(schoolSubject);
       }
       if (entity != null && entity.getId() != null)
       {
          query.setStudentId(entity.getId());
       }
       return query;
-   }
-
-   public TeachingStuff getCurrentLoggedTeacher()
-   {
-      return currentLoggedTeacher;
-   }
-
-   public void setCurrentLoggedTeacher(TeachingStuff currentLoggedTeacher)
-   {
-      this.currentLoggedTeacher = currentLoggedTeacher;
-   }
-
-   public Assessment getAssessment()
-   {
-      return assessment;
-   }
-
-   public void setAssessment(Assessment assessment)
-   {
-      this.assessment = assessment;
    }
 
    public ClassGroup getClassGroup()
@@ -156,14 +123,14 @@ public class TeacherAssessmentPanel extends AbstractPanel<Student>
       this.classGroup = classGroup;
    }
 
-   public List<ClassGroup> getClasses()
+   public SchoolSubject getSchoolSubject()
    {
-      return classes;
+      return schoolSubject;
    }
 
-   public void setClasses(List<ClassGroup> classes)
+   public void setSchoolSubject(SchoolSubject schoolSubject)
    {
-      this.classes = classes;
+      this.schoolSubject = schoolSubject;
    }
 
 }

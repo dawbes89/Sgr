@@ -6,7 +6,9 @@ package sgr.app.frontend.panels;
  * @author leonzio
  * @param <T>
  *           edited data type
+ * @deprecated
  */
+@Deprecated
 public interface EditablePanel<T>
 {
    String HIDE_REMOVE_DIALOG_ACTION = "PF('removeDialog').hide();";

@@ -13,7 +13,7 @@ import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.student.Student;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -41,7 +41,7 @@ class AccountServiceImpl extends DaoSupport implements AccountService
       switch (account.getType())
       {
          case TEACHER:
-            criteria = createCriteria(TeachingStuff.class);
+            criteria = createCriteria(TeachingStaff.class);
             break;
          case STUDENT:
             criteria = createCriteria(Student.class);
