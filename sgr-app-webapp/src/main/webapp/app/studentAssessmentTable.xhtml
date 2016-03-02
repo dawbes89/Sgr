@@ -8,7 +8,7 @@
 	<p:dataTable id="table" var="assessment"
 		emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 		value="#{assessments}" editable="false" cellSeparator="true">
-		<p:column headerText="#{sgr_translation.form_assessment_addingDate}"
+		<p:column headerText="#{sgr_translation.common_addingDate}"
 			width="110">
 			<p:outputLabel value="#{assessment.date}" converter="yearConverter" />
 		</p:column>
@@ -20,7 +20,7 @@
 			<p:outputLabel value="#{assessment.assessment}" style="float:right"
 				converter="assessmentConverter" />
 		</p:column>
-		<p:column headerText="#{sgr_translation.form_assessment_type}">
+		<p:column headerText="#{sgr_translation.common_type}">
 			<p:outputLabel value="#{assessment.assessmentType}"
 				converter="assessmentTypeTranslationConverter" style="float:right" />
 		</p:column>

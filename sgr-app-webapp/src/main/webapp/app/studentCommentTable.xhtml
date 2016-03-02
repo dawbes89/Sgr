@@ -8,11 +8,11 @@
 	<p:dataTable id="table" var="comment"
 		emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 		value="#{comments}" editable="false" lazy="true">
-		<p:column headerText="#{sgr_translation.form_comment_addingDate}"
+		<p:column headerText="#{sgr_translation.common_addingDate}"
 			width="100">
 			<p:outputLabel value="#{comment.date}" converter="yearConverter" />
 		</p:column>
-		<p:column headerText="#{sgr_translation.form_comment_type}"
+		<p:column headerText="#{sgr_translation.common_type}"
 			width="120">
 			<p:outputLabel value="#{comment.commentType}"
 				converter="commentTypeTranslationConverter" />
@@ -21,7 +21,7 @@
 			width="350">
 			<p:outputLabel value="#{comment.issuerName}" />
 		</p:column>
-		<p:column headerText="#{sgr_translation.form_comment_content}">
+		<p:column headerText="#{sgr_translation.common_content}">
 			<p:outputLabel value="#{comment.content}" />
 		</p:column>
 	</p:dataTable>

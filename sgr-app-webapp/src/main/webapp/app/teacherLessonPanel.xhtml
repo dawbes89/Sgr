@@ -12,7 +12,7 @@
 		</h:form>
 
 		<!-- SEARCH PANEL -->
-		<p:panel id="panel" header="#{sgr_translation.form_search}"
+		<p:panel id="panel" header="#{sgr_translation.common_search}"
 			toggleable="true">
 			<h:form id="search">
 				<p:messages id="msgs" />
@@ -41,8 +41,8 @@
 					</p:selectOneMenu>
 				</p:panelGrid>
 
-				<p:commandButton value="#{sgr_translation.button_add}"
-					title="#{sgr_translation.button_add_teacher}" icon="ui-icon-plus"
+				<p:commandButton value="#{sgr_translation.common_add}"
+					title="#{sgr_translation.button_add_lesson}" icon="ui-icon-plus"
 					oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').show()"
 					action="#{teacherLessonPanel.searchStudents}"
 					update=":search :add:studentsPanel" />
@@ -114,14 +114,14 @@
 					</p:panel>
 
 					<p:panel id="studentsPanel"
-						header="#{sgr_translation.form_presences}" toggleable="true">
+						header="#{sgr_translation.common_presences}" toggleable="true">
 						<p:dataTable id="table" var="student"
 							emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 							value="#{teacherLessonPanel.students}"
 							selection="#{teacherLessonPanel.selectedStudents}"
 							rowKey="#{student.id}">
 							<p:column selectionMode="multiple"
-								headerText="#{sgr_translation.form_presences}"
+								headerText="#{sgr_translation.common_presences}"
 								style="text-align:center" />
 
 							<p:column headerText="#{sgr_translation.form_person_firstName}"

@@ -12,7 +12,7 @@
 				action="#{teacherAssessmentPanel.onLoad}" autoRun="true"
 				update=":root:table :search:panel" />
 
-			<p:panel id="panel" header="#{sgr_translation.form_search}"
+			<p:panel id="panel" header="#{sgr_translation.common_search}"
 				toggleable="true">
 				<p:panelGrid columns="4">
 					<p:outputLabel value="#{sgr_translation.schoolSubject}: " />
@@ -55,7 +55,7 @@
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
 						<p:column width="40">
-							<p:commandButton title="#{sgr_translation.button_assessments}"
+							<p:commandButton title="#{sgr_translation.common_assessments}"
 								update=":add:panel" oncomplete="PF('addDialog').show()"
 								icon="ui-icon-pencil">
 								<f:setPropertyActionListener value="#{student}"
@@ -86,7 +86,7 @@
 								value="#{teacherAssessmentPanel.entity.fullName}" />
 
 							<p:outputLabel for="type"
-								value="#{sgr_translation.form_assessment_type}" />
+								value="#{sgr_translation.common_type}" />
 							<p:selectOneMenu id="type"
 								value="#{teacherAssessmentPanel.assessment.assessmentType}"
 								var="assessmentType" required="true">
@@ -154,7 +154,7 @@
 							value="#{teacherAssessmentPanel.assessments}" editable="false"
 							cellSeparator="true">
 							<p:column
-								headerText="#{sgr_translation.form_assessment_addingDate}"
+								headerText="#{sgr_translation.common_addingDate}"
 								width="110">
 								<p:outputLabel value="#{assessment.date}"
 									converter="yearConverter" style="float:right" />
@@ -164,7 +164,7 @@
 								<p:outputLabel value="#{assessment.assessment}"
 									converter="assessmentConverter" style="float:right" />
 							</p:column>
-							<p:column headerText="#{sgr_translation.form_assessment_type}"
+							<p:column headerText="#{sgr_translation.common_type}"
 								width="110">
 								<p:outputLabel value="#{assessment.assessmentType}"
 									converter="assessmentTypeTranslationConverter"
