@@ -10,12 +10,15 @@
 		<p:submenu label="#{sgr_app_translation.menu_vertical_class_title}"
 			rendered="#{mainPanel.showMenuFor('TEACHER')}">
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_class_lessons_title}"
 				value="#{sgr_app_translation.menu_vertical_class_lessons}"
 				outcome="teacherLessonPanel" icon="ui-icon-calendar" />
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_class_assessment_title}"
 				value="#{sgr_app_translation.menu_vertical_class_assessment}"
 				outcome="teacherAssessmentPanel" icon="ui-icon-bookmark" />
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_class_comments_title}"
 				value="#{sgr_app_translation.menu_vertical_class_comments}"
 				outcome="teacherCommentPanel" icon="ui-icon-comment" />
 		</p:submenu>
@@ -25,12 +28,13 @@
 			label="#{sgr_app_translation.menu_vertical_preceptor_title}"
 			rendered="#{mainPanel.currentUserIsPreceptor()}">
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_preceptor_presence_title}"
 				value="#{sgr_app_translation.menu_vertical_preceptor_presence}"
 				outcome="preceptorPresencePanel" icon="ui-icon-calendar" />
-				
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_preceptor_students_title}"
 				value="#{sgr_app_translation.menu_vertical_preceptor_students}"
-				outcome="preceptorStudentPanel" icon="ui-icon-calendar" />
+				outcome="preceptorStudentPanel" icon="ui-icon-info" />
 		</p:submenu>
 
 		<!-- STUDENT SUBMENU -->
@@ -54,9 +58,11 @@
 		<p:submenu
 			label="#{sgr_app_translation.menu_vertical_management_title}">
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_management_myAccount_title}"
 				value="#{sgr_app_translation.menu_vertical_management_myAccount}"
 				outcome="changePasswordPanel" icon="ui-icon-person" />
 			<p:menuitem
+				title="#{sgr_app_translation.menu_vertical_management_siteSettings_title}"
 				value="#{sgr_app_translation.menu_vertical_management_siteSettings}"
 				outcome="siteSettings" icon="ui-icon-wrench" />
 		</p:submenu>
