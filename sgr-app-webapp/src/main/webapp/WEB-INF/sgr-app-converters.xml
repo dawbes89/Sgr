@@ -40,7 +40,7 @@
       <converter-class>sgr.app.frontend.converters.AssessmentListConverter</converter-class>
       <attribute>
          <attribute-name>schoolSubject</attribute-name>
-         <attribute-class>sgr.app.api.teachingStuff.SchoolSubject</attribute-class>
+         <attribute-class>sgr.app.api.teachingstaff.SchoolSubject</attribute-class>
       </attribute>
    </converter>
 
