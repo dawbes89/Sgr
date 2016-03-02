@@ -35,5 +35,13 @@
       <converter-id>presenceStatusTranslationConverter</converter-id>
       <converter-class>sgr.app.frontend.converters.PresenceStatusTranslationConverter</converter-class>
    </converter>
+   <converter>
+      <converter-id>assessmentListConverter</converter-id>
+      <converter-class>sgr.app.frontend.converters.AssessmentListConverter</converter-class>
+      <attribute>
+         <attribute-name>schoolSubject</attribute-name>
+         <attribute-class>sgr.app.api.teachingStuff.SchoolSubject</attribute-class>
+      </attribute>
+   </converter>
 
 </faces-config>

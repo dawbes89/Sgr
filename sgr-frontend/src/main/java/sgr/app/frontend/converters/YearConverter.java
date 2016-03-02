@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.faces.component.UIComponent;
+
 import sgr.app.frontend.helpers.StandardFormat;
 
 /**
@@ -30,7 +32,7 @@ public class YearConverter extends AbstractConverter<Date>
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       try
       {
