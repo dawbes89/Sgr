@@ -2,6 +2,7 @@ package sgr.app.core.comment;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -12,6 +13,8 @@ import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
 import sgr.app.api.notification.Notification;
 import sgr.app.api.notification.NotificationService;
+import sgr.app.api.semestr.Semestr;
+import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
@@ -22,12 +25,13 @@ class CommentServiceImpl extends DaoSupport implements CommentService
 {
 
    private NotificationService notificationService;
+   private SemestrService semestrService;
 
    @Override
    public void create(Comment comment)
    {
       notificationService
-            .create(Notification.create("Uwagi", "Otrzyma³eœ uwagê", comment.getStudent()));
+            .create(Notification.create("Uwagi", "Otrzymaï¿½eï¿½ uwagï¿½", comment.getStudent()));
       comment.setDate(new Date());
       createEntity(comment);
    }
@@ -35,9 +39,16 @@ class CommentServiceImpl extends DaoSupport implements CommentService
    @Override
    public List<Comment> findByStudentId(Long studentId)
    {
-      Criteria criteria = createCriteria(Comment.class);
+      final Criteria criteria = createCriteria(Comment.class);
       criteria.add(Restrictions.eq(nest(Comment.PROPERTY_STUDENT, Student.PROPERTY_ID), studentId));
       criteria.addOrder(Order.desc(Comment.PROPERTY_DATE));
+      final Optional<Semestr> foundCurrentSemestr = semestrService.findCurrentSemestr();
+      if (foundCurrentSemestr.isPresent())
+      {
+         final Semestr current = foundCurrentSemestr.get();
+         criteria.add(
+               Restrictions.between(Comment.PROPERTY_DATE, current.getFrom(), current.getTo()));
+      }
       return search(criteria);
    }
 
@@ -45,6 +56,12 @@ class CommentServiceImpl extends DaoSupport implements CommentService
    public void setNotificationService(NotificationService notificationService)
    {
       this.notificationService = notificationService;
+   }
+
+   @Required
+   public void setSemestrService(SemestrService semestrService)
+   {
+      this.semestrService = semestrService;
    }
 
 }
