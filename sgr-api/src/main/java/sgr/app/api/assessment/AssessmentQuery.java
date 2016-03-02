@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 import sgr.app.api.QueryBuilder;
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 
 /**
  * @author dawbes

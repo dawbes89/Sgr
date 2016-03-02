@@ -11,7 +11,7 @@ import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.presence.PresenceStatus;
 import sgr.app.api.student.Student;
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**

@@ -13,7 +13,7 @@ import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.student.Student;
-import sgr.app.api.teachingStuff.TeachingStaff;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.core.DaoSupport;
 
 /**

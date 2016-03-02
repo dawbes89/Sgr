@@ -1,4 +1,4 @@
-package sgr.app.api.teachingStuff;
+package sgr.app.api.teachingstaff;
 
 import java.util.List;
 

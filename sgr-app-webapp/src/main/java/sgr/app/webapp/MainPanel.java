@@ -1,7 +1,7 @@
 package sgr.app.webapp;
 
 import sgr.app.api.account.AccountType;
-import sgr.app.api.teachingStuff.TeachingStaff;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.frontend.panels.MainApplicationPanel;
 
 /**

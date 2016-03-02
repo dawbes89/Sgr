@@ -27,8 +27,8 @@
 
 
    <managed-bean>
-      <managed-bean-name>teachingStuffPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.webapp.teachingStuff.TeachingStuffPanel</managed-bean-class>
+      <managed-bean-name>teachingStaffPanel</managed-bean-name>
+      <managed-bean-class>sgr.app.webapp.teachingstaff.TeachingStaffPanel</managed-bean-class>
       <managed-bean-scope>view</managed-bean-scope>
    </managed-bean>
    <managed-bean>
