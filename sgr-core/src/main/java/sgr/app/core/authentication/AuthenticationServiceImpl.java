@@ -43,7 +43,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 
       if (!foundAccount.isPresent())
       {
-         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+         throw new AuthenticationException("exception_authentication_invalidUserNameOrPassword",
                FacesMessage.SEVERITY_ERROR);
       }
 
@@ -51,13 +51,13 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 
       if (!supportedAccounts.contains(account.getType()))
       {
-         throw new AuthenticationException("authenticationException_lackOfPermission",
+         throw new AuthenticationException("exception_authentication_lackOfPermission",
                FacesMessage.SEVERITY_ERROR);
       }
 
       if (!PASSWORD_ENCODER.matches(password, account.getPassword()))
       {
-         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+         throw new AuthenticationException("exception_authentication_invalidUserNameOrPassword",
                FacesMessage.SEVERITY_ERROR);
       }
 
@@ -65,14 +65,14 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       final Date validTo = account.getValidTo();
       if (validTo != null && now.after(validTo))
       {
-         throw new AuthenticationException("authenticationException_accountIsBlocked",
+         throw new AuthenticationException("exception_authentication_accountIsBlocked",
                FacesMessage.SEVERITY_ERROR);
       }
 
       Optional<Object> user = accountService.findUserByAccount(account);
       if (!user.isPresent())
       {
-         throw new AuthenticationException("authenticationException_invalidUserNameOrPassword",
+         throw new AuthenticationException("exception_authentication_invalidUserNameOrPassword",
                FacesMessage.SEVERITY_ERROR);
       }
       try
@@ -95,7 +95,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
       {}
    }
 
-   // TODO zabezpieczyæ metodê przed brakiem sesji
+   // TODO zabezpieczyï¿½ metodï¿½ przed brakiem sesji
    @SuppressWarnings("unchecked")
    @Override
    public <T> T getCurrentUser() throws NullPointerException

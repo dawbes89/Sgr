@@ -38,7 +38,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
                   .withGroupNumber(classGroup.getGroupNumber()).build());
       if (optionalClass.isPresent())
       {
-         throw new CreateException("classGroupException_classExists", FacesMessage.SEVERITY_ERROR);
+         throw new CreateException("exception_classGroup_exists", FacesMessage.SEVERITY_ERROR);
       }
       classGroup.setYear(new Date());
       createEntity(classGroup);
@@ -51,7 +51,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       final List<Object> indelibleClasses = search(criteria);
       if (!indelibleClasses.isEmpty())
       {
-         throw new RemoveException("removeException_canNotDelete", FacesMessage.SEVERITY_ERROR);
+         throw new RemoveException("exception_remove_canNotDelete", FacesMessage.SEVERITY_ERROR);
       }
       removeEntity(ClassGroup.class, id);
    }

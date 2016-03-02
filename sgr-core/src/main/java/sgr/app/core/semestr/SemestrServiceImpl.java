@@ -41,7 +41,7 @@ class SemestrServiceImpl extends DaoSupport implements SemestrService
       List<Semestr> search = search(criteria);
       if (!search.isEmpty())
       {
-         throw new CreateException("semestrException_create_dateFromBeforeDateTo",
+         throw new CreateException("exception_create_semestr_dateFromBeforeDateTo",
                FacesMessage.SEVERITY_ERROR);
       }
       criteria = createCriteria(Semestr.class);
@@ -50,7 +50,7 @@ class SemestrServiceImpl extends DaoSupport implements SemestrService
       search = search(criteria);
       if (!search.isEmpty())
       {
-         throw new CreateException("semestrException_create_semestrWithGivenNumberExsists",
+         throw new CreateException("exception_create_semestr_withGivenNumberExsists",
                FacesMessage.SEVERITY_ERROR);
       }
       semestr.setSchoolYear(currentSchoolYear());
