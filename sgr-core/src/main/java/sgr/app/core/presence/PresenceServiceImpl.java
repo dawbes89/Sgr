@@ -2,12 +2,14 @@ package sgr.app.core.presence;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
+import org.springframework.beans.factory.annotation.Required;
 
 import sgr.app.api.DateHelper;
 import sgr.app.api.classgroup.ClassGroup;
@@ -15,6 +17,8 @@ import sgr.app.api.lesson.Lesson;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
+import sgr.app.api.semestr.Semestr;
+import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
 import sgr.app.core.DaoSupport;
 
@@ -26,6 +30,8 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
 
    private static final String PROPERTY_PERSON = nest(Presence.PROPERTY_STUDENT,
          Student.PROPERTY_PERSON);
+
+   private SemestrService semestrService;
 
    @Override
    public void create(Presence presence)
@@ -64,12 +70,20 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
       {
          criteria.add(Restrictions.eq(Presence.PROPERTY_STATUS, query.getStatus()));
       }
+
+      final Optional<Semestr> foundCurrentSemestr = semestrService.findCurrentSemestr();
       if (query.hasDate())
       {
          final Date date = query.getDate();
          final Date from = DateHelper.getDateWithTime(date, 0, 0, 0, 1);
          final Date to = DateHelper.getDateWithTime(date, 23, 59, 59, 999);
          criteria.add(Restrictions.between(Presence.PROPERTY_DATE, from, to));
+      }
+      else if (foundCurrentSemestr.isPresent())
+      {
+         final Semestr current = foundCurrentSemestr.get();
+         criteria.add(
+               Restrictions.between(Presence.PROPERTY_DATE, current.getFrom(), current.getTo()));
       }
       if (query.hasStudentId())
       {
@@ -92,8 +106,13 @@ class PresenceServiceImpl extends DaoSupport implements PresenceService
          lessonCriteria
                .add(Restrictions.eq(Lesson.PROPERTY_SCHOOL_SUBJECT, query.getSchoolSubject()));
       }
-
       return criteria;
+   }
+
+   @Required
+   public void setSemestrService(SemestrService semestrService)
+   {
+      this.semestrService = semestrService;
    }
 
 }

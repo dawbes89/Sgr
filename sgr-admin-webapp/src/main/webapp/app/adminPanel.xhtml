@@ -18,13 +18,12 @@
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
 				<p:commandButton value="#{sgr_translation.button_add}"
-					action="#{adminPanel.onLoad}"
 					title="#{sgr_translation.button_add_admin}" icon="ui-icon-plus"
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
 
 				<p:dataTable id="table" var="admin" value="#{adminPanel.entities}"
-					emptyMessage="#{sgr_translation.dataTable_emptyMessage}"
+					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 					editable="false">
 					<p:column width="40">
 						<p:commandButton update=":details:panel"
@@ -95,7 +94,7 @@
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
-							<p:calendar id="birthDate"
+							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true">
@@ -109,7 +108,7 @@
 							<p:outputLabel for="validTo"
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
-								label="#{sgr_translation.form_account_validTo}:"
+								label="#{sgr_translation.form_account_validTo}"
 								value="#{adminPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />
@@ -202,7 +201,7 @@
 
 							<p:outputLabel for="birthDate"
 								value="#{sgr_translation.form_person_birthDate}:" />
-							<p:calendar id="birthDate"
+							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
 								pattern="yyyy-MM-dd" mask="true" required="true">
@@ -216,7 +215,7 @@
 							<p:outputLabel for="validTo"
 								value="#{sgr_translation.form_account_validTo}:" />
 							<p:calendar id="validTo"
-								label="#{sgr_translation.form_account_validTo}:"
+								label="#{sgr_translation.form_account_validTo}"
 								value="#{adminPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />

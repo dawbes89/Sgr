@@ -1,6 +1,5 @@
 package sgr.admin.webapp.announcement;
 
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -55,9 +54,8 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    @Override
    public void remove(Long id)
    {
-      announcementService.delete(id);
-      RequestContext context = RequestContext.getCurrentInstance();
-      context.execute("PF('removeDialog').hide();");
+      announcementService.remove(id);
+      requestContextExecute("PF('removeDialog').hide();");
       onLoad();
    }
 

@@ -15,10 +15,13 @@
 </h:head>
 
 <h:body>
-	<p:layout fullPage="true">
-		<p:layoutUnit position="north"
-			header="#{mainPanel.displayCurrentPanelName()}"
-			footer="#{sgr_translation.application_loggedAs} #{mainPanel.userName}" size="180">
+	<p:layout fullPage="true"
+		collapseTitle="#{sgr_translation.p_layout_collapse}"
+		expandTitle="#{sgr_translation.p_layout_expand}">
+		<p:layoutUnit position="north" collapsible="true" effect="drop"
+			header="#{sgr_app_translation.application_title}"
+			footer="#{sgr_translation.application_loggedAs} #{mainPanel.userName}"
+			size="180">
 			<ui:include src="menu/horizontal.xhtml" />
 		</p:layoutUnit>
 
@@ -30,7 +33,8 @@
 			</ui:insert>
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center"
+			header="#{mainPanel.displayCurrentPanelName()}">
 			<ui:insert name="content">
 			</ui:insert>
 		</p:layoutUnit>

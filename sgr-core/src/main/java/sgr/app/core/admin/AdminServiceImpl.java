@@ -49,8 +49,7 @@ class AdminServiceImpl extends DaoSupport implements AdminService
    @Override
    public void remove(Long id)
    {
-      Admin admin = get(id);
-      removeEntity(admin);
+      removeEntity(Admin.class, id);
    }
 
    @Override

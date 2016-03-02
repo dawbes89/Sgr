@@ -1,6 +1,6 @@
 package sgr.app.frontend.converters;
 
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 
 /**
  * Converts {@link SchoolSubject} enum to translated value.

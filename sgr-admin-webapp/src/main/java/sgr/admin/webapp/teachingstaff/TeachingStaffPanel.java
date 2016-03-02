@@ -1,4 +1,4 @@
-package sgr.admin.webapp.teachingStuff;
+package sgr.admin.webapp.teachingstaff;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.api.teachingStuff.TeachingStuffService;
+import sgr.app.api.teachingstaff.TeachingStaff;
+import sgr.app.api.teachingstaff.TeachingStaffService;
 import sgr.app.frontend.RandomPasswordGenerator;
 import sgr.app.frontend.helpers.BeanHelper;
 import sgr.app.frontend.panels.AbstractPanel;
@@ -22,14 +22,14 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author dawbes89
  */
 @Controller
-public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
-      implements EditablePanel<TeachingStuff>
+public class TeachingStaffPanel extends AbstractPanel<TeachingStaff>
+      implements EditablePanel<TeachingStaff>
 {
 
    private static final long serialVersionUID = 2553933126154263063L;
 
    @Autowired
-   private TeachingStuffService teachingStuffService;
+   private TeachingStaffService teachingStaffService;
 
    @Autowired
    private ClassGroupService classGroupService;
@@ -39,8 +39,8 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    @Override
    public void init()
    {
-      entity = new TeachingStuff();
-      entities = teachingStuffService.search();
+      entity = new TeachingStaff();
+      entities = teachingStaffService.search();
       availableClasses = classGroupService
             .search(ClassGroupQuery.all().withAvailableForTeachers(true).build());
    }
@@ -54,28 +54,28 @@ public class TeachingStuffPanel extends AbstractPanel<TeachingStuff>
    @Override
    public void create()
    {
-      teachingStuffService.create(entity);
-      entity = new TeachingStuff();
+      teachingStaffService.create(entity);
+      entity = new TeachingStaff();
       onLoad();
    }
 
    @Override
-   public void update(TeachingStuff object)
+   public void update(TeachingStaff object)
    {
-      teachingStuffService.update(entity);
+      teachingStaffService.update(entity);
       onLoad();
    }
 
    @Override
    public void remove(Long id)
    {
-      teachingStuffService.remove(id);
+      teachingStaffService.remove(id);
       requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
       onLoad();
    }
 
    @Override
-   public void setEntity(TeachingStuff entity)
+   public void setEntity(TeachingStaff entity)
    {
       super.setEntity(entity);
 

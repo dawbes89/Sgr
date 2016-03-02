@@ -32,9 +32,9 @@ class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
    }
 
    @Override
-   public void delete(Long id)
+   public void remove(Long id)
    {
-      removeEntity(getEntity(Announcement.class, id));
+      removeEntity(Announcement.class, id);
    }
 
    @Override
