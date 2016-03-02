@@ -16,6 +16,8 @@ import sgr.app.api.lesson.LessonQuery;
 import sgr.app.api.lesson.LessonService;
 import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceService;
+import sgr.app.api.semestr.Semestr;
+import sgr.app.api.semestr.SemestrService;
 import sgr.app.core.DaoSupport;
 
 /**
@@ -27,6 +29,7 @@ class LessonServiceImpl extends DaoSupport implements LessonService
          + ClassGroup.PROPERTY_ID;
 
    private PresenceService presenceService;
+   private SemestrService semestrService;
 
    @Override
    public Lesson create(Lesson lesson, List<Presence> presences)
@@ -68,12 +71,19 @@ class LessonServiceImpl extends DaoSupport implements LessonService
       {
          criteria.add(Restrictions.eq(PROPERTY_CLASS_GROUP_ID, query.getClassGroupId()));
       }
+      final Optional<Semestr> foundCurrentSemestr = semestrService.findCurrentSemestr();
       if (query.hasDate())
       {
          final Date date = query.getDate();
          final Date from = DateHelper.getDateWithTime(date, 0, 0, 0, 1);
          final Date to = DateHelper.getDateWithTime(date, 23, 59, 59, 999);
          criteria.add(Restrictions.between(Presence.PROPERTY_DATE, from, to));
+      }
+      else if (foundCurrentSemestr.isPresent())
+      {
+         final Semestr current = foundCurrentSemestr.get();
+         criteria
+               .add(Restrictions.between(Lesson.PROPERTY_DATE, current.getFrom(), current.getTo()));
       }
       if (query.hasLessonNumber())
       {
@@ -93,6 +103,12 @@ class LessonServiceImpl extends DaoSupport implements LessonService
    public void setPresenceService(PresenceService presenceService)
    {
       this.presenceService = presenceService;
+   }
+
+   @Required
+   public void setSemestrService(SemestrService semestrService)
+   {
+      this.semestrService = semestrService;
    }
 
 }

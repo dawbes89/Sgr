@@ -20,6 +20,6 @@ public interface SemestrService
     *
     * @return
     */
-   Optional<Semestr> find();
+   Optional<Semestr> findCurrentSemestr();
 
 }

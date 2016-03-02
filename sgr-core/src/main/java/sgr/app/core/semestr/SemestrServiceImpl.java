@@ -58,7 +58,7 @@ class SemestrServiceImpl extends DaoSupport implements SemestrService
    }
 
    @Override
-   public Optional<Semestr> find()
+   public Optional<Semestr> findCurrentSemestr()
    {
       final Date currentDay = new Date();
 
