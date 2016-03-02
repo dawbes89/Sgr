@@ -58,7 +58,7 @@ class StudentServiceImpl extends DaoSupport implements StudentService
       final List<Object> indelibleStudents = search(criteria);
       if (!indelibleStudents.isEmpty())
       {
-         throw new RemoveException("removeException_canNotDelete", FacesMessage.SEVERITY_ERROR);
+         throw new RemoveException("exception_remove_canNotDelete", FacesMessage.SEVERITY_ERROR);
       }
       removeEntity(Student.class, id);
    }
