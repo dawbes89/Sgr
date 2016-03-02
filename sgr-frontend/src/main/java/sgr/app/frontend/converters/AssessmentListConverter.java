@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import sgr.app.api.assessment.Assessment;
 import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 import sgr.app.api.translation.TranslationService;
 /**
  * @author dawbes89
