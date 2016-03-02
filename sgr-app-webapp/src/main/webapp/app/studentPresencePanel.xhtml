@@ -12,7 +12,7 @@
 				action="#{studentPresencePanel.onLoad}" autoRun="true"
 				update=":root:panel :search:panel" />
 
-			<p:panel id="panel" header="#{sgr_translation.form_search}"
+			<p:panel id="panel" header="#{sgr_translation.common_search}"
 				toggleable="true">
 				<p:panelGrid columns="4">
 					<ui:include src="schoolSubjectField.xhtml">
@@ -43,7 +43,7 @@
 						value="#{studentPresencePanel.date}" pattern="yyyy-MM-dd" />
 				</p:panelGrid>
 
-				<p:commandButton value="#{sgr_translation.button_search}"
+				<p:commandButton value="#{sgr_translation.common_search}"
 					action="#{studentPresencePanel.searchPresences}"
 					update=":root:table">
 				</p:commandButton>
@@ -52,7 +52,7 @@
 
 		<!-- MAIN TABLE -->
 		<h:form id="root">
-			<p:panel id="panel" header="#{sgr_translation.form_presences}">
+			<p:panel id="panel" header="#{sgr_translation.common_presences}">
 				<p:dataTable id="table" var="presence"
 					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 					value="#{studentPresencePanel.entities}" editable="false"

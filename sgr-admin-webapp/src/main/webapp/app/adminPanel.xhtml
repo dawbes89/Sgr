@@ -17,7 +17,7 @@
 				autoRun="true" update=":root:table" />
 
 			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:commandButton value="#{sgr_translation.button_add}"
+				<p:commandButton value="#{sgr_translation.common_add}"
 					title="#{sgr_translation.button_add_admin}" icon="ui-icon-plus"
 					oncomplete="PF('addDialog').show()" />
 				<p:separator />
@@ -47,7 +47,7 @@
 							converter="booleanTranslationConverter" />
 					</p:column>
 					<p:column width="80">
-						<p:commandButton title="#{sgr_translation.button_update}"
+						<p:commandButton title="#{sgr_translation.common_update}"
 							update=":update:panel" oncomplete="PF('updateDialog').show()"
 							icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{admin}"
@@ -173,7 +173,7 @@
 
 		<!-- UPDATE FORM -->
 		<p:dialog widgetVar="updateDialog"
-			header="#{sgr_translation.form_window_caption_update}"
+			header="#{sgr_translation.common_update}"
 			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
 			height="500px" closable="false" draggable="false" modal="true"
 			appendTo="@(body)" dynamic="true">
@@ -235,7 +235,7 @@
 					</p:panel>
 
 					<p:panel id="buttons">
-						<p:commandButton value="#{sgr_translation.button_update}"
+						<p:commandButton value="#{sgr_translation.common_update}"
 							actionListener="#{adminPanel.update(adminPanel.entity)}"
 							update=":update:panel :root:panel" icon="ui-icon-disk"
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">

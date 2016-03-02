@@ -26,8 +26,8 @@
 							filterBy="#{student.person.lastName}" filterMatchMode="contains">
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
-						<p:column width="50" headerText="#{sgr_translation.form_comments}">
-							<p:commandButton title="#{sgr_translation.button_comments}"
+						<p:column width="50" headerText="#{sgr_translation.common_comments}">
+							<p:commandButton title="#{sgr_translation.common_comments}"
 								update=":commentDetails:panel"
 								oncomplete="PF('commentDialog').show()" icon="ui-icon-info">
 								<f:setPropertyActionListener value="#{student}"
@@ -35,8 +35,8 @@
 							</p:commandButton>
 						</p:column>
 						<p:column width="50"
-							headerText="#{sgr_translation.form_assessments}">
-							<p:commandButton title="#{sgr_translation.button_assessments}"
+							headerText="#{sgr_translation.common_assessments}">
+							<p:commandButton title="#{sgr_translation.common_assessments}"
 								update=":assessmentDetails:panel"
 								oncomplete="PF('assessmentDialog').show()" icon="ui-icon-info">
 								<f:setPropertyActionListener value="#{student}"
@@ -63,7 +63,7 @@
 							value="#{preceptorStudentPanel.entity.fullName}" />
 					</p:panelGrid>
 
-					<p:panel header="#{sgr_translation.form_comments}">
+					<p:panel header="#{sgr_translation.common_comments}">
 						<ui:include src="studentCommentTable.xhtml">
 							<ui:param name="comments"
 								value="#{preceptorStudentPanel.comments}" />
@@ -96,7 +96,7 @@
 								value="#{preceptorStudentPanel.schoolSubject}" />
 						</ui:include>
 
-						<p:commandButton value="#{sgr_translation.button_search}"
+						<p:commandButton value="#{sgr_translation.common_search}"
 							action="#{preceptorStudentPanel.getAssessments}"
 							update=":assessmentDetails:assessemetsPanel">
 							
@@ -104,7 +104,7 @@
 					</p:panelGrid>
 
 					<p:panel id="assessemetsPanel"
-						header="#{sgr_translation.form_assessments}">
+						header="#{sgr_translation.common_assessments}">
 						<p:outputLabel
 							value="#{sgr_translation.form_assessment_averageAssessments}: " />
 						<p:outputLabel value="#{preceptorStudentPanel.averageAssessments}"
