@@ -46,6 +46,14 @@
 					<p:dataTable id="table" var="student"
 						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 						value="#{teacherAssessmentPanel.entities}">
+						<p:column width="40">
+							<p:commandButton title="#{sgr_translation.button_assessments}"
+								update=":add:panel" oncomplete="PF('addDialog').show()"
+								icon="ui-icon-pencil">
+								<f:setPropertyActionListener value="#{student}"
+									target="#{teacherAssessmentPanel.entity}" />
+							</p:commandButton>
+						</p:column>
 						<p:column headerText="#{sgr_translation.form_person_firstName}"
 							filterBy="#{student.person.firstName}" filterMatchMode="contains">
 							<p:outputLabel value="#{student.person.firstName}" />
@@ -54,13 +62,12 @@
 							filterBy="#{student.person.lastName}" filterMatchMode="contains">
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
-						<p:column width="40">
-							<p:commandButton title="#{sgr_translation.button_assessments}"
-								update=":add:panel" oncomplete="PF('addDialog').show()"
-								icon="ui-icon-pencil">
-								<f:setPropertyActionListener value="#{student}"
-									target="#{teacherAssessmentPanel.entity}" />
-							</p:commandButton>
+						<p:column headerText="#{sgr_translation.form_assessments}" width="800">
+							<p:outputLabel value="#{student.id}">
+								<f:converter converterId="assessmentListConverter" />
+								<f:attribute name="schoolSubject"
+									value="#{teacherAssessmentPanel.currentLoggedTeacher.schoolSubject}" />
+							</p:outputLabel>
 						</p:column>
 					</p:dataTable>
 				</p:outputPanel>
