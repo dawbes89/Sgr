@@ -26,7 +26,8 @@
 							filterBy="#{student.person.lastName}" filterMatchMode="contains">
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
-						<p:column width="50" headerText="#{sgr_translation.common_comments}">
+						<p:column width="50"
+							headerText="#{sgr_translation.common_comments}">
 							<p:commandButton title="#{sgr_translation.common_comments}"
 								update=":commentDetails:panel"
 								oncomplete="PF('commentDialog').show()" icon="ui-icon-info">
@@ -49,20 +50,12 @@
 		</p:panel>
 
 		<p:dialog widgetVar="commentDialog"
-			header="#{sgr_translation.form_comment_studentComment}"
+			header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}"
 			resizable="false" showEffect="fold" hideEffect="fold" width="1250px"
 			height="500px" closable="false" draggable="false" modal="true"
 			appendTo="@(body)">
 			<h:form id="commentDetails">
 				<p:panelGrid id="panel" columns="1">
-
-					<p:panelGrid columns="2" columnClasses="label, value">
-						<p:outputLabel for="student"
-							value="#{sgr_translation.form_studentName}" />
-						<p:outputLabel id="student"
-							value="#{preceptorStudentPanel.entity.fullName}" />
-					</p:panelGrid>
-
 					<p:panel header="#{sgr_translation.common_comments}">
 						<ui:include src="studentCommentTable.xhtml">
 							<ui:param name="comments"
@@ -79,18 +72,13 @@
 		</p:dialog>
 
 		<p:dialog widgetVar="assessmentDialog"
-			header="#{sgr_translation.form_assessment_studentAssessment}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="1250px" height="500px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)">
+			header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="1250px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)">
 			<h:form id="assessmentDetails">
 				<p:panelGrid id="panel" columns="1">
-
-					<p:panelGrid columns="2" columnClasses="label, value">
-						<p:outputLabel for="student"
-							value="#{sgr_translation.form_studentName}" />
-						<p:outputLabel id="student"
-							value="#{preceptorStudentPanel.entity.fullName}" />
-
+					<p:panelGrid columns="3" columnClasses="label, value">
 						<ui:include src="schoolSubjectField.xhtml">
 							<ui:param name="schoolSubject"
 								value="#{preceptorStudentPanel.schoolSubject}" />
@@ -99,7 +87,7 @@
 						<p:commandButton value="#{sgr_translation.common_search}"
 							action="#{preceptorStudentPanel.getAssessments}"
 							update=":assessmentDetails:assessemetsPanel">
-							
+
 						</p:commandButton>
 					</p:panelGrid>
 
