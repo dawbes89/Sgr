@@ -2,7 +2,8 @@ package sgr.app.frontend.converters;
 
 import javax.faces.component.UIComponent;
 
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
+
 
 /**
  * Converts {@link SchoolSubject} enum to translated value.
