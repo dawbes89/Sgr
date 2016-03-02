@@ -1,5 +1,7 @@
 package sgr.app.frontend.converters;
 
+import javax.faces.component.UIComponent;
+
 import sgr.app.api.assessment.AssessmentType;
 
 /**
@@ -16,7 +18,7 @@ public class AssessmentTypeTranslationConverter extends AbstractTranslationConve
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       final AssessmentType assessmentType = (AssessmentType) object;
       final String translate = translationService.translate(assessmentType.getLabel());

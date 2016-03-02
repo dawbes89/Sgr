@@ -2,6 +2,8 @@ package sgr.app.frontend.converters;
 
 import java.util.Optional;
 
+import javax.faces.component.UIComponent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sgr.app.api.classgroup.ClassGroup;
@@ -31,7 +33,7 @@ public class ClassConverter extends AbstractConverter<ClassGroup>
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       final ClassGroup classGroup = (ClassGroup) object;
       return classGroup.getClassName();

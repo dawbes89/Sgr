@@ -1,6 +1,8 @@
 package sgr.app.frontend.converters;
 
-import sgr.app.api.teachingstaff.SchoolSubject;
+import javax.faces.component.UIComponent;
+
+import sgr.app.api.teachingStuff.SchoolSubject;
 
 /**
  * Converts {@link SchoolSubject} enum to translated value.
@@ -17,7 +19,7 @@ public class SchoolSubjectTranslationConverter extends AbstractTranslationConver
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       final SchoolSubject schoolSubject = (SchoolSubject) object;
       final String translate = translationService.translate(schoolSubject.getLabel());

@@ -1,5 +1,7 @@
 package sgr.app.frontend.converters;
 
+import javax.faces.component.UIComponent;
+
 import sgr.app.api.comment.CommentType;
 
 /**
@@ -17,7 +19,7 @@ public class CommentTypeTranslationConverter extends AbstractTranslationConverte
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       final CommentType commentType = (CommentType) object;
       final String translate = translationService.translate(commentType.getLabel());

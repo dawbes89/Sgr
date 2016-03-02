@@ -3,6 +3,8 @@ package sgr.app.frontend.converters;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.component.UIComponent;
+
 /**
  * @author dawbes89
  */
@@ -50,7 +52,7 @@ public class AssessmentConverter extends AbstractConverter<Float>
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       return assessmentMap.get(object);
    }
