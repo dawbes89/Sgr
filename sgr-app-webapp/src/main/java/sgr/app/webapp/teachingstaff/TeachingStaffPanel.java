@@ -19,7 +19,7 @@ public class TeachingStaffPanel extends AbstractPanel<TeachingStaff>
    private static final long serialVersionUID = 5475535216504328321L;
 
    @Autowired
-   private TeachingStaffService teachingStuffService;
+   private TeachingStaffService teachingStaffService;
 
    @Override
    public void init()
@@ -30,7 +30,7 @@ public class TeachingStaffPanel extends AbstractPanel<TeachingStaff>
    @Override
    public void onLoad()
    {
-      entities = teachingStuffService.search();
+      entities = teachingStaffService.search();
    }
 
 }

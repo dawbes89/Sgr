@@ -3,7 +3,7 @@ package sgr.app.api.teachingstaff;
 import java.util.List;
 
 /**
- * @author dawbes
+ * @author dawbes89
  */
 public interface TeachingStaffService
 {
@@ -12,10 +12,10 @@ public interface TeachingStaffService
 
    TeachingStaff get(Long id);
 
-   void create(TeachingStaff teachingStuff);
+   void create(TeachingStaff teachingStaff);
 
    void remove(Long id);
 
-   void update(TeachingStaff teachingStuff);
+   void update(TeachingStaff teachingStaff);
 
 }

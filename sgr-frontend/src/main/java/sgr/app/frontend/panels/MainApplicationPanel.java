@@ -40,7 +40,7 @@ public abstract class MainApplicationPanel implements Serializable
       // common panels
       panels.put("changePasswordPanel", "panel_changePasswordPanel");
       panels.put("announcementPanel", "panel_announcementPanel");
-      panels.put("teachingStuffPanel", "panel_teachingStuffPanel");
+      panels.put("teachingStaffPanel", "panel_teachingStaffPanel");
 
       // panels in admin
       panels.put("classGroupPanel", "panel_classGroupPanel");

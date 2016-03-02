@@ -38,8 +38,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
                   .withGroupNumber(classGroup.getGroupNumber()).build());
       if (optionalClass.isPresent())
       {
-         throw new CreateException("classGroupException_classExists",
-               FacesMessage.SEVERITY_ERROR);
+         throw new CreateException("classGroupException_classExists", FacesMessage.SEVERITY_ERROR);
       }
       classGroup.setYear(new Date());
       createEntity(classGroup);
@@ -73,7 +72,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
                   + classGroupId + ") OR this_.id IN "
                   + "(SELECT class_group_id FROM student WHERE class_group_id = " + classGroupId
                   + ")"
-                  + " OR this_.id IN (select preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id = "
+                  + " OR this_.id IN (select preceptor_class_id FROM teaching_staff WHERE preceptor_class_id = "
                   + classGroupId + ")"));
       return criteria;
    }
@@ -86,13 +85,13 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       if (query.hasClassId())
       {
          criteria.add(Restrictions.sqlRestriction(
-               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_staff WHERE preceptor_class_id IS NOT NULL AND preceptor_class_id != "
                      + query.getClassId() + ")"));
       }
       if (query.isAvailableForTeachers())
       {
          criteria.add(Restrictions.sqlRestriction(
-               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_stuff WHERE preceptor_class_id IS NOT NULL)"));
+               "this_.id NOT IN (SELECT preceptor_class_id FROM teaching_staff WHERE preceptor_class_id IS NOT NULL)"));
       }
       if (query.hasGroupNumber())
       {

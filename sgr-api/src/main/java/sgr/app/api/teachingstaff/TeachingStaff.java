@@ -24,7 +24,7 @@ import sgr.app.api.person.Person;
 import sgr.app.api.person.PersonName;
 
 /**
- * Entity represents teaching stuff.
+ * Entity represents teaching staff.
  *
  * @author dawbes89
  */
