@@ -7,8 +7,7 @@
 
 	<p:dataTable id="table" var="assessment"
 		emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
-		value="#{assessments}" editable="false"
-		cellSeparator="true">
+		value="#{assessments}" editable="false" cellSeparator="true">
 		<p:column headerText="#{sgr_translation.form_assessment_addingDate}"
 			width="110">
 			<p:outputLabel value="#{assessment.date}" converter="yearConverter" />
