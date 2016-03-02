@@ -5,29 +5,29 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-		<p:dialog widgetVar="removeDialog"
-			header="#{sgr_translation.form_window_caption_remove}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="400px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)">
-			<h:form id="remove">
-				<p:panelGrid>
-					<p:messages id="msgs" />
-					<p:outputLabel value="#{sgr_translation.form_window_sureRemove}" />
-					<p:separator />
-					<p:panelGrid id="output" columns="2" columnClasses="label, value">
-						<p:commandButton value="#{sgr_translation.button_remove}"
-							actionListener="#{panel.remove(panel.entity.id)}"
-							update=":remove :root:panel" icon="ui-icon-disk">
-							<p:ajax event="dialogReturn" listener="#{panel.remove}" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_cancel}"
-							process="@this" icon="ui-icon-cancel"
-							oncomplete="PF('removeDialog').hide()">
-							<p:resetInput target=":remove" />
-						</p:commandButton>
-					</p:panelGrid>
+	<p:dialog widgetVar="removeDialog"
+		header="#{sgr_translation.form_window_caption_remove}"
+		resizable="false" showEffect="fold" hideEffect="fold" width="400px"
+		closable="false" draggable="false" modal="true" appendTo="@(body)">
+		<h:form id="remove">
+			<p:panelGrid>
+				<p:messages id="msgs" />
+				<p:outputLabel value="#{sgr_translation.form_window_sureRemove}" />
+				<p:separator />
+				<p:panelGrid id="output" columns="2" columnClasses="label, value">
+					<p:commandButton value="#{sgr_translation.button_remove}"
+						actionListener="#{panel.remove(panel.entity.id)}"
+						update=":remove :root:panel" icon="ui-icon-disk">
+						<p:ajax event="dialogReturn" listener="#{panel.remove}" />
+					</p:commandButton>
+					<p:commandButton value="#{sgr_translation.form_button_cancel}"
+						process="@this" icon="ui-icon-cancel"
+						oncomplete="PF('removeDialog').hide()">
+						<p:resetInput target=":remove" />
+					</p:commandButton>
 				</p:panelGrid>
-			</h:form>
-		</p:dialog>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
 
 </ui:composition>

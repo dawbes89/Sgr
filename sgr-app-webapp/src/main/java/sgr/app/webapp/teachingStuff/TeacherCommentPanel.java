@@ -18,7 +18,7 @@ import sgr.app.api.comment.CommentService;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStaff;
 import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.panels.AbstractPanel;
 
@@ -46,7 +46,7 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
    @Autowired
    private AuthenticationService authenticationService;
 
-   private TeachingStuff currentLoggedTeacher;
+   private TeachingStaff currentLoggedTeacher;
 
    private Comment comment;
 

@@ -1,7 +1,7 @@
 package sgr.app.webapp;
 
 import sgr.app.api.account.AccountType;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStaff;
 import sgr.app.frontend.panels.MainApplicationPanel;
 
 /**
@@ -25,7 +25,7 @@ public class MainPanel extends MainApplicationPanel
       {
          return false;
       }
-      final TeachingStuff preceptor = authenticationService.getCurrentUser();
+      final TeachingStaff preceptor = authenticationService.getCurrentUser();
       return preceptor.getPreceptorClass() != null;
    }
 

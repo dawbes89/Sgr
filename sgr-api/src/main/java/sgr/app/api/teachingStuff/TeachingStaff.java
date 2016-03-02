@@ -30,7 +30,7 @@ import sgr.app.api.person.PersonName;
  */
 @Entity
 @Table(name = "teaching_stuff")
-public class TeachingStuff implements PersonName, AccountEntity, Serializable
+public class TeachingStaff implements PersonName, AccountEntity, Serializable
 {
 
    private static final long serialVersionUID = 1452686849131351842L;

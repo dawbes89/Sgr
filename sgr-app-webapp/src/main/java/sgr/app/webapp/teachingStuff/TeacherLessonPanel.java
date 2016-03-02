@@ -19,7 +19,7 @@ import sgr.app.api.presence.PresenceStatus;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -43,7 +43,7 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
    @Autowired
    private LessonService lessonService;
 
-   private TeachingStuff currentLoggedTeacher;
+   private TeachingStaff currentLoggedTeacher;
 
    private List<Student> students;
 
@@ -165,12 +165,12 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
       this.classes = classes;
    }
 
-   public TeachingStuff getCurrentLoggedTeacher()
+   public TeachingStaff getCurrentLoggedTeacher()
    {
       return currentLoggedTeacher;
    }
 
-   public void setCurrentLoggedTeacher(TeachingStuff currentLoggedTeacher)
+   public void setCurrentLoggedTeacher(TeachingStaff currentLoggedTeacher)
    {
       this.currentLoggedTeacher = currentLoggedTeacher;
    }
