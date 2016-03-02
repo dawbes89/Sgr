@@ -13,7 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.exceptions.RemoveException;
 import sgr.app.core.DaoSupport;
 
@@ -31,14 +31,14 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    }
 
    @Override
-   public void create(ClassGroup classGroup) throws ClassGroupException
+   public void create(ClassGroup classGroup) throws CreateException
    {
       final Optional<ClassGroup> optionalClass = find(
             ClassGroupQuery.all().withGroupName(classGroup.getGroupName())
                   .withGroupNumber(classGroup.getGroupNumber()).build());
       if (optionalClass.isPresent())
       {
-         throw new ClassGroupException("classGroupException_classExists",
+         throw new CreateException("classGroupException_classExists",
                FacesMessage.SEVERITY_ERROR);
       }
       classGroup.setYear(new Date());

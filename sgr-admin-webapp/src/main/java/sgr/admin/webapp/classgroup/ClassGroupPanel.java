@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
-import sgr.app.api.exceptions.ClassGroupException;
+import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.exceptions.RemoveException;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
@@ -47,7 +47,7 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements Editabl
          requestContextExecute(HIDE_ADD_DIALOG_ACTION);
          onLoad();
       }
-      catch (ClassGroupException e)
+      catch (CreateException e)
       {
          showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
       }
