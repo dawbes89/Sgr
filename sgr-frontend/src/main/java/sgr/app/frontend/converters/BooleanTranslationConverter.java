@@ -3,6 +3,8 @@ package sgr.app.frontend.converters;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.component.UIComponent;
+
 /**
  * @author dawbes89
  */
@@ -24,7 +26,7 @@ public class BooleanTranslationConverter extends AbstractTranslationConverter<Bo
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       return translationService.translate(booleanMap.get(object));
    }
