@@ -323,46 +323,15 @@
 				appendTo="@(body)" dynamic="true">
 				<p:panelGrid id="panel" columns="1">
 
-					<p:fieldset id="personal" legend="#{sgr_translation.form_person}">
-						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
-							<p:outputLabel id="firstName"
-								value="#{teachingStaffPanel.entity.person.firstName}" />
+					<ui:include src="detailsPanel/personDisplayDetailsFieldset.xhtml">
+						<ui:param name="person"
+							value="#{teachingStaffPanel.entity.person}" />
+					</ui:include>
 
-							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
-							<p:outputLabel id="lastName"
-								value="#{teachingStaffPanel.entity.person.lastName}" />
-
-							<p:outputLabel for="age"
-								value="#{sgr_translation.form_person_age}:" />
-							<p:outputLabel id="age"
-								value="#{teachingStaffPanel.entity.person.age}" />
-
-							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
-							<p:outputLabel id="birthDate"
-								value="#{teachingStaffPanel.entity.person.birthDate}"
-								converter="yearConverter" />
-						</p:panelGrid>
-					</p:fieldset>
-
-					<p:fieldset id="account" legend="#{sgr_translation.form_account}">
-						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="userName"
-								value="#{sgr_translation.form_account_userName}:" />
-							<p:outputLabel id="userName"
-								value="#{teachingStaffPanel.entity.account.userName}" />
-
-							<p:outputLabel for="valitTo"
-								value="#{sgr_translation.form_account_validTo}:" />
-							<p:outputLabel id="valitTo"
-								value="#{teachingStaffPanel.entity.account.validTo}">
-								<f:convertDateTime pattern="yyyy-MM-dd" />
-							</p:outputLabel>
-						</p:panelGrid>
-					</p:fieldset>
+					<ui:include src="detailsPanel/accountDisplayDetailsFieldset.xhtml">
+						<ui:param name="account"
+							value="#{teachingStaffPanel.entity.account}" />
+					</ui:include>
 
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
