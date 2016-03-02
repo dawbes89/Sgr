@@ -1,5 +1,7 @@
 package sgr.app.frontend.converters;
 
+import javax.faces.component.UIComponent;
+
 import sgr.app.api.teachingStuff.SchoolSubject;
 
 /**
@@ -17,7 +19,7 @@ public class SchoolSubjectTranslationConverter extends AbstractTranslationConver
    }
 
    @Override
-   protected String convertToString(Object object)
+   protected String convertToString(Object object, UIComponent component)
    {
       final SchoolSubject schoolSubject = (SchoolSubject) object;
       final String translate = translationService.translate(schoolSubject.getLabel());
