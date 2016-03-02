@@ -89,7 +89,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStaffPanel.entity.person.firstName}"
@@ -98,7 +98,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStaffPanel.entity.person.lastName}"
@@ -107,7 +107,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStaffPanel.entity.person.birthDate}"
@@ -119,7 +119,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{teachingStaffPanel.entity.account.validTo}"
@@ -129,7 +129,7 @@
 							</p:calendar>
 
 							<p:outputLabel for="userName"
-								value="#{sgr_translation.form_account_userName}:" />
+								value="#{sgr_translation.form_account_userName}" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
 								value="#{teachingStaffPanel.entity.account.userName}"
@@ -139,7 +139,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="password"
-								value="#{sgr_translation.form_account_password}:" />
+								value="#{sgr_translation.form_account_password}" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{teachingStaffPanel.entity.account.password}"
@@ -165,7 +165,7 @@
 							</ui:include>
 
 							<p:outputLabel for="academicTitle"
-								value="#{sgr_translation.form_teachingStaff_academicTitle}:" />
+								value="#{sgr_translation.form_teachingStaff_academicTitle}" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStaffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStaff_academicTitle}"
@@ -174,7 +174,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="preceptorClass"
-								value="#{sgr_translation.form_teachingStaff_preceptor}:" />
+								value="#{sgr_translation.form_teachingStaff_preceptor}" />
 							<p:selectOneMenu id="preceptorClass"
 								value="#{teachingStaffPanel.entity.preceptorClass}"
 								effect="fade" filter="true" filterMatchMode="startsWith"
@@ -222,7 +222,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{teachingStaffPanel.entity.person.firstName}"
@@ -231,7 +231,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{teachingStaffPanel.entity.person.lastName}"
@@ -240,7 +240,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{teachingStaffPanel.entity.person.birthDate}"
@@ -253,7 +253,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{teachingStaffPanel.entity.account.validTo}"
@@ -273,7 +273,7 @@
 							</ui:include>
 
 							<p:outputLabel for="academicTitle"
-								value="#{sgr_translation.form_teachingStaff_academicTitle}:" />
+								value="#{sgr_translation.form_teachingStaff_academicTitle}" />
 							<p:inputText id="academicTitle"
 								value="#{teachingStaffPanel.entity.academicTitle}"
 								label="#{sgr_translation.form_teachingStaff_academicTitle}"
@@ -282,7 +282,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="preceptorClass"
-								value="#{sgr_translation.form_teachingStaff_preceptor}:" />
+								value="#{sgr_translation.form_teachingStaff_preceptor}" />
 							<p:selectOneMenu id="preceptorClass"
 								value="#{teachingStaffPanel.entity.preceptorClass}"
 								effect="fade" filter="true" filterMatchMode="startsWith"
@@ -336,18 +336,18 @@
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="shoolSubject"
-								value="#{sgr_translation.form_teachingStaff_schoolSubject}:" />
+								value="#{sgr_translation.form_teachingStaff_schoolSubject}" />
 							<p:outputLabel id="shoolSubject"
 								value="#{teachingStaffPanel.entity.schoolSubject}"
 								converter="schoolSubjectTranslationConverter" />
 
 							<p:outputLabel for="academicTitle"
-								value="#{sgr_translation.form_teachingStaff_academicTitle}:" />
+								value="#{sgr_translation.form_teachingStaff_academicTitle}" />
 							<p:outputLabel id="academicTitle"
 								value="#{teachingStaffPanel.entity.academicTitle}" />
 
 							<p:outputLabel for="class"
-								value="#{sgr_translation.form_teachingStaff_preceptor}:" />
+								value="#{sgr_translation.form_teachingStaff_preceptor}" />
 							<p:outputLabel id="class"
 								value="#{teachingStaffPanel.entity.preceptorClass.className}" />
 						</p:panelGrid>

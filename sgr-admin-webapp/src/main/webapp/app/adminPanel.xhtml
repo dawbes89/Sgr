@@ -77,7 +77,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{adminPanel.entity.person.firstName}" required="true">
@@ -85,7 +85,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{adminPanel.entity.person.lastName}" required="true">
@@ -93,7 +93,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
@@ -106,7 +106,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{adminPanel.entity.account.validTo}"
@@ -116,7 +116,7 @@
 							</p:calendar>
 
 							<p:outputLabel for="userName"
-								value="#{sgr_translation.form_account_userName}:" />
+								value="#{sgr_translation.form_account_userName}" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
 								value="#{adminPanel.entity.account.userName}" required="true">
@@ -125,7 +125,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="password"
-								value="#{sgr_translation.form_account_password}:" />
+								value="#{sgr_translation.form_account_password}" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{adminPanel.entity.account.password}" required="true">
@@ -144,7 +144,7 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="isSuperUser"
-								value="#{sgr_translation.form_admin_superUser}:" />
+								value="#{sgr_translation.form_admin_superUser}" />
 							<p:selectBooleanCheckbox id="isSuperUser"
 								label="#{sgr_translation.form_admin_superUser}"
 								value="#{adminPanel.entity.superuser}" />
@@ -184,7 +184,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{adminPanel.entity.person.firstName}" required="true">
@@ -192,7 +192,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{adminPanel.entity.person.lastName}" required="true">
@@ -200,7 +200,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{adminPanel.entity.person.birthDate}"
@@ -213,7 +213,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{adminPanel.entity.account.validTo}"
@@ -227,7 +227,7 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="isSuperUser"
-								value="#{sgr_translation.form_admin_superUser}:" />
+								value="#{sgr_translation.form_admin_superUser}" />
 							<p:selectBooleanCheckbox id="isSuperUser"
 								label="#{sgr_translation.form_admin_superUser}"
 								value="#{adminPanel.entity.superuser}" />
@@ -271,7 +271,7 @@
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="isSuperuser"
-								value="#{sgr_translation.form_admin_superUser}:" />
+								value="#{sgr_translation.form_admin_superUser}" />
 							<p:outputLabel id="isSuperuser"
 								value="#{adminPanel.entity.superuser}"
 								converter="booleanTranslationConverter" />
