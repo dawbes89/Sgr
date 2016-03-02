@@ -2,7 +2,9 @@ package sgr.admin.webapp.semestr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.semestr.Semestr;
+import sgr.app.api.semestr.SemestrQuery;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
@@ -27,27 +29,36 @@ public class SemestrPanel extends AbstractPanel<Semestr>implements EditablePanel
    @Override
    public void onLoad()
    {
-      entities = semestrService.search();
+      entities = semestrService.search(SemestrQuery.all().build());
    }
 
    @Override
    public void create()
    {
-      semestrService.create(entity);
-      entity = new Semestr();
-      onLoad();
+      try
+      {
+         semestrService.create(entity);
+         requestContextExecute(HIDE_ADD_DIALOG_ACTION);
+         entity = new Semestr();
+         onLoad();
+      }
+      catch (CreateException e)
+      {
+         showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
+         entity = new Semestr();
+      }
    }
 
    @Override
    public void update(Semestr object)
    {
-
+      // nothing
    }
 
    @Override
    public void remove(Long id)
    {
-
+      // nothing
    }
 
 }

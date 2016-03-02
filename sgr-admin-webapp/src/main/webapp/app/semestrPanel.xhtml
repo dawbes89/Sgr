@@ -32,20 +32,6 @@
 					<p:column headerText="#{sgr_translation.form_semestr_year}">
 						<p:outputLabel value="#{semestr.schoolYear}" />
 					</p:column>
-					<!-- 					<p:column width="80"> -->
-					<!-- 						<p:commandButton title="#{sgr_translation.button_update}" -->
-					<!-- 							update=":update:panel" oncomplete="PF('updateDialog').show()" -->
-					<!-- 							icon="ui-icon-pencil"> -->
-					<!-- 							<f:setPropertyActionListener value="#{student}" -->
-					<!-- 								target="#{studentPanel.entity}" /> -->
-					<!-- 						</p:commandButton> -->
-					<!-- 						<p:commandButton title="#{sgr_translation.button_remove}" -->
-					<!-- 							update=":remove" onclick="PF('removeDialog').show()" -->
-					<!-- 							icon="ui-icon-trash"> -->
-					<!-- 							<f:setPropertyActionListener value="#{student}" -->
-					<!-- 								target="#{studentPanel.entity}" /> -->
-					<!-- 						</p:commandButton> -->
-					<!-- 					</p:column> -->
 				</p:dataTable>
 			</p:outputPanel>
 		</h:form>
@@ -94,8 +80,7 @@
 					<p:panel id="buttons">
 						<p:commandButton value="#{sgr_translation.form_button_save}"
 							action="#{semestrPanel.create}" update=":add:panel :root:panel"
-							icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+							icon="ui-icon-disk">
 						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_clear}"
 							update=":add:panel" process="@this" icon="ui-icon-close">

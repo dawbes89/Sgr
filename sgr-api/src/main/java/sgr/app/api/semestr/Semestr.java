@@ -24,6 +24,8 @@ public class Semestr implements Serializable
 
    public static final String PROPERTY_SCHOOL_YEAR = "schoolYear";
    public static final String PROPERTY_SEMESTR_NUMBER = "semestrNumber";
+   public static final String PROPERTY_FROM = "from";
+   public static final String PROPERTY_TO = "to";
 
    @Id
    @Column(name = "id")
