@@ -76,7 +76,7 @@
 								value="#{teacherCommentPanel.entity.fullName}" />
 
 							<p:outputLabel for="type"
-								value="#{sgr_translation.form_comment_type}:" />
+								value="#{sgr_translation.form_comment_type}" />
 							<p:selectOneMenu id="type"
 								value="#{teacherCommentPanel.comment.commentType}"
 								var="commentType" required="true">
@@ -89,7 +89,7 @@
 							</p:selectOneMenu>
 
 							<p:outputLabel for="content"
-								value="#{sgr_translation.form_comment_content}:" />
+								value="#{sgr_translation.form_comment_content}" />
 							<p:inputTextarea id="content" rows="6" cols="50"
 								label="#{sgr_translation.form_comment_content}"
 								value="#{teacherCommentPanel.comment.content}" required="true">

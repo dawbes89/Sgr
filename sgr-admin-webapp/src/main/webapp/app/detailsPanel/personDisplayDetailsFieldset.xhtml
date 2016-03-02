@@ -8,18 +8,18 @@
 	<p:fieldset id="personal" legend="#{sgr_translation.form_person}">
 		<p:panelGrid columns="2" columnClasses="label, value">
 			<p:outputLabel for="firstName"
-				value="#{sgr_translation.form_person_firstName}:" />
+				value="#{sgr_translation.form_person_firstName}" />
 			<p:outputLabel id="firstName" value="#{person.firstName}" />
 
 			<p:outputLabel for="lastName"
-				value="#{sgr_translation.form_person_lastName}:" />
+				value="#{sgr_translation.form_person_lastName}" />
 			<p:outputLabel id="lastName" value="#{person.lastName}" />
 
-			<p:outputLabel for="age" value="#{sgr_translation.form_person_age}:" />
+			<p:outputLabel for="age" value="#{sgr_translation.form_person_age}" />
 			<p:outputLabel id="age" value="#{person.age}" />
 
 			<p:outputLabel for="birthDate"
-				value="#{sgr_translation.form_person_birthDate}:" />
+				value="#{sgr_translation.form_person_birthDate}" />
 			<p:outputLabel id="birthDate" value="#{person.birthDate}"
 				converter="yearConverter" />
 		</p:panelGrid>

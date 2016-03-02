@@ -8,17 +8,17 @@
 	<p:fieldset id="account" legend="#{sgr_translation.form_account}">
 		<p:panelGrid columns="2" columnClasses="label, value">
 			<p:outputLabel for="userName"
-				value="#{sgr_translation.form_account_userName}:" />
+				value="#{sgr_translation.form_account_userName}" />
 			<p:outputLabel id="userName" value="#{account.userName}" />
 
 			<p:outputLabel for="created"
-				value="#{sgr_translation.form_account_created}:" />
+				value="#{sgr_translation.form_account_created}" />
 			<p:outputLabel id="created" value="#{account.created}">
 				<f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
 			</p:outputLabel>
 
 			<p:outputLabel for="valitTo"
-				value="#{sgr_translation.form_account_validTo}:" />
+				value="#{sgr_translation.form_account_validTo}" />
 			<p:outputLabel id="valitTo" value="#{account.validTo}">
 				<f:convertDateTime pattern="yyyy-MM-dd" />
 			</p:outputLabel>

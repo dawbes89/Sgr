@@ -21,7 +21,7 @@
 					</ui:include>
 
 					<p:outputLabel for="status"
-						value="#{sgr_translation.form_presence_status}:" />
+						value="#{sgr_translation.form_presence_status}" />
 					<p:selectOneMenu id="status" value="#{studentPresencePanel.status}"
 						effect="fade" filter="true" filterMatchMode="contains">
 						<f:selectItem itemValue="#{null}"
@@ -38,7 +38,7 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel for="date"
-						value="#{sgr_translation.form_presence_date}:" />
+						value="#{sgr_translation.form_presence_date}" />
 					<p:calendar id="date" label="#{sgr_translation.form_presence_date}"
 						value="#{studentPresencePanel.date}" pattern="yyyy-MM-dd" />
 				</p:panelGrid>

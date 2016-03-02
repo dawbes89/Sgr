@@ -21,7 +21,7 @@
 					</ui:include>
 
 					<p:outputLabel for="status"
-						value="#{sgr_translation.form_presence_status}:" />
+						value="#{sgr_translation.form_presence_status}" />
 					<p:selectOneMenu id="status"
 						value="#{preceptorPresencePanel.status}" effect="fade"
 						filter="true" filterMatchMode="contains">
@@ -39,13 +39,13 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel for="fullName"
-						value="#{sgr_translation.form_person_fullName}:" />
+						value="#{sgr_translation.form_person_fullName}" />
 					<p:inputText id="fullName"
 						label="#{sgr_translation.form_person_fullName}"
 						value="#{preceptorPresencePanel.studentFullName}" />
 
 					<p:outputLabel for="date"
-						value="#{sgr_translation.form_presence_date}:" />
+						value="#{sgr_translation.form_presence_date}" />
 					<p:calendar id="date" label="#{sgr_translation.form_presence_date}"
 						value="#{preceptorPresencePanel.date}" pattern="yyyy-MM-dd" />
 				</p:panelGrid>

@@ -75,7 +75,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true">
@@ -83,7 +83,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.entity.person.lastName}" required="true">
@@ -91,7 +91,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
@@ -104,7 +104,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{studentPanel.entity.account.validTo}"
@@ -114,7 +114,7 @@
 							</p:calendar>
 
 							<p:outputLabel for="userName"
-								value="#{sgr_translation.form_account_userName}:" />
+								value="#{sgr_translation.form_account_userName}" />
 							<p:inputText id="userName"
 								label="#{sgr_translation.form_account_userName}"
 								value="#{studentPanel.entity.account.userName}" required="true">
@@ -123,7 +123,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="password"
-								value="#{sgr_translation.form_account_password}:" />
+								value="#{sgr_translation.form_account_password}" />
 							<p:inputText id="password"
 								label="#{sgr_translation.form_account_password}"
 								value="#{studentPanel.entity.account.password}" required="true">
@@ -142,7 +142,7 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"
-								value="#{sgr_translation.form_class}:" />
+								value="#{sgr_translation.form_class}" />
 							<p:selectOneMenu id="classGroup"
 								label="#{sgr_translation.form_class}" required="true"
 								value="#{studentPanel.entity.classGroup}" effect="fade"
@@ -191,7 +191,7 @@
 					<p:panel id="personal" header="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:inputText id="firstName"
 								label="#{sgr_translation.form_person_firstName}"
 								value="#{studentPanel.entity.person.firstName}" required="true">
@@ -199,7 +199,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:inputText id="lastName"
 								label="#{sgr_translation.form_person_lastName}"
 								value="#{studentPanel.entity.person.lastName}" required="true">
@@ -207,7 +207,7 @@
 							</p:inputText>
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:calendar id="birthDate" navigator="true"
 								label="#{sgr_translation.form_person_birthDate}"
 								value="#{studentPanel.entity.person.birthDate}"
@@ -220,7 +220,7 @@
 					<p:panel id="account" header="#{sgr_translation.form_account}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="validTo"
-								value="#{sgr_translation.form_account_validTo}:" />
+								value="#{sgr_translation.form_account_validTo}" />
 							<p:calendar id="validTo"
 								label="#{sgr_translation.form_account_validTo}"
 								value="#{studentPanel.entity.account.validTo}"
@@ -234,7 +234,7 @@
 					<p:panel id="other" header="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="classGroup"
-								value="#{sgr_translation.form_class}:" />
+								value="#{sgr_translation.form_class}" />
 							<p:selectOneMenu id="classGroup"
 								label="#{sgr_translation.form_class}" required="true"
 								value="#{studentPanel.entity.classGroup}" effect="fade"
@@ -287,7 +287,7 @@
 
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="class" value="#{sgr_translation.form_class}:" />
+							<p:outputLabel for="class" value="#{sgr_translation.form_class}" />
 							<p:outputLabel id="class"
 								value="#{studentPanel.entity.classGroup.className}" />
 						</p:panelGrid>

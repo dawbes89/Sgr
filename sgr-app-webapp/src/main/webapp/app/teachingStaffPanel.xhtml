@@ -54,22 +54,22 @@
 					<p:fieldset id="personal" legend="#{sgr_translation.form_person}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="firstName"
-								value="#{sgr_translation.form_person_firstName}:" />
+								value="#{sgr_translation.form_person_firstName}" />
 							<p:outputLabel id="firstName"
 								value="#{teachingStaffPanel.entity.person.firstName}" />
 
 							<p:outputLabel for="lastName"
-								value="#{sgr_translation.form_person_lastName}:" />
+								value="#{sgr_translation.form_person_lastName}" />
 							<p:outputLabel id="lastName"
 								value="#{teachingStaffPanel.entity.person.lastName}" />
 
 							<p:outputLabel for="age"
-								value="#{sgr_translation.form_person_age}:" />
+								value="#{sgr_translation.form_person_age}" />
 							<p:outputLabel id="age"
 								value="#{teachingStaffPanel.entity.person.age}" />
 
 							<p:outputLabel for="birthDate"
-								value="#{sgr_translation.form_person_birthDate}:" />
+								value="#{sgr_translation.form_person_birthDate}" />
 							<p:outputLabel id="birthDate"
 								value="#{teachingStaffPanel.entity.person.birthDate}"
 								converter="yearConverter" />
@@ -79,18 +79,18 @@
 					<p:fieldset id="other" legend="#{sgr_translation.form_other}">
 						<p:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel for="shoolSubject"
-								value="#{sgr_translation.form_teachingStaff_schoolSubject}:" />
+								value="#{sgr_translation.form_teachingStaff_schoolSubject}" />
 							<p:outputLabel id="shoolSubject"
 								value="#{teachingStaffPanel.entity.schoolSubject}"
 								converter="schoolSubjectTranslationConverter" />
 
 							<p:outputLabel for="academicTitle"
-								value="#{sgr_translation.form_teachingStaff_academicTitle}:" />
+								value="#{sgr_translation.form_teachingStaff_academicTitle}" />
 							<p:outputLabel id="academicTitle"
 								value="#{teachingStaffPanel.entity.academicTitle}" />
 
 							<p:outputLabel for="class"
-								value="#{sgr_translation.form_teachingStaff_preceptor}:" />
+								value="#{sgr_translation.form_teachingStaff_preceptor}" />
 							<p:outputLabel id="class"
 								value="#{teachingStaffPanel.entity.preceptorClass.className}" />
 						</p:panelGrid>

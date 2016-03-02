@@ -70,7 +70,7 @@
 					<p:messages id="msgs" />
 
 					<p:outputLabel for="title"
-						value="#{sgr_translation.form_announcement_title}:" />
+						value="#{sgr_translation.form_announcement_title}" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						label="#{sgr_translation.form_announcement_title}" required="true"
 						size="51">
@@ -78,7 +78,7 @@
 					</p:inputText>
 
 					<p:outputLabel for="content"
-						value="#{sgr_translation.form_announcement_content}:" />
+						value="#{sgr_translation.form_announcement_content}" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}"
 						label="#{sgr_translation.form_announcement_content}"
@@ -117,14 +117,14 @@
 					<p:messages id="msgs" />
 
 					<h:outputLabel for="title"
-						value="#{sgr_translation.form_announcement_title}:" />
+						value="#{sgr_translation.form_announcement_title}" />
 					<p:inputText id="title" value="#{announcementPanel.entity.title}"
 						required="true">
 						<f:validateLength minimum="5" maximum="100" />
 					</p:inputText>
 
 					<h:outputLabel for="content"
-						value="#{sgr_translation.form_announcement_content}:" />
+						value="#{sgr_translation.form_announcement_content}" />
 					<p:inputTextarea id="content"
 						value="#{announcementPanel.entity.content}" required="true"
 						rows="10" cols="50">
