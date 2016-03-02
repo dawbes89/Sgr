@@ -17,7 +17,7 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingStuff.SchoolSubject;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -41,7 +41,7 @@ public class PreceptorStudentPanel extends AbstractPanel<Student>
    @Autowired
    private AssessmentService assessmentService;
 
-   private TeachingStuff currentLoggedTeacher;
+   private TeachingStaff currentLoggedTeacher;
 
    private ClassGroup classGroup;
 

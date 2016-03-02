@@ -9,34 +9,34 @@ import org.springframework.beans.factory.annotation.Required;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
-import sgr.app.api.teachingStuff.TeachingStuff;
-import sgr.app.api.teachingStuff.TeachingStuffService;
+import sgr.app.api.teachingStuff.TeachingStaff;
+import sgr.app.api.teachingStuff.TeachingStaffService;
 import sgr.app.core.DaoSupport;
 
 /**
  * @author dawbes89
  */
-class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffService
+class TeachingStuffServiceImpl extends DaoSupport implements TeachingStaffService
 {
 
    private AccountService accountService;
 
    @Override
-   public List<TeachingStuff> search()
+   public List<TeachingStaff> search()
    {
-      Criteria criteria = createCriteria(TeachingStuff.class);
-      criteria.addOrder(Order.desc(TeachingStuff.PROPERTY_ID));
+      Criteria criteria = createCriteria(TeachingStaff.class);
+      criteria.addOrder(Order.desc(TeachingStaff.PROPERTY_ID));
       return search(criteria);
    }
 
    @Override
-   public TeachingStuff get(Long id)
+   public TeachingStaff get(Long id)
    {
-      return getEntity(TeachingStuff.class, id);
+      return getEntity(TeachingStaff.class, id);
    }
 
    @Override
-   public void create(TeachingStuff teachingStuff)
+   public void create(TeachingStaff teachingStuff)
    {
       final Account account = teachingStuff.getAccount();
       account.setType(AccountType.TEACHER);
@@ -47,11 +47,11 @@ class TeachingStuffServiceImpl extends DaoSupport implements TeachingStuffServic
    @Override
    public void remove(Long id)
    {
-      removeEntity(TeachingStuff.class, id);
+      removeEntity(TeachingStaff.class, id);
    }
 
    @Override
-   public void update(TeachingStuff teachingStuff)
+   public void update(TeachingStaff teachingStuff)
    {
       updateEntity(teachingStuff);
    }

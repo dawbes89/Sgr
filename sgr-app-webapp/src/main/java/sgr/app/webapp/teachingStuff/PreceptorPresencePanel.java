@@ -13,7 +13,7 @@ import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.presence.PresenceStatus;
 import sgr.app.api.teachingStuff.SchoolSubject;
-import sgr.app.api.teachingStuff.TeachingStuff;
+import sgr.app.api.teachingStuff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**
@@ -31,7 +31,7 @@ public class PreceptorPresencePanel extends AbstractPanel<Presence>
    @Autowired
    private PresenceService presenceService;
 
-   private TeachingStuff currentLoggedTeacher;
+   private TeachingStaff currentLoggedTeacher;
 
    private List<Presence> presences;
 
