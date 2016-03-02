@@ -1,4 +1,4 @@
-package sgr.app.api.teachingStuff;
+package sgr.app.api.teachingstaff;
 
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ import sgr.app.api.person.PersonName;
  * @author dawbes89
  */
 @Entity
-@Table(name = "teaching_stuff")
+@Table(name = "teaching_staff")
 public class TeachingStaff implements PersonName, AccountEntity, Serializable
 {
 
@@ -45,19 +45,19 @@ public class TeachingStaff implements PersonName, AccountEntity, Serializable
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_stuff_person_id_fk") )
+         foreignKey = @ForeignKey(name = "teaching_staff_person_id_fk") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_stuff_account_id_fk") )
+         foreignKey = @ForeignKey(name = "teaching_staff_account_id_fk") )
    private Account account = new Account();
 
    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
          fetch = FetchType.EAGER)
    @JoinColumn(name = "preceptor_class_id", nullable = true, unique = true,
          referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_stuff_preceptor_class_id_fk") )
+         foreignKey = @ForeignKey(name = "teaching_staff_preceptor_class_id_fk") )
    private ClassGroup preceptorClass = new ClassGroup();
 
    @Enumerated(EnumType.STRING)

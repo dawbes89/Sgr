@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import sgr.app.api.classgroup.ClassGroup;
-import sgr.app.api.teachingStuff.SchoolSubject;
+import sgr.app.api.teachingstaff.SchoolSubject;
 
 /**
  * Entity for lessons.

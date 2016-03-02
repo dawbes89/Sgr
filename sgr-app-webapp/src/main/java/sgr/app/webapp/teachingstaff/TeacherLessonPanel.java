@@ -1,4 +1,4 @@
-package sgr.app.webapp.teachingStuff;
+package sgr.app.webapp.teachingstaff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import sgr.app.api.presence.PresenceStatus;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.api.teachingStuff.TeachingStaff;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**

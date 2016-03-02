@@ -1,4 +1,4 @@
-package sgr.app.core.teachingStuff;
+package sgr.app.core.teachingstaff;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Required;
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountService;
 import sgr.app.api.account.AccountType;
-import sgr.app.api.teachingStuff.TeachingStaff;
-import sgr.app.api.teachingStuff.TeachingStaffService;
+import sgr.app.api.teachingstaff.TeachingStaff;
+import sgr.app.api.teachingstaff.TeachingStaffService;
 import sgr.app.core.DaoSupport;
 
 /**
  * @author dawbes89
  */
-class TeachingStuffServiceImpl extends DaoSupport implements TeachingStaffService
+class TeachingStaffServiceImpl extends DaoSupport implements TeachingStaffService
 {
 
    private AccountService accountService;

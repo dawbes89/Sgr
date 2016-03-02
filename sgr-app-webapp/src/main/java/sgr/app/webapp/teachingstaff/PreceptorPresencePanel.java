@@ -1,4 +1,4 @@
-package sgr.app.webapp.teachingStuff;
+package sgr.app.webapp.teachingstaff;
 
 import java.util.Date;
 import java.util.List;
@@ -12,8 +12,8 @@ import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceQuery;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.presence.PresenceStatus;
-import sgr.app.api.teachingStuff.SchoolSubject;
-import sgr.app.api.teachingStuff.TeachingStaff;
+import sgr.app.api.teachingstaff.SchoolSubject;
+import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.frontend.panels.AbstractPanel;
 
 /**

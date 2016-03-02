@@ -31,7 +31,7 @@
       <property name="adminService" ref="adminService" />
    </bean>
 
-   <bean id="teachingStuffService" class="sgr.app.core.teachingStuff.TeachingStuffServiceImpl">
+   <bean id="teachingStaffService" class="sgr.app.core.teachingstaff.TeachingStaffServiceImpl">
       <property name="sessionFactory" ref="sessionFactory" />
       <property name="accountService" ref="accountService" />
    </bean>
