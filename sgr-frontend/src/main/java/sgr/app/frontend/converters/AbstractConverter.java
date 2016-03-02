@@ -36,11 +36,12 @@ public abstract class AbstractConverter<T> implements Converter
       {
          return null;
       }
-      return convertToString(value);
+      return convertToString(value, component);
    }
 
    protected abstract T convertToObject(String value);
 
-   protected abstract String convertToString(Object object);
+
+   protected abstract String convertToString(Object object, UIComponent component);
 
 }
