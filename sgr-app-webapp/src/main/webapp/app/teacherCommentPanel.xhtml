@@ -37,12 +37,10 @@
 					<p:dataTable id="table" var="student"
 						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 						value="#{teacherCommentPanel.entities}">
-						<p:column headerText="#{sgr_translation.form_person_firstName}"
-							filterBy="#{student.person.firstName}" filterMatchMode="contains">
+						<p:column headerText="#{sgr_translation.form_person_firstName}">
 							<p:outputLabel value="#{student.person.firstName}" />
 						</p:column>
-						<p:column headerText="#{sgr_translation.form_person_lastName}"
-							filterBy="#{student.person.lastName}" filterMatchMode="contains">
+						<p:column headerText="#{sgr_translation.form_person_lastName}">
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
 						<p:column width="40">
@@ -59,11 +57,10 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<p:dialog widgetVar="addDialog"
-			header="#{sgr_translation.common_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="750px" height="500px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)"
-			focus=":add:content">
+		<p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="750px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" focus=":add:content">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1">
 					<p:messages id="msgs" />
@@ -75,8 +72,7 @@
 							<p:outputLabel id="student"
 								value="#{teacherCommentPanel.entity.fullName}" />
 
-							<p:outputLabel for="type"
-								value="#{sgr_translation.common_type}" />
+							<p:outputLabel for="type" value="#{sgr_translation.common_type}" />
 							<p:selectOneMenu id="type"
 								value="#{teacherCommentPanel.comment.commentType}"
 								var="commentType" required="true">
@@ -128,8 +124,7 @@
 								width="110">
 								<p:outputLabel value="#{comment.date}" converter="yearConverter" />
 							</p:column>
-							<p:column headerText="#{sgr_translation.common_type}"
-								width="110">
+							<p:column headerText="#{sgr_translation.common_type}" width="110">
 								<p:outputLabel value="#{comment.commentType}"
 									converter="commentTypeTranslationConverter" />
 							</p:column>

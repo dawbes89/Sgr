@@ -47,22 +47,18 @@
 						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 						value="#{teacherAssessmentPanel.entities}">
 						<p:column width="40">
-							<p:commandButton title="#{sgr_translation.button_assessments}"
+							<p:commandButton title="#{sgr_translation.common_assessments}"
 								update=":add:panel" oncomplete="PF('addDialog').show()"
 								icon="ui-icon-pencil">
 								<f:setPropertyActionListener value="#{student}"
 									target="#{teacherAssessmentPanel.entity}" />
 							</p:commandButton>
 						</p:column>
-						<p:column headerText="#{sgr_translation.form_person_firstName}"
-							filterBy="#{student.person.firstName}" filterMatchMode="contains">
-							<p:outputLabel value="#{student.person.firstName}" />
+						<p:column headerText="#{sgr_translation.form_person_fullName}">
+							<p:outputLabel value="#{student.fullName}" />
 						</p:column>
-						<p:column headerText="#{sgr_translation.form_person_lastName}"
-							filterBy="#{student.person.lastName}" filterMatchMode="contains">
-							<p:outputLabel value="#{student.person.lastName}" />
-						</p:column>
-						<p:column headerText="#{sgr_translation.form_assessments}" width="800">
+						<p:column headerText="#{sgr_translation.common_assessments}"
+							width="800">
 							<p:outputLabel value="#{student.id}">
 								<f:converter converterId="assessmentListConverter" />
 								<f:attribute name="schoolSubject"
@@ -75,11 +71,10 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<p:dialog widgetVar="addDialog"
-			header="#{sgr_translation.common_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="750px" height="500px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)"
-			focus=":add:student">
+		<p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="750px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" focus=":add:student">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1">
 					<p:messages id="msgs" />
@@ -92,8 +87,7 @@
 							<p:outputLabel id="student"
 								value="#{teacherAssessmentPanel.entity.fullName}" />
 
-							<p:outputLabel for="type"
-								value="#{sgr_translation.common_type}" />
+							<p:outputLabel for="type" value="#{sgr_translation.common_type}" />
 							<p:selectOneMenu id="type"
 								value="#{teacherAssessmentPanel.assessment.assessmentType}"
 								var="assessmentType" required="true">
@@ -160,8 +154,7 @@
 							emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 							value="#{teacherAssessmentPanel.assessments}" editable="false"
 							cellSeparator="true">
-							<p:column
-								headerText="#{sgr_translation.common_addingDate}"
+							<p:column headerText="#{sgr_translation.common_addingDate}"
 								width="110">
 								<p:outputLabel value="#{assessment.date}"
 									converter="yearConverter" style="float:right" />
@@ -171,8 +164,7 @@
 								<p:outputLabel value="#{assessment.assessment}"
 									converter="assessmentConverter" style="float:right" />
 							</p:column>
-							<p:column headerText="#{sgr_translation.common_type}"
-								width="110">
+							<p:column headerText="#{sgr_translation.common_type}" width="110">
 								<p:outputLabel value="#{assessment.assessmentType}"
 									converter="assessmentTypeTranslationConverter"
 									style="float:right" />
