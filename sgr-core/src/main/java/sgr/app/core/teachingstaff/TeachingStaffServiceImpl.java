@@ -36,12 +36,12 @@ class TeachingStaffServiceImpl extends DaoSupport implements TeachingStaffServic
    }
 
    @Override
-   public void create(TeachingStaff teachingStuff)
+   public void create(TeachingStaff teachingStaff)
    {
-      final Account account = teachingStuff.getAccount();
+      final Account account = teachingStaff.getAccount();
       account.setType(AccountType.TEACHER);
-      teachingStuff.setAccount(accountService.createAccount(account));
-      createEntity(teachingStuff);
+      teachingStaff.setAccount(accountService.createAccount(account));
+      createEntity(teachingStaff);
    }
 
    @Override
@@ -51,9 +51,9 @@ class TeachingStaffServiceImpl extends DaoSupport implements TeachingStaffServic
    }
 
    @Override
-   public void update(TeachingStaff teachingStuff)
+   public void update(TeachingStaff teachingStaff)
    {
-      updateEntity(teachingStuff);
+      updateEntity(teachingStaff);
    }
 
    @Required
