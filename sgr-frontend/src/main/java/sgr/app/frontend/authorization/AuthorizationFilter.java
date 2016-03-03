@@ -52,10 +52,13 @@ public class AuthorizationFilter implements Filter
       final String mainURL = String.format(URL_FORMAT, request.getContextPath(),
             AuthenticationService.MAIN_PAGE);
 
-      if (user != null && request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE))
+      final boolean validRequestPath = request.getRequestURI().startsWith(request.getContextPath())
+            && request.getRequestURI().endsWith("/");
+
+      if (user != null && (request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE)
+            || validRequestPath))
       {
          response.sendRedirect(mainURL);
-         chain.doFilter(request, response);
          return;
       }
 

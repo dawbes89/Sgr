@@ -50,13 +50,13 @@
 		</p:panel>
 
 		<p:dialog widgetVar="commentDialog"
-			header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="1250px"
-			height="500px" closable="false" draggable="false" modal="true"
-			appendTo="@(body)">
+			header="#{sgr_translation.common_comments}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="1250px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)">
 			<h:form id="commentDetails">
 				<p:panelGrid id="panel" columns="1">
-					<p:panel header="#{sgr_translation.common_comments}">
+					<p:panel
+						header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}">
 						<ui:include src="studentCommentTable.xhtml">
 							<ui:param name="comments"
 								value="#{preceptorStudentPanel.comments}" />
@@ -72,10 +72,9 @@
 		</p:dialog>
 
 		<p:dialog widgetVar="assessmentDialog"
-			header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="1250px"
-			height="500px" closable="false" draggable="false" modal="true"
-			appendTo="@(body)">
+			header="#{sgr_translation.common_assessments}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="1250px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)">
 			<h:form id="assessmentDetails">
 				<p:panelGrid id="panel" columns="1">
 					<p:panelGrid columns="3" columnClasses="label, value">
@@ -87,12 +86,11 @@
 						<p:commandButton value="#{sgr_translation.common_search}"
 							action="#{preceptorStudentPanel.getAssessments}"
 							update=":assessmentDetails:assessemetsPanel">
-
 						</p:commandButton>
 					</p:panelGrid>
 
 					<p:panel id="assessemetsPanel"
-						header="#{sgr_translation.common_assessments}">
+						header="#{sgr_translation.form_studentName} #{preceptorStudentPanel.entity.fullName}">
 						<p:outputLabel
 							value="#{sgr_translation.form_assessment_averageAssessments}: " />
 						<p:outputLabel value="#{preceptorStudentPanel.averageAssessments}"
@@ -112,8 +110,6 @@
 				</p:panelGrid>
 			</h:form>
 		</p:dialog>
-
-
 	</ui:define>
 
 </ui:composition>
