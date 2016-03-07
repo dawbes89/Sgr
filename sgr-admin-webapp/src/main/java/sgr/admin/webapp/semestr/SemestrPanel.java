@@ -39,12 +39,14 @@ public class SemestrPanel extends AbstractPanel<Semestr>implements EditablePanel
       {
          semestrService.create(entity);
          requestContextExecute(HIDE_ADD_DIALOG_ACTION);
-         entity = new Semestr();
          onLoad();
       }
       catch (CreateException e)
       {
          showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
+      }
+      finally
+      {
          entity = new Semestr();
       }
    }

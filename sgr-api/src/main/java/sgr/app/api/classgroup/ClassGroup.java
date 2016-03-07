@@ -1,8 +1,6 @@
 package sgr.app.api.classgroup;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +22,7 @@ public class ClassGroup implements Serializable
    public static final String PROPERTY_ID = "id";
    public static final String PROPERTY_GROUP_NUMBER = "groupNumber";
    public static final String PROPERTY_GROUP_NAME = "groupName";
-   public static final String PROPERTY_YEAR = "year";
+   public static final String PROPERTY_YEARBOOK = "yearbook";
 
    @Id
    @Column(name = "id")
@@ -37,8 +35,8 @@ public class ClassGroup implements Serializable
    @Column(name = "group_name", length = 1, nullable = false, updatable = false)
    private String groupName;
 
-   @Column(name = "year", nullable = false, updatable = false)
-   private Date year;
+   @Column(name = "yearbook", nullable = false, updatable = false, length = 9)
+   private String yearbook;
 
    public Long getId()
    {
@@ -70,19 +68,14 @@ public class ClassGroup implements Serializable
       this.groupName = groupName;
    }
 
-   public Date getYear()
+   public String getYearbook()
    {
-      return year;
+      return yearbook;
    }
 
-   public void setYear(Date year)
+   public void setYearbook(String yearbook)
    {
-      this.year = year;
-   }
-
-   public String getFormattedYear()
-   {
-      return new SimpleDateFormat("yyyy").format(year);
+      this.yearbook = yearbook;
    }
 
    public String getClassName()

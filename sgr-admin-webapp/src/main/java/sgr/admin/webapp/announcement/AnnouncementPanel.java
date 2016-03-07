@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import sgr.app.api.announcement.Announcement;
 import sgr.app.api.announcement.AnnouncementService;
+import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.frontend.panels.AbstractPanel;
 import sgr.app.frontend.panels.EditablePanel;
 
@@ -23,6 +24,9 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    @Autowired
    private AnnouncementService announcementService;
 
+   @Autowired
+   private AuthenticationService authenticationService;
+
    @Override
    public void init()
    {
@@ -39,6 +43,7 @@ public class AnnouncementPanel extends AbstractPanel<Announcement>
    @Override
    public void create()
    {
+      entity.setAdmin(authenticationService.getCurrentUser());
       announcementService.create(entity);
       entity = new Announcement();
       onLoad();
