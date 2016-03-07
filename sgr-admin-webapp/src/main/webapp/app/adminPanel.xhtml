@@ -241,6 +241,10 @@
 							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
 							<p:ajax event="dialogReturn" listener="#{adminPanel.update}" />
 						</p:commandButton>
+						<p:commandButton value="#{sgr_translation.form_button_clear}"
+							update=":update:panel" process="@this" icon="ui-icon-close">
+							<p:resetInput target=":update:panel" />
+						</p:commandButton>
 						<p:commandButton value="#{sgr_translation.form_button_cancel}"
 							update=":update:panel" process="@this" icon="ui-icon-cancel"
 							oncomplete="PF('updateDialog').hide()">
