@@ -13,11 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
 import sgr.app.api.person.Person;
+import sgr.app.api.person.PersonName;
 
 /**
  * Entity representing administrators.
@@ -29,7 +31,7 @@ import sgr.app.api.person.Person;
       uniqueConstraints = {
             @UniqueConstraint(columnNames = { "person_id" }, name = "admin_person_id_uk"),
             @UniqueConstraint(columnNames = { "account_id" }, name = "admin_account_id_uk") })
-public class Admin implements AccountEntity, Serializable
+public class Admin implements PersonName, AccountEntity, Serializable
 {
 
    private static final long serialVersionUID = -3977084256453665930L;
@@ -93,6 +95,17 @@ public class Admin implements AccountEntity, Serializable
    public void setSuperuser(boolean superuser)
    {
       this.superuser = superuser;
+   }
+
+   @Transient
+   @Override
+   public String getFullName()
+   {
+      if (person == null)
+      {
+         return null;
+      }
+      return String.format("%s %s", person.getFirstName(), person.getLastName());
    }
 
 }

@@ -17,7 +17,7 @@ import sgr.app.frontend.panels.EditablePanel;
  * @author leonzio
  */
 @Controller
-public class ClassGroupPanel extends AbstractPanel<ClassGroup>implements EditablePanel<ClassGroup>
+public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements EditablePanel<ClassGroup>
 {
 
    private static final long serialVersionUID = 1665393811406612606L;

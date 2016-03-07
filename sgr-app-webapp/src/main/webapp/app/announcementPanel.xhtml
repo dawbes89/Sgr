@@ -13,12 +13,8 @@
 			<p:dataScroller id="announcements"
 				value="#{announcementPanel.entities}" var="announcement"
 				chunkSize="10">
-				<f:facet name="header">
-					<p:outputLabel
-						value="#{sgr_app_translation.menu_horizontal_announcement}" />
-				</f:facet>
 				<p:panel header="#{announcement.title}"
-					footer="#{announcement.formattedDate}">
+					footer="#{sgr_translation.common_added}: #{announcement.formattedDate}, #{announcement.admin.fullName}">
 					<p:outputLabel value="#{announcement.content}"
 						style="font-margin: 3px" />
 				</p:panel>

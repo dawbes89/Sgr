@@ -3,12 +3,19 @@ package sgr.app.api.announcement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import sgr.app.api.admin.Admin;
 
 /**
  * Entity for announcements.
@@ -37,6 +44,12 @@ public class Announcement
 
    @Column(name = "content", nullable = false)
    private String content;
+
+   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
+         fetch = FetchType.EAGER)
+   @JoinColumn(name = "admin_id", nullable = false, referencedColumnName = "id",
+         foreignKey = @ForeignKey(name = "announcement_admin_id_fk") )
+   private Admin admin;
 
    public Long getId()
    {
@@ -81,6 +94,16 @@ public class Announcement
    public void setcontent(String content)
    {
       this.content = content;
+   }
+
+   public Admin getAdmin()
+   {
+      return admin;
+   }
+
+   public void setAdmin(Admin admin)
+   {
+      this.admin = admin;
    }
 
 }

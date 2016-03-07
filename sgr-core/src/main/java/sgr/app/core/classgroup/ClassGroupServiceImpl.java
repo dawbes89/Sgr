@@ -1,5 +1,6 @@
 package sgr.app.core.classgroup;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,10 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    @Override
    public List<ClassGroup> search(ClassGroupQuery query)
    {
-      Criteria criteria = createCriteria(query);
+      final Criteria criteria = createCriteria(query);
+      criteria.addOrder(Order.asc(ClassGroup.PROPERTY_GROUP_NUMBER))
+            .addOrder(Order.asc(ClassGroup.PROPERTY_GROUP_NAME))
+            .addOrder(Order.asc(ClassGroup.PROPERTY_YEARBOOK));
       return search(criteria);
    }
 
@@ -40,7 +44,7 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
       {
          throw new CreateException("exception_classGroup_exists", FacesMessage.SEVERITY_ERROR);
       }
-      classGroup.setYear(new Date());
+      classGroup.setYearbook(currentSchoolYear());
       createEntity(classGroup);
    }
 
@@ -80,8 +84,6 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
    private Criteria createCriteria(ClassGroupQuery query)
    {
       final Criteria criteria = createCriteria(ClassGroup.class);
-      criteria.addOrder(Order.asc("groupNumber")).addOrder(Order.asc("groupName"))
-            .addOrder(Order.asc("year"));
       if (query.hasClassId())
       {
          criteria.add(Restrictions.sqlRestriction(
@@ -102,6 +104,15 @@ class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
          criteria.add(Restrictions.eq(ClassGroup.PROPERTY_GROUP_NAME, query.getGroupName()));
       }
       return criteria;
+   }
+
+   private String currentSchoolYear()
+   {
+      final Calendar cal = Calendar.getInstance();
+      cal.setTime(new Date());
+      final int currentYear = cal.get(Calendar.YEAR);
+      final String schoolYear = String.format("%4d/%4d", currentYear, currentYear + 1);
+      return schoolYear;
    }
 
 }
