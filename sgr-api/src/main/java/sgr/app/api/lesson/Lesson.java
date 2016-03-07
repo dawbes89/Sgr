@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.teachingstaff.SchoolSubject;
@@ -26,7 +27,10 @@ import sgr.app.api.teachingstaff.SchoolSubject;
  * @author dawbes89
  */
 @Entity
-@Table(name = "lesson")
+@Table(name = "lesson",
+      uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "lesson_number", "date", "class_group_id" },
+                  name = "lesson_number_in_day_for_class_uk") })
 public class Lesson implements Serializable
 {
 
@@ -44,7 +48,7 @@ public class Lesson implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "lesson_number", nullable = false, updatable = false , precision = 1)
+   @Column(name = "lesson_number", nullable = false, updatable = false, precision = 1)
    private int lessonNumber;
 
    @Column(name = "subject_number", nullable = false, updatable = false)

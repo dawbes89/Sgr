@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
@@ -29,7 +30,13 @@ import sgr.app.api.person.PersonName;
  * @author dawbes89
  */
 @Entity
-@Table(name = "teaching_staff")
+@Table(name = "teaching_staff",
+      uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "person_id" }, name = "teaching_staff_person_id_uk"),
+            @UniqueConstraint(columnNames = { "account_id" },
+                  name = "teaching_staff_account_id_uk"),
+      @UniqueConstraint(columnNames = { "preceptor_class_id" },
+            name = "teaching_staff_preceptor_class_id_uk") })
 public class TeachingStaff implements PersonName, AccountEntity, Serializable
 {
 
@@ -44,19 +51,18 @@ public class TeachingStaff implements PersonName, AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "person_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "teaching_staff_person_id_fk") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "teaching_staff_account_id_fk") )
    private Account account = new Account();
 
    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
          fetch = FetchType.EAGER)
-   @JoinColumn(name = "preceptor_class_id", nullable = true, unique = true,
-         referencedColumnName = "id",
+   @JoinColumn(name = "preceptor_class_id", nullable = true, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "teaching_staff_preceptor_class_id_fk") )
    private ClassGroup preceptorClass = new ClassGroup();
 

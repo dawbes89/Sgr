@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Account entity.
@@ -18,7 +19,8 @@ import javax.persistence.Table;
  * @author dawbes89
  */
 @Entity
-@Table(name = "account")
+@Table(name = "account", uniqueConstraints = {
+      @UniqueConstraint(columnNames = { "user_name" }, name = "user_name_uk") })
 public class Account implements Serializable
 {
    private static final long serialVersionUID = 5425777781237535276L;
@@ -32,7 +34,7 @@ public class Account implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "user_name", length = 20, unique = true, nullable = false, updatable = false)
+   @Column(name = "user_name", length = 20, nullable = false, updatable = false)
    private String userName;
 
    @Column(name = "password", length = 74, nullable = false)
