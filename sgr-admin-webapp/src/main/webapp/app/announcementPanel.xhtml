@@ -112,6 +112,7 @@
 			showEffect="fold" hideEffect="fold" width="600px" height="500px"
 			closable="false" draggable="false" modal="true" appendTo="@(body)"
 			dynamic="true">
+			<p:ajax event="close" listener="#{annonucementPanel.init()}" />
 			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
@@ -154,6 +155,7 @@
 				widgetVar="detailsDialog" resizable="false" showEffect="clip"
 				hideEffect="clip" width="600px" closable="true" draggable="false"
 				modal="true" appendTo="@(body)" dynamic="true">
+				<p:ajax event="close" listener="#{annonucementPanel.init()}" />
 				<p:fieldset id="panel" legend="#{sgr_translation.form_announcement}"
 					layout="block">
 					<p:panelGrid id="output" columns="2">
@@ -161,8 +163,7 @@
 						<p:outputLabel id="title"
 							value="#{announcementPanel.entity.title}" />
 
-						<p:outputLabel value="#{sgr_translation.common_added}"
-							for="date" />
+						<p:outputLabel value="#{sgr_translation.common_added}" for="date" />
 						<p:outputLabel id="date" value="#{announcementPanel.entity.date}"
 							converter="yearConverter" />
 

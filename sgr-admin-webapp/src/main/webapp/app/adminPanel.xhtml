@@ -65,11 +65,10 @@
 		</h:form>
 
 		<!-- ADD FORM -->
-		<p:dialog widgetVar="addDialog"
-			header="#{sgr_translation.common_add}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="600px" height="500px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)"
-			focus=":add:firstName">
+		<p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
+			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
+			height="500px" closable="false" draggable="false" modal="true"
+			appendTo="@(body)" focus=":add:firstName">
 			<h:form id="add">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
@@ -173,10 +172,11 @@
 
 		<!-- UPDATE FORM -->
 		<p:dialog widgetVar="updateDialog"
-			header="#{sgr_translation.common_update}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="600px"
-			height="500px" closable="false" draggable="false" modal="true"
-			appendTo="@(body)" dynamic="true">
+			header="#{sgr_translation.common_update}" resizable="false"
+			showEffect="fold" hideEffect="fold" width="600px" height="500px"
+			closable="false" draggable="false" modal="true" appendTo="@(body)"
+			dynamic="true">
+			<p:ajax event="close" listener="#{adminPanel.init()}" />
 			<h:form id="update">
 				<p:panelGrid id="panel" columns="1" columnClasses="grid">
 					<p:messages id="msgs" />
@@ -258,6 +258,7 @@
 				resizable="false" showEffect="clip" hideEffect="clip" width="600px"
 				closable="true" draggable="false" modal="true" appendTo="@(body)"
 				dynamic="true">
+				<p:ajax event="close" listener="#{adminPanel.init()}" />
 				<p:panelGrid id="panel" columns="1">
 
 					<ui:include src="detailsPanel/personDisplayDetailsFieldset.xhtml">
