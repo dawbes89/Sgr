@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
@@ -16,7 +17,9 @@ import org.hibernate.annotations.Type;
  * @author leonzio
  */
 @Entity
-@Table(name = "semestr")
+@Table(name = "semestr",
+      uniqueConstraints = { @UniqueConstraint(columnNames = { "semestr_number", "school_year" },
+            name = "semestr_number_in_school_year_uk") })
 public class Semestr implements Serializable
 {
 

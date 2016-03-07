@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
@@ -28,7 +29,10 @@ import sgr.app.api.person.PersonName;
  * @author leonzio
  */
 @Entity
-@Table(name = "student")
+@Table(name = "student",
+      uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "person_id" }, name = "student_person_id_uk"),
+            @UniqueConstraint(columnNames = { "account_id" }, name = "student_account_id_uk") })
 public class Student implements PersonName, AccountEntity, Serializable
 {
 
@@ -44,12 +48,12 @@ public class Student implements PersonName, AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "person_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "student_person_id_fk") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "student_account_id_fk") )
    private Account account = new Account();
 

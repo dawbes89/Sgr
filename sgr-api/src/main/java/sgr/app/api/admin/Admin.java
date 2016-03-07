@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
@@ -24,7 +25,10 @@ import sgr.app.api.person.Person;
  * @author dawbes89
  */
 @Entity
-@Table(name = "admin")
+@Table(name = "admin",
+      uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "person_id" }, name = "admin_person_id_uk"),
+            @UniqueConstraint(columnNames = { "account_id" }, name = "admin_account_id_uk") })
 public class Admin implements AccountEntity, Serializable
 {
 
@@ -38,12 +42,12 @@ public class Admin implements AccountEntity, Serializable
    private Long id;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "person_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "admin_person_id_fk") )
    private Person person = new Person();
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, unique = true, referencedColumnName = "id",
+   @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "id",
          foreignKey = @ForeignKey(name = "admin_account_id_fk") )
    private Account account = new Account();
 
