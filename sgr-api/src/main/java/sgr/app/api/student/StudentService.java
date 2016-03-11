@@ -9,7 +9,6 @@ import sgr.app.api.exceptions.RemoveException;
  */
 public interface StudentService
 {
-
    List<Student> search(StudentQuery query);
 
    Student get(Long id);
@@ -19,5 +18,4 @@ public interface StudentService
    void remove(Long id) throws RemoveException;
 
    void update(Student student);
-
 }

@@ -23,7 +23,6 @@ import sgr.app.core.DaoSupport;
  */
 class StudentServiceImpl extends DaoSupport implements StudentService
 {
-
    private static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
 
    private AccountService accountService;
@@ -102,5 +101,4 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    {
       this.accountService = accountService;
    }
-
 }

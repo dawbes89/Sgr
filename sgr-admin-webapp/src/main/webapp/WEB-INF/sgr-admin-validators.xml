@@ -15,5 +15,4 @@
          <attribute-class>sgr.app.frontend.validators.DateValidationMode</attribute-class>
       </attribute>
    </validator>
-
 </faces-config>
