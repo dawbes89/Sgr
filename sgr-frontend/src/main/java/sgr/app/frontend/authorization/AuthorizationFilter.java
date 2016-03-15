@@ -26,10 +26,6 @@ public class AuthorizationFilter implements Filter
    private final static String URL_FORMAT = "%s/app/%s.xhtml";
 
    @Override
-   public void init(FilterConfig filterConfig) throws ServletException
-   {}
-
-   @Override
    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
          throws IOException, ServletException
    {
@@ -73,6 +69,10 @@ public class AuthorizationFilter implements Filter
          return;
       }
    }
+
+   @Override
+   public void init(FilterConfig filterConfig) throws ServletException
+   {}
 
    @Override
    public void destroy()

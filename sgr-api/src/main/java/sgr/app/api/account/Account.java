@@ -11,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Type;
 
 /**
  * Account entity.
@@ -48,6 +51,7 @@ public class Account implements Serializable
    private Date created;
 
    @Column(name = "valid_to", nullable = true, updatable = true)
+   @Type(type = "date")
    private Date validTo;
 
    public AccountType getType()
@@ -110,4 +114,9 @@ public class Account implements Serializable
       this.validTo = validTo;
    }
 
+   @Transient
+   public boolean isValid()
+   {
+      return validTo == null ? true : validTo.after(new Date());
+   }
 }

@@ -23,6 +23,7 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="admin" value="#{adminPanel.entities}"
+					rowStyleClass="#{admin.account.valid ? '' : 'account-disabled'}"
 					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 					editable="false">
 					<p:column width="40">
@@ -111,7 +112,7 @@
 								value="#{adminPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />
-								<f:attribute name="validationMode" value="AFTER" />
+								<f:attribute name="validationMode" value="NOT_BEFORE" />
 							</p:calendar>
 
 							<p:outputLabel for="userName"
@@ -219,7 +220,7 @@
 								value="#{adminPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />
-								<f:attribute name="validationMode" value="AFTER" />
+								<f:attribute name="validationMode" value="NOT_BEFORE" />
 							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
