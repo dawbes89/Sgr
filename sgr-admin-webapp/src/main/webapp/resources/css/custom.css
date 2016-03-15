@@ -7,6 +7,10 @@
 	max-width: 500px;
 }
 
+.account-disabled {
+	background: #ff8080 !important;
+}
+
 .ui-panelgrid {
 	width: 100%;
 }

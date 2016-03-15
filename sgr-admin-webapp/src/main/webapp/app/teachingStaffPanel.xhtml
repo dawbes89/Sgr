@@ -22,6 +22,7 @@
 				<p:separator />
 
 				<p:dataTable id="table" var="teachingStaff"
+					rowStyleClass="#{teachingStaff.account.valid ? '' : 'account-disabled'}"
 					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
 					value="#{teachingStaffPanel.entities}" editable="false">
 					<p:column width="40">
@@ -123,7 +124,7 @@
 								value="#{teachingStaffPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />
-								<f:attribute name="validationMode" value="AFTER" />
+								<f:attribute name="validationMode" value="NOT_BEFORE" />
 							</p:calendar>
 
 							<p:outputLabel for="userName"
@@ -258,7 +259,7 @@
 								value="#{teachingStaffPanel.entity.account.validTo}"
 								pattern="yyyy-MM-dd" mask="true">
 								<f:validator validatorId="dateValidator" />
-								<f:attribute name="validationMode" value="AFTER" />
+								<f:attribute name="validationMode" value="NOT_BEFORE" />
 							</p:calendar>
 						</p:panelGrid>
 					</p:panel>
