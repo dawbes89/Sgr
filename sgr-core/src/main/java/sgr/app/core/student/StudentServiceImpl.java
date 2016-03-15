@@ -30,8 +30,8 @@ class StudentServiceImpl extends DaoSupport implements StudentService
    @Override
    public List<Student> search(StudentQuery query)
    {
-      Criteria criteria = createCriteriaFromQuery(query);
-      criteria.addOrder(Order.desc(Student.PROPERTY_ID));
+      final Criteria criteria = createCriteriaFromQuery(query);
+      criteria.addOrder(Order.asc(Student.PROPERTY_CLASS_GROUP));
       return search(criteria);
    }
 
