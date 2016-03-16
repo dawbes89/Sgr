@@ -26,7 +26,7 @@
 							filterBy="#{student.person.lastName}" filterMatchMode="contains">
 							<p:outputLabel value="#{student.person.lastName}" />
 						</p:column>
-						<p:column width="50"
+						<p:column width="40"
 							headerText="#{sgr_translation.common_comments}">
 							<p:commandButton title="#{sgr_translation.common_comments}"
 								update=":commentDetails:panel"
@@ -35,7 +35,7 @@
 									target="#{preceptorStudentPanel.entity}" />
 							</p:commandButton>
 						</p:column>
-						<p:column width="50"
+						<p:column width="40"
 							headerText="#{sgr_translation.common_assessments}">
 							<p:commandButton title="#{sgr_translation.common_assessments}"
 								update=":assessmentDetails:panel"
