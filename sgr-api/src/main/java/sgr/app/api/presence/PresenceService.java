@@ -1,14 +1,15 @@
 package sgr.app.api.presence;
 
 import java.util.List;
+
 /**
  * @author dawbes
  */
 public interface PresenceService
 {
-   void create(Presence presence);
+	void create(Presence presence);
 
-   List<Presence> search(PresenceQuery query);
+	List<Presence> search(PresenceQuery query);
 
-   void update(Presence presence);
+	void update(Presence presence);
 }

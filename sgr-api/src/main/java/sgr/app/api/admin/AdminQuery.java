@@ -1,8 +1,8 @@
 package sgr.app.api.admin;
 
-import java.io.Serializable;
-
 import sgr.app.api.QueryBuilder;
+
+import java.io.Serializable;
 
 /**
  * @author leonzio
@@ -10,38 +10,38 @@ import sgr.app.api.QueryBuilder;
 public class AdminQuery implements Serializable
 {
 
-   private static final long serialVersionUID = -9125547122341562767L;
+	private static final long serialVersionUID = -9125547122341562767L;
 
-   private Long excludedId;
+	private Long excludedId;
 
-   public Long getExcludedId()
-   {
-      return excludedId;
-   }
+	public static Builder all()
+	{
+		return new Builder();
+	}
 
-   public void setExcludedId(Long excludedId)
-   {
-      this.excludedId = excludedId;
-   }
+	public Long getExcludedId()
+	{
+		return excludedId;
+	}
 
-   public static Builder all()
-   {
-      return new Builder();
-   }
+	public void setExcludedId(Long excludedId)
+	{
+		this.excludedId = excludedId;
+	}
 
-   public static class Builder extends QueryBuilder<AdminQuery>
-   {
+	public static class Builder extends QueryBuilder<AdminQuery>
+	{
 
-      protected Builder()
-      {
-         super(new AdminQuery());
-      }
+		protected Builder()
+		{
+			super(new AdminQuery());
+		}
 
-      public Builder withExcludedId(Long id)
-      {
-         query.setExcludedId(id);
-         return this;
-      }
-   }
+		public Builder withExcludedId(Long id)
+		{
+			query.setExcludedId(id);
+			return this;
+		}
+	}
 
 }

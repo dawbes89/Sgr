@@ -1,8 +1,8 @@
 package sgr.app.frontend.converters;
 
-import javax.faces.component.UIComponent;
-
 import sgr.app.api.assessment.AssessmentType;
+
+import javax.faces.component.UIComponent;
 
 /**
  * Converts {@link AssessmentType} enum to translated value.
@@ -11,17 +11,17 @@ import sgr.app.api.assessment.AssessmentType;
  */
 public class AssessmentTypeTranslationConverter extends AbstractTranslationConverter<AssessmentType>
 {
-   @Override
-   protected AssessmentType convertToObject(String value)
-   {
-      return AssessmentType.valueOf(value);
-   }
+	@Override
+	protected AssessmentType convertToObject(String value)
+	{
+		return AssessmentType.valueOf(value);
+	}
 
-   @Override
-   protected String convertToString(Object object, UIComponent component)
-   {
-      final AssessmentType assessmentType = (AssessmentType) object;
-      final String translate = translationService.translate(assessmentType.getLabel());
-      return translate;
-   }
+	@Override
+	protected String convertToString(Object object, UIComponent component)
+	{
+		final AssessmentType assessmentType = (AssessmentType) object;
+		final String translate = translationService.translate(assessmentType.getLabel());
+		return translate;
+	}
 }

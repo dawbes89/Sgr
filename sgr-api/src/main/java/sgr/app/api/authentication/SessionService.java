@@ -11,11 +11,11 @@ import javax.servlet.http.HttpSession;
 public interface SessionService
 {
 
-   HttpSession getSession();
+	HttpSession getSession();
 
-   HttpServletRequest getRequest();
+	HttpServletRequest getRequest();
 
-   <T> T getAttributeValue(String attributeKey) throws NullPointerException;
+	<T> T getAttributeValue(String attributeKey) throws NullPointerException;
 
-   <T> void setAttributeValue(String attributeKey, T attributeValue);
+	<T> void setAttributeValue(String attributeKey, T attributeValue);
 }

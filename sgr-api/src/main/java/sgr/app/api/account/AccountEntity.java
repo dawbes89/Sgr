@@ -6,5 +6,5 @@ package sgr.app.api.account;
 @FunctionalInterface
 public interface AccountEntity
 {
-   Account getAccount();
+	Account getAccount();
 }

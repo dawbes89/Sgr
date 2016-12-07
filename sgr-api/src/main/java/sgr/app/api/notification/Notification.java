@@ -1,21 +1,10 @@
 package sgr.app.api.notification;
 
+import sgr.app.api.student.Student;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import sgr.app.api.student.Student;
 
 /**
  * Entity for notifications for student.
@@ -27,88 +16,88 @@ import sgr.app.api.student.Student;
 public class Notification implements Serializable
 {
 
-   private static final long serialVersionUID = 7334663727763287504L;
+	public static final String PROPERTY_STUDENT = "student";
 
-   public static final String PROPERTY_STUDENT = "student";
-   public static final String PROPERTY_RECEIVED = "received";
+	public static final String PROPERTY_RECEIVED = "received";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	private static final long serialVersionUID = 7334663727763287504L;
 
-   @Column(name = "received", nullable = false, updatable = false)
-   private Date received;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   @Column(name = "title", length = 100, nullable = false, updatable = false)
-   private String title;
+	@Column(name = "received", nullable = false, updatable = false)
+	private Date received;
 
-   @Column(name = "content", length = 255, nullable = false, updatable = false)
-   private String content;
+	@Column(name = "title", length = 100, nullable = false, updatable = false)
+	private String title;
 
-   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "student_id", nullable = false, updatable = false,
-         referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "notification_student_id_fk") )
-   private Student student;
+	@Column(name = "content", length = 255, nullable = false, updatable = false)
+	private String content;
 
-   public static Notification create(String title, String content, Student student)
-   {
-      final Notification notif = new Notification();
-      notif.setTitle(title);
-      notif.setContent(content);
-      notif.setStudent(student);
-      return notif;
-   }
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_id", nullable = false, updatable = false, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "notification_student_id_fk"))
+	private Student student;
 
-   public Long getId()
-   {
-      return id;
-   }
+	public static Notification create(String title, String content, Student student)
+	{
+		final Notification notif = new Notification();
+		notif.setTitle(title);
+		notif.setContent(content);
+		notif.setStudent(student);
+		return notif;
+	}
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public Date getReceived()
-   {
-      return received;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setReceived(Date received)
-   {
-      this.received = received;
-   }
+	public Date getReceived()
+	{
+		return received;
+	}
 
-   public String getTitle()
-   {
-      return title;
-   }
+	public void setReceived(Date received)
+	{
+		this.received = received;
+	}
 
-   public void setTitle(String title)
-   {
-      this.title = title;
-   }
+	public String getTitle()
+	{
+		return title;
+	}
 
-   public String getContent()
-   {
-      return content;
-   }
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
 
-   public void setContent(String content)
-   {
-      this.content = content;
-   }
+	public String getContent()
+	{
+		return content;
+	}
 
-   public Student getStudent()
-   {
-      return student;
-   }
+	public void setContent(String content)
+	{
+		this.content = content;
+	}
 
-   public void setStudent(Student student)
-   {
-      this.student = student;
-   }
+	public Student getStudent()
+	{
+		return student;
+	}
+
+	public void setStudent(Student student)
+	{
+		this.student = student;
+	}
 
 }

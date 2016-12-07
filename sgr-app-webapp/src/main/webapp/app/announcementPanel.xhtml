@@ -1,26 +1,25 @@
 <!DOCTYPE composition>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/app/template.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/app/template.xhtml">
 
-	<ui:define name="content">
-		<h:form id="root">
-			<p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
-				autoRun="true" update=":root:announcements" />
+    <ui:define name="content">
+        <h:form id="root">
+            <p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
+                             autoRun="true" update=":root:announcements"/>
 
-			<p:dataScroller id="announcements"
-				value="#{announcementPanel.entities}" var="announcement"
-				chunkSize="10">
-				<p:panel header="#{announcement.title}"
-					footer="#{sgr_translation.common_added}: #{announcement.formattedDate}, #{announcement.admin.fullName}">
-					<p:outputLabel value="#{announcement.content}"
-						style="font-margin: 3px" />
-				</p:panel>
-				<p:separator />
-			</p:dataScroller>
-		</h:form>
-	</ui:define>
+            <p:dataScroller id="announcements"
+                            value="#{announcementPanel.entities}" var="announcement"
+                            chunkSize="10">
+                <p:panel header="#{announcement.title}"
+                         footer="#{sgr_translation.common_added}: #{announcement.formattedDate}, #{announcement.admin.fullName}">
+                    <p:outputLabel value="#{announcement.content}"
+                                   style="font-margin: 3px"/>
+                </p:panel>
+                <p:separator/>
+            </p:dataScroller>
+        </h:form>
+    </ui:define>
 
 </ui:composition>

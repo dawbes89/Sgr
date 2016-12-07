@@ -1,22 +1,20 @@
 package sgr.app.frontend.panels;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 import sgr.app.api.account.AccountType;
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.exceptions.AuthenticationException;
 import sgr.app.api.exceptions.CustomException;
 import sgr.app.api.translation.TranslationService;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Abstract base for login panels.
@@ -26,72 +24,68 @@ import sgr.app.api.translation.TranslationService;
 public abstract class AbstractLoginPanel implements Serializable
 {
 
-   private static final long serialVersionUID = 8771925513486552329L;
+	private static final long serialVersionUID = 8771925513486552329L;
 
-   private static final String MAIN_PAGE = String.format("/app/%s.xhtml",
-         AuthenticationService.MAIN_PAGE);
+	private static final String MAIN_PAGE = String.format("/app/%s.xhtml", AuthenticationService.MAIN_PAGE);
 
-   @Autowired
-   protected AuthenticationService authenticationService;
+	@Autowired
+	protected AuthenticationService authenticationService;
 
-   @Autowired
-   private TranslationService translationService;
+	@Autowired
+	private TranslationService translationService;
 
-   private LoginBean loginBean;
+	private LoginBean loginBean;
 
-   public AbstractLoginPanel()
-   {
-      SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-   }
+	public AbstractLoginPanel()
+	{
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+	}
 
-   @PostConstruct
-   public void init()
-   {
-      loginBean = new LoginBean();
-   }
+	@PostConstruct
+	public void init()
+	{
+		loginBean = new LoginBean();
+	}
 
-   protected abstract List<AccountType> supportedAccountTypes();
+	protected abstract List<AccountType> supportedAccountTypes();
 
-   public final void checkLogin() throws IOException
-   {
-      try
-      {
-         authenticationService.authenticateUser(loginBean.getUserName(), loginBean.getPassword(),
-               supportedAccountTypes());
-         final ExternalContext externalContext = FacesContext.getCurrentInstance()
-               .getExternalContext();
-         externalContext.redirect(externalContext.getRequestContextPath() + MAIN_PAGE);
-      }
-      catch (AuthenticationException e)
-      {
-         handleException("loginForm", e);
-      }
-   }
+	public final void checkLogin() throws IOException
+	{
+		try
+		{
+			authenticationService.authenticateUser(loginBean.getUserName(), loginBean.getPassword(),
+			                                       supportedAccountTypes());
+			final ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			externalContext.redirect(externalContext.getRequestContextPath() + MAIN_PAGE);
+		} catch (AuthenticationException e)
+		{
+			handleException("loginForm", e);
+		}
+	}
 
-   public final void logout() throws IOException
-   {
-      authenticationService.logoutUser();
-      final ExternalContext externalContext = FacesContext.getCurrentInstance()
-            .getExternalContext();
-      externalContext.redirect(externalContext.getRequestContextPath());
-   }
+	public final void logout() throws IOException
+	{
+		authenticationService.logoutUser();
+		final ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		externalContext.redirect(externalContext.getRequestContextPath());
+	}
 
-   private void handleException(String formId, CustomException throwable)
-   {
-      final String validationMessage = translationService.translate(throwable.getMessage());
-      final FacesMessage message = new FacesMessage(validationMessage);
-      message.setSeverity(throwable.getSeverity());
-      FacesContext.getCurrentInstance().addMessage(formId, message);
-   }
+	private void handleException(String formId, CustomException throwable)
+	{
+		final String validationMessage = translationService.translate(throwable.getMessage());
+		final FacesMessage message = new FacesMessage(validationMessage);
+		message.setSeverity(throwable.getSeverity());
+		FacesContext.getCurrentInstance().addMessage(formId, message);
+	}
 
-   public final LoginBean getLoginBean()
-   {
-      return loginBean;
-   }
+	public final LoginBean getLoginBean()
+	{
+		return loginBean;
+	}
 
-   public final void setLoginBean(LoginBean loginBean)
-   {
-      this.loginBean = loginBean;
-   }
+	public final void setLoginBean(LoginBean loginBean)
+	{
+		this.loginBean = loginBean;
+	}
 
 }

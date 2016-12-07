@@ -1,28 +1,13 @@
 package sgr.app.api.teachingstaff;
 
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
-
 import sgr.app.api.account.Account;
 import sgr.app.api.account.AccountEntity;
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.person.Person;
 import sgr.app.api.person.PersonName;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Entity represents teaching staff.
@@ -30,124 +15,121 @@ import sgr.app.api.person.PersonName;
  * @author dawbes89
  */
 @Entity
-@Table(name = "teaching_staff",
-      uniqueConstraints = {
-            @UniqueConstraint(columnNames = { "person_id" }, name = "teaching_staff_person_id_uk"),
-            @UniqueConstraint(columnNames = { "account_id" },
-                  name = "teaching_staff_account_id_uk"),
-      @UniqueConstraint(columnNames = { "preceptor_class_id" },
-            name = "teaching_staff_preceptor_class_id_uk") })
+@Table(name = "teaching_staff", uniqueConstraints = {@UniqueConstraint(columnNames = {"person_id"},
+		name = "teaching_staff_person_id_uk"), @UniqueConstraint(columnNames = {"account_id"},
+		name = "teaching_staff_account_id_uk"), @UniqueConstraint(columnNames = {"preceptor_class_id"},
+		name = "teaching_staff_preceptor_class_id_uk")})
 public class TeachingStaff implements PersonName, AccountEntity, Serializable
 {
 
-   private static final long serialVersionUID = 1452686849131351842L;
+	public final static String PROPERTY_ID = "id";
 
-   public final static String PROPERTY_ID = "id";
-   public final static String PROPERTY_PRECEPTOR_CLASS = "preceptorClass";
+	public final static String PROPERTY_PRECEPTOR_CLASS = "preceptorClass";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	private static final long serialVersionUID = 1452686849131351842L;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "person_id", nullable = false, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_staff_person_id_fk") )
-   private Person person = new Person();
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_staff_account_id_fk") )
-   private Account account = new Account();
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "person_id", nullable = false, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "teaching_staff_person_id_fk"))
+	private Person person = new Person();
 
-   @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
-         fetch = FetchType.EAGER)
-   @JoinColumn(name = "preceptor_class_id", nullable = true, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "teaching_staff_preceptor_class_id_fk") )
-   private ClassGroup preceptorClass = new ClassGroup();
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "account_id", nullable = false, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "teaching_staff_account_id_fk"))
+	private Account account = new Account();
 
-   @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject", length = 25, nullable = false, updatable = true)
-   private SchoolSubject schoolSubject;
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+	@JoinColumn(name = "preceptor_class_id", nullable = true, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "teaching_staff_preceptor_class_id_fk"))
+	private ClassGroup preceptorClass = new ClassGroup();
 
-   @Column(name = "academic_title", length = 25, nullable = false)
-   private String academicTitle;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "school_subject", length = 25, nullable = false, updatable = true)
+	private SchoolSubject schoolSubject;
 
-   public Long getId()
-   {
-      return id;
-   }
+	@Column(name = "academic_title", length = 25, nullable = false)
+	private String academicTitle;
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public Person getPerson()
-   {
-      return person;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setPerson(Person person)
-   {
-      this.person = person;
-   }
+	public Person getPerson()
+	{
+		return person;
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject;
-   }
+	public void setPerson(Person person)
+	{
+		this.person = person;
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = schoolSubject;
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject;
+	}
 
-   public String getAcademicTitle()
-   {
-      return academicTitle;
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = schoolSubject;
+	}
 
-   public void setAcademicTitle(String academicTitle)
-   {
-      this.academicTitle = academicTitle;
-   }
+	public String getAcademicTitle()
+	{
+		return academicTitle;
+	}
 
-   @Override
-   public Account getAccount()
-   {
-      return account;
-   }
+	public void setAcademicTitle(String academicTitle)
+	{
+		this.academicTitle = academicTitle;
+	}
 
-   public void setAccount(Account account)
-   {
-      this.account = account;
-   }
+	@Override
+	public Account getAccount()
+	{
+		return account;
+	}
 
-   public ClassGroup getPreceptorClass()
-   {
-      return preceptorClass;
-   }
+	public void setAccount(Account account)
+	{
+		this.account = account;
+	}
 
-   public void setPreceptorClass(ClassGroup preceptorClass)
-   {
-      this.preceptorClass = preceptorClass;
-   }
+	public ClassGroup getPreceptorClass()
+	{
+		return preceptorClass;
+	}
 
-   @Transient
-   @Override
-   public String getFullName()
-   {
-      if (person == null)
-      {
-         return null;
-      }
-      return String.format("%s %s", person.getFirstName(), person.getLastName());
-   }
+	public void setPreceptorClass(ClassGroup preceptorClass)
+	{
+		this.preceptorClass = preceptorClass;
+	}
 
-   @Transient
-   public String getTeacherFullName()
-   {
-      return String.format("%s %s %s", academicTitle, person.getFirstName(), person.getLastName());
-   }
+	@Transient
+	@Override
+	public String getFullName()
+	{
+		if (person == null)
+		{
+			return null;
+		}
+		return String.format("%s %s", person.getFirstName(), person.getLastName());
+	}
+
+	@Transient
+	public String getTeacherFullName()
+	{
+		return String.format("%s %s %s", academicTitle, person.getFirstName(), person.getLastName());
+	}
 }

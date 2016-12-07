@@ -10,29 +10,30 @@ import java.io.Serializable;
 public class LoginBean implements Serializable
 {
 
-   private static final long serialVersionUID = 1863958145104759923L;
+	private static final long serialVersionUID = 1863958145104759923L;
 
-   private String userName;
-   private String password;
+	private String userName;
 
-   public String getUserName()
-   {
-      return userName;
-   }
+	private String password;
 
-   public void setUserName(String userName)
-   {
-      this.userName = userName;
-   }
+	public String getUserName()
+	{
+		return userName;
+	}
 
-   public String getPassword()
-   {
-      return password;
-   }
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
 
-   public void setPassword(String password)
-   {
-      this.password = password;
-   }
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 
 }

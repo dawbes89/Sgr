@@ -1,9 +1,9 @@
 package sgr.app.api.semestr;
 
+import sgr.app.api.exceptions.CreateException;
+
 import java.util.List;
 import java.util.Optional;
-
-import sgr.app.api.exceptions.CreateException;
 
 /**
  * @author leonzio
@@ -11,15 +11,15 @@ import sgr.app.api.exceptions.CreateException;
 public interface SemestrService
 {
 
-   List<Semestr> search(SemestrQuery query);
+	List<Semestr> search(SemestrQuery query);
 
-   void create(Semestr semestr) throws CreateException;
+	void create(Semestr semestr) throws CreateException;
 
-   /**
-    * Finds currenlty being semestr.
-    *
-    * @return
-    */
-   Optional<Semestr> findCurrentSemestr();
+	/**
+	 * Finds currently being semestr.
+	 *
+	 * @return semestr
+	 */
+	Optional<Semestr> findCurrentSemestr();
 
 }

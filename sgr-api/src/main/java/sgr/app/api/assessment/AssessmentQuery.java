@@ -1,10 +1,10 @@
 package sgr.app.api.assessment;
 
-import java.io.Serializable;
-import java.util.Optional;
-
 import sgr.app.api.QueryBuilder;
 import sgr.app.api.teachingstaff.SchoolSubject;
+
+import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * @author dawbes
@@ -12,74 +12,75 @@ import sgr.app.api.teachingstaff.SchoolSubject;
 public class AssessmentQuery implements Serializable
 {
 
-   private static final long serialVersionUID = -2253192413793115596L;
+	/**
+	 * For new instances use this.
+	 */
+	public static final AssessmentQuery EMPTY = new AssessmentQuery();
 
-   /**
-    * For new instances use this.
-    */
-   public static final AssessmentQuery EMPTY = new AssessmentQuery();
+	private static final long serialVersionUID = -2253192413793115596L;
 
-   private Optional<Long> studentId = Optional.empty();
-   private Optional<SchoolSubject> schoolSubject = Optional.empty();
+	private Optional<Long> studentId = Optional.empty();
 
-   public Long getStudentId()
-   {
-      return studentId.get();
-   }
+	private Optional<SchoolSubject> schoolSubject = Optional.empty();
 
-   public void setStudentId(Long studentId)
-   {
-      this.studentId = Optional.of(studentId);
-   }
+	public static Builder all()
+	{
+		return new Builder();
+	}
 
-   public boolean hasStudentId()
-   {
-      return studentId.isPresent();
-   }
+	public Long getStudentId()
+	{
+		return studentId.get();
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject.get();
-   }
+	public void setStudentId(Long studentId)
+	{
+		this.studentId = Optional.of(studentId);
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = Optional.of(schoolSubject);
-   }
+	public boolean hasStudentId()
+	{
+		return studentId.isPresent();
+	}
 
-   public boolean hasSchoolSubject()
-   {
-      return schoolSubject.isPresent();
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject.get();
+	}
 
-   public static Builder all()
-   {
-      return new Builder();
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = Optional.of(schoolSubject);
+	}
 
-   /**
-    * @author dawbes
-    */
-   public static class Builder extends QueryBuilder<AssessmentQuery>
-   {
+	public boolean hasSchoolSubject()
+	{
+		return schoolSubject.isPresent();
+	}
 
-      public Builder()
-      {
-         super(new AssessmentQuery());
-      }
+	/**
+	 * @author dawbes
+	 */
+	public static class Builder extends QueryBuilder<AssessmentQuery>
+	{
 
-      public Builder withStudentId(Long studentId)
-      {
-         query.setStudentId(studentId);
-         return this;
-      }
+		public Builder()
+		{
+			super(new AssessmentQuery());
+		}
 
-      public Builder withSchoolSubject(SchoolSubject schoolSubject)
-      {
-         query.setSchoolSubject(schoolSubject);
-         return this;
-      }
+		public Builder withStudentId(Long studentId)
+		{
+			query.setStudentId(studentId);
+			return this;
+		}
 
-   }
+		public Builder withSchoolSubject(SchoolSubject schoolSubject)
+		{
+			query.setSchoolSubject(schoolSubject);
+			return this;
+		}
+
+	}
 
 }

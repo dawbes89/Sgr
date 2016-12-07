@@ -8,14 +8,14 @@ import java.util.List;
 public interface AdminService
 {
 
-   List<Admin> search(AdminQuery query);
+	List<Admin> search(AdminQuery query);
 
-   Admin get(Long id);
+	Admin get(Long id);
 
-   void create(Admin admin);
+	void create(Admin admin);
 
-   void remove(Long id);
+	void remove(Long id);
 
-   void update(Admin admin);
+	void update(Admin admin);
 
 }

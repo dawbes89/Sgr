@@ -8,14 +8,14 @@ import java.util.List;
 public interface TeachingStaffService
 {
 
-   List<TeachingStaff> search();
+	List<TeachingStaff> search();
 
-   TeachingStaff get(Long id);
+	TeachingStaff get(Long id);
 
-   void create(TeachingStaff teachingStaff);
+	void create(TeachingStaff teachingStaff);
 
-   void remove(Long id);
+	void remove(Long id);
 
-   void update(TeachingStaff teachingStaff);
+	void update(TeachingStaff teachingStaff);
 
 }

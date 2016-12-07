@@ -1,7 +1,6 @@
 package sgr.app.webapp.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.comment.Comment;
 import sgr.app.api.comment.CommentService;
@@ -16,25 +15,25 @@ import sgr.app.frontend.panels.AbstractPanel;
 public class StudentCommentPanel extends AbstractPanel<Comment>
 {
 
-   private static final long serialVersionUID = 4138667330295752265L;
+	private static final long serialVersionUID = 4138667330295752265L;
 
-   @Autowired
-   private AuthenticationService authenticationService;
+	@Autowired
+	private AuthenticationService authenticationService;
 
-   @Autowired
-   private CommentService commentService;
+	@Autowired
+	private CommentService commentService;
 
-   @Override
-   public void init()
-   {
-      entity = new Comment();
-   }
+	@Override
+	public void init()
+	{
+		entity = new Comment();
+	}
 
-   @Override
-   public void onLoad()
-   {
-      final Student currentLoggedUser = authenticationService.getCurrentUser();
-      entities = commentService.findByStudentId(currentLoggedUser.getId());
-   }
+	@Override
+	public void onLoad()
+	{
+		final Student currentLoggedUser = authenticationService.getCurrentUser();
+		entities = commentService.findByStudentId(currentLoggedUser.getId());
+	}
 
 }

@@ -12,10 +12,10 @@ import javax.faces.application.FacesMessage.Severity;
 public class CreateException extends CustomException
 {
 
-   private static final long serialVersionUID = -7621250000228483730L;
+	private static final long serialVersionUID = -7621250000228483730L;
 
-   public CreateException(String messageKey, Severity severity)
-   {
-      super(messageKey, severity);
-   }
+	public CreateException(String messageKey, Severity severity)
+	{
+		super(messageKey, severity);
+	}
 }

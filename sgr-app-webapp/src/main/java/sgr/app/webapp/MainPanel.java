@@ -12,21 +12,21 @@ import sgr.app.frontend.panels.MainApplicationPanel;
 public class MainPanel extends MainApplicationPanel
 {
 
-   private static final long serialVersionUID = -7214848698811381282L;
+	private static final long serialVersionUID = -7214848698811381282L;
 
-   public boolean showMenuFor(AccountType type)
-   {
-      return authenticationService.checkUserAccountType(type);
-   }
+	public boolean showMenuFor(AccountType type)
+	{
+		return authenticationService.checkUserAccountType(type);
+	}
 
-   public boolean currentUserIsPreceptor()
-   {
-      if (!authenticationService.checkUserAccountType(AccountType.TEACHER))
-      {
-         return false;
-      }
-      final TeachingStaff preceptor = authenticationService.getCurrentUser();
-      return preceptor.getPreceptorClass() != null;
-   }
+	public boolean currentUserIsPreceptor()
+	{
+		if (!authenticationService.checkUserAccountType(AccountType.TEACHER))
+		{
+			return false;
+		}
+		final TeachingStaff preceptor = authenticationService.getCurrentUser();
+		return preceptor.getPreceptorClass() != null;
+	}
 
 }

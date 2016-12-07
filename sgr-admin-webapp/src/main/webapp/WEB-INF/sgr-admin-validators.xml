@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-   version="2.2">
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
 
-   <validator>
-      <validator-id>uniqueLoginValidator</validator-id>
-      <validator-class>sgr.app.frontend.validators.UniqueLoginValidator</validator-class>
-   </validator>
-   <validator>
-      <validator-id>dateValidator</validator-id>
-      <validator-class>sgr.app.frontend.validators.DateValidator</validator-class>
-      <attribute>
-         <attribute-name>validationMode</attribute-name>
-         <attribute-class>sgr.app.frontend.validators.DateValidationMode</attribute-class>
-      </attribute>
-   </validator>
+	<validator>
+		<validator-id>uniqueLoginValidator</validator-id>
+		<validator-class>sgr.app.frontend.validators.UniqueLoginValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>dateValidator</validator-id>
+		<validator-class>sgr.app.frontend.validators.DateValidator</validator-class>
+		<attribute>
+			<attribute-name>validationMode</attribute-name>
+			<attribute-class>sgr.app.frontend.validators.DateValidationMode</attribute-class>
+		</attribute>
+	</validator>
 </faces-config>

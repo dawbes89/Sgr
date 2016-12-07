@@ -1,25 +1,11 @@
 package sgr.app.api.lesson;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import sgr.app.api.classgroup.ClassGroup;
 import sgr.app.api.teachingstaff.SchoolSubject;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Entity for lessons.
@@ -28,129 +14,132 @@ import sgr.app.api.teachingstaff.SchoolSubject;
  */
 @Entity
 @Table(name = "lesson",
-      uniqueConstraints = {
-            @UniqueConstraint(columnNames = { "lesson_number", "date", "class_group_id" },
-                  name = "lesson_number_in_day_for_class_uk") })
+		uniqueConstraints = {@UniqueConstraint(columnNames = {"lesson_number", "date", "class_group_id"},
+				name = "lesson_number_in_day_for_class_uk")})
 public class Lesson implements Serializable
 {
 
-   private static final long serialVersionUID = -5117496622690659878L;
+	public static final String PROPERTY_ID = "id";
 
-   public static final String PROPERTY_ID = "id";
-   public static final String PROPERTY_STUDENT = "student";
-   public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
-   public static final String PROPERTY_CLASS_GROUP = "classGroup";
-   public static final String PROPERTY_DATE = "date";
-   public static final String PROPERTY_LESSON_NUMBER = "lessonNumber";
+	public static final String PROPERTY_STUDENT = "student";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	public static final String PROPERTY_SCHOOL_SUBJECT = "schoolSubject";
 
-   @Column(name = "lesson_number", nullable = false, updatable = false, precision = 1)
-   private int lessonNumber;
+	public static final String PROPERTY_CLASS_GROUP = "classGroup";
 
-   @Column(name = "subject_number", nullable = false, updatable = false)
-   private int subjectNumber;
+	public static final String PROPERTY_DATE = "date";
 
-   @Column(name = "date", nullable = false, updatable = false)
-   private Date date;
+	public static final String PROPERTY_LESSON_NUMBER = "lessonNumber";
 
-   @Column(name = "lesson_subject", length = 100, nullable = false, updatable = false)
-   private String lessonSubject;
+	private static final long serialVersionUID = -5117496622690659878L;
 
-   @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH },
-         fetch = FetchType.EAGER)
-   @JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id",
-         foreignKey = @ForeignKey(name = "lesson_class_group_id_fk") )
-   private ClassGroup classGroup;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   @Enumerated(EnumType.STRING)
-   @Column(name = "school_subject", length = 25, nullable = false, updatable = false)
-   private SchoolSubject schoolSubject;
+	@Column(name = "lesson_number", nullable = false, updatable = false, precision = 1)
+	private int lessonNumber;
 
-   @Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
-   private String issuerName;
+	@Column(name = "subject_number", nullable = false, updatable = false)
+	private int subjectNumber;
 
-   public Long getId()
-   {
-      return id;
-   }
+	@Column(name = "date", nullable = false, updatable = false)
+	private Date date;
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	@Column(name = "lesson_subject", length = 100, nullable = false, updatable = false)
+	private String lessonSubject;
 
-   public Date getDate()
-   {
-      return date;
-   }
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+	@JoinColumn(name = "class_group_id", nullable = false, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "lesson_class_group_id_fk"))
+	private ClassGroup classGroup;
 
-   public void setDate(Date date)
-   {
-      this.date = date;
-   }
+	@Enumerated(EnumType.STRING)
+	@Column(name = "school_subject", length = 25, nullable = false, updatable = false)
+	private SchoolSubject schoolSubject;
 
-   public String getLessonSubject()
-   {
-      return lessonSubject;
-   }
+	@Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
+	private String issuerName;
 
-   public void setLessonSubject(String lessonSubject)
-   {
-      this.lessonSubject = lessonSubject;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public ClassGroup getClassGroup()
-   {
-      return classGroup;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setClassGroup(ClassGroup classGroup)
-   {
-      this.classGroup = classGroup;
-   }
+	public Date getDate()
+	{
+		return date;
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject;
-   }
+	public void setDate(Date date)
+	{
+		this.date = date;
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = schoolSubject;
-   }
+	public String getLessonSubject()
+	{
+		return lessonSubject;
+	}
 
-   public String getIssuerName()
-   {
-      return issuerName;
-   }
+	public void setLessonSubject(String lessonSubject)
+	{
+		this.lessonSubject = lessonSubject;
+	}
 
-   public void setIssuerName(String issuerName)
-   {
-      this.issuerName = issuerName;
-   }
+	public ClassGroup getClassGroup()
+	{
+		return classGroup;
+	}
 
-   public int getLessonNumber()
-   {
-      return lessonNumber;
-   }
+	public void setClassGroup(ClassGroup classGroup)
+	{
+		this.classGroup = classGroup;
+	}
 
-   public void setLessonNumber(int lessonNumber)
-   {
-      this.lessonNumber = lessonNumber;
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject;
+	}
 
-   public int getSubjectNumber()
-   {
-      return subjectNumber;
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = schoolSubject;
+	}
 
-   public void setSubjectNumber(int subjectNumber)
-   {
-      this.subjectNumber = subjectNumber;
-   }
+	public String getIssuerName()
+	{
+		return issuerName;
+	}
+
+	public void setIssuerName(String issuerName)
+	{
+		this.issuerName = issuerName;
+	}
+
+	public int getLessonNumber()
+	{
+		return lessonNumber;
+	}
+
+	public void setLessonNumber(int lessonNumber)
+	{
+		this.lessonNumber = lessonNumber;
+	}
+
+	public int getSubjectNumber()
+	{
+		return subjectNumber;
+	}
+
+	public void setSubjectNumber(int subjectNumber)
+	{
+		this.subjectNumber = subjectNumber;
+	}
 
 }

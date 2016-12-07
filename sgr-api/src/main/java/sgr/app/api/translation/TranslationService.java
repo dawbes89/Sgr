@@ -8,26 +8,26 @@ package sgr.app.api.translation;
 public interface TranslationService
 {
 
-   /**
-    * Translates value.
-    *
-    * @param key
-    *           of value to translate
-    * @return translated value
-    */
-   String translate(String key);
+	/**
+	 * Translates value.
+	 *
+	 * @param key
+	 * 		of value to translate
+	 * @return translated value
+	 */
+	String translate(String key);
 
-   /**
-    * Translates value.
-    *
-    * @param resourceFileName
-    *           resource file name from faces-config.xml file
-    * @param key
-    *           of value to translate
-    * @return translated value
-    */
-   String translate(String resourceFileName, String key);
+	/**
+	 * Translates value.
+	 *
+	 * @param resourceFileName
+	 * 		resource file name from faces-config.xml file
+	 * @param key
+	 * 		of value to translate
+	 * @return translated value
+	 */
+	String translate(String resourceFileName, String key);
 
-   String translate(String key, Object params[]);
+	String translate(String key, Object params[]);
 
 }

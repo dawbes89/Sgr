@@ -1,49 +1,48 @@
 <!DOCTYPE composition>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
-	<p:outputLabel for="schoolSubject"
-		value="#{sgr_translation.schoolSubject}: " />
-	<p:selectOneMenu id="schoolSubject" value="#{schoolSubject}"
-		effect="fade" filter="true" filterMatchMode="contains"
-		label="#{sgr_translation.schoolSubject}"
-		required="#{required}">
-		<f:selectItem itemValue="#{null}"
-			itemLabel="#{sgr_translation.selectOneMenu_select}"
-			noSelectionOption="true" />
-		<f:selectItem itemValue="POLISH_LANGUAGE"
-			itemLabel="#{sgr_translation.schoolSubject_language_polish}" />
-		<f:selectItem itemValue="MATHS"
-			itemLabel="#{sgr_translation.schoolSubject_maths}" />
-		<f:selectItem itemValue="HISTORY"
-			itemLabel="#{sgr_translation.schoolSubject_history}" />
-		<f:selectItem itemValue="CIVIC_EDUCATION"
-			itemLabel="#{sgr_translation.schoolSubject_civicEducation}" />
-		<f:selectItem itemValue="BIOLOGY"
-			itemLabel="#{sgr_translation.schoolSubject_biology}" />
-		<f:selectItem itemValue="CHEMISTRY"
-			itemLabel="#{sgr_translation.schoolSubject_chemistry}" />
-		<f:selectItem itemValue="GEOGRAPHY"
-			itemLabel="#{sgr_translation.schoolSubject_geography}" />
-		<f:selectItem itemValue="INFORMATICS"
-			itemLabel="#{sgr_translation.schoolSubject_informatics}" />
-		<f:selectItem itemValue="TECHNIQUE"
-			itemLabel="#{sgr_translation.schoolSubject_technique}" />
-		<f:selectItem itemValue="ART_MUSIC"
-			itemLabel="#{sgr_translation.schoolSubject_artMusic}" />
-		<f:selectItem itemValue="RELIGION"
-			itemLabel="#{sgr_translation.schoolSubject_religion}" />
-		<f:selectItem itemValue="EUROPEAN_EDUCATION"
-			itemLabel="#{sgr_translation.schoolSubject_europeanEducation}" />
-		<f:selectItem itemValue="ENGLISH"
-			itemLabel="#{sgr_translation.schoolSubject_language_english}" />
-		<f:selectItem itemValue="PHYSICS"
-			itemLabel="#{sgr_translation.schoolSubject_physics}" />
-		<f:selectItem itemValue="GERMAN"
-			itemLabel="#{sgr_translation.schoolSubject_language_german}" />
-	</p:selectOneMenu>
+    <p:outputLabel for="schoolSubject"
+                   value="#{sgr_translation.schoolSubject}: "/>
+    <p:selectOneMenu id="schoolSubject" value="#{schoolSubject}"
+                     effect="fade" filter="true" filterMatchMode="contains"
+                     label="#{sgr_translation.schoolSubject}"
+                     required="#{required}">
+        <f:selectItem itemValue="#{null}"
+                      itemLabel="#{sgr_translation.selectOneMenu_select}"
+                      noSelectionOption="true"/>
+        <f:selectItem itemValue="POLISH_LANGUAGE"
+                      itemLabel="#{sgr_translation.schoolSubject_language_polish}"/>
+        <f:selectItem itemValue="MATHS"
+                      itemLabel="#{sgr_translation.schoolSubject_maths}"/>
+        <f:selectItem itemValue="HISTORY"
+                      itemLabel="#{sgr_translation.schoolSubject_history}"/>
+        <f:selectItem itemValue="CIVIC_EDUCATION"
+                      itemLabel="#{sgr_translation.schoolSubject_civicEducation}"/>
+        <f:selectItem itemValue="BIOLOGY"
+                      itemLabel="#{sgr_translation.schoolSubject_biology}"/>
+        <f:selectItem itemValue="CHEMISTRY"
+                      itemLabel="#{sgr_translation.schoolSubject_chemistry}"/>
+        <f:selectItem itemValue="GEOGRAPHY"
+                      itemLabel="#{sgr_translation.schoolSubject_geography}"/>
+        <f:selectItem itemValue="INFORMATICS"
+                      itemLabel="#{sgr_translation.schoolSubject_informatics}"/>
+        <f:selectItem itemValue="TECHNIQUE"
+                      itemLabel="#{sgr_translation.schoolSubject_technique}"/>
+        <f:selectItem itemValue="ART_MUSIC"
+                      itemLabel="#{sgr_translation.schoolSubject_artMusic}"/>
+        <f:selectItem itemValue="RELIGION"
+                      itemLabel="#{sgr_translation.schoolSubject_religion}"/>
+        <f:selectItem itemValue="EUROPEAN_EDUCATION"
+                      itemLabel="#{sgr_translation.schoolSubject_europeanEducation}"/>
+        <f:selectItem itemValue="ENGLISH"
+                      itemLabel="#{sgr_translation.schoolSubject_language_english}"/>
+        <f:selectItem itemValue="PHYSICS"
+                      itemLabel="#{sgr_translation.schoolSubject_physics}"/>
+        <f:selectItem itemValue="GERMAN"
+                      itemLabel="#{sgr_translation.schoolSubject_language_german}"/>
+    </p:selectOneMenu>
 
 </ui:composition>
