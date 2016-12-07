@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-   version="2.2">
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
 
-   <!-- COMMON -->
-   <managed-bean>
-      <managed-bean-name>localeManager</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.panels.LocaleManager</managed-bean-class>
-      <managed-bean-scope>session</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>mainPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.MainPanel</managed-bean-class>
-      <managed-bean-scope>request</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>loginPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.login.LoginPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>changePasswordPanel</managed-bean-name>
-      <managed-bean-class>sgr.app.frontend.panels.ChangePasswordPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
+	<!-- COMMON -->
+	<managed-bean>
+		<managed-bean-name>localeManager</managed-bean-name>
+		<managed-bean-class>sgr.app.frontend.panels.LocaleManager</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>mainPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.MainPanel</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>loginPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.login.LoginPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>changePasswordPanel</managed-bean-name>
+		<managed-bean-class>sgr.app.frontend.panels.ChangePasswordPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 
 
-   <managed-bean>
-      <managed-bean-name>teachingStaffPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.teachingstaff.TeachingStaffPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>classGroupPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.classgroup.ClassGroupPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>studentPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.student.StudentPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>announcementPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.announcement.AnnouncementPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>adminPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.admin.AdminPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
-   <managed-bean>
-      <managed-bean-name>semestrPanel</managed-bean-name>
-      <managed-bean-class>sgr.admin.webapp.semestr.SemestrPanel</managed-bean-class>
-      <managed-bean-scope>view</managed-bean-scope>
-   </managed-bean>
+	<managed-bean>
+		<managed-bean-name>teachingStaffPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.teachingstaff.TeachingStaffPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>classGroupPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.classgroup.ClassGroupPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>studentPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.student.StudentPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>announcementPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.announcement.AnnouncementPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>adminPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.admin.AdminPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>semestrPanel</managed-bean-name>
+		<managed-bean-class>sgr.admin.webapp.semestr.SemestrPanel</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

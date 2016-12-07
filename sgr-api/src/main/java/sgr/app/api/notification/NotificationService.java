@@ -10,8 +10,8 @@ import java.util.List;
 public interface NotificationService
 {
 
-   List<Notification> search(NotificationQuery query);
+	List<Notification> search(NotificationQuery query);
 
-   void create(Notification notification);
+	void create(Notification notification);
 
 }

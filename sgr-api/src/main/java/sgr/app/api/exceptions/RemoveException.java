@@ -10,11 +10,11 @@ import javax.faces.application.FacesMessage.Severity;
 public class RemoveException extends CustomException
 {
 
-   private static final long serialVersionUID = 3387304826657788351L;
+	private static final long serialVersionUID = 3387304826657788351L;
 
-   public RemoveException(String messageKey, Severity severity)
-   {
-      super(messageKey, severity);
-   }
+	public RemoveException(String messageKey, Severity severity)
+	{
+		super(messageKey, severity);
+	}
 
 }

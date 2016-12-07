@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-   version="2.2">
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
 
-   <converter>
-      <converter-id>yearConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.YearConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>commentTypeTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.CommentTypeTranslationConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>assessmentTypeTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.AssessmentTypeTranslationConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>classConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.ClassConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>schoolSubjectTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>assessmentConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.AssessmentConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>booleanTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.BooleanTranslationConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>presenceStatusTranslationConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.PresenceStatusTranslationConverter</converter-class>
-   </converter>
-   <converter>
-      <converter-id>assessmentListConverter</converter-id>
-      <converter-class>sgr.app.frontend.converters.AssessmentListConverter</converter-class>
-      <attribute>
-         <attribute-name>schoolSubject</attribute-name>
-         <attribute-class>sgr.app.api.teachingstaff.SchoolSubject</attribute-class>
-      </attribute>
-   </converter>
+	<converter>
+		<converter-id>yearConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.YearConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>commentTypeTranslationConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.CommentTypeTranslationConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>assessmentTypeTranslationConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.AssessmentTypeTranslationConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>classConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.ClassConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>schoolSubjectTranslationConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.SchoolSubjectTranslationConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>assessmentConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.AssessmentConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>booleanTranslationConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.BooleanTranslationConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>presenceStatusTranslationConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.PresenceStatusTranslationConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-id>assessmentListConverter</converter-id>
+		<converter-class>sgr.app.frontend.converters.AssessmentListConverter</converter-class>
+		<attribute>
+			<attribute-name>schoolSubject</attribute-name>
+			<attribute-class>sgr.app.api.teachingstaff.SchoolSubject</attribute-class>
+		</attribute>
+	</converter>
 
 </faces-config>

@@ -8,8 +8,8 @@ import java.util.List;
 public interface CommentService
 {
 
-   void create(Comment comment);
+	void create(Comment comment);
 
-   List<Comment> findByStudentId(Long studentId);
+	List<Comment> findByStudentId(Long studentId);
 
 }

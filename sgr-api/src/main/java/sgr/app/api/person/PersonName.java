@@ -6,5 +6,5 @@ package sgr.app.api.person;
 @FunctionalInterface
 public interface PersonName
 {
-   String getFullName();
+	String getFullName();
 }

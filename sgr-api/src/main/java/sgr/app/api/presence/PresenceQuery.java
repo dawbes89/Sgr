@@ -1,11 +1,11 @@
 package sgr.app.api.presence;
 
+import sgr.app.api.QueryBuilder;
+import sgr.app.api.teachingstaff.SchoolSubject;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Optional;
-
-import sgr.app.api.QueryBuilder;
-import sgr.app.api.teachingstaff.SchoolSubject;
 
 /**
  * @author dawbes
@@ -13,175 +13,181 @@ import sgr.app.api.teachingstaff.SchoolSubject;
 public class PresenceQuery implements Serializable
 {
 
-   private static final long serialVersionUID = -5270400581989535765L;
+	public static final String PROPERTY_LESSON_ID = "lessonId";
 
-   public static final String PROPERTY_LESSON_ID = "lessonId";
+	private static final long serialVersionUID = -5270400581989535765L;
 
-   private Optional<Long> lessonId = Optional.empty();
-   private Optional<Long> classGroupId = Optional.empty();
-   private Optional<SchoolSubject> schoolSubject = Optional.empty();
-   private Optional<PresenceStatus> status = Optional.empty();
-   private Optional<String> studentFullName = Optional.empty();
-   private Optional<Date> date = Optional.empty();
-   private Optional<Long> studentId = Optional.empty();
+	private Optional<Long> lessonId = Optional.empty();
 
-   public boolean hasLessonId()
-   {
-      return lessonId.isPresent();
-   }
+	private Optional<Long> classGroupId = Optional.empty();
 
-   public Long getLessonId()
-   {
-      return lessonId.get();
-   }
+	private Optional<SchoolSubject> schoolSubject = Optional.empty();
 
-   public void setLessonId(Long lessonId)
-   {
-      this.lessonId = Optional.of(lessonId);
-   }
+	private Optional<PresenceStatus> status = Optional.empty();
 
-   public boolean hasClassGroupId()
-   {
-      return classGroupId.isPresent();
-   }
+	private Optional<String> studentFullName = Optional.empty();
 
-   public Long getClassGroupId()
-   {
-      return classGroupId.get();
-   }
+	private Optional<Date> date = Optional.empty();
 
-   public void setClassGroupId(Long classGroupId)
-   {
-      this.classGroupId = Optional.of(classGroupId);
-   }
+	private Optional<Long> studentId = Optional.empty();
 
-   public boolean hasSchoolSubject()
-   {
-      return schoolSubject.isPresent();
-   }
+	public static Builder all()
+	{
+		return new Builder();
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject.get();
-   }
+	public boolean hasLessonId()
+	{
+		return lessonId.isPresent();
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = Optional.of(schoolSubject);
-   }
+	public Long getLessonId()
+	{
+		return lessonId.get();
+	}
 
-   public boolean hasStatus()
-   {
-      return status.isPresent();
-   }
+	public void setLessonId(Long lessonId)
+	{
+		this.lessonId = Optional.of(lessonId);
+	}
 
-   public PresenceStatus getStatus()
-   {
-      return status.get();
-   }
+	public boolean hasClassGroupId()
+	{
+		return classGroupId.isPresent();
+	}
 
-   public void setStatus(PresenceStatus status)
-   {
-      this.status = Optional.of(status);
-   }
+	public Long getClassGroupId()
+	{
+		return classGroupId.get();
+	}
 
-   public boolean hasStudentFullName()
-   {
-      return studentFullName.isPresent();
-   }
+	public void setClassGroupId(Long classGroupId)
+	{
+		this.classGroupId = Optional.of(classGroupId);
+	}
 
-   public String getStudentFullName()
-   {
-      return studentFullName.get();
-   }
+	public boolean hasSchoolSubject()
+	{
+		return schoolSubject.isPresent();
+	}
 
-   public void setStudentFullName(String studentFullName)
-   {
-      this.studentFullName = Optional.of(studentFullName);
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject.get();
+	}
 
-   public boolean hasDate()
-   {
-      return date.isPresent();
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = Optional.of(schoolSubject);
+	}
 
-   public Date getDate()
-   {
-      return date.get();
-   }
+	public boolean hasStatus()
+	{
+		return status.isPresent();
+	}
 
-   public void setDate(Date date)
-   {
-      this.date = Optional.of(date);
-   }
+	public PresenceStatus getStatus()
+	{
+		return status.get();
+	}
 
-   public boolean hasStudentId()
-   {
-      return studentId.isPresent();
-   }
+	public void setStatus(PresenceStatus status)
+	{
+		this.status = Optional.of(status);
+	}
 
-   public Long getStudentId()
-   {
-      return studentId.get();
-   }
+	public boolean hasStudentFullName()
+	{
+		return studentFullName.isPresent();
+	}
 
-   public void setStudentId(Long studentId)
-   {
-      this.studentId = Optional.of(studentId);
-   }
+	public String getStudentFullName()
+	{
+		return studentFullName.get();
+	}
 
-   public static Builder all()
-   {
-      return new Builder();
-   }
+	public void setStudentFullName(String studentFullName)
+	{
+		this.studentFullName = Optional.of(studentFullName);
+	}
 
-   /**
-    * @author dawbes
-    */
-   public static class Builder extends QueryBuilder<PresenceQuery>
-   {
+	public boolean hasDate()
+	{
+		return date.isPresent();
+	}
 
-      public Builder()
-      {
-         super(new PresenceQuery());
-      }
+	public Date getDate()
+	{
+		return date.get();
+	}
 
-      public Builder withSchoolSubject(SchoolSubject schoolSubject)
-      {
-         query.setSchoolSubject(schoolSubject);
-         return this;
-      }
+	public void setDate(Date date)
+	{
+		this.date = Optional.of(date);
+	}
 
-      public Builder withClassGroupId(Long classGroupId)
-      {
-         query.setClassGroupId(classGroupId);
-         return this;
-      }
+	public boolean hasStudentId()
+	{
+		return studentId.isPresent();
+	}
 
-      public Builder withStatus(PresenceStatus status)
-      {
-         query.setStatus(status);
-         return this;
-      }
+	public Long getStudentId()
+	{
+		return studentId.get();
+	}
 
-      public Builder withStudentFullName(String studentFullName)
-      {
-         query.setStudentFullName(studentFullName);
-         return this;
-      }
+	public void setStudentId(Long studentId)
+	{
+		this.studentId = Optional.of(studentId);
+	}
 
-      public Builder withDate(Date date)
-      {
-         query.setDate(date);
-         return this;
-      }
+	/**
+	 * @author dawbes
+	 */
+	public static class Builder extends QueryBuilder<PresenceQuery>
+	{
 
-      public Builder withStudentId(Long id)
-      {
-         query.setStudentId(id);
-         return this;
-      }
+		public Builder()
+		{
+			super(new PresenceQuery());
+		}
 
-   }
+		public Builder withSchoolSubject(SchoolSubject schoolSubject)
+		{
+			query.setSchoolSubject(schoolSubject);
+			return this;
+		}
+
+		public Builder withClassGroupId(Long classGroupId)
+		{
+			query.setClassGroupId(classGroupId);
+			return this;
+		}
+
+		public Builder withStatus(PresenceStatus status)
+		{
+			query.setStatus(status);
+			return this;
+		}
+
+		public Builder withStudentFullName(String studentFullName)
+		{
+			query.setStudentFullName(studentFullName);
+			return this;
+		}
+
+		public Builder withDate(Date date)
+		{
+			query.setDate(date);
+			return this;
+		}
+
+		public Builder withStudentId(Long id)
+		{
+			query.setStudentId(id);
+			return this;
+		}
+
+	}
 
 }

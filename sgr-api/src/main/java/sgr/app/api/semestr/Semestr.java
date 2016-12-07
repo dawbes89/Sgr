@@ -1,102 +1,97 @@
 package sgr.app.api.semestr;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.Type;
 
 /**
  * @author leonzio
  */
 @Entity
-@Table(name = "semestr",
-      uniqueConstraints = { @UniqueConstraint(columnNames = { "semestr_number", "school_year" },
-            name = "semestr_number_in_school_year_uk") })
+@Table(name = "semestr", uniqueConstraints = {@UniqueConstraint(columnNames = {"semestr_number", "school_year"},
+		name = "semestr_number_in_school_year_uk")})
 public class Semestr implements Serializable
 {
 
-   private static final long serialVersionUID = -988347663214142873L;
+	public static final String PROPERTY_SCHOOL_YEAR = "schoolYear";
 
-   public static final String PROPERTY_SCHOOL_YEAR = "schoolYear";
-   public static final String PROPERTY_SEMESTR_NUMBER = "semestrNumber";
-   public static final String PROPERTY_FROM = "from";
-   public static final String PROPERTY_TO = "to";
+	public static final String PROPERTY_SEMESTR_NUMBER = "semestrNumber";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	public static final String PROPERTY_FROM = "from";
 
-   @Column(name = "semestr_number", nullable = false)
-   private Integer semestrNumber;
+	public static final String PROPERTY_TO = "to";
 
-   @Column(name = "school_year", nullable = false, updatable = false, length = 9)
-   private String schoolYear;
+	private static final long serialVersionUID = -988347663214142873L;
 
-   @Column(name = "date_from", nullable = false)
-   @Type(type = "date")
-   private Date from;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   @Column(name = "date_to", nullable = false)
-   @Type(type = "date")
-   private Date to;
+	@Column(name = "semestr_number", nullable = false)
+	private Integer semestrNumber;
 
-   public Long getId()
-   {
-      return id;
-   }
+	@Column(name = "school_year", nullable = false, updatable = false, length = 9)
+	private String schoolYear;
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	@Column(name = "date_from", nullable = false)
+	@Type(type = "date")
+	private Date from;
 
-   public Integer getSemestrNumber()
-   {
-      return semestrNumber;
-   }
+	@Column(name = "date_to", nullable = false)
+	@Type(type = "date")
+	private Date to;
 
-   public void setSemestrNumber(Integer semestrNumber)
-   {
-      this.semestrNumber = semestrNumber;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public String getSchoolYear()
-   {
-      return schoolYear;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setSchoolYear(String schoolYear)
-   {
-      this.schoolYear = schoolYear;
-   }
+	public Integer getSemestrNumber()
+	{
+		return semestrNumber;
+	}
 
-   public Date getFrom()
-   {
-      return from;
-   }
+	public void setSemestrNumber(Integer semestrNumber)
+	{
+		this.semestrNumber = semestrNumber;
+	}
 
-   public void setFrom(Date from)
-   {
-      this.from = from;
-   }
+	public String getSchoolYear()
+	{
+		return schoolYear;
+	}
 
-   public Date getTo()
-   {
-      return to;
-   }
+	public void setSchoolYear(String schoolYear)
+	{
+		this.schoolYear = schoolYear;
+	}
 
-   public void setTo(Date to)
-   {
-      this.to = to;
-   }
+	public Date getFrom()
+	{
+		return from;
+	}
+
+	public void setFrom(Date from)
+	{
+		this.from = from;
+	}
+
+	public Date getTo()
+	{
+		return to;
+	}
+
+	public void setTo(Date to)
+	{
+		this.to = to;
+	}
 
 }

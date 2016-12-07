@@ -1,12 +1,12 @@
 package sgr.app.api.lesson;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Optional;
-
 import sgr.app.api.QueryBuilder;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.teachingstaff.SchoolSubject;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author dawbes
@@ -14,146 +14,150 @@ import sgr.app.api.teachingstaff.SchoolSubject;
 public class LessonQuery implements Serializable
 {
 
-   private static final long serialVersionUID = 645917670210127925L;
+	/**
+	 * For new instances use this.
+	 */
+	public static final LessonQuery EMPTY = new LessonQuery();
 
-   /**
-    * For new instances use this.
-    */
-   public static final LessonQuery EMPTY = new LessonQuery();
+	private static final long serialVersionUID = 645917670210127925L;
 
-   private Optional<Long> studentId = Optional.empty();
-   private Optional<SchoolSubject> schoolSubject = Optional.empty();
-   private Optional<Long> classGroupId = Optional.empty();
-   private Optional<Integer> lessonNumber = Optional.empty();
-   private Optional<Date> date = Optional.empty();
+	private Optional<Long> studentId = Optional.empty();
 
-   public static StudentQuery withClassGroupId(Long classGroupId)
-   {
-      StudentQuery query = new StudentQuery();
-      query.setClassGroupId(classGroupId);
-      return query;
-   }
+	private Optional<SchoolSubject> schoolSubject = Optional.empty();
 
-   public boolean hasStudentId()
-   {
-      return studentId.isPresent();
-   }
+	private Optional<Long> classGroupId = Optional.empty();
 
-   public Long getStudentId()
-   {
-      return studentId.get();
-   }
+	private Optional<Integer> lessonNumber = Optional.empty();
 
-   public void setStudentId(Long studentId)
-   {
-      this.studentId = Optional.of(studentId);
-   }
+	private Optional<Date> date = Optional.empty();
 
-   public boolean hasSchoolSubject()
-   {
-      return schoolSubject.isPresent();
-   }
+	public static StudentQuery withClassGroupId(Long classGroupId)
+	{
+		StudentQuery query = new StudentQuery();
+		query.setClassGroupId(classGroupId);
+		return query;
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject.get();
-   }
+	public static Builder all()
+	{
+		return new Builder();
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = Optional.of(schoolSubject);
-   }
+	public boolean hasStudentId()
+	{
+		return studentId.isPresent();
+	}
 
-   public boolean hasClassGroupId()
-   {
-      return classGroupId.isPresent();
-   }
+	public Long getStudentId()
+	{
+		return studentId.get();
+	}
 
-   public Long getClassGroupId()
-   {
-      return classGroupId.get();
-   }
+	public void setStudentId(Long studentId)
+	{
+		this.studentId = Optional.of(studentId);
+	}
 
-   public void setClassGroupId(Long classGroupId)
-   {
-      this.classGroupId = Optional.of(classGroupId);
-   }
+	public boolean hasSchoolSubject()
+	{
+		return schoolSubject.isPresent();
+	}
 
-   public boolean hasLessonNumber()
-   {
-      return lessonNumber.isPresent();
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject.get();
+	}
 
-   public Integer getLessonNumber()
-   {
-      return lessonNumber.get();
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = Optional.of(schoolSubject);
+	}
 
-   public void setLessonNumber(Integer lessonNumber)
-   {
-      this.lessonNumber = Optional.of(lessonNumber);
-   }
+	public boolean hasClassGroupId()
+	{
+		return classGroupId.isPresent();
+	}
 
-   public boolean hasDate()
-   {
-      return date.isPresent();
-   }
+	public Long getClassGroupId()
+	{
+		return classGroupId.get();
+	}
 
-   public Date getDate()
-   {
-      return date.get();
-   }
+	public void setClassGroupId(Long classGroupId)
+	{
+		this.classGroupId = Optional.of(classGroupId);
+	}
 
-   public void setDate(Date date)
-   {
-      this.date = Optional.of(date);
-   }
+	public boolean hasLessonNumber()
+	{
+		return lessonNumber.isPresent();
+	}
 
-   public static Builder all()
-   {
-      return new Builder();
-   }
+	public Integer getLessonNumber()
+	{
+		return lessonNumber.get();
+	}
 
-   /**
-    * @author dawbes
-    */
-   public static class Builder extends QueryBuilder<LessonQuery>
-   {
+	public void setLessonNumber(Integer lessonNumber)
+	{
+		this.lessonNumber = Optional.of(lessonNumber);
+	}
 
-      public Builder()
-      {
-         super(new LessonQuery());
-      }
+	public boolean hasDate()
+	{
+		return date.isPresent();
+	}
 
-      public Builder withStudentId(Long studentId)
-      {
-         query.setStudentId(studentId);
-         return this;
-      }
+	public Date getDate()
+	{
+		return date.get();
+	}
 
-      public Builder withSchoolSubject(SchoolSubject schoolSubject)
-      {
-         query.setSchoolSubject(schoolSubject);
-         return this;
-      }
+	public void setDate(Date date)
+	{
+		this.date = Optional.of(date);
+	}
 
-      public Builder withClassGroupId(Long classGroupId)
-      {
-         query.setClassGroupId(classGroupId);
-         return this;
-      }
+	/**
+	 * @author dawbes
+	 */
+	public static class Builder extends QueryBuilder<LessonQuery>
+	{
 
-      public Builder withLessonNumber(Integer lessonNumber)
-      {
-         query.setLessonNumber(lessonNumber);
-         return this;
-      }
+		public Builder()
+		{
+			super(new LessonQuery());
+		}
 
-      public Builder withDate(Date date)
-      {
-         query.setDate(date);
-         return this;
-      }
+		public Builder withStudentId(Long studentId)
+		{
+			query.setStudentId(studentId);
+			return this;
+		}
 
-   }
+		public Builder withSchoolSubject(SchoolSubject schoolSubject)
+		{
+			query.setSchoolSubject(schoolSubject);
+			return this;
+		}
+
+		public Builder withClassGroupId(Long classGroupId)
+		{
+			query.setClassGroupId(classGroupId);
+			return this;
+		}
+
+		public Builder withLessonNumber(Integer lessonNumber)
+		{
+			query.setLessonNumber(lessonNumber);
+			return this;
+		}
+
+		public Builder withDate(Date date)
+		{
+			query.setDate(date);
+			return this;
+		}
+
+	}
 }

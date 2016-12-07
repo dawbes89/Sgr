@@ -1,145 +1,145 @@
 <!DOCTYPE composition>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
-	<ui:define name="content">
-		<!-- SEARCH PANEL -->
-		<h:form id="search">
-			<p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
-				autoRun="true" update=":search:panel :root:table" />
+    <ui:define name="content">
+        <!-- SEARCH PANEL -->
+        <h:form id="search">
+            <p:remoteCommand name="onload" action="#{teacherCommentPanel.onLoad}"
+                             autoRun="true" update=":search:panel :root:table"/>
 
-			<p:panel id="panel" header="#{sgr_translation.common_search}"
-				toggleable="true">
-				<p:outputLabel value="#{sgr_translation.form_class}: " />
-				<p:selectOneMenu id="classGroup"
-					value="#{teacherCommentPanel.classGroup}" effect="fade"
-					filter="true" filterMatchMode="contains" converter="classConverter">
-					<p:ajax listener="#{teacherCommentPanel.searchStudents}"
-						update=":root:table" />
-					<f:selectItem itemValue="#{null}"
-						itemLabel="#{sgr_translation.selectOneMenu_select}"
-						noSelectionOption="true" />
-					<f:selectItems value="#{teacherCommentPanel.classes}"
-						var="classGroup" itemLabel="#{classGroup.className}"
-						itemValue="#{classGroup}" />
-				</p:selectOneMenu>
-			</p:panel>
-		</h:form>
+            <p:panel id="panel" header="#{sgr_translation.common_search}"
+                     toggleable="true">
+                <p:outputLabel value="#{sgr_translation.form_class}: "/>
+                <p:selectOneMenu id="classGroup"
+                                 value="#{teacherCommentPanel.classGroup}" effect="fade"
+                                 filter="true" filterMatchMode="contains" converter="classConverter">
+                    <p:ajax listener="#{teacherCommentPanel.searchStudents}"
+                            update=":root:table"/>
+                    <f:selectItem itemValue="#{null}"
+                                  itemLabel="#{sgr_translation.selectOneMenu_select}"
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{teacherCommentPanel.classes}"
+                                   var="classGroup" itemLabel="#{classGroup.className}"
+                                   itemValue="#{classGroup}"/>
+                </p:selectOneMenu>
+            </p:panel>
+        </h:form>
 
-		<!-- MAIN TABLE -->
-		<h:form id="root">
-			<p:panel id="commentsPanel"
-				header="#{sgr_translation.form_comment_studentList}">
-				<p:outputPanel id="panel" style="text-align:center;" layout="block">
-					<p:dataTable id="table" var="student"
-						emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
-						value="#{teacherCommentPanel.entities}">
-						<p:column headerText="#{sgr_translation.form_person_firstName}">
-							<p:outputLabel value="#{student.person.firstName}" />
-						</p:column>
-						<p:column headerText="#{sgr_translation.form_person_lastName}">
-							<p:outputLabel value="#{student.person.lastName}" />
-						</p:column>
-						<p:column width="40">
-							<p:commandButton title="#{sgr_translation.common_comments}"
-								update=":add:panel" oncomplete="PF('addDialog').show()"
-								icon="ui-icon-pencil">
-								<f:setPropertyActionListener value="#{student}"
-									target="#{teacherCommentPanel.entity}" />
-							</p:commandButton>
-						</p:column>
-					</p:dataTable>
-				</p:outputPanel>
-			</p:panel>
-		</h:form>
+        <!-- MAIN TABLE -->
+        <h:form id="root">
+            <p:panel id="commentsPanel"
+                     header="#{sgr_translation.form_comment_studentList}">
+                <p:outputPanel id="panel" style="text-align:center;" layout="block">
+                    <p:dataTable id="table" var="student"
+                                 emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
+                                 value="#{teacherCommentPanel.entities}">
+                        <p:column headerText="#{sgr_translation.form_person_firstName}">
+                            <p:outputLabel value="#{student.person.firstName}"/>
+                        </p:column>
+                        <p:column headerText="#{sgr_translation.form_person_lastName}">
+                            <p:outputLabel value="#{student.person.lastName}"/>
+                        </p:column>
+                        <p:column width="40">
+                            <p:commandButton title="#{sgr_translation.common_comments}"
+                                             update=":add:panel" oncomplete="PF('addDialog').show()"
+                                             icon="ui-icon-pencil">
+                                <f:setPropertyActionListener value="#{student}"
+                                                             target="#{teacherCommentPanel.entity}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </p:panel>
+        </h:form>
 
-		<!-- ADD FORM -->
-		<p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="750px"
-			height="500px" closable="false" draggable="false" modal="true"
-			appendTo="@(body)" focus=":add:content">
-			<h:form id="add">
-				<p:panelGrid id="panel" columns="1">
-					<p:messages id="msgs" />
+        <!-- ADD FORM -->
+        <p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
+                  resizable="false" showEffect="fold" hideEffect="fold" width="750px"
+                  height="500px" closable="false" draggable="false" modal="true"
+                  appendTo="@(body)" focus=":add:content">
+            <h:form id="add">
+                <p:panelGrid id="panel" columns="1">
+                    <p:messages id="msgs"/>
 
-					<p:panel id="comment" header="#{sgr_translation.form_comment_new}">
-						<p:panelGrid columns="2" columnClasses="label, value">
-							<p:outputLabel for="student"
-								value="#{sgr_translation.form_studentName}" />
-							<p:outputLabel id="student"
-								value="#{teacherCommentPanel.entity.fullName}" />
+                    <p:panel id="comment" header="#{sgr_translation.form_comment_new}">
+                        <p:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel for="student"
+                                           value="#{sgr_translation.form_studentName}"/>
+                            <p:outputLabel id="student"
+                                           value="#{teacherCommentPanel.entity.fullName}"/>
 
-							<p:outputLabel for="type" value="#{sgr_translation.common_type}" />
-							<p:selectOneMenu id="type"
-								value="#{teacherCommentPanel.comment.commentType}"
-								var="commentType" required="true">
-								<f:selectItem itemValue="POSITIVE"
-									itemLabel="#{sgr_translation.commentType_positive}" />
-								<f:selectItem itemValue="NEGATIVE"
-									itemLabel="#{sgr_translation.commentType_negative}" />
-								<f:selectItem itemValue="REPREHENSIBLE"
-									itemLabel="#{sgr_translation.commentType_reprehensible}" />
-							</p:selectOneMenu>
+                            <p:outputLabel for="type" value="#{sgr_translation.common_type}"/>
+                            <p:selectOneMenu id="type"
+                                             value="#{teacherCommentPanel.comment.commentType}"
+                                             var="commentType" required="true">
+                                <f:selectItem itemValue="POSITIVE"
+                                              itemLabel="#{sgr_translation.commentType_positive}"/>
+                                <f:selectItem itemValue="NEGATIVE"
+                                              itemLabel="#{sgr_translation.commentType_negative}"/>
+                                <f:selectItem itemValue="REPREHENSIBLE"
+                                              itemLabel="#{sgr_translation.commentType_reprehensible}"/>
+                            </p:selectOneMenu>
 
-							<p:outputLabel for="content"
-								value="#{sgr_translation.common_content}" />
-							<p:inputTextarea id="content" rows="6" cols="50"
-								label="#{sgr_translation.common_content}"
-								value="#{teacherCommentPanel.comment.content}" required="true">
-								<f:validateLength minimum="10" maximum="255" />
-							</p:inputTextarea>
-						</p:panelGrid>
-					</p:panel>
+                            <p:outputLabel for="content"
+                                           value="#{sgr_translation.common_content}"/>
+                            <p:inputTextarea id="content" rows="6" cols="50"
+                                             label="#{sgr_translation.common_content}"
+                                             value="#{teacherCommentPanel.comment.content}" required="true">
+                                <f:validateLength minimum="10" maximum="255"/>
+                            </p:inputTextarea>
+                        </p:panelGrid>
+                    </p:panel>
 
-					<p:panel id="buttons">
-						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{teacherCommentPanel.create}" update=":add:panel"
-							icon="ui-icon-disk">
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_clear}"
-							update=":add:panel" process="@this" icon="ui-icon-close">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_close}"
-							update=":add:panel" process="@this" icon="ui-icon-cancel"
-							oncomplete="PF('addDialog').hide()">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-					</p:panel>
+                    <p:panel id="buttons">
+                        <p:commandButton value="#{sgr_translation.form_button_save}"
+                                         action="#{teacherCommentPanel.create}" update=":add:panel"
+                                         icon="ui-icon-disk">
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_clear}"
+                                         update=":add:panel" process="@this" icon="ui-icon-close">
+                            <p:resetInput target=":add:panel"/>
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_close}"
+                                         update=":add:panel" process="@this" icon="ui-icon-cancel"
+                                         oncomplete="PF('addDialog').hide()">
+                            <p:resetInput target=":add:panel"/>
+                        </p:commandButton>
+                    </p:panel>
 
-					<p:panel id="otherCommentsPanel"
-						header="#{sgr_translation.form_comment_other}" toggleable="true"
-						collapsed="true">
-						<p:dataTable id="commentTable" var="comment"
-							emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
-							value="#{teacherCommentPanel.comments}" editable="false"
-							cellSeparator="true">
-							<p:column width="16">
-								<p:rowToggler />
-							</p:column>
-							<p:column headerText="#{sgr_translation.common_added}"
-								width="110">
-								<p:outputLabel value="#{comment.date}" converter="yearConverter" />
-							</p:column>
-							<p:column headerText="#{sgr_translation.common_type}" width="110">
-								<p:outputLabel value="#{comment.commentType}"
-									converter="commentTypeTranslationConverter" />
-							</p:column>
-							<p:column headerText="#{sgr_translation.form_comment_issuer}">
-								<p:outputLabel value="#{comment.issuerName}" />
-							</p:column>
-							<p:rowExpansion>
-								<p:outputLabel value="#{comment.content}" />
-							</p:rowExpansion>
-						</p:dataTable>
-					</p:panel>
-				</p:panelGrid>
-			</h:form>
-		</p:dialog>
+                    <p:panel id="otherCommentsPanel"
+                             header="#{sgr_translation.form_comment_other}" toggleable="true"
+                             collapsed="true">
+                        <p:dataTable id="commentTable" var="comment"
+                                     emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
+                                     value="#{teacherCommentPanel.comments}" editable="false"
+                                     cellSeparator="true">
+                            <p:column width="16">
+                                <p:rowToggler/>
+                            </p:column>
+                            <p:column headerText="#{sgr_translation.common_added}"
+                                      width="110">
+                                <p:outputLabel value="#{comment.date}" converter="yearConverter"/>
+                            </p:column>
+                            <p:column headerText="#{sgr_translation.common_type}" width="110">
+                                <p:outputLabel value="#{comment.commentType}"
+                                               converter="commentTypeTranslationConverter"/>
+                            </p:column>
+                            <p:column headerText="#{sgr_translation.form_comment_issuer}">
+                                <p:outputLabel value="#{comment.issuerName}"/>
+                            </p:column>
+                            <p:rowExpansion>
+                                <p:outputLabel value="#{comment.content}"/>
+                            </p:rowExpansion>
+                        </p:dataTable>
+                    </p:panel>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
 
-	</ui:define>
+    </ui:define>
 
 </ui:composition>

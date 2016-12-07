@@ -1,80 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
-   xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee"
-   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
-   xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-   <import resource="classpath:sgr-hibernate-config.xml" />
+	<import resource="classpath:sgr-hibernate-config.xml"/>
 
-   <bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl" />
+	<bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl"/>
 
-   <bean id="sessionService" class="sgr.app.core.authentication.SessionServiceImpl" />
+	<bean id="sessionService" class="sgr.app.core.authentication.SessionServiceImpl"/>
 
-   <bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-   </bean>
+	<bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
-   <bean id="semestrService" class="sgr.app.core.semestr.SemestrServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-   </bean>
+	<bean id="semestrService" class="sgr.app.core.semestr.SemestrServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
-   <bean id="notificationService" class="sgr.app.core.notification.NotificationServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="semestrService" ref="semestrService" />
-   </bean>
+	<bean id="notificationService" class="sgr.app.core.notification.NotificationServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="semestrService" ref="semestrService"/>
+	</bean>
 
-   <bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="accountService" ref="accountService" />
-      <property name="sessionService" ref="sessionService" />
-      <property name="adminService" ref="adminService" />
-   </bean>
+	<bean id="authenticationService" class="sgr.app.core.authentication.AuthenticationServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="accountService" ref="accountService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="adminService" ref="adminService"/>
+	</bean>
 
-   <bean id="teachingStaffService" class="sgr.app.core.teachingstaff.TeachingStaffServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="accountService" ref="accountService" />
-   </bean>
+	<bean id="teachingStaffService" class="sgr.app.core.teachingstaff.TeachingStaffServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="accountService" ref="accountService"/>
+	</bean>
 
-   <bean id="announcementService" class="sgr.app.core.announcement.AnnouncementServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-   </bean>
+	<bean id="announcementService" class="sgr.app.core.announcement.AnnouncementServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
-   <bean id="classGroupService" class="sgr.app.core.classgroup.ClassGroupServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-   </bean>
+	<bean id="classGroupService" class="sgr.app.core.classgroup.ClassGroupServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
-   <bean id="studentService" class="sgr.app.core.student.StudentServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="accountService" ref="accountService" />
-   </bean>
+	<bean id="studentService" class="sgr.app.core.student.StudentServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="accountService" ref="accountService"/>
+	</bean>
 
-   <bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="notificationService" ref="notificationService" />
-      <property name="semestrService" ref="semestrService" />
-   </bean>
+	<bean id="commentService" class="sgr.app.core.comment.CommentServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="notificationService" ref="notificationService"/>
+		<property name="semestrService" ref="semestrService"/>
+	</bean>
 
-   <bean id="adminService" class="sgr.app.core.admin.AdminServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="accountService" ref="accountService" />
-   </bean>
+	<bean id="adminService" class="sgr.app.core.admin.AdminServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="accountService" ref="accountService"/>
+	</bean>
 
-   <bean id="assessmentService" class="sgr.app.core.assessment.AssessmentServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="notificationService" ref="notificationService" />
-      <property name="semestrService" ref="semestrService" />
-   </bean>
+	<bean id="assessmentService" class="sgr.app.core.assessment.AssessmentServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="notificationService" ref="notificationService"/>
+		<property name="semestrService" ref="semestrService"/>
+	</bean>
 
-   <bean id="presenceService" class="sgr.app.core.presence.PresenceServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="semestrService" ref="semestrService" />
-   </bean>
+	<bean id="presenceService" class="sgr.app.core.presence.PresenceServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="semestrService" ref="semestrService"/>
+	</bean>
 
-   <bean id="lessonService" class="sgr.app.core.lesson.LessonServiceImpl">
-      <property name="sessionFactory" ref="sessionFactory" />
-      <property name="presenceService" ref="presenceService" />
-      <property name="semestrService" ref="semestrService" />
-   </bean>
+	<bean id="lessonService" class="sgr.app.core.lesson.LessonServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="presenceService" ref="presenceService"/>
+		<property name="semestrService" ref="semestrService"/>
+	</bean>
 
 </beans>

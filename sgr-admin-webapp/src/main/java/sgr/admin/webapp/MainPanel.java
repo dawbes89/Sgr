@@ -11,12 +11,12 @@ import sgr.app.frontend.panels.MainApplicationPanel;
 public class MainPanel extends MainApplicationPanel
 {
 
-   private static final long serialVersionUID = -7214848698811381282L;
+	private static final long serialVersionUID = -7214848698811381282L;
 
-   public boolean isSuperuser()
-   {
-      final Admin currentUser = authenticationService.getCurrentUser();
-      return currentUser.isSuperuser();
-   }
+	public boolean isSuperuser()
+	{
+		final Admin currentUser = authenticationService.getCurrentUser();
+		return currentUser.isSuperuser();
+	}
 
 }

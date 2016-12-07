@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-   version="2.2">
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.2">
 
-   <application>
-      <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-   </application>
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
 
-   <application>
-      <locale-config>
-         <default-locale>pl</default-locale>
-      </locale-config>
+	<application>
+		<locale-config>
+			<default-locale>pl</default-locale>
+		</locale-config>
 
-      <message-bundle>i18n/jsf-validation-errors</message-bundle>
-      <resource-bundle>
-         <base-name>i18n/sgr-app-translations</base-name>
-         <var>sgr_app_translation</var>
-      </resource-bundle>
-      <resource-bundle>
-         <base-name>i18n/sgr-frontend-translations</base-name>
-         <var>sgr_translation</var>
-      </resource-bundle>
-   </application>
+		<message-bundle>i18n/jsf-validation-errors</message-bundle>
+		<resource-bundle>
+			<base-name>i18n/sgr-app-translations</base-name>
+			<var>sgr_app_translation</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>i18n/sgr-frontend-translations</base-name>
+			<var>sgr_translation</var>
+		</resource-bundle>
+	</application>
 
-   <navigation-rule>
-      <from-view-id>/loginPanel.xhtml</from-view-id>
-      <navigation-case>
-         <from-outcome>index</from-outcome>
-         <to-view-id>/index.xhtml</to-view-id>
-      </navigation-case>
-   </navigation-rule>
+	<navigation-rule>
+		<from-view-id>/loginPanel.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

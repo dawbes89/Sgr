@@ -1,185 +1,185 @@
 <!DOCTYPE composition>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<ui:include src="common/removeConfirmDialog.xhtml">
-			<ui:param name="panel" value="#{announcementPanel}" />
-		</ui:include>
+        <ui:include src="common/removeConfirmDialog.xhtml">
+            <ui:param name="panel" value="#{announcementPanel}"/>
+        </ui:include>
 
-		<!-- MAIN TABLE -->
-		<h:form id="root">
-			<p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
-				autoRun="true" update=":root:table" />
+        <!-- MAIN TABLE -->
+        <h:form id="root">
+            <p:remoteCommand name="onload" action="#{announcementPanel.onLoad}"
+                             autoRun="true" update=":root:table"/>
 
-			<p:outputPanel id="panel" style="text-align:center;" layout="block">
-				<p:commandButton value="#{sgr_translation.common_add}"
-					action="#{announcementPanel.onLoad}" icon="ui-icon-check"
-					oncomplete="PF('addDialog').show()" />
-				<p:separator />
+            <p:outputPanel id="panel" style="text-align:center;" layout="block">
+                <p:commandButton value="#{sgr_translation.common_add}"
+                                 action="#{announcementPanel.onLoad}" icon="ui-icon-check"
+                                 oncomplete="PF('addDialog').show()"/>
+                <p:separator/>
 
-				<p:dataTable id="table" value="#{announcementPanel.entities}"
-					emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
-					var="announcement" editable="false">
-					<p:column width="40">
-						<p:commandButton update=":details:panel"
-							oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
-							title="#{sgr_translation.button_details}">
-							<f:setPropertyActionListener value="#{announcement}"
-								target="#{announcementPanel.entity}" />
-						</p:commandButton>
-					</p:column>
-					<p:column headerText="#{sgr_translation.common_added}"
-						filterBy="#{announcement.date}">
-						<p:outputLabel value="#{announcement.date}"
-							converter="yearConverter" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.common_title}"
-						filterBy="#{announcement.title}" filterMatchMode="contains">
-						<p:outputLabel value="#{announcement.title}" />
-					</p:column>
-					<p:column headerText="#{sgr_translation.common_addedBy}">
-						<p:outputLabel value="#{announcement.admin.fullName}" />
-					</p:column>
-					<p:column width="80">
-						<p:commandButton update=":update:panel"
-							oncomplete="PF('updateDialog').show()" icon="ui-icon-pencil">
-							<f:setPropertyActionListener value="#{announcement}"
-								target="#{announcementPanel.entity}" />
-						</p:commandButton>
-						<p:commandButton title="#{sgr_translation.button_remove}"
-							update=":remove" onclick="PF('removeDialog').show()"
-							icon="ui-icon-trash">
-							<f:setPropertyActionListener value="#{announcement}"
-								target="#{announcementPanel.entity}" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-			</p:outputPanel>
-		</h:form>
+                <p:dataTable id="table" value="#{announcementPanel.entities}"
+                             emptyMessage="#{sgr_translation.p_dataTable_emptyMessage}"
+                             var="announcement" editable="false">
+                    <p:column width="40">
+                        <p:commandButton update=":details:panel"
+                                         oncomplete="PF('detailsDialog').show()" icon="ui-icon-info"
+                                         title="#{sgr_translation.button_details}">
+                            <f:setPropertyActionListener value="#{announcement}"
+                                                         target="#{announcementPanel.entity}"/>
+                        </p:commandButton>
+                    </p:column>
+                    <p:column headerText="#{sgr_translation.common_added}"
+                              filterBy="#{announcement.date}">
+                        <p:outputLabel value="#{announcement.date}"
+                                       converter="yearConverter"/>
+                    </p:column>
+                    <p:column headerText="#{sgr_translation.common_title}"
+                              filterBy="#{announcement.title}" filterMatchMode="contains">
+                        <p:outputLabel value="#{announcement.title}"/>
+                    </p:column>
+                    <p:column headerText="#{sgr_translation.common_addedBy}">
+                        <p:outputLabel value="#{announcement.admin.fullName}"/>
+                    </p:column>
+                    <p:column width="80">
+                        <p:commandButton update=":update:panel"
+                                         oncomplete="PF('updateDialog').show()" icon="ui-icon-pencil">
+                            <f:setPropertyActionListener value="#{announcement}"
+                                                         target="#{announcementPanel.entity}"/>
+                        </p:commandButton>
+                        <p:commandButton title="#{sgr_translation.button_remove}"
+                                         update=":remove" onclick="PF('removeDialog').show()"
+                                         icon="ui-icon-trash">
+                            <f:setPropertyActionListener value="#{announcement}"
+                                                         target="#{announcementPanel.entity}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:outputPanel>
+        </h:form>
 
-		<!-- ADD FORM -->
-		<p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
-			resizable="false" showEffect="fold" hideEffect="fold" width="610px"
-			height="500px" closable="false" draggable="false" modal="true"
-			appendTo="@(body)" focus=":add:title">
-			<h:form id="add">
-				<p:panelGrid id="panel" columns="1" columnClasses="grid">
-					<p:messages id="msgs" />
+        <!-- ADD FORM -->
+        <p:dialog widgetVar="addDialog" header="#{sgr_translation.common_add}"
+                  resizable="false" showEffect="fold" hideEffect="fold" width="610px"
+                  height="500px" closable="false" draggable="false" modal="true"
+                  appendTo="@(body)" focus=":add:title">
+            <h:form id="add">
+                <p:panelGrid id="panel" columns="1" columnClasses="grid">
+                    <p:messages id="msgs"/>
 
-					<p:outputLabel for="title" value="#{sgr_translation.common_title}" />
-					<p:inputText id="title" value="#{announcementPanel.entity.title}"
-						label="#{sgr_translation.common_title}" required="true" size="51">
-						<f:validateLength minimum="5" maximum="100" />
-					</p:inputText>
+                    <p:outputLabel for="title" value="#{sgr_translation.common_title}"/>
+                    <p:inputText id="title" value="#{announcementPanel.entity.title}"
+                                 label="#{sgr_translation.common_title}" required="true" size="51">
+                        <f:validateLength minimum="5" maximum="100"/>
+                    </p:inputText>
 
-					<p:outputLabel for="content"
-						value="#{sgr_translation.common_content}" />
-					<p:inputTextarea id="content"
-						value="#{announcementPanel.entity.content}"
-						label="#{sgr_translation.common_content}" required="true"
-						rows="10" cols="52">
-						<f:validateLength minimum="5" maximum="255" />
-					</p:inputTextarea>
+                    <p:outputLabel for="content"
+                                   value="#{sgr_translation.common_content}"/>
+                    <p:inputTextarea id="content"
+                                     value="#{announcementPanel.entity.content}"
+                                     label="#{sgr_translation.common_content}" required="true"
+                                     rows="10" cols="52">
+                        <f:validateLength minimum="5" maximum="255"/>
+                    </p:inputTextarea>
 
-					<p:panel id="buttons">
-						<p:commandButton value="#{sgr_translation.form_button_save}"
-							action="#{announcementPanel.create}"
-							update=":add:panel :root:panel" icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_clear}"
-							update=":add:panel" process="@this" icon="ui-icon-close">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_cancel}"
-							update=":add:panel" process="@this" icon="ui-icon-cancel"
-							oncomplete="PF('addDialog').hide()">
-							<p:resetInput target=":add:panel" />
-						</p:commandButton>
-					</p:panel>
-				</p:panelGrid>
-			</h:form>
-		</p:dialog>
+                    <p:panel id="buttons">
+                        <p:commandButton value="#{sgr_translation.form_button_save}"
+                                         action="#{announcementPanel.create}"
+                                         update=":add:panel :root:panel" icon="ui-icon-disk"
+                                         oncomplete="if (args &amp;&amp; !args.validationFailed) PF('addDialog').hide()">
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_clear}"
+                                         update=":add:panel" process="@this" icon="ui-icon-close">
+                            <p:resetInput target=":add:panel"/>
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_cancel}"
+                                         update=":add:panel" process="@this" icon="ui-icon-cancel"
+                                         oncomplete="PF('addDialog').hide()">
+                            <p:resetInput target=":add:panel"/>
+                        </p:commandButton>
+                    </p:panel>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
 
-		<!-- UPDATE FORM -->
-		<p:dialog widgetVar="updateDialog"
-			header="#{sgr_translation.common_update}" resizable="false"
-			showEffect="fold" hideEffect="fold" width="600px" height="500px"
-			closable="false" draggable="false" modal="true" appendTo="@(body)"
-			dynamic="true">
-			<p:ajax event="close" listener="#{annonucementPanel.init()}" />
-			<h:form id="update">
-				<p:panelGrid id="panel" columns="1" columnClasses="grid">
-					<p:messages id="msgs" />
+        <!-- UPDATE FORM -->
+        <p:dialog widgetVar="updateDialog"
+                  header="#{sgr_translation.common_update}" resizable="false"
+                  showEffect="fold" hideEffect="fold" width="600px" height="500px"
+                  closable="false" draggable="false" modal="true" appendTo="@(body)"
+                  dynamic="true">
+            <p:ajax event="close" listener="#{annonucementPanel.init()}"/>
+            <h:form id="update">
+                <p:panelGrid id="panel" columns="1" columnClasses="grid">
+                    <p:messages id="msgs"/>
 
-					<h:outputLabel for="title" value="#{sgr_translation.common_title}" />
-					<p:inputText id="title" value="#{announcementPanel.entity.title}"
-						label="#{sgr_translation.common_title}" size="51" required="true">
-						<f:validateLength minimum="5" maximum="100" />
-					</p:inputText>
+                    <h:outputLabel for="title" value="#{sgr_translation.common_title}"/>
+                    <p:inputText id="title" value="#{announcementPanel.entity.title}"
+                                 label="#{sgr_translation.common_title}" size="51" required="true">
+                        <f:validateLength minimum="5" maximum="100"/>
+                    </p:inputText>
 
-					<h:outputLabel for="content"
-						value="#{sgr_translation.common_content}" />
-					<p:inputTextarea id="content"
-						value="#{announcementPanel.entity.content}"
-						label="#{sgr_translation.common_content}" required="true"
-						rows="10" cols="52">
-						<f:validateLength minimum="5" maximum="255" />
-					</p:inputTextarea>
+                    <h:outputLabel for="content"
+                                   value="#{sgr_translation.common_content}"/>
+                    <p:inputTextarea id="content"
+                                     value="#{announcementPanel.entity.content}"
+                                     label="#{sgr_translation.common_content}" required="true"
+                                     rows="10" cols="52">
+                        <f:validateLength minimum="5" maximum="255"/>
+                    </p:inputTextarea>
 
-					<p:panel id="buttons">
-						<p:commandButton value="#{sgr_translation.common_update}"
-							actionListener="#{announcementPanel.update(announcementPanel.entity)}"
-							update=":root:panel :update:panel" icon="ui-icon-disk"
-							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
-							<p:ajax event="dialogReturn"
-								listener="#{announcementPanel.update}" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_clear}"
-							update=":update:panel" process="@this" icon="ui-icon-close">
-							<p:resetInput target=":update:panel" />
-						</p:commandButton>
-						<p:commandButton value="#{sgr_translation.form_button_cancel}"
-							update=":update:panel" process="@this" icon="ui-icon-cancel"
-							oncomplete="PF('updateDialog').hide()">
-							<p:resetInput target=":update:panel" />
-						</p:commandButton>
-					</p:panel>
-				</p:panelGrid>
-			</h:form>
-		</p:dialog>
+                    <p:panel id="buttons">
+                        <p:commandButton value="#{sgr_translation.common_update}"
+                                         actionListener="#{announcementPanel.update(announcementPanel.entity)}"
+                                         update=":root:panel :update:panel" icon="ui-icon-disk"
+                                         oncomplete="if (args &amp;&amp; !args.validationFailed) PF('updateDialog').hide()">
+                            <p:ajax event="dialogReturn"
+                                    listener="#{announcementPanel.update}"/>
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_clear}"
+                                         update=":update:panel" process="@this" icon="ui-icon-close">
+                            <p:resetInput target=":update:panel"/>
+                        </p:commandButton>
+                        <p:commandButton value="#{sgr_translation.form_button_cancel}"
+                                         update=":update:panel" process="@this" icon="ui-icon-cancel"
+                                         oncomplete="PF('updateDialog').hide()">
+                            <p:resetInput target=":update:panel"/>
+                        </p:commandButton>
+                    </p:panel>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
 
-		<!-- DETAILS FORM -->
-		<h:form id="details">
-			<p:dialog header="#{sgr_translation.form_window_caption_details}"
-				widgetVar="detailsDialog" resizable="false" showEffect="clip"
-				hideEffect="clip" width="600px" closable="true" draggable="false"
-				modal="true" appendTo="@(body)" dynamic="true">
-				<p:ajax event="close" listener="#{annonucementPanel.init()}" />
-				<p:fieldset id="panel" legend="#{sgr_translation.form_announcement}"
-					layout="block">
-					<p:panelGrid id="output" columns="2">
-						<p:outputLabel value="#{sgr_translation.common_title}" for="title" />
-						<p:outputLabel id="title"
-							value="#{announcementPanel.entity.title}" />
+        <!-- DETAILS FORM -->
+        <h:form id="details">
+            <p:dialog header="#{sgr_translation.form_window_caption_details}"
+                      widgetVar="detailsDialog" resizable="false" showEffect="clip"
+                      hideEffect="clip" width="600px" closable="true" draggable="false"
+                      modal="true" appendTo="@(body)" dynamic="true">
+                <p:ajax event="close" listener="#{annonucementPanel.init()}"/>
+                <p:fieldset id="panel" legend="#{sgr_translation.form_announcement}"
+                            layout="block">
+                    <p:panelGrid id="output" columns="2">
+                        <p:outputLabel value="#{sgr_translation.common_title}" for="title"/>
+                        <p:outputLabel id="title"
+                                       value="#{announcementPanel.entity.title}"/>
 
-						<p:outputLabel value="#{sgr_translation.common_added}" for="date" />
-						<p:outputLabel id="date" value="#{announcementPanel.entity.date}"
-							converter="yearConverter" />
+                        <p:outputLabel value="#{sgr_translation.common_added}" for="date"/>
+                        <p:outputLabel id="date" value="#{announcementPanel.entity.date}"
+                                       converter="yearConverter"/>
 
-						<p:outputLabel value="#{sgr_translation.common_content}"
-							for="content" />
-						<p:outputLabel id="content"
-							value="#{announcementPanel.entity.content}" />
-					</p:panelGrid>
-				</p:fieldset>
-			</p:dialog>
-		</h:form>
-	</ui:define>
+                        <p:outputLabel value="#{sgr_translation.common_content}"
+                                       for="content"/>
+                        <p:outputLabel id="content"
+                                       value="#{announcementPanel.entity.content}"/>
+                    </p:panelGrid>
+                </p:fieldset>
+            </p:dialog>
+        </h:form>
+    </ui:define>
 
 </ui:composition>

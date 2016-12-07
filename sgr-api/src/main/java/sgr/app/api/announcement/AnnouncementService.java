@@ -8,12 +8,12 @@ import java.util.List;
 public interface AnnouncementService
 {
 
-   List<Announcement> search();
+	List<Announcement> search();
 
-   void create(Announcement announcement);
+	void create(Announcement announcement);
 
-   void update(Announcement announcement);
+	void update(Announcement announcement);
 
-   void remove(Long id);
+	void remove(Long id);
 
 }

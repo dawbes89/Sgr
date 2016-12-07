@@ -8,12 +8,12 @@ import java.util.Optional;
 public interface AccountService
 {
 
-   Optional<Account> findAccountByLogin(String login);
+	Optional<Account> findAccountByLogin(String login);
 
-   <T> Optional<T> findUserByAccount(Account account);
+	<T> Optional<T> findUserByAccount(Account account);
 
-   Account createAccount(Account account);
+	Account createAccount(Account account);
 
-   void updateAccountPassword(String login, String password);
+	void updateAccountPassword(String login, String password);
 
 }

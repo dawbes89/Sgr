@@ -1,23 +1,10 @@
 package sgr.app.api.comment;
 
+import sgr.app.api.student.Student;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import sgr.app.api.student.Student;
 
 /**
  * Entity for student comments.
@@ -29,92 +16,93 @@ import sgr.app.api.student.Student;
 public class Comment implements Serializable
 {
 
-   private static final long serialVersionUID = -5937580296121716355L;
+	public static final String PROPERTY_DATE = "date";
 
-   public static final String PROPERTY_DATE = "date";
-   public static final String PROPERTY_STUDENT = "student";
+	public static final String PROPERTY_STUDENT = "student";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	private static final long serialVersionUID = -5937580296121716355L;
 
-   @Column(name = "date", nullable = false, updatable = false)
-   private Date date;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   @Column(name = "content", length = 255, nullable = false, updatable = false)
-   private String content;
+	@Column(name = "date", nullable = false, updatable = false)
+	private Date date;
 
-   @Enumerated(EnumType.STRING)
-   @Column(name = "comment_type", length = 25, nullable = false, updatable = false)
-   private CommentType commentType;
+	@Column(name = "content", length = 255, nullable = false, updatable = false)
+	private String content;
 
-   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "student_id", nullable = false, updatable = false,
-         referencedColumnName = "id", foreignKey = @ForeignKey(name = "comment_student_id_fk") )
-   private Student student;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "comment_type", length = 25, nullable = false, updatable = false)
+	private CommentType commentType;
 
-   @Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
-   private String issuerName;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "student_id", nullable = false, updatable = false, referencedColumnName = "id",
+			foreignKey = @ForeignKey(name = "comment_student_id_fk"))
+	private Student student;
 
-   public Long getId()
-   {
-      return id;
-   }
+	@Column(name = "issuer_name", length = 100, nullable = false, updatable = false)
+	private String issuerName;
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public Date getDate()
-   {
-      return date;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setDate(Date date)
-   {
-      this.date = date;
-   }
+	public Date getDate()
+	{
+		return date;
+	}
 
-   public String getContent()
-   {
-      return content;
-   }
+	public void setDate(Date date)
+	{
+		this.date = date;
+	}
 
-   public void setContent(String content)
-   {
-      this.content = content;
-   }
+	public String getContent()
+	{
+		return content;
+	}
 
-   public CommentType getCommentType()
-   {
-      return commentType;
-   }
+	public void setContent(String content)
+	{
+		this.content = content;
+	}
 
-   public void setCommentType(CommentType commentType)
-   {
-      this.commentType = commentType;
-   }
+	public CommentType getCommentType()
+	{
+		return commentType;
+	}
 
-   public Student getStudent()
-   {
-      return student;
-   }
+	public void setCommentType(CommentType commentType)
+	{
+		this.commentType = commentType;
+	}
 
-   public void setStudent(Student student)
-   {
-      this.student = student;
-   }
+	public Student getStudent()
+	{
+		return student;
+	}
 
-   public String getIssuerName()
-   {
-      return issuerName;
-   }
+	public void setStudent(Student student)
+	{
+		this.student = student;
+	}
 
-   public void setIssuerName(String issuerName)
-   {
-      this.issuerName = issuerName;
-   }
+	public String getIssuerName()
+	{
+		return issuerName;
+	}
+
+	public void setIssuerName(String issuerName)
+	{
+		this.issuerName = issuerName;
+	}
 
 }

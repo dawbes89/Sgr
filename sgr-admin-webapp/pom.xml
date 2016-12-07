@@ -1,53 +1,53 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <groupId>StudentGradeRecord</groupId>
-      <artifactId>sgr-parent</artifactId>
-      <version>0.0.3-SNAPSHOT</version>
-   </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>StudentGradeRecord</groupId>
+		<artifactId>sgr-parent</artifactId>
+		<version>0.0.3-SNAPSHOT</version>
+	</parent>
 
-   <packaging>war</packaging>
+	<packaging>war</packaging>
 
-   <artifactId>sgr-admin-webapp</artifactId>
-   <name>SGR admin webapp</name>
+	<artifactId>sgr-admin-webapp</artifactId>
+	<name>SGR admin webapp</name>
 
-   <repositories>
-      <repository>
-         <id>prime-repo</id>
-         <name>Prime Repo</name>
-         <url>http://repository.primefaces.org</url>
-      </repository>
-   </repositories>
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
 
-   <dependencies>
-      <!-- StudentGradeRecord -->
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-core</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-frontend</artifactId>
-      </dependency>
+	<dependencies>
+		<!-- StudentGradeRecord -->
+		<dependency>
+			<groupId>StudentGradeRecord</groupId>
+			<artifactId>sgr-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>StudentGradeRecord</groupId>
+			<artifactId>sgr-frontend</artifactId>
+		</dependency>
 
-      <!-- PrimeFaces -->
-      <dependency>
-         <groupId>org.primefaces.themes</groupId>
-         <artifactId>all-themes</artifactId>
-         <version>1.0.10</version>
-      </dependency>
-   </dependencies>
+		<!-- PrimeFaces -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+	</dependencies>
 
-   <build>
-      <plugins>
-         <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>2.3</version>
-            <configuration>
-               <failOnMissingWebXml>false</failOnMissingWebXml>
-            </configuration>
-         </plugin>
-      </plugins>
-   </build>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

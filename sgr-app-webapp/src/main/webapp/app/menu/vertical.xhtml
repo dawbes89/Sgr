@@ -1,71 +1,69 @@
 <!DOCTYPE composition>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
-	<p:menu toggleable="true">
-		<!-- TEACHER SUBMENU -->
-		<p:submenu label="#{sgr_app_translation.menu_vertical_class_title}"
-			rendered="#{mainPanel.showMenuFor('TEACHER')}">
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_class_lessons_title}"
-				value="#{sgr_app_translation.menu_vertical_class_lessons}"
-				outcome="teacherLessonPanel" icon="ui-icon-calendar" />
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_class_assessment_title}"
-				value="#{sgr_app_translation.menu_vertical_class_assessment}"
-				outcome="teacherAssessmentPanel" icon="ui-icon-bookmark" />
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_class_comments_title}"
-				value="#{sgr_app_translation.menu_vertical_class_comments}"
-				outcome="teacherCommentPanel" icon="ui-icon-comment" />
-		</p:submenu>
+    <p:menu toggleable="true">
+        <!-- TEACHER SUBMENU -->
+        <p:submenu label="#{sgr_app_translation.menu_vertical_class_title}"
+                   rendered="#{mainPanel.showMenuFor('TEACHER')}">
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_class_lessons_title}"
+                    value="#{sgr_app_translation.menu_vertical_class_lessons}"
+                    outcome="teacherLessonPanel" icon="ui-icon-calendar"/>
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_class_assessment_title}"
+                    value="#{sgr_app_translation.menu_vertical_class_assessment}"
+                    outcome="teacherAssessmentPanel" icon="ui-icon-bookmark"/>
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_class_comments_title}"
+                    value="#{sgr_app_translation.menu_vertical_class_comments}"
+                    outcome="teacherCommentPanel" icon="ui-icon-comment"/>
+        </p:submenu>
 
-		<!-- PRECEPTOR MENU -->
-		<p:submenu
-			label="#{sgr_app_translation.menu_vertical_preceptor_title}"
-			rendered="#{mainPanel.currentUserIsPreceptor()}">
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_preceptor_presence_title}"
-				value="#{sgr_app_translation.menu_vertical_preceptor_presence}"
-				outcome="preceptorPresencePanel" icon="ui-icon-calendar" />
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_preceptor_students_title}"
-				value="#{sgr_app_translation.menu_vertical_preceptor_students}"
-				outcome="preceptorStudentPanel" icon="ui-icon-info" />
-		</p:submenu>
+        <!-- PRECEPTOR MENU -->
+        <p:submenu
+                label="#{sgr_app_translation.menu_vertical_preceptor_title}"
+                rendered="#{mainPanel.currentUserIsPreceptor()}">
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_preceptor_presence_title}"
+                    value="#{sgr_app_translation.menu_vertical_preceptor_presence}"
+                    outcome="preceptorPresencePanel" icon="ui-icon-calendar"/>
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_preceptor_students_title}"
+                    value="#{sgr_app_translation.menu_vertical_preceptor_students}"
+                    outcome="preceptorStudentPanel" icon="ui-icon-info"/>
+        </p:submenu>
 
-		<!-- STUDENT SUBMENU -->
-		<p:submenu label="#{sgr_app_translation.menu_vertical_personal_title}"
-			rendered="#{mainPanel.showMenuFor('STUDENT')}">
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_presence}"
-				outcome="studentPresencePanel" icon="ui-icon-calendar" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_assessment}"
-				outcome="studentAssessmentPanel" icon="ui-icon-bookmark" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_comments}"
-				outcome="studentCommentPanel" icon="ui-icon-comment" />
-			<p:menuitem
-				value="#{sgr_app_translation.menu_vertical_personal_notifications}"
-				outcome="studentNotificationPanel" icon="ui-icon-mail-closed" />
-		</p:submenu>
+        <!-- STUDENT SUBMENU -->
+        <p:submenu label="#{sgr_app_translation.menu_vertical_personal_title}"
+                   rendered="#{mainPanel.showMenuFor('STUDENT')}">
+            <p:menuitem
+                    value="#{sgr_app_translation.menu_vertical_personal_presence}"
+                    outcome="studentPresencePanel" icon="ui-icon-calendar"/>
+            <p:menuitem
+                    value="#{sgr_app_translation.menu_vertical_personal_assessment}"
+                    outcome="studentAssessmentPanel" icon="ui-icon-bookmark"/>
+            <p:menuitem
+                    value="#{sgr_app_translation.menu_vertical_personal_comments}"
+                    outcome="studentCommentPanel" icon="ui-icon-comment"/>
+            <p:menuitem
+                    value="#{sgr_app_translation.menu_vertical_personal_notifications}"
+                    outcome="studentNotificationPanel" icon="ui-icon-mail-closed"/>
+        </p:submenu>
 
-		<!-- COMMON SUBMENU -->
-		<p:submenu
-			label="#{sgr_app_translation.menu_vertical_management_title}">
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_management_myAccount_title}"
-				value="#{sgr_app_translation.menu_vertical_management_myAccount}"
-				outcome="changePasswordPanel" icon="ui-icon-person" />
-			<p:menuitem
-				title="#{sgr_app_translation.menu_vertical_management_siteSettings_title}"
-				value="#{sgr_app_translation.menu_vertical_management_siteSettings}"
-				outcome="siteSettings" icon="ui-icon-wrench" />
-		</p:submenu>
-	</p:menu>
+        <!-- COMMON SUBMENU -->
+        <p:submenu
+                label="#{sgr_app_translation.menu_vertical_management_title}">
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_management_myAccount_title}"
+                    value="#{sgr_app_translation.menu_vertical_management_myAccount}"
+                    outcome="changePasswordPanel" icon="ui-icon-person"/>
+            <p:menuitem
+                    title="#{sgr_app_translation.menu_vertical_management_siteSettings_title}"
+                    value="#{sgr_app_translation.menu_vertical_management_siteSettings}"
+                    outcome="siteSettings" icon="ui-icon-wrench"/>
+        </p:submenu>
+    </p:menu>
 
 </ui:composition>

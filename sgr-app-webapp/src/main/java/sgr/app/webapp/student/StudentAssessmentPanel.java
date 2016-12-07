@@ -1,7 +1,6 @@
 package sgr.app.webapp.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import sgr.app.api.assessment.Assessment;
 import sgr.app.api.assessment.AssessmentQuery;
 import sgr.app.api.assessment.AssessmentService;
@@ -18,68 +17,68 @@ import sgr.app.frontend.panels.AbstractPanel;
 public class StudentAssessmentPanel extends AbstractPanel<Assessment>
 {
 
-   private static final long serialVersionUID = 941998774046463482L;
+	private static final long serialVersionUID = 941998774046463482L;
 
-   @Autowired
-   private AuthenticationService authenticationService;
+	@Autowired
+	private AuthenticationService authenticationService;
 
-   @Autowired
-   private AssessmentService assessmentService;
+	@Autowired
+	private AssessmentService assessmentService;
 
-   private Student currentLoggedUser;
+	private Student currentLoggedUser;
 
-   private SchoolSubject schoolSubject;
+	private SchoolSubject schoolSubject;
 
-   @Override
-   public void init()
-   {
-      entity = new Assessment();
-   }
+	@Override
+	public void init()
+	{
+		entity = new Assessment();
+	}
 
-   @Override
-   public void onLoad()
-   {
-      searchAssessments();
-   }
+	@Override
+	public void onLoad()
+	{
+		searchAssessments();
+	}
 
-   public void searchAssessments()
-   {
-      currentLoggedUser = authenticationService.getCurrentUser();
-      entities = assessmentService.search(createQuery());
-   }
+	public void searchAssessments()
+	{
+		currentLoggedUser = authenticationService.getCurrentUser();
+		entities = assessmentService.search(createQuery());
+	}
 
-   public String getAverageAssessments()
-   {
-      double average = 0;
-      if (currentLoggedUser != null && entity != null)
-      {
-         average = assessmentService.getAverageAssesment(createQuery());
-      }
-      return String.format("%1$,.2f", average);
-   }
+	public String getAverageAssessments()
+	{
+		double average = 0;
+		if (currentLoggedUser != null && entity != null)
+		{
+			average = assessmentService.getAverageAssesment(createQuery());
+		}
+		return String.format("%1$,.2f", average);
+	}
 
-   private AssessmentQuery createQuery()
-   {
-      final AssessmentQuery query = new AssessmentQuery();
-      if (currentLoggedUser != null)
-      {
-         query.setStudentId(currentLoggedUser.getId());
-      }
-      if (schoolSubject != null)
-      {
-         query.setSchoolSubject(schoolSubject);
-      }
-      return query;
-   }
+	private AssessmentQuery createQuery()
+	{
+		final AssessmentQuery query = new AssessmentQuery();
+		if (currentLoggedUser != null)
+		{
+			query.setStudentId(currentLoggedUser.getId());
+		}
+		if (schoolSubject != null)
+		{
+			query.setSchoolSubject(schoolSubject);
+		}
+		return query;
+	}
 
-   public SchoolSubject getSchoolSubject()
-   {
-      return schoolSubject;
-   }
+	public SchoolSubject getSchoolSubject()
+	{
+		return schoolSubject;
+	}
 
-   public void setSchoolSubject(SchoolSubject schoolSubject)
-   {
-      this.schoolSubject = schoolSubject;
-   }
+	public void setSchoolSubject(SchoolSubject schoolSubject)
+	{
+		this.schoolSubject = schoolSubject;
+	}
 
 }

@@ -1,13 +1,7 @@
 package sgr.app.api.classgroup;
 
+import javax.persistence.*;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @author leonzio
@@ -17,81 +11,84 @@ import javax.persistence.Table;
 public class ClassGroup implements Serializable
 {
 
-   private static final long serialVersionUID = -1359236624174757353L;
+	public static final String PROPERTY_ID = "id";
 
-   public static final String PROPERTY_ID = "id";
-   public static final String PROPERTY_GROUP_NUMBER = "groupNumber";
-   public static final String PROPERTY_GROUP_NAME = "groupName";
-   public static final String PROPERTY_YEARBOOK = "yearbook";
+	public static final String PROPERTY_GROUP_NUMBER = "groupNumber";
 
-   @Id
-   @Column(name = "id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+	public static final String PROPERTY_GROUP_NAME = "groupName";
 
-   @Column(name = "group_number", precision = 1, nullable = true, updatable = true)
-   private Integer groupNumber;
+	public static final String PROPERTY_YEARBOOK = "yearbook";
 
-   @Column(name = "group_name", length = 1, nullable = false, updatable = false)
-   private String groupName;
+	private static final long serialVersionUID = -1359236624174757353L;
 
-   @Column(name = "yearbook", nullable = false, updatable = false, length = 9)
-   private String yearbook;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-   public Long getId()
-   {
-      return id;
-   }
+	@Column(name = "group_number", precision = 1, nullable = true, updatable = true)
+	private Integer groupNumber;
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+	@Column(name = "group_name", length = 1, nullable = false, updatable = false)
+	private String groupName;
 
-   public Integer getGroupNumber()
-   {
-      return groupNumber;
-   }
+	@Column(name = "yearbook", nullable = false, updatable = false, length = 9)
+	private String yearbook;
 
-   public void setGroupNumber(Integer groupNumber)
-   {
-      this.groupNumber = groupNumber;
-   }
+	public Long getId()
+	{
+		return id;
+	}
 
-   public String getGroupName()
-   {
-      return groupName;
-   }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-   public void setGroupName(String groupName)
-   {
-      this.groupName = groupName;
-   }
+	public Integer getGroupNumber()
+	{
+		return groupNumber;
+	}
 
-   public String getYearbook()
-   {
-      return yearbook;
-   }
+	public void setGroupNumber(Integer groupNumber)
+	{
+		this.groupNumber = groupNumber;
+	}
 
-   public void setYearbook(String yearbook)
-   {
-      this.yearbook = yearbook;
-   }
+	public String getGroupName()
+	{
+		return groupName;
+	}
 
-   public String getClassName()
-   {
-      return String.format("%d%s", groupNumber, groupName);
-   }
+	public void setGroupName(String groupName)
+	{
+		this.groupName = groupName;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (obj == null)
-      {
-         return false;
-      }
-      final ClassGroup object = (ClassGroup) obj;
-      return object.id.equals(this.id);
-   }
+	public String getYearbook()
+	{
+		return yearbook;
+	}
+
+	public void setYearbook(String yearbook)
+	{
+		this.yearbook = yearbook;
+	}
+
+	public String getClassName()
+	{
+		return String.format("%d%s", groupNumber, groupName);
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null)
+		{
+			return false;
+		}
+		final ClassGroup object = (ClassGroup) obj;
+		return object.id.equals(this.id);
+	}
 
 }

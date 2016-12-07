@@ -1,10 +1,10 @@
 package sgr.app.api.semestr;
 
+import sgr.app.api.QueryBuilder;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Optional;
-
-import sgr.app.api.QueryBuilder;
 
 /**
  * @author leonzio
@@ -12,105 +12,108 @@ import sgr.app.api.QueryBuilder;
 public class SemestrQuery implements Serializable
 {
 
-   private static final long serialVersionUID = -410409303192253879L;
+	private static final long serialVersionUID = -410409303192253879L;
 
-   private boolean currentSchoolYear = false;
-   private Optional<Integer> semestrNumber = Optional.empty();
-   private Optional<Date> fromDate = Optional.empty();
-   private Optional<Date> toDate = Optional.empty();
+	private boolean currentSchoolYear = false;
 
-   public boolean isCurrentSchoolYear()
-   {
-      return currentSchoolYear;
-   }
+	private Optional<Integer> semestrNumber = Optional.empty();
 
-   public void setCurrentSchoolYear(boolean currentSchoolYear)
-   {
-      this.currentSchoolYear = currentSchoolYear;
-   }
+	private Optional<Date> fromDate = Optional.empty();
 
-   public boolean hasSemestrNumber()
-   {
-      return semestrNumber.isPresent();
-   }
+	private Optional<Date> toDate = Optional.empty();
 
-   public Integer getSemestrNumber()
-   {
-      return semestrNumber.get();
-   }
+	public static Builder all()
+	{
+		return new Builder();
+	}
 
-   public void setSemestrNumber(Integer semestrNumber)
-   {
-      this.semestrNumber = Optional.of(semestrNumber);
-   }
+	public boolean isCurrentSchoolYear()
+	{
+		return currentSchoolYear;
+	}
 
-   public boolean hasFromDate()
-   {
-      return fromDate.isPresent();
-   }
+	public void setCurrentSchoolYear(boolean currentSchoolYear)
+	{
+		this.currentSchoolYear = currentSchoolYear;
+	}
 
-   public Date getFromDate()
-   {
-      return fromDate.get();
-   }
+	public boolean hasSemestrNumber()
+	{
+		return semestrNumber.isPresent();
+	}
 
-   public void setFromDate(Date fromDate)
-   {
-      this.fromDate = Optional.of(fromDate);
-   }
+	public Integer getSemestrNumber()
+	{
+		return semestrNumber.get();
+	}
 
-   public boolean hasToDate()
-   {
-      return toDate.isPresent();
-   }
+	public void setSemestrNumber(Integer semestrNumber)
+	{
+		this.semestrNumber = Optional.of(semestrNumber);
+	}
 
-   public Date getToDate()
-   {
-      return toDate.get();
-   }
+	public boolean hasFromDate()
+	{
+		return fromDate.isPresent();
+	}
 
-   public void setToDate(Date toDate)
-   {
-      this.toDate = Optional.of(toDate);
-   }
+	public Date getFromDate()
+	{
+		return fromDate.get();
+	}
 
-   public static Builder all()
-   {
-      return new Builder();
-   }
+	public void setFromDate(Date fromDate)
+	{
+		this.fromDate = Optional.of(fromDate);
+	}
 
-   public static final class Builder extends QueryBuilder<SemestrQuery>
-   {
+	public boolean hasToDate()
+	{
+		return toDate.isPresent();
+	}
 
-      protected Builder()
-      {
-         super(new SemestrQuery());
-      }
+	public Date getToDate()
+	{
+		return toDate.get();
+	}
 
-      public Builder withCurrentSchoolYear(boolean currentSchoolYear)
-      {
-         query.setCurrentSchoolYear(currentSchoolYear);
-         return this;
-      }
+	public void setToDate(Date toDate)
+	{
+		this.toDate = Optional.of(toDate);
+	}
 
-      public Builder withSemestrNumber(Integer number)
-      {
-         query.setSemestrNumber(number);
-         return this;
-      }
+	public static final class Builder extends QueryBuilder<SemestrQuery>
+	{
 
-      public Builder withFromDate(Date date)
-      {
-         query.setFromDate(date);
-         return this;
-      }
+		protected Builder()
+		{
+			super(new SemestrQuery());
+		}
 
-      public Builder withToDate(Date date)
-      {
-         query.setToDate(date);
-         return this;
-      }
+		public Builder withCurrentSchoolYear(boolean currentSchoolYear)
+		{
+			query.setCurrentSchoolYear(currentSchoolYear);
+			return this;
+		}
 
-   }
+		public Builder withSemestrNumber(Integer number)
+		{
+			query.setSemestrNumber(number);
+			return this;
+		}
+
+		public Builder withFromDate(Date date)
+		{
+			query.setFromDate(date);
+			return this;
+		}
+
+		public Builder withToDate(Date date)
+		{
+			query.setToDate(date);
+			return this;
+		}
+
+	}
 
 }

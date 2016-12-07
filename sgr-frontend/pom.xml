@@ -1,43 +1,44 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <groupId>StudentGradeRecord</groupId>
-      <artifactId>sgr-parent</artifactId>
-      <version>0.0.3-SNAPSHOT</version>
-   </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>StudentGradeRecord</groupId>
+		<artifactId>sgr-parent</artifactId>
+		<version>0.0.3-SNAPSHOT</version>
+	</parent>
 
-   <artifactId>sgr-frontend</artifactId>
-   <name>SGR frontend</name>
+	<artifactId>sgr-frontend</artifactId>
+	<name>SGR frontend</name>
 
-   <url>http://maven.apache.org</url>
+	<url>http://maven.apache.org</url>
 
-   <dependencies>
-      <!-- StudentGradeRecord -->
-      <dependency>
-         <groupId>StudentGradeRecord</groupId>
-         <artifactId>sgr-api</artifactId>
-      </dependency>
+	<dependencies>
+		<!-- StudentGradeRecord -->
+		<dependency>
+			<groupId>StudentGradeRecord</groupId>
+			<artifactId>sgr-api</artifactId>
+		</dependency>
 
-      <!-- PrimeFaces -->
-      <dependency>
-         <groupId>org.primefaces</groupId>
-         <artifactId>primefaces</artifactId>
-         <version>5.3</version>
-      </dependency>
+		<!-- PrimeFaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.3</version>
+		</dependency>
 
-      <!-- JSF -->
-      <dependency>
-         <groupId>com.sun.faces</groupId>
-         <artifactId>jsf-impl</artifactId>
-         <version>2.2.10</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.tomcat</groupId>
-         <artifactId>tomcat-el-api</artifactId>
-         <version>8.0.27</version>
-      </dependency>
-   </dependencies>
+		<!-- JSF -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-el-api</artifactId>
+			<version>8.0.27</version>
+		</dependency>
+	</dependencies>
 
 </project>
