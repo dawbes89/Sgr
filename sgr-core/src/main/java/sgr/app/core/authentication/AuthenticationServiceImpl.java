@@ -73,24 +73,14 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 			throw new AuthenticationException("exception_authentication_invalidUserNameOrPassword",
 			                                  FacesMessage.SEVERITY_ERROR);
 		}
-		try
-		{
-			sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
-			sessionService.setAttributeValue(ACCOUNT_TYPE, account.getType());
-		} catch (IllegalStateException e)
-		{
-		}
+		sessionService.setAttributeValue(USER_ATTRIBUTE, user.get());
+		sessionService.setAttributeValue(ACCOUNT_TYPE, account.getType());
 	}
 
 	@Override
 	public void logoutUser()
 	{
-		try
-		{
-			sessionService.getSession().invalidate();
-		} catch (IllegalStateException e)
-		{
-		}
+		sessionService.getSession().invalidate();
 	}
 
 	// TODO zabezpieczy� metod� przed brakiem sesji

@@ -44,12 +44,12 @@ public class TeachingStaff implements PersonName, AccountEntity, Serializable
 	private Account account = new Account();
 
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-	@JoinColumn(name = "preceptor_class_id", nullable = true, referencedColumnName = "id",
+	@JoinColumn(name = "preceptor_class_id", referencedColumnName = "id",
 			foreignKey = @ForeignKey(name = "teaching_staff_preceptor_class_id_fk"))
 	private ClassGroup preceptorClass = new ClassGroup();
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "school_subject", length = 25, nullable = false, updatable = true)
+	@Column(name = "school_subject", length = 25, nullable = false)
 	private SchoolSubject schoolSubject;
 
 	@Column(name = "academic_title", length = 25, nullable = false)

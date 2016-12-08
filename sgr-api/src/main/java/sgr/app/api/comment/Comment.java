@@ -30,7 +30,7 @@ public class Comment implements Serializable
 	@Column(name = "date", nullable = false, updatable = false)
 	private Date date;
 
-	@Column(name = "content", length = 255, nullable = false, updatable = false)
+	@Column(name = "content", nullable = false, updatable = false)
 	private String content;
 
 	@Enumerated(EnumType.STRING)

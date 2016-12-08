@@ -19,11 +19,9 @@ public class CommentTypeTranslationConverter extends AbstractTranslationConverte
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(CommentType object, UIComponent component)
 	{
-		final CommentType commentType = (CommentType) object;
-		final String translate = translationService.translate(commentType.getLabel());
-		return translate;
+		return translationService.translate(object.getLabel());
 	}
 
 }

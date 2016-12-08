@@ -45,7 +45,7 @@ public class Presence implements Serializable
 	private Student student;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "status", length = 25, nullable = false, updatable = true)
+	@Column(name = "status", length = 25, nullable = false)
 	private PresenceStatus status;
 
 	@Column(name = "date", nullable = false, updatable = false)

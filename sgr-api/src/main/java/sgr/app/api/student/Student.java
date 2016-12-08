@@ -109,7 +109,7 @@ public class Student implements PersonName, AccountEntity, Serializable
 			return false;
 		}
 		final Student object = (Student) obj;
-		return object.id.equals(this.id);
+		return object.getId().equals(id);
 	}
 
 }

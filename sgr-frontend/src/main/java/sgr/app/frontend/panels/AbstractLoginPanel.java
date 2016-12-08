@@ -49,7 +49,7 @@ public abstract class AbstractLoginPanel implements Serializable
 
 	protected abstract List<AccountType> supportedAccountTypes();
 
-	public final void checkLogin() throws IOException
+	public void checkLogin() throws IOException
 	{
 		try
 		{
@@ -57,13 +57,14 @@ public abstract class AbstractLoginPanel implements Serializable
 			                                       supportedAccountTypes());
 			final ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			externalContext.redirect(externalContext.getRequestContextPath() + MAIN_PAGE);
-		} catch (AuthenticationException e)
+		}
+		catch (AuthenticationException e)
 		{
 			handleException("loginForm", e);
 		}
 	}
 
-	public final void logout() throws IOException
+	public void logout() throws IOException
 	{
 		authenticationService.logoutUser();
 		final ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -78,12 +79,12 @@ public abstract class AbstractLoginPanel implements Serializable
 		FacesContext.getCurrentInstance().addMessage(formId, message);
 	}
 
-	public final LoginBean getLoginBean()
+	public LoginBean getLoginBean()
 	{
 		return loginBean;
 	}
 
-	public final void setLoginBean(LoginBean loginBean)
+	public void setLoginBean(LoginBean loginBean)
 	{
 		this.loginBean = loginBean;
 	}

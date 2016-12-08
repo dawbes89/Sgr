@@ -44,17 +44,12 @@ public class AuthorizationFilter implements Filter
 		if (user != null && (request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE) || validRequestPath))
 		{
 			response.sendRedirect(mainURL);
-			return;
-		}
-
-		if (user == null && !request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE))
+		} else if (user == null && !request.getRequestURI().contains(AuthenticationService.LOGIN_PAGE))
 		{
 			response.sendRedirect(loginURL);
-			return;
 		} else
 		{
 			chain.doFilter(request, response);
-			return;
 		}
 	}
 

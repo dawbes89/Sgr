@@ -8,11 +8,9 @@ import javax.faces.component.UIComponent;
 import java.util.Date;
 
 /**
- * Date validator with {@link DateValidationMode} used when value is
- * validated.</br>
- * Default is {@link DateValidationMode#BEFORE}, for custom validation mode use
- * <code>f:attribute name="validationMode" value="{@link DateValidationMode}"</code>
- * .
+ * Date validator with {@link DateValidationMode} used when value is validated. Default is {@link
+ * DateValidationMode#BEFORE}, for custom validation mode use<code>f:attribute name="validationMode" value="{@link
+ * DateValidationMode}"</code>.
  *
  * @author dawbes89
  * @author leonzio
@@ -20,7 +18,7 @@ import java.util.Date;
 public class DateValidator extends AbstractValidator<Date>
 {
 
-	private static DateValidationMode defaultMode = DateValidationMode.BEFORE;
+	private static final DateValidationMode defaultMode = DateValidationMode.BEFORE;
 
 	public DateValidator()
 	{

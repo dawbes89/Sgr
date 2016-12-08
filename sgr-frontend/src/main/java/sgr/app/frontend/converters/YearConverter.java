@@ -22,7 +22,8 @@ public class YearConverter extends AbstractConverter<Date>
 		try
 		{
 			date = StandardFormat.YEAR_FORMAT.parse(value);
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 			e.printStackTrace();
 		}
@@ -30,22 +31,24 @@ public class YearConverter extends AbstractConverter<Date>
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(Date object, UIComponent component)
 	{
 		try
 		{
-			Timestamp ts = null;
+			Timestamp ts;
 			try
 			{
 				ts = (Timestamp) object;
-			} catch (ClassCastException e)
+			}
+			catch (ClassCastException e)
 			{
 				return object.toString();
 			}
-			final String stringDate = ts.toString();
-			final Date date = StandardFormat.DAY_FORMAT.parse(stringDate);
+			String stringDate = ts.toString();
+			Date date = StandardFormat.DAY_FORMAT.parse(stringDate);
 			return StandardFormat.DAY_FORMAT.format(date);
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 			e.printStackTrace();
 			return object.toString();

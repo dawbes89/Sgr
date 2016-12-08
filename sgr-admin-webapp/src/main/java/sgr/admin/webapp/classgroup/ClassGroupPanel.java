@@ -45,7 +45,8 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
 			classGroupService.create(entity);
 			requestContextExecute(HIDE_ADD_DIALOG_ACTION);
 			onLoad();
-		} catch (CreateException e)
+		}
+		catch (CreateException e)
 		{
 			showValidationMessage(PROPERTY_ADD_FORM, e.getMessage(), e.getSeverity());
 		}
@@ -65,7 +66,8 @@ public class ClassGroupPanel extends AbstractPanel<ClassGroup> implements Editab
 			classGroupService.remove(id);
 			requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
 			onLoad();
-		} catch (RemoveException e)
+		}
+		catch (RemoveException e)
 		{
 			showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
 		}

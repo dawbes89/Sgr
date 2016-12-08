@@ -25,9 +25,9 @@ public class UniqueLoginValidator extends AbstractValidator<String>
 	}
 
 	@Override
-	protected boolean isValidValue(String value, final UIComponent component)
+	protected boolean isValidValue(String value, UIComponent component)
 	{
-		final Optional<Account> findAccountByLogin = accountService.findAccountByLogin(value);
+		Optional<Account> findAccountByLogin = this.accountService.findAccountByLogin(value);
 		return !findAccountByLogin.isPresent();
 	}
 

@@ -117,8 +117,7 @@ public class TeacherLessonPanel extends AbstractPanel<Lesson>
 
 	private List<Presence> createPressences()
 	{
-		final List<Presence> presences = students.stream().map(student -> Presence.createAbsent(student)).collect(
-				Collectors.toList());
+		final List<Presence> presences = students.stream().map(Presence::createAbsent).collect(Collectors.toList());
 		presences.stream().filter(presence -> selectedStudents.contains(presence.getStudent())).forEach(
 				presence -> presence.setStatus(PresenceStatus.PRESENT));
 		return presences;

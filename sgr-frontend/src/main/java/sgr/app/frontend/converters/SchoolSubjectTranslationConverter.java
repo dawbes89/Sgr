@@ -20,10 +20,8 @@ public class SchoolSubjectTranslationConverter extends AbstractTranslationConver
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(SchoolSubject object, UIComponent component)
 	{
-		final SchoolSubject schoolSubject = (SchoolSubject) object;
-		final String translate = translationService.translate(schoolSubject.getLabel());
-		return translate;
+		return translationService.translate(object.getLabel());
 	}
 }

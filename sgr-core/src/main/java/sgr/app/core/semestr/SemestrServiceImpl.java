@@ -93,8 +93,7 @@ class SemestrServiceImpl extends DaoSupport implements SemestrService
 		final Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		final int currentYear = cal.get(Calendar.YEAR);
-		final String schoolYear = String.format("%4d/%4d", currentYear, currentYear + 1);
-		return schoolYear;
+		return String.format("%4d/%4d", currentYear, currentYear + 1);
 	}
 
 }

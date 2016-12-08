@@ -10,5 +10,7 @@ target/
 *MANIFEST*
 .metadata/*
 
+.idea/
+*.iml
 syntax: regexp
 ^\.metadata*

@@ -22,19 +22,17 @@ public class ClassConverter extends AbstractConverter<ClassGroup>
 	@Override
 	protected ClassGroup convertToObject(String value)
 	{
-		final int groupNumber = Integer.valueOf(value.charAt(0)) - 48;
+		final int groupNumber = (int) value.charAt(0) - 48;
 		final String groupName = String.valueOf(value.charAt(1));
 		final Optional<ClassGroup> classGroup = classGroupService.find(ClassGroupQuery.all().withGroupName(
 				groupName).withGroupNumber(groupNumber).build());
 		return classGroup.isPresent() ? classGroup.get() : null;
-
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(ClassGroup object, UIComponent component)
 	{
-		final ClassGroup classGroup = (ClassGroup) object;
-		return classGroup.getClassName();
+		return object.getClassName();
 	}
 
 }

@@ -85,7 +85,7 @@ public class SemestrQuery implements Serializable
 	public static final class Builder extends QueryBuilder<SemestrQuery>
 	{
 
-		protected Builder()
+		Builder()
 		{
 			super(new SemestrQuery());
 		}

@@ -18,10 +18,8 @@ public class PresenceStatusTranslationConverter extends AbstractTranslationConve
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(PresenceStatus object, UIComponent component)
 	{
-		final PresenceStatus presenceStatus = (PresenceStatus) object;
-		final String translate = translationService.translate(presenceStatus.getLabel());
-		return translate;
+		return translationService.translate(object.getLabel());
 	}
 }

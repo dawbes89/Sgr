@@ -10,23 +10,17 @@ import java.io.Serializable;
 @Table(name = "class_group")
 public class ClassGroup implements Serializable
 {
-
 	public static final String PROPERTY_ID = "id";
-
 	public static final String PROPERTY_GROUP_NUMBER = "groupNumber";
-
 	public static final String PROPERTY_GROUP_NAME = "groupName";
-
 	public static final String PROPERTY_YEARBOOK = "yearbook";
-
-	private static final long serialVersionUID = -1359236624174757353L;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "group_number", precision = 1, nullable = true, updatable = true)
+	@Column(name = "group_number", precision = 1)
 	private Integer groupNumber;
 
 	@Column(name = "group_name", length = 1, nullable = false, updatable = false)
@@ -88,7 +82,7 @@ public class ClassGroup implements Serializable
 			return false;
 		}
 		final ClassGroup object = (ClassGroup) obj;
-		return object.id.equals(this.id);
+		return object.getId().equals(id);
 	}
 
 }

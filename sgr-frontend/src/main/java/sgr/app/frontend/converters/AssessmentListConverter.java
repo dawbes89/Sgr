@@ -31,19 +31,16 @@ public class AssessmentListConverter extends AbstractConverter<Long>
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(Long object, UIComponent component)
 	{
-		Long studentId = (Long) object;
 		final SchoolSubject findSchoolSubject = (SchoolSubject) component.getAttributes().get(SCHOOL_SUBJECT_ATTRIBUTE);
-		AssessmentQuery query = AssessmentQuery.all().withStudentId(studentId).build();
+		AssessmentQuery query = AssessmentQuery.all().withStudentId(object).build();
 		if (findSchoolSubject != null)
 		{
 			query.setSchoolSubject(findSchoolSubject);
 		}
 		List<Assessment> assessment = assessmentService.search(query);
-		String assessmentsWithTypes = assessment.stream().map(a -> convertAssessment(a)).collect(
-				Collectors.joining(", "));
-		return assessmentsWithTypes;
+		return assessment.stream().map(this::convertAssessment).collect(Collectors.joining(", "));
 	}
 
 	private String convertAssessment(Assessment assessment)

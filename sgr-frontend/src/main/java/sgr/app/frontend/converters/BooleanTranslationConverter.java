@@ -10,7 +10,7 @@ import java.util.Map;
 public class BooleanTranslationConverter extends AbstractTranslationConverter<Boolean>
 {
 
-	private Map<Boolean, String> booleanMap = new HashMap<>();
+	private final Map<Boolean, String> booleanMap = new HashMap<>();
 
 	public BooleanTranslationConverter()
 	{
@@ -25,7 +25,7 @@ public class BooleanTranslationConverter extends AbstractTranslationConverter<Bo
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(Boolean object, UIComponent component)
 	{
 		return translationService.translate(booleanMap.get(object));
 	}

@@ -20,22 +20,17 @@ public abstract class MainApplicationPanel implements Serializable
 {
 
 	private static final long serialVersionUID = -4946956951529094970L;
-
+	private final Map<String, String> panels = new HashMap<>();
 	@Autowired
 	protected AuthenticationService authenticationService;
-
 	@Autowired
 	private TranslationService translationService;
-
 	private String currentPanelKey = "panel_main";
-
-	private Map<String, String> panels;
 
 	protected MainApplicationPanel()
 	{
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 
-		panels = new HashMap<>();
 		// common panels
 		panels.put("changePasswordPanel", "panel_changePasswordPanel");
 		panels.put("announcementPanel", "panel_announcementPanel");

@@ -32,7 +32,7 @@ public class AdminQuery implements Serializable
 	public static class Builder extends QueryBuilder<AdminQuery>
 	{
 
-		protected Builder()
+		Builder()
 		{
 			super(new AdminQuery());
 		}

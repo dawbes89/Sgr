@@ -7,5 +7,5 @@ public enum AccountType
 {
 	TEACHER,
 	STUDENT,
-	ADMIN;
+	ADMIN
 }
