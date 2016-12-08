@@ -16,7 +16,7 @@ public class RandomPasswordGenerator implements Serializable
 
 	private static final int LENGHT = 6;
 
-	private static Random random = new SecureRandom();
+	private static final Random random = new SecureRandom();
 
 	public static String generate()
 	{

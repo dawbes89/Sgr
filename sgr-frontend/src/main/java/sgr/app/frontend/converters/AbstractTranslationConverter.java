@@ -12,13 +12,6 @@ import sgr.app.api.translation.TranslationService;
  */
 public abstract class AbstractTranslationConverter<T> extends AbstractConverter<T>
 {
-
 	@Autowired
 	protected TranslationService translationService;
-
-	public AbstractTranslationConverter()
-	{
-		super();
-	}
-
 }

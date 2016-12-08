@@ -73,7 +73,8 @@ public class StudentPanel extends AbstractPanel<Student> implements EditablePane
 			studentService.remove(id);
 			requestContextExecute(HIDE_REMOVE_DIALOG_ACTION);
 			onLoad();
-		} catch (RemoveException e)
+		}
+		catch (RemoveException e)
 		{
 			showValidationMessage(PROPERTY_REMOVE_FORM, e.getMessage(), e.getSeverity());
 		}

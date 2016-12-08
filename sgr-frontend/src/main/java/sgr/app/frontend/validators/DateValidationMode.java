@@ -56,9 +56,9 @@ public enum DateValidationMode
 				}
 			};
 
-	private String translationKey;
+	private final String translationKey;
 
-	private DateValidationMode(String translationKey)
+	DateValidationMode(String translationKey)
 	{
 		this.translationKey = translationKey;
 	}

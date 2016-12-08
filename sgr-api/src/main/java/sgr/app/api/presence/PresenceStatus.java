@@ -10,7 +10,7 @@ public enum PresenceStatus
 	ABSENT("presenceStatus_absent"),
 	LATENESS("presenceStatus_latencess");
 
-	private String label;
+	private final String label;
 
 	PresenceStatus(String label)
 	{

@@ -21,9 +21,9 @@ public enum SchoolSubject
 	PHYSICS("schoolSubject_physics"),
 	GERMAN("schoolSubject_language_german");
 
-	private String label;
+	private final String label;
 
-	private SchoolSubject(String label)
+	SchoolSubject(String label)
 	{
 		this.label = label;
 	}

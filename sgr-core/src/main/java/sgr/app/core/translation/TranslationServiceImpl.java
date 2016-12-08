@@ -35,14 +35,15 @@ class TranslationServiceImpl implements TranslationService
 
 	private String translate(String resourceFileName, String key, Object params[])
 	{
-		final ResourceBundle resourceBundle = FacesContext.getCurrentInstance().getApplication().getResourceBundle(
+		ResourceBundle resourceBundle = FacesContext.getCurrentInstance().getApplication().getResourceBundle(
 				FacesContext.getCurrentInstance(), resourceFileName);
 
 		String text;
 		try
 		{
 			text = resourceBundle.getString(key);
-		} catch (MissingResourceException e)
+		}
+		catch (MissingResourceException e)
 		{
 			return null;
 		}
@@ -51,7 +52,7 @@ class TranslationServiceImpl implements TranslationService
 			return text;
 		}
 
-		final MessageFormat mf = new MessageFormat(text);
+		MessageFormat mf = new MessageFormat(text);
 		text = mf.format(params, new StringBuffer(), null).toString();
 
 		return text;

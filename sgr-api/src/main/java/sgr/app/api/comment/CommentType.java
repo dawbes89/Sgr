@@ -9,7 +9,7 @@ public enum CommentType
 	NEGATIVE("commentType_negative"),
 	REPREHENSIBLE("commentType_reprehensible");
 
-	private String label;
+	private final String label;
 
 	CommentType(String label)
 	{

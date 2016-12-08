@@ -28,7 +28,7 @@ public abstract class AbstractValidator<T> implements Validator
 
 	private Severity severity;
 
-	private boolean nullAllowed = false;
+	private boolean nullAllowed;
 
 	protected AbstractValidator(Severity severity, String key)
 	{
@@ -67,11 +67,11 @@ public abstract class AbstractValidator<T> implements Validator
 	protected abstract boolean isValidValue(T value, final UIComponent component);
 
 	/**
-	 * Allows to pass null to {@link #isValidValue(Object)}.<br>
+	 * Allows to pass null to {@link #isValidValue(Object, UIComponent)}}.<br>
 	 * Default is false.
 	 *
 	 * @param nullAllowed
-	 * 		if true nulls is passed to {@link #isValidValue(Object)}, otherwise not
+	 * 		if true nulls is passed to {@link #isValidValue(Object, UIComponent)}, otherwise not
 	 */
 	protected void setNullAllowed(boolean nullAllowed)
 	{

@@ -18,10 +18,8 @@ public class AssessmentTypeTranslationConverter extends AbstractTranslationConve
 	}
 
 	@Override
-	protected String convertToString(Object object, UIComponent component)
+	protected String convertToString(AssessmentType object, UIComponent component)
 	{
-		final AssessmentType assessmentType = (AssessmentType) object;
-		final String translate = translationService.translate(assessmentType.getLabel());
-		return translate;
+		return translationService.translate(object.getLabel());
 	}
 }

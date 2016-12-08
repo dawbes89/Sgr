@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public abstract class AbstractPanel<T> implements Serializable
 	@Autowired
 	protected TranslationService translationService;
 
-	protected List<T> entities = new ArrayList<T>();
+	protected List<T> entities = new ArrayList<>();
 
 	protected T entity;
 
@@ -72,7 +73,7 @@ public abstract class AbstractPanel<T> implements Serializable
 
 	public void setEntities(List<T> entities)
 	{
-		this.entities = entities;
+		Collections.copy(this.entities, entities);
 	}
 
 	public T getEntity()

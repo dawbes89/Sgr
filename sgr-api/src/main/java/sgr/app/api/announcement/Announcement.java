@@ -74,12 +74,12 @@ public class Announcement
 		this.date = date;
 	}
 
-	public String getcontent()
+	public String getContent()
 	{
 		return content;
 	}
 
-	public void setcontent(String content)
+	public void setContent(String content)
 	{
 		this.content = content;
 	}

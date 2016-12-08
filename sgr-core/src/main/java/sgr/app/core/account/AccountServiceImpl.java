@@ -36,7 +36,7 @@ class AccountServiceImpl extends DaoSupport implements AccountService
 	@Override
 	public <T> Optional<T> findUserByAccount(Account account)
 	{
-		Criteria criteria = null;
+		Criteria criteria;
 		switch (account.getType())
 		{
 			case TEACHER:
@@ -52,11 +52,9 @@ class AccountServiceImpl extends DaoSupport implements AccountService
 				return Optional.empty();
 		}
 
-		Optional<T> user = Optional.empty();
 		final SimpleExpression accountRestriction = Restrictions.eq("account", account);
 		criteria.add(accountRestriction);
-		user = Optional.of((T) criteria.uniqueResult());
-		return user;
+		return Optional.of((T) criteria.uniqueResult());
 	}
 
 	@Override

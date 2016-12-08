@@ -21,12 +21,12 @@ public abstract class DaoSupport
 
 	private SessionFactory sessionFactory;
 
-	protected final static String nest(String property, String secondProperty)
+	protected static String nest(String property, String secondProperty)
 	{
 		return String.format("%s.%s", property, secondProperty);
 	}
 
-	protected final Session getSession()
+	final Session getSession()
 	{
 		return sessionFactory.getCurrentSession();
 	}
@@ -40,7 +40,7 @@ public abstract class DaoSupport
 	protected <T> List<T> search(Criteria criteria)
 	{
 		Collection<?> result = criteria.list();
-		List<T> resultList = new ArrayList<T>(result.size());
+		List<T> resultList = new ArrayList<>(result.size());
 		for (Object object : result)
 		{
 			resultList.add((T) object);
@@ -83,17 +83,10 @@ public abstract class DaoSupport
 		return (T) entity;
 	}
 
-	@SuppressWarnings({"unchecked", "finally"})
+	@SuppressWarnings("unchecked")
 	protected <T> Optional<T> find(Criteria criteria)
 	{
-		Object uniqueResult = null;
-		try
-		{
-			uniqueResult = criteria.uniqueResult();
-		} finally
-		{
-			return Optional.ofNullable((T) uniqueResult);
-		}
+		return Optional.of((T) criteria.uniqueResult());
 	}
 
 	protected <T> LockMode getCurrentLockMode(T entity)

@@ -20,7 +20,6 @@ import sgr.app.frontend.panels.EditablePanel;
 @Controller
 public class AdminPanel extends AbstractPanel<Admin> implements EditablePanel<Admin>
 {
-
 	private static final long serialVersionUID = -2599849233906847054L;
 
 	@Autowired
@@ -73,5 +72,4 @@ public class AdminPanel extends AbstractPanel<Admin> implements EditablePanel<Ad
 		final String password = RandomPasswordGenerator.generate();
 		passwordField.setSubmittedValue(password);
 	}
-
 }

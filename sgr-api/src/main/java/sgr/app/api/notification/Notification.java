@@ -33,7 +33,7 @@ public class Notification implements Serializable
 	@Column(name = "title", length = 100, nullable = false, updatable = false)
 	private String title;
 
-	@Column(name = "content", length = 255, nullable = false, updatable = false)
+	@Column(name = "content", nullable = false, updatable = false)
 	private String content;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

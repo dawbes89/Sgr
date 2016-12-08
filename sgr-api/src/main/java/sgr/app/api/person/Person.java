@@ -86,7 +86,7 @@ public class Person implements Serializable
 		int currMonth = now.get(Calendar.MONTH) + 1;
 		int birthMonth = birthDay.get(Calendar.MONTH) + 1;
 		int months = currMonth - birthMonth;
-		return months < 0 ? --years : years;
+		return months < 0 ? years - 1 : years;
 	}
 
 }

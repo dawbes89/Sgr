@@ -12,7 +12,6 @@ import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
 import sgr.app.api.teachingstaff.TeachingStaff;
-import sgr.app.api.translation.TranslationService;
 import sgr.app.frontend.panels.AbstractPanel;
 
 import javax.faces.application.FacesMessage;
@@ -28,9 +27,6 @@ public class TeacherCommentPanel extends AbstractPanel<Student>
 {
 
 	private static final long serialVersionUID = -6502541271869290855L;
-
-	@Autowired
-	private TranslationService translationService;
 
 	@Autowired
 	private CommentService commentService;

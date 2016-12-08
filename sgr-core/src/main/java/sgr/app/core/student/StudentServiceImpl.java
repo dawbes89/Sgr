@@ -21,7 +21,7 @@ import java.util.List;
  */
 class StudentServiceImpl extends DaoSupport implements StudentService
 {
-	private static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
+	private final static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
 
 	private AccountService accountService;
 
