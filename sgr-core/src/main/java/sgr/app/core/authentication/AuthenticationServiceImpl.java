@@ -39,7 +39,7 @@ class AuthenticationServiceImpl extends SgrDaoSupport implements AuthenticationS
 	public void authenticateUser(String userName, String password, List<AccountType> supportedAccounts) throws
 			AuthenticationException
 	{
-		final Optional<Account> foundAccount = accountService.find(userName);
+		final Optional<Account> foundAccount = accountService.findByLogin(userName);
 
 		if (!foundAccount.isPresent())
 		{
@@ -101,7 +101,7 @@ class AuthenticationServiceImpl extends SgrDaoSupport implements AuthenticationS
 	@Override
 	public void createSuperAdmin()
 	{
-		final Optional<Account> account = accountService.find("root");
+		final Optional<Account> account = accountService.findByLogin("root");
 		if (account.isPresent())
 		{
 			return;

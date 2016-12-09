@@ -24,8 +24,8 @@ public class Account implements Serializable
 
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 
 	@Column(name = "user_name", length = 20, nullable = false, updatable = false)
@@ -41,8 +41,8 @@ public class Account implements Serializable
 	@Column(name = "created", nullable = false, updatable = false)
 	private Date created;
 
-	@Column(name = "valid_to")
 	@Type(type = "date")
+	@Column(name = "valid_to")
 	private Date validTo;
 
 	public AccountType getType()

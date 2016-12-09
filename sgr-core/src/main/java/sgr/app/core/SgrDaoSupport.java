@@ -85,21 +85,6 @@ public abstract class SgrDaoSupport
 		return getSession().getCurrentLockMode(entity);
 	}
 
-	protected Session openSession()
-	{
-		return sessionFactory.openSession();
-	}
-
-	protected void closeSession()
-	{
-		sessionFactory.close();
-	}
-
-	protected boolean isSession()
-	{
-		return sessionFactory.isClosed();
-	}
-
 	@Required
 	public final void setSessionFactory(SessionFactory sessionFactory)
 	{

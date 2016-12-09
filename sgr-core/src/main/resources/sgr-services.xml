@@ -4,13 +4,23 @@
 
 	<import resource="classpath:sgr-hibernate-config.xml"/>
 
+	<!--ACCOUNT-->
+	<beans>
+		<bean id="accountDao" class="sgr.app.core.account.AccountDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
+			<property name="accountDao" ref="accountDao"/>
+		</bean>
+		<bean id="accountRemoteService" class="sgr.app.core.account.AccountRemoteServiceImpl">
+			<property name="accountService" ref="accountService"/>
+		</bean>
+	</beans>
+
 	<bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl"/>
 
 	<bean id="sessionService" class="sgr.app.core.authentication.SessionServiceImpl"/>
 
-	<bean id="accountService" class="sgr.app.core.account.AccountServiceImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
 
 	<bean id="semestrService" class="sgr.app.core.semestr.SemestrServiceImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
