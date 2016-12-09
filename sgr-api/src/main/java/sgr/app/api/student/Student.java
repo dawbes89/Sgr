@@ -8,6 +8,7 @@ import sgr.app.api.person.PersonName;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Entity represents student.
@@ -104,12 +105,12 @@ public class Student implements PersonName, AccountEntity, Serializable
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (obj == null)
+		if (obj == null || !Objects.equals(this.getClass(), obj.getClass()))
 		{
 			return false;
 		}
 		final Student object = (Student) obj;
-		return object.getId().equals(id);
+		return Objects.equals(object.getId(), id);
 	}
 
 }

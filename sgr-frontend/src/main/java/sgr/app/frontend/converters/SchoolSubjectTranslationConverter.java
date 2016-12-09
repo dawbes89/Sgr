@@ -12,6 +12,11 @@ import javax.faces.component.UIComponent;
  */
 public class SchoolSubjectTranslationConverter extends AbstractTranslationConverter<SchoolSubject>
 {
+	@Override
+	protected Class<SchoolSubject> getConvertedValueClass()
+	{
+		return SchoolSubject.class;
+	}
 
 	@Override
 	protected SchoolSubject convertToObject(String value)

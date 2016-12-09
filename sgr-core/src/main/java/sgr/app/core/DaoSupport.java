@@ -60,16 +60,6 @@ public abstract class DaoSupport
 		return entity;
 	}
 
-	/**
-	 * @param entity
-	 * @deprecated use {@link #removeEntity(Class, Long)} instead
-	 */
-	@Deprecated
-	protected <T> void removeEntity(T entity)
-	{
-		getSession().delete(entity);
-	}
-
 	protected <T> void removeEntity(Class<T> clazz, Long id)
 	{
 		final T entity = getEntity(clazz, id);
@@ -89,7 +79,7 @@ public abstract class DaoSupport
 		return Optional.of((T) criteria.uniqueResult());
 	}
 
-	protected <T> LockMode getCurrentLockMode(T entity)
+	protected <T> LockMode getEntityLockMode(T entity)
 	{
 		return getSession().getCurrentLockMode(entity);
 	}

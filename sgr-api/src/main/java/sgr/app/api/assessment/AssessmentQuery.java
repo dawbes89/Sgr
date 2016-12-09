@@ -20,7 +20,6 @@ public class AssessmentQuery implements Serializable
 	private static final long serialVersionUID = -2253192413793115596L;
 
 	private Optional<Long> studentId = Optional.empty();
-
 	private Optional<SchoolSubject> schoolSubject = Optional.empty();
 
 	public static Builder all()

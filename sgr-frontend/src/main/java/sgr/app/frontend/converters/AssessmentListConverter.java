@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 /**
  * @author dawbes89
  */
+// TODO extends TranslationConverter
 public class AssessmentListConverter extends AbstractConverter<Long>
 {
 	private static final String SCHOOL_SUBJECT_ATTRIBUTE = "schoolSubject";
@@ -23,6 +24,12 @@ public class AssessmentListConverter extends AbstractConverter<Long>
 
 	@Autowired
 	private AssessmentService assessmentService;
+
+	@Override
+	protected Class<Long> getConvertedValueClass()
+	{
+		return Long.class;
+	}
 
 	@Override
 	protected Long convertToObject(String value)

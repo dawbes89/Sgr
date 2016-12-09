@@ -13,11 +13,18 @@ import java.util.Optional;
  *
  * @author leonzio
  */
+// TODO rename > ClassGroupConverter
 public class ClassConverter extends AbstractConverter<ClassGroup>
 {
 
 	@Autowired
 	private ClassGroupService classGroupService;
+
+	@Override
+	protected Class<ClassGroup> getConvertedValueClass()
+	{
+		return ClassGroup.class;
+	}
 
 	@Override
 	protected ClassGroup convertToObject(String value)

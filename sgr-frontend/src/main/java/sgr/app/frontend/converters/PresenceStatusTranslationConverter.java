@@ -12,6 +12,12 @@ import javax.faces.component.UIComponent;
 public class PresenceStatusTranslationConverter extends AbstractTranslationConverter<PresenceStatus>
 {
 	@Override
+	protected Class<PresenceStatus> getConvertedValueClass()
+	{
+		return PresenceStatus.class;
+	}
+
+	@Override
 	protected PresenceStatus convertToObject(String value)
 	{
 		return PresenceStatus.valueOf(value);

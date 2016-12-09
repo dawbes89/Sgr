@@ -8,6 +8,7 @@ import sgr.app.api.lesson.LessonService;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -28,11 +29,17 @@ public class LessonNumberValidator extends AbstractValidator<Integer>
 	}
 
 	@Override
+	protected Class<Integer> getValueClass()
+	{
+		return Integer.class;
+	}
+
+	@Override
 	protected boolean isValidValue(Integer value, final UIComponent component)
 	{
 		final Long findClassGroupId = (Long) component.getAttributes().get("classGroupId");
 		LessonQuery query = LessonQuery.all().withLessonNumber(value).withDate(new Date()).build();
-		if (findClassGroupId != null)
+		if (Objects.nonNull(findClassGroupId))
 		{
 			query.setClassGroupId(findClassGroupId);
 		}

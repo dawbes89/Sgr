@@ -12,6 +12,12 @@ import javax.faces.component.UIComponent;
 public class AssessmentTypeTranslationConverter extends AbstractTranslationConverter<AssessmentType>
 {
 	@Override
+	protected Class<AssessmentType> getConvertedValueClass()
+	{
+		return AssessmentType.class;
+	}
+
+	@Override
 	protected AssessmentType convertToObject(String value)
 	{
 		return AssessmentType.valueOf(value);

@@ -13,7 +13,6 @@ public class LoginBean implements Serializable
 	private static final long serialVersionUID = 1863958145104759923L;
 
 	private String userName;
-
 	private String password;
 
 	public String getUserName()

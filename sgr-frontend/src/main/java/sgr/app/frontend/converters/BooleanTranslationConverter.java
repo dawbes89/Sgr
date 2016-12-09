@@ -1,21 +1,16 @@
 package sgr.app.frontend.converters;
 
 import javax.faces.component.UIComponent;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author dawbes89
  */
 public class BooleanTranslationConverter extends AbstractTranslationConverter<Boolean>
 {
-
-	private final Map<Boolean, String> booleanMap = new HashMap<>();
-
-	public BooleanTranslationConverter()
+	@Override
+	protected Class<Boolean> getConvertedValueClass()
 	{
-		booleanMap.put(true, "common_yes");
-		booleanMap.put(false, "common_no");
+		return Boolean.class;
 	}
 
 	@Override
@@ -27,7 +22,8 @@ public class BooleanTranslationConverter extends AbstractTranslationConverter<Bo
 	@Override
 	protected String convertToString(Boolean object, UIComponent component)
 	{
-		return translationService.translate(booleanMap.get(object));
+		final String convertedValue = object ? "common_yes" : "common_no";
+		return translationService.translate(convertedValue);
 	}
 
 }

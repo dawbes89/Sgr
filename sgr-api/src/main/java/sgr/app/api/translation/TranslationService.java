@@ -28,6 +28,7 @@ public interface TranslationService
 	 */
 	String translate(String resourceFileName, String key);
 
+	// TODO javadoc
 	String translate(String key, Object params[]);
 
 }

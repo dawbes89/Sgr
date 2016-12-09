@@ -9,6 +9,7 @@ package sgr.app.frontend.panels;
  */
 public interface EditablePanel<T>
 {
+	// TODO file with constants
 	String HIDE_REMOVE_DIALOG_ACTION = "PF('removeDialog').hide();";
 	String HIDE_ADD_DIALOG_ACTION = "PF('addDialog').hide();";
 	String PROPERTY_REMOVE_FORM = "remove";
