@@ -10,10 +10,10 @@ public interface AccountService
 
 	Account create(AccountCreateRequest request);
 
-	Optional<Account> find(String login);
+	void updateAccountPassword(AccountPasswordUpdateRequest request);
+
+	Optional<Account> findByLogin(String login);
 
 	<T> Optional<T> findUserByAccount(Account account);
-
-	boolean updateAccountPassword(AccountUpdatePasswordRequest request);
 
 }

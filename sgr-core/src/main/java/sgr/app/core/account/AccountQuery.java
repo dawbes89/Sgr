@@ -9,31 +9,31 @@ import java.util.Optional;
  * @author dawbes
  */
 // TODO remove serializable
-public class AccountQuery implements Serializable
+class AccountQuery implements Serializable
 {
 	private static final long serialVersionUID = 3742970813731527612L;
 
 	private Optional<String> login = Optional.empty();
 
 	// TODO
-	public void apply(AccountQuery.Applier applier)
+	void apply(AccountQuery.Applier applier)
 	{
 		login.ifPresent(applier::withLogin);
 	}
 
-	public static Builder builder()
+	static Builder builder()
 	{
 		return new Builder();
 	}
 
-	public static final class Builder extends QueryBuilder<AccountQuery>
+	static final class Builder extends QueryBuilder<AccountQuery>
 	{
 		private Builder()
 		{
 			super(new AccountQuery());
 		}
 
-		public Builder withLogin(String login)
+		Builder withLogin(String login)
 		{
 			query.login = Optional.of(login);
 			return this;
@@ -41,7 +41,7 @@ public class AccountQuery implements Serializable
 	}
 
 	// TODO javadoc
-	public interface Applier
+	interface Applier
 	{
 		void withLogin(String login);
 	}

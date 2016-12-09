@@ -17,7 +17,7 @@ class AccountServiceImpl implements AccountService
 	private AccountDao accountDao;
 
 	@Override
-	public Optional<Account> find(String login)
+	public Optional<Account> findByLogin(String login)
 	{
 		AccountQuery query = AccountQuery.builder().withLogin(login).build();
 		return accountDao.find(query);
@@ -38,12 +38,10 @@ class AccountServiceImpl implements AccountService
 	}
 
 	@Override
-	public void updateAccountPassword(String login, String password)
+	public void updateAccountPassword(AccountPasswordUpdateRequest request)
 	{
-		final Optional<Account> foundAccount = find(login);
-		final Account account = foundAccount.get();
-		account.setPassword(PASSWORD_ENCODER.encode(password));
-		updateEntity(account);
+		Account account = request.updatePassword(accountDao::getForUpdate, PASSWORD_ENCODER::encode);
+		accountDao.update(account);
 	}
 
 	@Required
