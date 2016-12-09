@@ -16,14 +16,15 @@ import java.util.Optional;
  * @author leonzio
  */
 @Transactional
-public abstract class DaoSupport
+public abstract class SgrDaoSupport
 {
+	private static final String ALIAS_PROPERTY = "%s.%s";
 
 	private SessionFactory sessionFactory;
 
 	protected static String nest(String property, String secondProperty)
 	{
-		return String.format("%s.%s", property, secondProperty);
+		return String.format(ALIAS_PROPERTY, property, secondProperty);
 	}
 
 	final Session getSession()

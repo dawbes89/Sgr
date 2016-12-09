@@ -4,20 +4,20 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
-import sgr.app.api.account.Account;
-import sgr.app.api.account.AccountService;
+import sgr.app.core.account.Account;
+import sgr.app.core.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.admin.AdminQuery;
 import sgr.app.api.admin.AdminService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.List;
 
 /**
  * @author dawbes89
  */
-class AdminServiceImpl extends DaoSupport implements AdminService
+class AdminServiceImpl extends SgrDaoSupport implements AdminService
 {
 
 	private AccountService accountService;
@@ -41,7 +41,7 @@ class AdminServiceImpl extends DaoSupport implements AdminService
 	{
 		final Account account = admin.getAccount();
 		account.setType(AccountType.ADMIN);
-		admin.setAccount(accountService.createAccount(account));
+		admin.setAccount(accountService.create(account));
 		createEntity(admin);
 	}
 

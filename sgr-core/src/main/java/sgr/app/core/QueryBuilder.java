@@ -1,4 +1,4 @@
-package sgr.app.api;
+package sgr.app.core;
 
 /**
  * @param <QUERY>

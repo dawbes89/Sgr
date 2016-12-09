@@ -1,6 +1,7 @@
-package sgr.app.api.account;
+package sgr.app.core.account;
 
 import org.hibernate.annotations.Type;
+import sgr.app.api.account.AccountType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,11 +16,12 @@ import java.util.Date;
 @Table(name = "account", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"}, name = "user_name_uk")})
 public class Account implements Serializable
 {
+	private static final long serialVersionUID = 5425777781237535276L;
+
 	public static final String PROPERTY_ID = "id";
 	public static final String PROPERTY_USER_NAME = "userName";
 	public static final String PROPERTY_PASSWORD = "password";
 
-	private static final long serialVersionUID = 5425777781237535276L;
 
 	@Id
 	@Column(name = "id")
@@ -103,6 +105,7 @@ public class Account implements Serializable
 		this.validTo = validTo;
 	}
 
+	// TODO remove > move to DTO
 	@Transient
 	public boolean isValid()
 	{

@@ -15,7 +15,7 @@ import sgr.app.api.presence.PresenceService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.Optional;
 /**
  * @author dawbes89
  */
-class PresenceServiceImpl extends DaoSupport implements PresenceService
+class PresenceServiceImpl extends SgrDaoSupport implements PresenceService
 {
 
 	private static final String PROPERTY_PERSON = nest(Presence.PROPERTY_STUDENT, Student.PROPERTY_PERSON);

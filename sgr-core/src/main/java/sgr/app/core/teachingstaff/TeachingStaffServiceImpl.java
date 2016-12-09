@@ -3,19 +3,19 @@ package sgr.app.core.teachingstaff;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Required;
-import sgr.app.api.account.Account;
-import sgr.app.api.account.AccountService;
+import sgr.app.core.account.Account;
+import sgr.app.core.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.api.teachingstaff.TeachingStaffService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.List;
 
 /**
  * @author dawbes89
  */
-class TeachingStaffServiceImpl extends DaoSupport implements TeachingStaffService
+class TeachingStaffServiceImpl extends SgrDaoSupport implements TeachingStaffService
 {
 
 	private AccountService accountService;
@@ -39,7 +39,7 @@ class TeachingStaffServiceImpl extends DaoSupport implements TeachingStaffServic
 	{
 		final Account account = teachingStaff.getAccount();
 		account.setType(AccountType.TEACHER);
-		teachingStaff.setAccount(accountService.createAccount(account));
+		teachingStaff.setAccount(accountService.create(account));
 		createEntity(teachingStaff);
 	}
 

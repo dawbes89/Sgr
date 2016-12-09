@@ -4,14 +4,14 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Required;
-import sgr.app.api.account.Account;
-import sgr.app.api.account.AccountService;
+import sgr.app.core.account.Account;
+import sgr.app.core.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.exceptions.RemoveException;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @author leonzio
  */
-class StudentServiceImpl extends DaoSupport implements StudentService
+class StudentServiceImpl extends SgrDaoSupport implements StudentService
 {
 	private final static String PROPERTY_CLASS_GROUP_ID = "classGroup.id";
 
@@ -44,7 +44,7 @@ class StudentServiceImpl extends DaoSupport implements StudentService
 	{
 		final Account account = student.getAccount();
 		account.setType(AccountType.STUDENT);
-		student.setAccount(accountService.createAccount(account));
+		student.setAccount(accountService.create(account));
 		createEntity(student);
 	}
 
