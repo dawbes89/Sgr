@@ -106,6 +106,6 @@ public class Account implements Serializable
 	@Transient
 	public boolean isValid()
 	{
-		return validTo == null ? true : validTo.after(new Date());
+		return validTo == null || validTo.after(new Date());
 	}
 }

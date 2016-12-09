@@ -12,22 +12,26 @@ import java.util.Date;
  *
  * @author leonzio
  */
+// TODO improve converter
 public class YearConverter extends AbstractConverter<Date>
 {
+	@Override
+	protected Class<Date> getConvertedValueClass()
+	{
+		return Date.class;
+	}
 
 	@Override
 	protected Date convertToObject(String value)
 	{
-		Date date = null;
 		try
 		{
-			date = StandardFormat.YEAR_FORMAT.parse(value);
+			return StandardFormat.YEAR_FORMAT.parse(value);
 		}
 		catch (ParseException e)
 		{
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return date;
 	}
 
 	@Override

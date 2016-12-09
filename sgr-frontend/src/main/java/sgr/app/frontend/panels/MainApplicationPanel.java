@@ -20,11 +20,14 @@ public abstract class MainApplicationPanel implements Serializable
 {
 
 	private static final long serialVersionUID = -4946956951529094970L;
-	private final Map<String, String> panels = new HashMap<>();
+
 	@Autowired
 	protected AuthenticationService authenticationService;
+
 	@Autowired
 	private TranslationService translationService;
+
+	private final Map<String, String> panels = new HashMap<>();
 	private String currentPanelKey = "panel_main";
 
 	protected MainApplicationPanel()
@@ -66,6 +69,7 @@ public abstract class MainApplicationPanel implements Serializable
 		final FacesContext context = FacesContext.getCurrentInstance();
 		final String vievId = context.getViewRoot().getViewId();
 
+		// TODO refactor lambda
 		panels.forEach((key, value) ->
 		               {
 			               if (vievId.contains(key))

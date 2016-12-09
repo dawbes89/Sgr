@@ -10,6 +10,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import java.util.Objects;
 
 /**
  * Abstract base for validators.
@@ -20,14 +21,11 @@ import javax.faces.validator.ValidatorException;
  */
 public abstract class AbstractValidator<T> implements Validator
 {
-
 	@Autowired
 	protected TranslationService translationService;
 
+	private final Severity severity;
 	private String translatedValidationMessage;
-
-	private Severity severity;
-
 	private boolean nullAllowed;
 
 	protected AbstractValidator(Severity severity, String key)
@@ -42,15 +40,14 @@ public abstract class AbstractValidator<T> implements Validator
 		translatedValidationMessage = translationService.translate(key, values);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	final public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
 	{
-		if (value == null && !nullAllowed)
+		if (Objects.isNull(value) && !nullAllowed)
 		{
 			return;
 		}
-		if (!isValidValue((T) value, component))
+		if (!isValidValue(getValueClass().cast(value), component))
 		{
 			throw new ValidatorException(
 					new FacesMessage(severity, translatedValidationMessage, translatedValidationMessage));
@@ -67,8 +64,14 @@ public abstract class AbstractValidator<T> implements Validator
 	protected abstract boolean isValidValue(T value, final UIComponent component);
 
 	/**
-	 * Allows to pass null to {@link #isValidValue(Object, UIComponent)}}.<br>
-	 * Default is false.
+	 * Gets class of validated <code>value</code>.
+	 *
+	 * @return value class
+	 */
+	protected abstract Class<T> getValueClass();
+
+	/**
+	 * Allows to pass null to {@link #isValidValue(Object, UIComponent)}}. Default is false.
 	 *
 	 * @param nullAllowed
 	 * 		if true nulls is passed to {@link #isValidValue(Object, UIComponent)}, otherwise not

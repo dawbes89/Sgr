@@ -11,6 +11,11 @@ import javax.faces.component.UIComponent;
  */
 public class CommentTypeTranslationConverter extends AbstractTranslationConverter<CommentType>
 {
+	@Override
+	protected Class<CommentType> getConvertedValueClass()
+	{
+		return CommentType.class;
+	}
 
 	@Override
 	protected CommentType convertToObject(String value)

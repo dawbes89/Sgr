@@ -15,10 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Panel extender for all panels in application.<br>
- * For using entites list in xhtml part use {@link #entities} and for single use
- * {@link #entity}. Sometimes with panel name eq.
- * <code>panelName.entity.entityProperty</code>.
+ * Panel extender for all panels in application. For using entites list in xhtml part use {@link #entities} and for
+ * single use{@link #entity}. Sometimes with panel name eq. <code>panelName.entity.entityProperty</code>.
  *
  * @param <T>
  * 		data type used in panel
@@ -33,7 +31,6 @@ public abstract class AbstractPanel<T> implements Serializable
 	protected TranslationService translationService;
 
 	protected List<T> entities = new ArrayList<>();
-
 	protected T entity;
 
 	public AbstractPanel()

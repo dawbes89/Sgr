@@ -2,6 +2,7 @@ package sgr.app.api.classgroup;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author leonzio
@@ -77,12 +78,12 @@ public class ClassGroup implements Serializable
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (obj == null)
+		if (obj == null || !Objects.equals(this.getClass(), obj.getClass()))
 		{
 			return false;
 		}
 		final ClassGroup object = (ClassGroup) obj;
-		return object.getId().equals(id);
+		return Objects.equals(object.getId(), id);
 	}
 
 }

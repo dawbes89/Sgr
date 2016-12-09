@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface AuthenticationService
 {
-
+	// TODO move to file with constants
 	String USER_ATTRIBUTE = "user";
 	String ACCOUNT_TYPE = "accountType";
 	String LOGIN_PAGE = "loginPanel";

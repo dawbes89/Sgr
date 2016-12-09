@@ -23,7 +23,6 @@ import java.util.List;
  */
 public abstract class AbstractLoginPanel implements Serializable
 {
-
 	private static final long serialVersionUID = 8771925513486552329L;
 
 	private static final String MAIN_PAGE = String.format("/app/%s.xhtml", AuthenticationService.MAIN_PAGE);
@@ -47,6 +46,7 @@ public abstract class AbstractLoginPanel implements Serializable
 		loginBean = new LoginBean();
 	}
 
+	// TODO javadoc
 	protected abstract List<AccountType> supportedAccountTypes();
 
 	public void checkLogin() throws IOException
@@ -60,7 +60,7 @@ public abstract class AbstractLoginPanel implements Serializable
 		}
 		catch (AuthenticationException e)
 		{
-			handleException("loginForm", e);
+			handleException(e);
 		}
 	}
 
@@ -71,12 +71,12 @@ public abstract class AbstractLoginPanel implements Serializable
 		externalContext.redirect(externalContext.getRequestContextPath());
 	}
 
-	private void handleException(String formId, CustomException throwable)
+	private void handleException(CustomException throwable)
 	{
 		final String validationMessage = translationService.translate(throwable.getMessage());
 		final FacesMessage message = new FacesMessage(validationMessage);
 		message.setSeverity(throwable.getSeverity());
-		FacesContext.getCurrentInstance().addMessage(formId, message);
+		FacesContext.getCurrentInstance().addMessage("loginForm", message);
 	}
 
 	public LoginBean getLoginBean()

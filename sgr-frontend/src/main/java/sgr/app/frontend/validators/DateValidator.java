@@ -18,26 +18,29 @@ import java.util.Date;
 public class DateValidator extends AbstractValidator<Date>
 {
 
-	private static final DateValidationMode defaultMode = DateValidationMode.BEFORE;
+	private static final DateValidationMode DEFAULT_MODE = DateValidationMode.BEFORE;
 
 	public DateValidator()
 	{
-		super(FacesMessage.SEVERITY_ERROR, defaultMode.getTranslationKey());
+		super(FacesMessage.SEVERITY_ERROR, DEFAULT_MODE.getTranslationKey());
+	}
+
+	@Override
+	protected Class<Date> getValueClass()
+	{
+		return Date.class;
 	}
 
 	@Override
 	protected boolean isValidValue(Date value, final UIComponent component)
 	{
 		final String findMode = (String) component.getAttributes().get("validationMode");
-		DateValidationMode mode = defaultMode;
-		if (findMode != null && DateValidationMode.valueOf(findMode) != null)
-		{
-			mode = DateValidationMode.valueOf(findMode);
-		}
+		DateValidationMode mode = findMode == null ? DEFAULT_MODE : DateValidationMode.valueOf(findMode);
+
 		final Date currentDate = DateHelper.getDateWithoutTime(new Date());
-		setErrorMessage(mode.getTranslationKey(),
-		                new Object[]{component.getAttributes().get("label"), StandardFormat.DAY_FORMAT.format(
-				                currentDate)});
+		Object[] messageParameters = {component.getAttributes().get("label"), StandardFormat.DAY_FORMAT.format(
+				currentDate)};
+		setErrorMessage(mode.getTranslationKey(), messageParameters);
 		return mode.isValid(currentDate, value);
 	}
 

@@ -46,6 +46,12 @@ public class AssessmentConverter extends AbstractConverter<Float>
 	}
 
 	@Override
+	protected Class<Float> getConvertedValueClass()
+	{
+		return Float.class;
+	}
+
+	@Override
 	protected Float convertToObject(String value)
 	{
 		return Float.valueOf(value);
