@@ -10,7 +10,7 @@ import sgr.app.api.notification.NotificationService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.Optional;
 /**
  * @author leonzio
  */
-class NotificationServiceImpl extends DaoSupport implements NotificationService
+class NotificationServiceImpl extends SgrDaoSupport implements NotificationService
 {
 
 	private SemestrService semestrService;

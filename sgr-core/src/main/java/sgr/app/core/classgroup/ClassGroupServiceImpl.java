@@ -8,7 +8,7 @@ import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.exceptions.RemoveException;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Calendar;
@@ -19,7 +19,7 @@ import java.util.Optional;
 /**
  * @author leonzio
  */
-class ClassGroupServiceImpl extends DaoSupport implements ClassGroupService
+class ClassGroupServiceImpl extends SgrDaoSupport implements ClassGroupService
 {
 
 	@Override

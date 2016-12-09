@@ -13,7 +13,7 @@ import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.Optional;
 /**
  * @author dawbes89
  */
-class LessonServiceImpl extends DaoSupport implements LessonService
+class LessonServiceImpl extends SgrDaoSupport implements LessonService
 {
 	private static final String PROPERTY_CLASS_GROUP_ID = Lesson.PROPERTY_CLASS_GROUP + "." + ClassGroup.PROPERTY_ID;
 

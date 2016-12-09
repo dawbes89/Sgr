@@ -4,7 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import sgr.app.api.announcement.Announcement;
 import sgr.app.api.announcement.AnnouncementService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author dawbes89
  */
-class AnnouncementServiceImpl extends DaoSupport implements AnnouncementService
+class AnnouncementServiceImpl extends SgrDaoSupport implements AnnouncementService
 {
 
 	@Override

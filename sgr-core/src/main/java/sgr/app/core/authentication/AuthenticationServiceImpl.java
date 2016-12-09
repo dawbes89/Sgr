@@ -3,8 +3,8 @@ package sgr.app.core.authentication;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import sgr.app.api.account.Account;
-import sgr.app.api.account.AccountService;
+import sgr.app.core.account.Account;
+import sgr.app.core.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.admin.AdminService;
@@ -12,7 +12,7 @@ import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
 import sgr.app.api.exceptions.AuthenticationException;
 import sgr.app.api.person.Person;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Date;
@@ -24,7 +24,7 @@ import java.util.Optional;
  *
  * @author leonzio
  */
-class AuthenticationServiceImpl extends DaoSupport implements AuthenticationService
+class AuthenticationServiceImpl extends SgrDaoSupport implements AuthenticationService
 {
 
 	private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -39,7 +39,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 	public void authenticateUser(String userName, String password, List<AccountType> supportedAccounts) throws
 			AuthenticationException
 	{
-		final Optional<Account> foundAccount = accountService.findAccountByLogin(userName);
+		final Optional<Account> foundAccount = accountService.find(userName);
 
 		if (!foundAccount.isPresent())
 		{
@@ -83,7 +83,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 		sessionService.getSession().invalidate();
 	}
 
-	// TODO zabezpieczy� metod� przed brakiem sesji
+	// TODO zabezpieczyć metodę przed brakiem sesji
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCurrentUser() throws NullPointerException
@@ -101,7 +101,7 @@ class AuthenticationServiceImpl extends DaoSupport implements AuthenticationServ
 	@Override
 	public void createSuperAdmin()
 	{
-		final Optional<Account> account = accountService.findAccountByLogin("root");
+		final Optional<Account> account = accountService.find("root");
 		if (account.isPresent())
 		{
 			return;

@@ -7,7 +7,7 @@ import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrQuery;
 import sgr.app.api.semestr.SemestrService;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Calendar;
@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * @author leonzio
  */
-class SemestrServiceImpl extends DaoSupport implements SemestrService
+class SemestrServiceImpl extends SgrDaoSupport implements SemestrService
 {
 
 	@Override

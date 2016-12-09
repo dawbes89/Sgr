@@ -14,7 +14,7 @@ import sgr.app.api.notification.NotificationService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.DaoSupport;
+import sgr.app.core.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.Optional;
 /**
  * @author dawbes89
  */
-class AssessmentServiceImpl extends DaoSupport implements AssessmentService
+class AssessmentServiceImpl extends SgrDaoSupport implements AssessmentService
 {
 
 	private NotificationService notificationService;
