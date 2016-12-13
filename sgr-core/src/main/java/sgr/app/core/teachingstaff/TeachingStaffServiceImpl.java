@@ -8,7 +8,7 @@ import sgr.app.core.account.AccountService;
 import sgr.app.api.account.AccountType;
 import sgr.app.api.teachingstaff.TeachingStaff;
 import sgr.app.api.teachingstaff.TeachingStaffService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ class TeachingStaffServiceImpl extends SgrDaoSupport implements TeachingStaffSer
 	@Override
 	public TeachingStaff get(Long id)
 	{
-		return getEntity(TeachingStaff.class, id);
+		return get(TeachingStaff.class, id);
 	}
 
 	@Override
@@ -40,19 +40,19 @@ class TeachingStaffServiceImpl extends SgrDaoSupport implements TeachingStaffSer
 		final Account account = teachingStaff.getAccount();
 		account.setType(AccountType.TEACHER);
 		teachingStaff.setAccount(accountService.create(account));
-		createEntity(teachingStaff);
+		create(teachingStaff);
 	}
 
 	@Override
 	public void remove(Long id)
 	{
-		removeEntity(TeachingStaff.class, id);
+		remove(TeachingStaff.class, id);
 	}
 
 	@Override
 	public void update(TeachingStaff teachingStaff)
 	{
-		updateEntity(teachingStaff);
+		update(teachingStaff);
 	}
 
 	@Required

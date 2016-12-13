@@ -15,7 +15,7 @@ import sgr.app.api.presence.PresenceService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -35,7 +35,7 @@ class PresenceServiceImpl extends SgrDaoSupport implements PresenceService
 	public void create(Presence presence)
 	{
 		presence.setDate(new Date());
-		createEntity(presence);
+		create(presence);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ class PresenceServiceImpl extends SgrDaoSupport implements PresenceService
 	@Override
 	public void update(Presence presence)
 	{
-		updateEntity(presence);
+		update(presence);
 	}
 
 	private Criteria createCriteria(PresenceQuery query)

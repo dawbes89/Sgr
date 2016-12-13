@@ -9,11 +9,11 @@ import java.util.Optional;
 /**
  * @author dawbes89
  */
+//TODO create method to matching passwords for account
 class AccountServiceImpl implements AccountService
 {
 	private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-	//TODO
 	private AccountDao accountDao;
 
 	@Override
@@ -23,7 +23,7 @@ class AccountServiceImpl implements AccountService
 		return accountDao.find(query);
 	}
 
-	// TODO refactor this
+	// TODO refactor this in dao
 	@Override
 	public <T> Optional<T> findUserByAccount(Account account)
 	{

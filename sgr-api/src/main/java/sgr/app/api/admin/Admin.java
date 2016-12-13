@@ -82,6 +82,7 @@ public class Admin implements PersonName, AccountEntity, Serializable
 		this.superuser = superuser;
 	}
 
+	//TODO remove from here
 	@Transient
 	@Override
 	public String getFullName()

@@ -6,7 +6,7 @@ import org.hibernate.criterion.SimpleExpression;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.student.Student;
 import sgr.app.api.teachingstaff.TeachingStaff;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Optional;
 
@@ -17,12 +17,12 @@ class AccountDao extends SgrDaoSupport
 {
 	Account create(Account account)
 	{
-		return createEntity(account);
+		return create(account);
 	}
 
 	Account update(Account account)
 	{
-		return updateEntity(account);
+		return update(account);
 	}
 
 	Account getForUpdate(Long id)

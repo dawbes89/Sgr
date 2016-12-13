@@ -13,7 +13,7 @@ import sgr.app.api.presence.Presence;
 import sgr.app.api.presence.PresenceService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -34,7 +34,7 @@ class LessonServiceImpl extends SgrDaoSupport implements LessonService
 	public Lesson create(Lesson lesson, List<Presence> presences)
 	{
 		lesson.setDate(new Date());
-		final Lesson created = createEntity(lesson);
+		final Lesson created = create(lesson);
 		presences.stream().peek(presence -> presence.setLesson(created)).forEach(
 				presence -> presenceService.create(presence));
 		return created;
@@ -93,7 +93,7 @@ class LessonServiceImpl extends SgrDaoSupport implements LessonService
 	@Override
 	public Presence createPresence(Presence presence)
 	{
-		return createEntity(presence);
+		return create(presence);
 	}
 
 	@Required

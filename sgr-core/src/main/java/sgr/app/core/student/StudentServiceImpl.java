@@ -11,7 +11,7 @@ import sgr.app.api.exceptions.RemoveException;
 import sgr.app.api.student.Student;
 import sgr.app.api.student.StudentQuery;
 import sgr.app.api.student.StudentService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.List;
@@ -36,7 +36,7 @@ class StudentServiceImpl extends SgrDaoSupport implements StudentService
 	@Override
 	public Student get(Long id)
 	{
-		return getEntity(Student.class, id);
+		return get(Student.class, id);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ class StudentServiceImpl extends SgrDaoSupport implements StudentService
 		final Account account = student.getAccount();
 		account.setType(AccountType.STUDENT);
 		student.setAccount(accountService.create(account));
-		createEntity(student);
+		create(student);
 	}
 
 	@Override
@@ -57,13 +57,13 @@ class StudentServiceImpl extends SgrDaoSupport implements StudentService
 		{
 			throw new RemoveException("exception_remove_canNotDelete", FacesMessage.SEVERITY_ERROR);
 		}
-		removeEntity(Student.class, id);
+		remove(Student.class, id);
 	}
 
 	@Override
 	public void update(Student student)
 	{
-		updateEntity(student);
+		update(student);
 	}
 
 	private Criteria findIndelibleStudents(Long studentId)

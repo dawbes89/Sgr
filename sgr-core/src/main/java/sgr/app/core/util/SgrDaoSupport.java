@@ -1,20 +1,22 @@
-package sgr.app.core;
+package sgr.app.core.util;
 
 import org.hibernate.Criteria;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
+ * <code>DaoSupport</code> for managing operations on database.
+ *
  * @author leonzio
  */
+//TODO javadoc's on methods
 @Transactional
 public abstract class SgrDaoSupport
 {
@@ -27,11 +29,6 @@ public abstract class SgrDaoSupport
 		return String.format(ALIAS_PROPERTY, property, secondProperty);
 	}
 
-	final Session getSession()
-	{
-		return sessionFactory.getCurrentSession();
-	}
-
 	protected <T> Criteria createCriteria(Class<T> persistentClass)
 	{
 		return getSession().createCriteria(persistentClass);
@@ -41,34 +38,29 @@ public abstract class SgrDaoSupport
 	protected <T> List<T> search(Criteria criteria)
 	{
 		Collection<?> result = criteria.list();
-		List<T> resultList = new ArrayList<>(result.size());
-		for (Object object : result)
-		{
-			resultList.add((T) object);
-		}
-		return resultList;
+		return result.stream().map(obj -> (T) obj).collect(Collectors.toList());
 	}
 
-	protected <T> T createEntity(T entity)
+	protected <T> T create(T entity)
 	{
 		getSession().save(entity);
 		return entity;
 	}
 
-	protected <T> T updateEntity(T entity)
+	protected <T> T update(T entity)
 	{
 		getSession().update(entity);
 		return entity;
 	}
 
-	protected <T> void removeEntity(Class<T> clazz, Long id)
+	protected <T> void remove(Class<T> clazz, Long id)
 	{
-		final T entity = getEntity(clazz, id);
+		final T entity = get(clazz, id);
 		getSession().delete(entity);
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> T getEntity(Class<T> clazz, Long id)
+	protected <T> T get(Class<T> clazz, Long id)
 	{
 		Object entity = getSession().get(clazz, id);
 		return (T) entity;
@@ -80,9 +72,9 @@ public abstract class SgrDaoSupport
 		return Optional.of((T) criteria.uniqueResult());
 	}
 
-	protected <T> LockMode getEntityLockMode(T entity)
+	private Session getSession()
 	{
-		return getSession().getCurrentLockMode(entity);
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Required

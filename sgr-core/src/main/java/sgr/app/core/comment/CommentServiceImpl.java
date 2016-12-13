@@ -11,7 +11,7 @@ import sgr.app.api.notification.NotificationService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -32,7 +32,7 @@ class CommentServiceImpl extends SgrDaoSupport implements CommentService
 	{
 		notificationService.create(Notification.create("Uwagi", "Otrzymałeś uwagę", comment.getStudent()));
 		comment.setDate(new Date());
-		createEntity(comment);
+		create(comment);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrQuery;
 import sgr.app.api.semestr.SemestrService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Calendar;
@@ -50,7 +50,7 @@ class SemestrServiceImpl extends SgrDaoSupport implements SemestrService
 			throw new CreateException("exception_create_semestr_withGivenNumberExsists", FacesMessage.SEVERITY_ERROR);
 		}
 		semestr.setSchoolYear(currentSchoolYear());
-		createEntity(semestr);
+		create(semestr);
 	}
 
 	@Override
