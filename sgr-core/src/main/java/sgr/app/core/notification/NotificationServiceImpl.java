@@ -10,7 +10,7 @@ import sgr.app.api.notification.NotificationService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -49,7 +49,7 @@ class NotificationServiceImpl extends SgrDaoSupport implements NotificationServi
 	public void create(Notification notification)
 	{
 		notification.setReceived(new Date());
-		createEntity(notification);
+		create(notification);
 	}
 
 	@Required

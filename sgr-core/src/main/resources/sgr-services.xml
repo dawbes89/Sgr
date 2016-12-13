@@ -17,6 +17,7 @@
 		</bean>
 	</beans>
 
+	<beans></beans>
 	<bean id="translationService" class="sgr.app.core.translation.TranslationServiceImpl"/>
 
 	<bean id="sessionService" class="sgr.app.core.authentication.SessionServiceImpl"/>

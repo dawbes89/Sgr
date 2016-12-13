@@ -1,9 +1,11 @@
-package sgr.app.core;
+package sgr.app.core.util;
 
 /**
+ * Base for <code>query</code> builders.
+ *
  * @param <QUERY>
  * 		type of query to build
- * @author dawbes
+ * @author dawbes89
  */
 public abstract class QueryBuilder<QUERY>
 {

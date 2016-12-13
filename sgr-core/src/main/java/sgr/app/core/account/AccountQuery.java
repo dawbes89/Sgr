@@ -1,6 +1,6 @@
 package sgr.app.core.account;
 
-import sgr.app.core.QueryBuilder;
+import sgr.app.core.util.QueryBuilder;
 
 import java.io.Serializable;
 import java.util.Optional;

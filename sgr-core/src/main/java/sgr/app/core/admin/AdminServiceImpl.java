@@ -10,7 +10,7 @@ import sgr.app.api.account.AccountType;
 import sgr.app.api.admin.Admin;
 import sgr.app.api.admin.AdminQuery;
 import sgr.app.api.admin.AdminService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ class AdminServiceImpl extends SgrDaoSupport implements AdminService
 	@Override
 	public Admin get(Long id)
 	{
-		return getEntity(Admin.class, id);
+		return get(Admin.class, id);
 	}
 
 	@Override
@@ -42,19 +42,19 @@ class AdminServiceImpl extends SgrDaoSupport implements AdminService
 		final Account account = admin.getAccount();
 		account.setType(AccountType.ADMIN);
 		admin.setAccount(accountService.create(account));
-		createEntity(admin);
+		create(admin);
 	}
 
 	@Override
 	public void remove(Long id)
 	{
-		removeEntity(Admin.class, id);
+		remove(Admin.class, id);
 	}
 
 	@Override
 	public void update(Admin admin)
 	{
-		updateEntity(admin);
+		update(admin);
 	}
 
 	private Criteria createCriteria(AdminQuery query)

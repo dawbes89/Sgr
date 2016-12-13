@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 /**
  * @author leonzio
  */
+//TODO frontend service?
 class TranslationServiceImpl implements TranslationService
 {
 

@@ -12,7 +12,7 @@ import sgr.app.api.authentication.AuthenticationService;
 import sgr.app.api.authentication.SessionService;
 import sgr.app.api.exceptions.AuthenticationException;
 import sgr.app.api.person.Person;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Date;

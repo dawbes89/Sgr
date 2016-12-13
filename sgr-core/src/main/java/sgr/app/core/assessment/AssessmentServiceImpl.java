@@ -14,7 +14,7 @@ import sgr.app.api.notification.NotificationService;
 import sgr.app.api.semestr.Semestr;
 import sgr.app.api.semestr.SemestrService;
 import sgr.app.api.student.Student;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -35,7 +35,7 @@ class AssessmentServiceImpl extends SgrDaoSupport implements AssessmentService
 	{
 		notificationService.create(Notification.create("Oceny", "Otrzymałeś ocenę", assessment.getStudent()));
 		assessment.setDate(new Date());
-		createEntity(assessment);
+		create(assessment);
 	}
 
 	@Override

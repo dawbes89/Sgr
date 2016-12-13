@@ -8,7 +8,7 @@ import sgr.app.api.classgroup.ClassGroupQuery;
 import sgr.app.api.classgroup.ClassGroupService;
 import sgr.app.api.exceptions.CreateException;
 import sgr.app.api.exceptions.RemoveException;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import javax.faces.application.FacesMessage;
 import java.util.Calendar;
@@ -41,7 +41,7 @@ class ClassGroupServiceImpl extends SgrDaoSupport implements ClassGroupService
 			throw new CreateException("exception_classGroup_exists", FacesMessage.SEVERITY_ERROR);
 		}
 		classGroup.setYearbook(currentSchoolYear());
-		createEntity(classGroup);
+		create(classGroup);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ class ClassGroupServiceImpl extends SgrDaoSupport implements ClassGroupService
 		{
 			throw new RemoveException("exception_remove_canNotDelete", FacesMessage.SEVERITY_ERROR);
 		}
-		removeEntity(ClassGroup.class, id);
+		remove(ClassGroup.class, id);
 	}
 
 	@Override

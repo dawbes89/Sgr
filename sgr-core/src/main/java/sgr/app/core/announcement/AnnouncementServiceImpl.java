@@ -4,7 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import sgr.app.api.announcement.Announcement;
 import sgr.app.api.announcement.AnnouncementService;
-import sgr.app.core.SgrDaoSupport;
+import sgr.app.core.util.SgrDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -27,19 +27,19 @@ class AnnouncementServiceImpl extends SgrDaoSupport implements AnnouncementServi
 	public void create(Announcement announcement)
 	{
 		announcement.setDate(new Date());
-		createEntity(announcement);
+		create(announcement);
 	}
 
 	@Override
 	public void remove(Long id)
 	{
-		removeEntity(Announcement.class, id);
+		remove(Announcement.class, id);
 	}
 
 	@Override
 	public void update(Announcement announcement)
 	{
-		updateEntity(announcement);
+		update(announcement);
 	}
 
 }

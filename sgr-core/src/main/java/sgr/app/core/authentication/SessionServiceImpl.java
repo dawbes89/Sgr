@@ -2,6 +2,7 @@ package sgr.app.core.authentication;
 
 import sgr.app.api.authentication.SessionService;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,16 +13,18 @@ import javax.servlet.http.HttpSession;
 class SessionServiceImpl implements SessionService
 {
 
+	private static final ExternalContext EXTERNAL_CONTEXT = FacesContext.getCurrentInstance().getExternalContext();
+
 	@Override
 	public HttpSession getSession()
 	{
-		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return (HttpSession) EXTERNAL_CONTEXT.getSession(false);
 	}
 
 	@Override
 	public HttpServletRequest getRequest()
 	{
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return (HttpServletRequest) EXTERNAL_CONTEXT.getRequest();
 	}
 
 	@SuppressWarnings("unchecked")
