@@ -17,4 +17,68 @@
 			<artifactId>sgr-api</artifactId>
 		</dependency>
 	</dependencies>
+   
+    <profiles>
+      <profile>
+         <id>full-analysis</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.jacoco</groupId>
+                  <artifactId>jacoco-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <goals>
+                           <goal>check</goal>
+                        </goals>
+                        <configuration>
+                           <rules>
+                              <rule>
+                                 <element>PACKAGE</element>
+                                 <includes>
+                                    <include>sgr.app.core.account</include>
+                                 </includes>
+                                 <limits>
+                                    <limit>
+                                       <counter>LINE</counter>
+                                       <value>COVEREDRATIO</value>
+                                       <minimum>0.00</minimum>
+                                    </limit>
+                                 </limits>
+                              </rule>
+                           </rules>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.pitest</groupId>
+                  <artifactId>pitest-maven</artifactId>
+                  <configuration>
+                     <timeoutFactor>1.5</timeoutFactor>
+                     <timeoutConstant>10000</timeoutConstant>
+                  </configuration>
+                  <executions>
+                     <execution>
+                        <id>Account</id>
+                        <goals>
+                           <goal>mutationCoverage</goal>
+                        </goals>
+                        <configuration>
+                           <targetClasses>
+                              <param>s.*</param>
+                           </targetClasses>
+                           <targetTests>
+                              <param>sgr.app.core.account.*</param>
+                           </targetTests>
+                           <mutationThreshold>100</mutationThreshold>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
+   
 </project>
